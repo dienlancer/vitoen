@@ -1,0 +1,77 @@
+.cateprodhorizontalright ul {
+	width: 100%;
+	list-style: none;
+}
+
+.cateprodhorizontalright li {
+	position: relative;
+	margin-left: 0;
+}
+.cateprodhorizontalright li a{
+	text-decoration: none;
+	color: #000;
+	line-height: 25px;
+	padding: 5px 0px 5px 10px;
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+}
+
+
+
+.cateprodhorizontalright li a:hover{
+	background-color:#ffffff;
+	color:#114a82;
+}
+
+.cateprodhorizontalright ul {
+	display: none;
+	background: #ffffff;
+	
+}
+
+.cateprodhorizontalright li:hover > ul{
+	display: block;
+	position: absolute;
+	top: -1px;
+	left: 272px;
+	z-index: 999999;
+	border-top:1px solid #e1e1e1;
+}
+
+
+
+.cateprodhorizontalright li{
+	margin-left: 0;
+}
+.cateprodhorizontalright {
+	list-style: none;
+}
+.cateprodhorizontalright li a{	
+	border-bottom:1px solid #dedede;
+	border-right: 1px solid #dedede;
+	border-left: 1px solid #dedede;
+}
+.cateprodhorizontalright ul{
+	margin-left:-11px;
+}
+
+
+.cateprodhorizontalright li a > div:nth-child(2){
+	margin-left: 5px;
+}
+.cateprodhorizontalright li a:hover{
+	background: #CCC;
+	color: #ff0000;
+}
+.cateprodhorizontalright li a div:last-child i{
+	display: none;
+}
+.cateprodhorizontalright li.menu-item-has-children > a div:last-child i{
+	display: block;
+}
+.cateprodhorizontalright li.menu-item-has-children a div:last-child{
+	position: absolute;
+	right: 20px;
+	color: #FFA200;	
+}
