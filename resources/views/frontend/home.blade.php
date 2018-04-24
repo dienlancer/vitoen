@@ -56,7 +56,14 @@ $company=$setting['contacted_person']['field_value'];
 		</div>
 	</div>	
 	<?php 
-	$ft_source_category=App\CategoryProductModel::whereRaw('parent_id = ?',0)->select('id','fullname','alias')->get()->toArray();
+	$arr_id=array(39);
+	$ft_source_category=DB::table('category_product')
+						->whereIn('category_product.parent_id',@$arr_id)
+						->select('id','fullname','alias')
+						->groupBy('id','fullname','alias')
+						->get()
+						->toArray();
+	$ft_source_category=convertToArray($ft_source_category);	
 	if(count($ft_source_category) > 0){
 		foreach ($ft_source_category as $key => $value) {
 			$ft_id=$value['id'];
