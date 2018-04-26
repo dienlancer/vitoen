@@ -224,7 +224,7 @@ if(count($arrCart) > 0){
 				$(cell_product_name).attr('align','left');
 				$(cell_product_total_price).attr('align','right');
 				$(xNewRow).attr('pro_id',cart_product_id);                    
-				cell_product_image.innerHTML='<img src="/upload/'+cart_product_image+'" />';
+				cell_product_image.innerHTML='<img src="<?php echo asset('upload'); ?>/'+cart_product_image+'" />';
 				cell_product_name.innerHTML='<div>'+cart_product_name+'</div><div><input  type="text" onblur="changeTotalPrice(this);" onkeypress="return isNumberKey(event)" value="'+cart_product_quantity+'" size="4" class="com_product19" name="quantity['+cart_product_id+']">      </div>' ;                    
 				cell_product_total_price.innerHTML= '<div class="tt-pri">'+cart_product_total_price_text+'</div><div><a href="javascript:void(0);" onclick="deleteRowCart(this);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>' ;                    
 				i++;
@@ -581,7 +581,7 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
-<div class="quick-alo-phone quick-alo-green quick-alo-show" id="quick-alo-phoneIcon" style="left: 10px; top: 20%;">
+<div class="quick-alo-phone quick-alo-green quick-alo-show" id="quick-alo-phoneIcon" >
   <a href="tel:<?php echo $telephone; ?>" title="Liên hệ nhanh">
   <div class="quick-alo-ph-circle"></div>
   <div class="quick-alo-ph-circle-fill"></div>

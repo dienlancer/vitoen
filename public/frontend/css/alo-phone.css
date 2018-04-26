@@ -409,7 +409,7 @@
     -moz-transition: visibility .5s;
     -o-transition: visibility .5s;
     transition: visibility .5s;
-    right: 150px;
-    top: 30px;
+    left: 10px;
+    bottom: 30px;
 }
 /* end quick alo phone*/
