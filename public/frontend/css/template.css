@@ -217,15 +217,7 @@ div.opacity-absolute::before{
     content: "";
     opacity: .5;
 }
-ul.inline-block{
-    list-style: none;
-}
-ul.inline-block > li{
-    display: inline-block;
-}
-ul.list-style-none{
-    list-style: none;
-}
+
 .pagination{
     margin: 0
 }
@@ -2056,9 +2048,7 @@ form[name='frm-search'] input[name='q']{
 	float: right;
     width: 50px;
 }
-.nippet a img{
-    width:53px;
-}
+
 
 
 .katalena{
@@ -2080,7 +2070,9 @@ form[name='frm-search'] input[name='q']{
 .katalena a:hover{
     color: #ffffff !important;
 }
-
+.connected-social li{
+    display: inline-block;
+}
 @media (max-width: 768px){    
     .mobilemenu{
         display: block;
