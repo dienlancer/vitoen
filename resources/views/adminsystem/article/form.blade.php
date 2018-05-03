@@ -158,11 +158,15 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
                         <div class="col-md-10">                            
                             <?php echo $inputContent; ?>
                             <span class="help-block"></span>
-                            <script type="text/javascript" language="javascript">
-                                CKEDITOR.replace('content',{
-                                   height:300
-                               });
-                           </script>
+                            <script type="text/javascript" language="javascript">  
+                                var options = {
+                                    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                                    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                                    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                                    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{ csrf_field() }}'
+                                };                         
+                                CKEDITOR.replace('content', options);
+                            </script>
                            <span class="help-block"></span>
                        </div>
                    </div>                       
