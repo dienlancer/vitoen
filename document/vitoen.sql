@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 03, 2018 lúc 07:18 AM
+-- Thời gian đã tạo: Th5 03, 2018 lúc 10:15 AM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.0.26
 
@@ -643,6 +643,14 @@ CREATE TABLE `invoice` (
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
+--
+-- Đang đổ dữ liệu cho bảng `invoice`
+--
+
+INSERT INTO `invoice` (`id`, `code`, `email`, `fullname`, `address`, `phone`, `note`, `quantity`, `total_price`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
+(1, '815392746', 'uyenltn@dienkim.com', 'Lê Thị Nhã Uyên', '11 Trần Văn Đang', '0987162783', 'Giao ngay chuyến hàng này cho tôi', 4, 3200000, 0, 1, '2018-05-03 08:02:22', '2018-05-03 08:02:22'),
+(2, '231684957', 'truclh@dienkim.com', 'Lê Hư Trúc', '11 Trần Văn Đang', '0988152162', 'Tôi muốn nhập mẫu này', 2, 1600000, 0, 1, '2018-05-03 08:10:31', '2018-05-03 08:10:31');
+
 -- --------------------------------------------------------
 
 --
@@ -663,6 +671,14 @@ CREATE TABLE `invoice_detail` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+--
+-- Đang đổ dữ liệu cho bảng `invoice_detail`
+--
+
+INSERT INTO `invoice_detail` (`id`, `invoice_id`, `product_id`, `product_code`, `product_name`, `product_image`, `product_price`, `product_quantity`, `product_total_price`, `created_at`, `updated_at`) VALUES
+(1, 1, 110, '426597183', '1.5m Thang chữ A phổ thông TA15', 'thang-nhom-rut-chu-a-nikita-ai56-56m-hi3u4nevgbl7.jpg', '800000.00', 4, '3200000.00', '2018-05-03 08:02:22', '2018-05-03 08:02:22'),
+(2, 2, 110, '426597183', '1.5m Thang chữ A phổ thông TA15', 'thang-nhom-rut-chu-a-nikita-ai56-56m-hi3u4nevgbl7.jpg', '800000.00', 2, '1600000.00', '2018-05-03 08:10:31', '2018-05-03 08:10:31');
 
 -- --------------------------------------------------------
 
@@ -693,14 +709,12 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 (57, 'Trang chủ', 'trang-chu', 0, 5, 0, NULL, 1, 1, '2018-01-10 07:14:21', '2018-01-10 07:14:21'),
 (61, 'Liên hệ', 'lien-he', 0, 5, 0, NULL, 3, 1, '2018-01-10 07:15:34', '2018-03-04 12:48:59'),
 (340, 'Thang nhôm', 'thang-nhom', 0, 1, 0, '', 1, 1, '2018-02-26 07:47:48', '2018-04-24 03:57:18'),
-(361, 'Thang nhôm', 'thang-nhom', 0, 8, 0, '', 1, 1, '2018-02-28 07:00:20', '2018-04-18 04:28:29'),
 (388, 'Thang nhôm', 'thang-nhom', 0, 10, 0, '', 1, 1, '2018-02-28 16:53:11', '2018-04-16 09:18:09'),
 (406, 'Sản phẩm', 'nen-mua-may-tinh-xach-tay-cua-hang-nao', 0, 5, 0, '', 2, 1, '2018-03-04 12:48:56', '2018-03-19 10:34:58'),
 (407, 'Laptop', 'van-thang-nhom', 406, 5, 1, '', 1, 1, '2018-03-04 12:49:11', '2018-03-04 12:49:11'),
 (423, 'Thang nhôm rút', 'thang-nhom-rut', 340, 1, 1, '', 2, 1, '2018-04-16 07:45:36', '2018-04-18 06:41:02'),
 (424, 'Thang nhôm chữ A', 'thang-nhom-chu-a', 340, 1, 1, '', 1, 1, '2018-04-16 07:51:02', '2018-04-18 06:40:45'),
 (433, 'Thang nhôm ghế', 'thang-nhom-ghe', 340, 1, 1, '', 8, 1, '2018-04-16 07:54:50', '2018-04-16 07:54:50'),
-(434, 'Băng keo', 'bang-keo', 0, 8, 0, '', 2, 1, '2018-04-18 04:27:10', '2018-04-18 04:28:27'),
 (435, 'Băng keo', 'bang-keo', 0, 1, 0, '', 1, 1, '2018-04-18 04:31:06', '2018-04-27 01:59:23'),
 (436, 'Thang nhôm nikawa', 'thang-nhom-nikawa', 340, 1, 1, '', 3, 1, '2018-04-18 06:53:10', '2018-04-18 06:53:10'),
 (437, 'Thang nhôm nikita', 'thang-nhom-nikita', 340, 1, 1, '', 4, 1, '2018-04-18 06:54:02', '2018-04-18 06:54:02'),
@@ -717,14 +731,26 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 (449, 'Thang nhôm rút đơn', 'thang-nhom-rut-don', 423, 1, 2, '', 16, 1, '2018-04-24 03:30:32', '2018-04-24 03:30:32'),
 (450, 'Thang nhôm trượt', 'thang-nhom-truot', 340, 1, 1, '', 17, 1, '2018-04-24 03:35:15', '2018-04-24 03:35:15'),
 (451, 'Tư vấn', 'tu-van', 0, 3, 0, '', 1, 1, '2018-04-29 15:54:18', '2018-04-29 15:54:18'),
-(452, 'Tư vấn', 'tu-van', 0, 8, 0, '', 3, 1, '2018-04-29 15:59:12', '2018-04-29 15:59:12'),
 (453, 'Thang nhôm chữ A', 'thang-nhom-chu-a', 0, 11, 0, '', 1, 1, '2018-05-03 02:25:00', '2018-05-03 02:25:00'),
 (454, 'Thang nhôm rút', 'thang-nhom-rut', 0, 11, 0, '', 2, 1, '2018-05-03 02:25:14', '2018-05-03 02:46:13'),
 (462, 'Thang nhôm Sumika', 'thang-nhom-sumika', 0, 11, 0, '', 3, 1, '2018-05-03 02:45:13', '2018-05-03 02:46:13'),
 (463, 'Thang nhôm nikawa', 'thang-nhom-nikawa', 0, 11, 0, '', 4, 1, '2018-05-03 02:45:23', '2018-05-03 02:46:13'),
 (464, 'Thang nhôm nikita', 'thang-nhom-nikita', 0, 11, 0, '', 5, 1, '2018-05-03 02:46:47', '2018-05-03 02:46:50'),
 (465, 'Tất cả các thiết bị thang nhôm', 'thang-nhom', 0, 11, 0, '', 6, 1, '2018-05-03 02:48:10', '2018-05-03 02:48:10'),
-(466, 'Băng keo', 'bang-keo', 0, 10, 0, '', 2, 1, '2018-05-03 04:38:00', '2018-05-03 04:38:00');
+(466, 'Băng keo', 'bang-keo', 0, 10, 0, '', 2, 1, '2018-05-03 04:38:00', '2018-05-03 04:38:00'),
+(467, 'Thang nhôm chữ A', 'thang-nhom-chu-a', 0, 8, 0, '', 1, 1, '2018-05-03 07:23:50', '2018-05-03 07:23:50'),
+(472, 'Thang nhôm rút', 'thang-nhom-rut', 0, 8, 0, '', 1, 1, '2018-05-03 07:25:46', '2018-05-03 07:25:46'),
+(473, 'Thang nhôm Sumika', 'thang-nhom-sumika', 0, 8, 0, '', 1, 1, '2018-05-03 07:25:53', '2018-05-03 07:25:53'),
+(474, 'Thang nhôm nikawa', 'thang-nhom-nikawa', 0, 8, 0, '', 1, 1, '2018-05-03 07:26:01', '2018-05-03 07:26:04'),
+(475, 'Thang nhôm nikita', 'thang-nhom-nikita', 0, 8, 0, '', 1, 1, '2018-05-03 07:26:11', '2018-05-03 07:26:11'),
+(476, 'Thang nhôm ghế', 'thang-nhom-ghe', 0, 8, 0, '', 1, 1, '2018-05-03 07:26:18', '2018-05-03 07:26:18'),
+(477, 'Thang nhôm ghế', 'thang-nhom-ghe', 0, 8, 0, '', 1, 1, '2018-05-03 07:26:25', '2018-05-03 07:26:25'),
+(478, 'Chính sách giao hàng', 'chinh-sach-giao-hang', 0, 9, 0, '', 1, 1, '2018-05-03 07:30:43', '2018-05-03 07:30:43'),
+(479, 'Hướng dẫn mua hàng', 'huong-dan-mua-hang', 0, 9, 0, '', 2, 1, '2018-05-03 07:30:52', '2018-05-03 07:32:21'),
+(480, 'Quy chế hoạt động', 'quy-che-hoat-dong', 0, 9, 0, '', 3, 1, '2018-05-03 07:31:00', '2018-05-03 07:32:21'),
+(481, 'Đổi trả bảo hành', 'doi-tra-bao-hanh', 0, 9, 0, '', 4, 1, '2018-05-03 07:31:07', '2018-05-03 07:32:21'),
+(482, 'Liên hệ', 'lien-he', 0, 9, 0, '', 6, 1, '2018-05-03 07:31:42', '2018-05-03 07:32:21'),
+(483, 'Tư vấn', 'tu-van', 0, 9, 0, '', 5, 1, '2018-05-03 07:32:02', '2018-05-03 07:32:21');
 
 -- --------------------------------------------------------
 
@@ -863,8 +889,12 @@ CREATE TABLE `page` (
 
 INSERT INTO `page` (`id`, `fullname`, `alias`, `theme_location`, `image`, `intro`, `content`, `description`, `meta_keyword`, `meta_description`, `count_view`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Công Ty TNHH VIDOCO', 'cong-ty-tnhh-vidoco', 'intro-footer', NULL, '', '<p>Địa chỉ: 35/6 B&ugrave;i Quang L&agrave;, Phường 12, Quận G&ograve; Vấp, TPHCM</p>\r\n\r\n<p>Điện thoại: 0974289224<br />\r\nEmail: vitoen.vn@gmail.com<br />\r\nWebsite:http://vitoen.com/</p>', '', '', '', NULL, 6, 1, '2017-12-28 04:10:41', '2018-05-02 02:46:06'),
-(6, 'Fanpage', 'fanpage', 'fanpage-footer', NULL, '', '', '', '', '', NULL, 7, 0, '2018-01-19 02:31:15', '2018-04-24 04:43:47'),
-(15, 'Page test', 'page-test', 'content-bottom-category', NULL, '', '<p>test</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>chương</p>', '', '', '', NULL, 1, 1, '2018-04-24 18:28:39', '2018-04-26 10:56:51');
+(6, 'Fanpage', 'fanpage', 'fanpage-footer', NULL, '<div class=\"fb-page\" data-href=\"https://www.facebook.com/dcmobilecomputer/\" data-tabs=\"timeline\" data-width=\"250\" data-height=\"200\" data-small-header=\"true\" data-adapt-container-width=\"true\" data-hide-cover=\"false\" data-show-facepile=\"true\"><blockquote cite=\"https://www.facebook.com/dcmobilecomputer/\" class=\"fb-xfbml-parse-ignore\"><a href=\"https://www.facebook.com/gonguyenlieumy/\">Công ty tnhh Greenecolife</a></blockquote></div>', '', '', '', '', NULL, 7, 1, '2018-01-19 02:31:15', '2018-05-03 07:28:37'),
+(15, 'Page test', 'page-test', 'content-bottom-category', NULL, '', '<p>test</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>chương</p>', '', '', '', NULL, 1, 1, '2018-04-24 18:28:39', '2018-04-26 10:56:51'),
+(16, 'Chính sách giao hàng', 'chinh-sach-giao-hang', '', NULL, '', '', '', '', '', NULL, 1, 1, '2018-05-03 07:29:48', '2018-05-03 07:29:48'),
+(17, 'Đổi trả bảo hành', 'doi-tra-bao-hanh', '', NULL, '', '', '', '', '', NULL, 1, 1, '2018-05-03 07:30:00', '2018-05-03 07:30:00'),
+(18, 'Hướng dẫn mua hàng', 'huong-dan-mua-hang', '', NULL, '', '', '', '', '', NULL, 1, 1, '2018-05-03 07:30:13', '2018-05-03 07:30:13'),
+(19, 'Quy chế hoạt động', 'quy-che-hoat-dong', '', NULL, '', '', '', '', '', NULL, 1, 1, '2018-05-03 07:30:25', '2018-05-03 07:30:25');
 
 -- --------------------------------------------------------
 
@@ -1504,7 +1534,8 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (857, 1, 'kdLUtaD2Cyp6YtZ7HkaL5X1TkRm7ezwR', '2018-05-01 23:42:06', '2018-05-01 23:42:06'),
 (858, 1, 'gKwLHiky1TUVGYwFko7NO8vpi9D43m8S', '2018-05-02 01:40:00', '2018-05-02 01:40:00'),
 (859, 1, 'A90WoVAuC0zUeJhstpcifoHvKrU9pF8t', '2018-05-02 02:21:58', '2018-05-02 02:21:58'),
-(860, 1, '28wEnbTLFx68RvcimZwSeG2zzmVVjRla', '2018-05-02 18:28:16', '2018-05-02 18:28:16');
+(860, 1, '28wEnbTLFx68RvcimZwSeG2zzmVVjRla', '2018-05-02 18:28:16', '2018-05-02 18:28:16'),
+(861, 1, 'D8HejDIDxPZg92jtkQAo594xL5NTsHYM', '2018-05-03 00:22:40', '2018-05-03 00:22:40');
 
 -- --------------------------------------------------------
 
@@ -1774,8 +1805,8 @@ INSERT INTO `product` (`id`, `code`, `fullname`, `meta_keyword`, `meta_descripti
 (106, '347562918', '3m Thang chữ A phổ thông TA30', '', '', '3m-thang-chu-a-pho-thong-ta30', 'thang-nhom-dai-loan-pal-b6-205-5n1uegjdyfoa.jpg', 1, NULL, '0.00', '0.00', '', '', '', '', NULL, 19, 35, '2018-05-02 10:55:29', '2018-05-03 02:21:33'),
 (107, '427816539', 'Thang nhôm gấp Nikita TG58', '', '', 'thang-nhom-gap-nikita-tg58', 'thang-nhom-han-quoc-khoa-sap-tu-dong-poongsan-oa-7-kqf9n20ypvsw.jpg', 1, NULL, '0.00', '0.00', '', '', '', '', NULL, 19, 36, '2018-05-02 10:55:51', '2018-05-03 02:22:05'),
 (108, '897431265', 'Thang nhôm gấp khúc Nikita TGA47', '', '', 'thang-nhom-gap-khuc-nikita-tga47', 'thang-nhom-poongsan-han-quoc-ps-46-8q1y36eb0lpz.jpg', 1, NULL, '0.00', '0.00', '', '', '', '', NULL, 19, 37, '2018-05-02 10:56:12', '2018-05-03 02:22:15'),
-(109, '896472351', 'Thang nhôm chữ A khóa sập Nika-20', '', '', 'thang-nhom-chu-a-khoa-sap-nika-20', 'thang-nhom-poongsan-ps-43-jtg1e4q7h52f.jpg', 1, NULL, '0.00', '0.00', '', '', '', '', NULL, 19, 38, '2018-05-02 10:56:32', '2018-05-03 02:22:23'),
-(110, '426597183', '1.5m Thang chữ A phổ thông TA15', '', '', '15m-thang-chu-a-pho-thong-ta15', 'thang-nhom-rut-chu-a-nikita-ai56-56m-hi3u4nevgbl7.jpg', 1, NULL, '800000.00', '0.00', '', '', '', '', 9, 19, 39, '2018-05-02 10:56:53', '2018-05-03 04:44:03');
+(109, '896472351', 'Thang nhôm chữ A khóa sập Nika-20', '', '', 'thang-nhom-chu-a-khoa-sap-nika-20', 'thang-nhom-poongsan-ps-43-jtg1e4q7h52f.jpg', 1, NULL, '0.00', '0.00', '', '', '', '', 4, 19, 38, '2018-05-02 10:56:32', '2018-05-03 08:12:31'),
+(110, '426597183', '1.5m Thang chữ A phổ thông TA15', '', '', '15m-thang-chu-a-pho-thong-ta15', 'thang-nhom-rut-chu-a-nikita-ai56-56m-hi3u4nevgbl7.jpg', 1, NULL, '800000.00', '0.00', '', '', '', '', 18, 19, 39, '2018-05-02 10:56:53', '2018-05-03 08:09:39');
 
 -- --------------------------------------------------------
 
@@ -2020,7 +2051,7 @@ CREATE TABLE `setting_system` (
 --
 
 INSERT INTO `setting_system` (`id`, `fullname`, `alias`, `title`, `meta_keyword`, `meta_description`, `author`, `copyright`, `google_site_verification`, `google_analytics`, `logo_frontend`, `favicon`, `setting`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'settingsystem', 'setting-system', 'Băng keo, Thang nhôm cao cấp, kệ trưng bày, dụng cụ cầm tay chất lượng | VITOEN', 'thang nhôm, Kệ trưng bày, dụng cụ cầm tay, băng keo', 'Vitoen là đơn vị chuyên cung cấp các sản phẩm về thang nhôm cao cấp, băng keo, kệ trưng bày, dụng cụ cầm tay với chất lượng tốt nhất.', '', '', 'KlLQ51IBlGdopyRBTBG-QMPgj7Il9xduiEBGFkgo4nQ', 'UA-118589003-1', 'logo-8hdcy57up93n.png', 'thang-nhom-jp9eszagf01l.jpg', '[{\"field_name\":\"Số bài viết trên 1 trang\",\"field_code\":\"article_perpage\",\"field_value\":\"10\"},{\"field_name\":\"Độ rộng hình bài viết\",\"field_code\":\"article_width\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình bài viết\",\"field_code\":\"article_height\",\"field_value\":\"250\"},{\"field_name\":\"Số sản phẩm trên 1 trang\",\"field_code\":\"product_perpage\",\"field_value\":\"32\"},{\"field_name\":\"Độ rộng hình sản phẩm\",\"field_code\":\"product_width\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"product_height\",\"field_value\":\"400\"},{\"field_name\":\"Đơn vị tiền tệ\",\"field_code\":\"currency_unit\",\"field_value\":\"vi_VN\"},{\"field_name\":\"MERCHANT_ID\",\"field_code\":\"merchant_id\",\"field_value\":\"36680\"},{\"field_name\":\"MERCHANT_PASS\",\"field_code\":\"merchant_pass\",\"field_value\":\"matkhauketnoi\"},{\"field_name\":\"RECEIVER\",\"field_code\":\"receiver\",\"field_value\":\"demo@nganluong.vn\"},{\"field_name\":\"Smtp host\",\"field_code\":\"smtp_host\",\"field_value\":\"smtp.gmail.com\"},{\"field_name\":\"Smtp port\",\"field_code\":\"smtp_port\",\"field_value\":\"465\"},{\"field_name\":\"Smtp authication\",\"field_code\":\"authentication\",\"field_value\":\"1\"},{\"field_name\":\"Encription\",\"field_code\":\"encription\",\"field_value\":\"ssl\"},{\"field_name\":\"Smtp username\",\"field_code\":\"smtp_username\",\"field_value\":\"dien.toannang@gmail.com\"},{\"field_name\":\"Smtp password\",\"field_code\":\"smtp_password\",\"field_value\":\"bjsdgetadsutdono\"},{\"field_name\":\"Email to\",\"field_code\":\"email_to\",\"field_value\":\"tichtacso.com@gmail.com\"},{\"field_name\":\"Contact person\",\"field_code\":\"contacted_person\",\"field_value\":\"Huỳnh Thúc Vinh\"},{\"field_name\":\"Trụ sở\",\"field_code\":\"address\",\"field_value\":\"50/2/59 Dương Quảng Hàm, Phường 5, Quận Gò Vấp\"},{\"field_name\":\"Hotline\",\"field_code\":\"telephone\",\"field_value\":\"0974289224\"},{\"field_name\":\"Facebook\",\"field_code\":\"facebook_url\",\"field_value\":\"https://www.facebook.com/nguyenvan.laptrinh\"},{\"field_name\":\"Twitter\",\"field_code\":\"twitter_url\",\"field_value\":\"https://twitter.com/\"},{\"field_name\":\"Google Plus\",\"field_code\":\"google_plus\",\"field_value\":\"https://plus.google.com/u/0/?hl=vi\"},{\"field_name\":\"Youtube\",\"field_code\":\"youtube_url\",\"field_value\":\"https://www.youtube.com/watch?v=kAcV7S3sySU\"},{\"field_name\":\"Instagram\",\"field_code\":\"instagram_url\",\"field_value\":\"http://flickr.com\"},{\"field_name\":\"Pinterest\",\"field_code\":\"pinterest_url\",\"field_value\":\"http://daidung.vn/\"},{\"field_name\":\"Map\",\"field_code\":\"map_url\",\"field_value\":\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.7765505259867!2d106.68751671435092!3d10.828404792286284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528f0d3be7c47%3A0x3f95e11384c4817f!2zNTAgRMawxqFuZyBRdeG6o25nIEjDoG0sIHBoxrDhu51uZyA1LCBHw7IgVuG6pXAsIEjhu5MgQ2jDrSBNaW5oLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1515998374369\"},{\"field_name\":\"Giờ giao dịch\",\"field_code\":\"opened_time\",\"field_value\":\"7:00 - 22:30\"}]', 1, 1, '2017-12-03 07:45:35', '2018-05-02 09:26:42');
+(1, 'settingsystem', 'setting-system', 'Băng keo, Thang nhôm cao cấp, kệ trưng bày, dụng cụ cầm tay chất lượng | VITOEN', 'thang nhôm, Kệ trưng bày, dụng cụ cầm tay, băng keo', 'Vitoen là đơn vị chuyên cung cấp các sản phẩm về thang nhôm cao cấp, băng keo, kệ trưng bày, dụng cụ cầm tay với chất lượng tốt nhất.', '', '', 'KlLQ51IBlGdopyRBTBG-QMPgj7Il9xduiEBGFkgo4nQ', 'UA-118589003-1', 'logo-8hdcy57up93n.png', 'thang-nhom-jp9eszagf01l.jpg', '[{\"field_name\":\"Số bài viết trên 1 trang\",\"field_code\":\"article_perpage\",\"field_value\":\"10\"},{\"field_name\":\"Độ rộng hình bài viết\",\"field_code\":\"article_width\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình bài viết\",\"field_code\":\"article_height\",\"field_value\":\"250\"},{\"field_name\":\"Số sản phẩm trên 1 trang\",\"field_code\":\"product_perpage\",\"field_value\":\"32\"},{\"field_name\":\"Độ rộng hình sản phẩm\",\"field_code\":\"product_width\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"product_height\",\"field_value\":\"400\"},{\"field_name\":\"Đơn vị tiền tệ\",\"field_code\":\"currency_unit\",\"field_value\":\"vi_VN\"},{\"field_name\":\"MERCHANT_ID\",\"field_code\":\"merchant_id\",\"field_value\":\"36680\"},{\"field_name\":\"MERCHANT_PASS\",\"field_code\":\"merchant_pass\",\"field_value\":\"matkhauketnoi\"},{\"field_name\":\"RECEIVER\",\"field_code\":\"receiver\",\"field_value\":\"demo@nganluong.vn\"},{\"field_name\":\"Smtp host\",\"field_code\":\"smtp_host\",\"field_value\":\"smtp.gmail.com\"},{\"field_name\":\"Smtp port\",\"field_code\":\"smtp_port\",\"field_value\":\"465\"},{\"field_name\":\"Smtp authication\",\"field_code\":\"authentication\",\"field_value\":\"1\"},{\"field_name\":\"Encription\",\"field_code\":\"encription\",\"field_value\":\"ssl\"},{\"field_name\":\"Smtp username\",\"field_code\":\"smtp_username\",\"field_value\":\"dien.toannang@gmail.com\"},{\"field_name\":\"Smtp password\",\"field_code\":\"smtp_password\",\"field_value\":\"bjsdgetadsutdono\"},{\"field_name\":\"Email to\",\"field_code\":\"email_to\",\"field_value\":\"trietnk01@gmail.com\"},{\"field_name\":\"Contact person\",\"field_code\":\"contacted_person\",\"field_value\":\"Huỳnh Thúc Vinh\"},{\"field_name\":\"Trụ sở\",\"field_code\":\"address\",\"field_value\":\"50/2/59 Dương Quảng Hàm, Phường 5, Quận Gò Vấp\"},{\"field_name\":\"Hotline\",\"field_code\":\"telephone\",\"field_value\":\"0974289224\"},{\"field_name\":\"Facebook\",\"field_code\":\"facebook_url\",\"field_value\":\"https://www.facebook.com/nguyenvan.laptrinh\"},{\"field_name\":\"Twitter\",\"field_code\":\"twitter_url\",\"field_value\":\"https://twitter.com/\"},{\"field_name\":\"Google Plus\",\"field_code\":\"google_plus\",\"field_value\":\"https://plus.google.com/u/0/?hl=vi\"},{\"field_name\":\"Youtube\",\"field_code\":\"youtube_url\",\"field_value\":\"https://www.youtube.com/watch?v=kAcV7S3sySU\"},{\"field_name\":\"Instagram\",\"field_code\":\"instagram_url\",\"field_value\":\"http://flickr.com\"},{\"field_name\":\"Pinterest\",\"field_code\":\"pinterest_url\",\"field_value\":\"http://daidung.vn/\"},{\"field_name\":\"Map\",\"field_code\":\"map_url\",\"field_value\":\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.7765505259867!2d106.68751671435092!3d10.828404792286284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528f0d3be7c47%3A0x3f95e11384c4817f!2zNTAgRMawxqFuZyBRdeG6o25nIEjDoG0sIHBoxrDhu51uZyA1LCBHw7IgVuG6pXAsIEjhu5MgQ2jDrSBNaW5oLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1515998374369\"},{\"field_name\":\"Giờ giao dịch\",\"field_code\":\"opened_time\",\"field_value\":\"7:00 - 22:30\"}]', 1, 1, '2017-12-03 07:45:35', '2018-05-03 08:01:11');
 
 -- --------------------------------------------------------
 
@@ -2647,7 +2678,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `permissions`, `last_login`, `fullname`, `address`, `phone`, `image`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', '$2y$10$nxBXFyAJNjPSLEI0RlPv8edQAw4ebTioV9JZaosCErs3VM/LYluuK', NULL, '2018-05-02 18:28:16', 'Nguyễn Kim Điền', NULL, NULL, 'logo-5-983456149.png', 6, 1, '2017-11-12 07:23:56', '2018-05-02 18:28:16'),
+(1, 'admin', 'diennk@dienkim.com', '$2y$10$nxBXFyAJNjPSLEI0RlPv8edQAw4ebTioV9JZaosCErs3VM/LYluuK', NULL, '2018-05-03 00:22:40', 'Nguyễn Kim Điền', NULL, NULL, 'logo-5-983456149.png', 6, 1, '2017-11-12 07:23:56', '2018-05-03 00:22:40'),
 (8, 'tiennv', 'tiennv@dienkim.com', '$2y$10$9sq3u.mDu/Bk1vvpv4sU7.Ior67wjHR5n1slgsv/sz63zBQxAfZ4K', NULL, '2018-02-23 01:16:10', 'Nguyễn Văn Tiến', '14 Tân Canh', '0988152782', NULL, 5, 0, '2018-02-05 20:06:26', '2018-02-23 01:16:10'),
 (9, 'vinhlt', 'vinhht@dienkim.com', '$2y$10$ib1fvlTyvQLoRQcVt.Qrt.VAZtN3lPSMWHwpoqYwx5OM/4/vSUE9q', NULL, '2018-02-04 11:57:07', 'Huỳnh Thúc Vinh', '23 Bùi Quang Là', '0988162722', NULL, 1, 0, '2018-02-04 05:35:55', '2018-02-04 11:57:07'),
 (14, 'phamduy', 'truonghuychuong1994@gmail.com', '$2y$10$j4aFmIopHHaRVXUSwKFIiOm59nc80jQzqfzEN58zTe87wWcgZHfJa', NULL, '2018-03-13 20:44:48', 'Phạm duy', NULL, NULL, NULL, 1, 1, '2018-03-13 19:46:01', '2018-03-13 20:44:48'),
@@ -3051,19 +3082,19 @@ ALTER TABLE `group_privilege`
 -- AUTO_INCREMENT cho bảng `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `invoice_detail`
 --
 ALTER TABLE `invoice_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=467;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=484;
 
 --
 -- AUTO_INCREMENT cho bảng `menu_type`
@@ -3087,7 +3118,7 @@ ALTER TABLE `module_item`
 -- AUTO_INCREMENT cho bảng `page`
 --
 ALTER TABLE `page`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT cho bảng `payment_method`
@@ -3099,7 +3130,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=861;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=862;
 
 --
 -- AUTO_INCREMENT cho bảng `photo`

@@ -2107,13 +2107,14 @@ form[name='frm-search'] input[name='q']{
 }
 .caphethuocla{
     background: url('../images/banner-dang-muc-may.jpg') no-repeat center center;
-    height: 232px;
+    
 }
 .feedback{
     float: left;
 }
 .rinux{
-    float: right;
+        float: right;
+    width: 650px;
 }
 .vivanan{
     margin-left: 200px;
@@ -2124,12 +2125,33 @@ form[name='frm-search'] input[name='q']{
     font-weight: bold;
     font-size: 20px;
 }
-.pootoo{
+.pootoo a{
     color: #ffffff;
     font-weight: bold;
     font-size: 25px
 }
+
+.sidamex a{
+    color: #ffffff;
+    font-weight: bold;
+}
 @media (max-width: 768px){    
+    .feedback{
+        float: none;
+    }
+    .vivanan{
+        margin-left: 0;
+    margin-top: 0;
+    }
+    .caphethuocla{
+        background: transparent;
+    }
+    .pootoo a, .sidamex a,.fata{
+        color:#585858;
+    }
+    .rinux{
+        width: 100%;
+    }
     .mobilemenu{
         display: block;
         background: #ffffff;

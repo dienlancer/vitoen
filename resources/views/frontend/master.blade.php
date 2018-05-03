@@ -581,13 +581,15 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
-<div class="quick-alo-phone quick-alo-green quick-alo-show" id="quick-alo-phoneIcon" >
+<!-- begin alo phone -->
+<!--<div class="quick-alo-phone quick-alo-green quick-alo-show" id="quick-alo-phoneIcon" >
   <a href="tel:<?php echo $telephone; ?>" title="Liên hệ nhanh">
   <div class="quick-alo-ph-circle"></div>
   <div class="quick-alo-ph-circle-fill"></div>
   <div class="quick-alo-ph-img-circle"></div>
   </a>
-</div>
+</div>-->
+<!-- end alo phone -->
 </body>
 </html>
 

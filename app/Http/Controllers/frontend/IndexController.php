@@ -1589,7 +1589,7 @@ class IndexController extends Controller {
               $html_content .='<tr>';
               $html_content .='<th>Mã sản phẩm</th>';
               $html_content .='<th>Tên sản phẩm</th>';
-              $html_content .='<th>Hình ảnh</th>';
+              
               $html_content .='<th>Đơn giá</th>';
               $html_content .='<th>Số lượng đặt mua</th>';
               $html_content .='<th>Tổng giá</th>';
@@ -1601,14 +1601,14 @@ class IndexController extends Controller {
                   $product_id=$value["product_id"];    
                   $product_code=$value["product_code"];  
                   $product_name=$value["product_name"];                                                    
-                  $product_image=   $value["product_image"] ;        
+                    
                   $product_price=$value["product_price"];                                  
                   $product_quantity=$value["product_quantity"];                         
                   $product_total_price=$value["product_total_price"];
                   $html_content .='<tr>';
                   $html_content .='<td>'.$product_code.'</td>';
                   $html_content .='<td>'.$product_name.'</td>';  
-                  $html_content .='<td><center><img width="'.(float)($product_width/4).'" height="'.(float)($product_height/4).'" src="'.get_product_thumbnail($product_image).'" /></center></td>';                
+                  
                   $html_content .='<td align="right">'.fnPrice($product_price).'</td>';
                   $html_content .='<td align="right">'.$product_quantity.'</td>';
                   $html_content .='<td align="right">'.fnPrice($product_total_price).'</td>';

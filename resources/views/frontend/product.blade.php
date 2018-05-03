@@ -105,17 +105,14 @@ if(count($item) > 0){
                 <hr class="product-ngang" />
                 <div class="margin-top-5 tell-price">
                 	<?php 
-                	$price=$item['price'];
-                	$sale_price=$item['sale_price'];
+                	$price=$item['price'];                	
                 	$html_price='';                     
-                	if((int)@$sale_price > 0){              
-                		$price_on_html ='<span class="pdetail-price-detail-on">'.fnPrice($sale_price).'</span>';
-                		$price_off_html='<span class="price-detail-off">Giá cũ: '.fnPrice($price).'</span>' ;                 
-                		$html_price='<div class="col-lg-4 no-padding-left">'.$price_on_html.'</div><div class="col-lg-8">'.$price_off_html.'</div><div class="clr"></div>'  ;              
+                	if((int)@$price > 0){                              		
+                		$html_price=fnPrice($price)  ;              
                 	}else{
-                		$html_price='<span class="pdetail-price-on">'.fnPrice($price).'</span>' ;                  
+                		$html_price='LIÊN HỆ' ;                  
                 	}   	
-                	echo $html_price;
+                    echo '<span class="pdetail-price-on">'.$html_price.'</span>' ;                	
                 	?>
                 </div>                
                 <div class="box-product-param">
@@ -251,8 +248,19 @@ if(count($item) > 0){
                     <!-- end kích thước -->                	
                 </div>   
                 <div class="margin-top-15">
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart"  onclick="addToCart(document.forms['frm-product-detail']);" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Mua ngay</span>
-                    </a>                    
+                    <?php 
+                    if((int)@$price > 0){
+                        ?>
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart"  onclick="addToCart(document.forms['frm-product-detail']);" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Mua ngay</span>
+                        </a>  
+                        <?php 
+                    }else{
+                        ?>
+                        <a href="<?php echo url('lien-he'); ?>" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Liên hệ</span>
+                        </a>  
+                        <?php
+                    }
+                    ?>                                    
                 </div>                  
                 <form name="frm-product-detail"  method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}                                        
