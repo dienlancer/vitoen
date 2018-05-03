@@ -13,7 +13,7 @@
 body{
     font-size:14px;
     color:#585858;
-    background:#f1f1f1;
+    background:transparent;
     font-family: 'OpenSans';
     
 }
@@ -1903,7 +1903,7 @@ form[name='frm-search'] input[name='q']{
 .box-product-price{
     border-top: 1px solid #eee;
     background: linear-gradient(to bottom, #f8f8f8 0%, #ffffff 100%);
-    margin: 0px 1px 0px 1px;
+    margin: 10px 1px 0px 1px;
     padding: 5px 15px 5px 15px;
 }
 .danhmucspfooter li a{
@@ -2072,6 +2072,62 @@ form[name='frm-search'] input[name='q']{
 }
 .connected-social li{
     display: inline-block;
+}
+.teraff{
+    border-top:2px solid #bf1e2d;
+}
+.vinboom{
+    float: left;
+    border-left: 1px solid #c6c6c6;
+    padding-left: 10px;
+}
+.vinboom a{
+    color: #bf1e2d;
+    font-weight: bold;
+    padding: 10px 0px;
+    display: block;
+    text-transform: uppercase;
+}
+.raka{
+    float: right;
+}
+.shinichikudo li{
+    display:inline-block;
+    margin-left:0px;
+}
+.shinichikudo li a{
+   color: #333;
+    font-weight: bold;
+    padding: 10px;
+    display: block;
+    border-right:1px solid #c6c6c6;
+}
+.ritakuta{
+    border-top: 1px solid #c6c6c6;
+}
+.caphethuocla{
+    background: url('../images/banner-dang-muc-may.jpg') no-repeat center center;
+    height: 232px;
+}
+.feedback{
+    float: left;
+}
+.rinux{
+    float: right;
+}
+.vivanan{
+    margin-left: 200px;
+    margin-top: 50px;
+}
+.fata{
+    color: #fff200;
+    font-weight: bold;
+    font-size: 20px;
+}
+.pootoo{
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 25px
 }
 @media (max-width: 768px){    
     .mobilemenu{

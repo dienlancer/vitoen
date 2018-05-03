@@ -192,7 +192,7 @@ if(count($item) > 0){
                                     <div class="col-sm-9">
                                         <?php 
                                         foreach ($children_data as $child_key => $child_value) {
-                                            $data_post_param_2=App\PostParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
+                                            $data_post_param_2=App\PostParamModel::whereRaw('post_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
                                             if(count($data_post_param_2) > 0){
                                                 ?><div class="block-color" style="background: <?php echo $child_value['param_value']; ?>"></div><?php
                                             }
@@ -232,7 +232,7 @@ if(count($item) > 0){
                                     <div class="col-sm-9">
                                         <?php 
                                         foreach ($children_data as $child_key => $child_value) {
-                                            $data_post_param_2=App\PostParamModel::whereRaw('product_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
+                                            $data_post_param_2=App\PostParamModel::whereRaw('post_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
                                             if(count($data_post_param_2) > 0){
                                                 ?><div class="block-size"><?php echo $child_value['fullname']; ?></div><?php
                                             }
@@ -459,16 +459,13 @@ if(count($item) > 0){
         				$fullname_excerpt=substr($pdetail_fullname, 0,100);
         				$pdetail_permalink=route('frontend.index.index',[$pdetail_alias]) ;
         				$pdetail_img =get_product_thumbnail($value['image']) ;	
-        				$pdetail_price=$value['price'];
-        				$pdetail_sale_price=$value['sale_price'];
-        				$html_price='';                     
-        				if((int)@$pdetail_sale_price > 0){              
-        					$price_on_html ='<span class="price-on">'.fnPrice($pdetail_sale_price).'</span>';
-        					$price_off_html='<span class="price-off">'.fnPrice($pdetail_price).'</span>' ;                 
-        					$html_price='<div class="sale-price">'.$price_on_html.'</div><div class="old-price">'.$price_off_html.'</div><div class="clr"></div>' ;              
-        				}else{
-        					$html_price='<span class="price-on">'.fnPrice($pdetail_price).'</span>' ;                  
-        				}   	
+        				$product_price=$value['price']; 
+                                $html_price='';                     
+                                if((int)@$product_price > 0){              
+                                    $html_price=fnPrice($product_price) ;
+                                }else{
+                                    $html_price='Giá : Liên hệ' ;
+                                }       
         				?>
         				<div class="box-product">
                                             <div class="box-product-img">
@@ -476,8 +473,8 @@ if(count($item) > 0){
                                             </div>
                                             <div class="box-product-intro-title"><a href="<?php echo $pdetail_permalink; ?>"><b><?php echo $pdetail_fullname; ?></b></a></div>
                                             <div class="box-product-price">
-                                                <div><center><?php echo $html_price; ?></center></div>
-                                            </div>
+                                        <div><center><span class="price-on"><?php echo $html_price; ?></span></center></div>
+                                    </div>
                                         </div>
         				<?php
         			}

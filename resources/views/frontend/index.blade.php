@@ -190,16 +190,13 @@ if(!empty($alias)){
                                     $featured_product_name=$value['fullname'];
                                     $featured_product_link=route('frontend.index.index',[$featured_product_alias]) ;
                                     $featured_product_img =get_product_thumbnail($value['image']) ;      
-                                    $featured_product_price=$value['price'];
-                                    $featured_product_sale_price=$value['sale_price'];
+                                    $ft_product_price=$value['price']; 
                                     $html_price='';                     
-                                    if((int)@$featured_product_sale_price > 0){              
-                                        $price_on_html ='<span class="price-on">'.fnPrice($featured_product_sale_price).'</span>';
-                                        $price_off_html='<span class="price-off">'.fnPrice($featured_product_price).'</span>' ;                 
-                                        $html_price='<div class="sale-price">'.$price_on_html.'</div><div class="old-price">'.$price_off_html.'</div><div class="clr"></div>' ;              
+                                    if((int)@$ft_product_price > 0){              
+                                        $html_price=fnPrice($ft_product_price) ;
                                     }else{
-                                        $html_price='<span class="price-on">'.fnPrice($featured_product_price).'</span>' ;                  
-                                    }           
+                                        $html_price='Giá : Liên hệ' ;
+                                    }       
                                     ?>
                                     <div >
                                         <div class="box-product box-product-rian">
@@ -208,7 +205,7 @@ if(!empty($alias)){
                                             </div>
                                             <div class="box-product-intro-title"><a href="<?php echo $featured_product_link; ?>"><b><?php echo $featured_product_name; ?></b></a></div>
                                             <div class="box-product-price">
-                                                <div><center><?php echo $html_price; ?></center></div>
+                                                <div><center><span class="price-on"><?php echo $html_price; ?></span></center></div>
                                             </div>
                                         </div>
                                     </div>
