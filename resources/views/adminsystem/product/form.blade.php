@@ -16,8 +16,8 @@ $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
 $ddlStatus              =   cmsSelectbox("status","form-control",$arrStatus,$status,"");
 $inputIntro            =   '<textarea  name="intro" rows="5" cols="100" class="form-control" >'.@$arrRowData['intro'].'</textarea>'; 
-$inputDetail            =   '<textarea name="detail" rows="5" cols="100" class="form-control" >'.@$arrRowData['detail'].'</textarea>'; 
-$inputTechnicalDetail            =   '<textarea name="technical_detail" rows="5" cols="100" class="form-control" >'.@$arrRowData['technical_detail'].'</textarea>'; 
+$inputDetail            =   '<textarea name="detail" rows="5" cols="100" class="form-control summer-editor" >'.@$arrRowData['detail'].'</textarea>'; 
+$inputTechnicalDetail            =   '<textarea name="technical_detail" rows="5" cols="100" class="form-control summer-editor" >'.@$arrRowData['technical_detail'].'</textarea>'; 
 $inputVideoId          =   '<input type="text" class="form-control" name="video_id"       value="'.@$arrRowData['video_id'].'">';
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"      value="'.@$arrRowData['sort_order'].'">';
 
@@ -228,12 +228,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
                         <div class="col-md-10">                            
                             <?php echo $inputTechnicalDetail; ?>
                             <span class="help-block"></span>
-                            <script type="text/javascript" language="javascript">
-                                CKEDITOR.replace('technical_detail',{
-                                   height:300
-                               });
-                           </script>
-                           <span class="help-block"></span>
+                            
                        </div>
                    </div>                       
                 </div> 
@@ -243,12 +238,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
                         <div class="col-md-10">                            
                             <?php echo $inputDetail; ?>
                             <span class="help-block"></span>
-                            <script type="text/javascript" language="javascript">
-                                CKEDITOR.replace('detail',{
-                                   height:300
-                               });
-                           </script>
-                           <span class="help-block"></span>
+                            
                        </div>
                    </div>                       
                 </div>                                                               
@@ -320,8 +310,8 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
         var price=$('input[name="price"]').val();
         var sale_price=$('input[name="sale_price"]').val();       
         var intro=$('textarea[name="intro"]').val(); 
-        var detail=CKEDITOR.instances['detail'].getData(); 
-        var technical_detail=CKEDITOR.instances['technical_detail'].getData();                
+        var detail=$('textarea[name="detail"]').summernote('code'); 
+        var technical_detail=$('textarea[name="technical_detail"]').summernote('code');                
         var video_id=$('input[name="video_id"]').val();
         var sort_order=$('input[name="sort_order"]').val();        
         var token = $('input[name="_token"]').val();   
@@ -417,5 +407,29 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
             },
         });
     }
+    $(document).ready(function(){
+        var token =$('form[name="frm"]').find('input[name="_token"]').val() ;           
+        var callback_url='<?php echo route('adminsystem.media.saveSummerFile'); ?>';
+        $('textarea[name="detail"]').summernote({
+            height: 500,
+            callbacks:{
+                onImageUpload : function(files,editor,welEditable){                         
+                   for(var i = 0; i < files.length; i++) {
+                    uploadSummerFile(this,files[i],token,callback_url);
+                }                
+            }
+        }
+        });
+        $('textarea[name="technical_detail"]').summernote({
+            height: 500,
+            callbacks:{
+                onImageUpload : function(files,editor,welEditable){                         
+                   for(var i = 0; i < files.length; i++) {
+                    uploadSummerFile(this,files[i],token,callback_url);
+                }                
+            }
+        }
+        });
+    });    
 </script>
 @endsection()            

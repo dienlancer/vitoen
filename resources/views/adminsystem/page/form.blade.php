@@ -10,7 +10,7 @@ $inputFullName          =   '<input type="text" class="form-control" name="fulln
 $inputAlias             =   '<input type="text" class="form-control" name="alias"     disabled     value="'.@$arrRowData['alias'].'">';
 $inputThemeLocation             =   '<input type="text" class="form-control" name="theme_location"      value="'.@$arrRowData['theme_location'].'">';
 $inputIntro             =   '<textarea name="intro" rows="5" cols="100" class="form-control" >'.@$arrRowData['intro'].'</textarea>'; 
-$inputContent           =   '<textarea name="content" rows="2" cols="100" class="form-control" >'.@$arrRowData['content'].'</textarea>'; 
+$inputContent           =   '<textarea name="content" rows="2" cols="100" class="form-control summer-editor" >'.@$arrRowData['content'].'</textarea>'; 
 
 $inputDescription       =   '<textarea name="description" rows="2" cols="100" class="form-control" >'.@$arrRowData['description'].'</textarea>'; 
 $inputMetakeyword             =   '<textarea   name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
@@ -156,13 +156,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
                         <label class="col-md-2 control-label"><b>Nội dung</b></label>
                         <div class="col-md-10">                            
                             <?php echo $inputContent; ?>
-                            <span class="help-block"></span>
-                            <script type="text/javascript" language="javascript">
-                                CKEDITOR.replace('content',{
-                                   height:300
-                               });
-                           </script>
-                           <span class="help-block"></span>
+                            <span class="help-block"></span>                            
                        </div>
                    </div>                       
                 </div>                                                                       
@@ -201,7 +195,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
         /* end xử lý image */
         var image_hidden=$('input[name="image_hidden"]').val(); 
         var intro=$('textarea[name="intro"]').val();        
-        var content=CKEDITOR.instances['content'].getData();
+        var content=$('textarea[name="content"]').summernote('code');        
         var description=$('textarea[name="description"]').val();
         var meta_keyword=$('textarea[name="meta_keyword"]').val();
         var meta_description=$('textarea[name="meta_description"]').val();
@@ -283,5 +277,19 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
             },
         });
     }
+    $(document).ready(function(){
+        var token =$('form[name="frm"]').find('input[name="_token"]').val() ;           
+        var callback_url='<?php echo route('adminsystem.media.saveSummerFile'); ?>';
+        $('textarea[name="content"]').summernote({
+            height: 500,
+            callbacks:{
+                onImageUpload : function(files,editor,welEditable){                         
+                   for(var i = 0; i < files.length; i++) {
+                    uploadSummerFile(this,files[i],token,callback_url);
+                }                
+            }
+        }
+        });
+    });    
 </script>
 @endsection()            

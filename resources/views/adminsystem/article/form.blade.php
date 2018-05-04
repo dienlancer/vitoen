@@ -10,7 +10,7 @@ $inputFullName          =   '<input type="text" class="form-control" name="fulln
  
 $inputAlias             =   '<input type="text" class="form-control" name="alias"     disabled     value="'.@$arrRowData['alias'].'">';
 $inputIntro             =   '<textarea name="intro" rows="5" cols="100" class="form-control" >'.@$arrRowData['intro'].'</textarea>'; 
-$inputContent           =   '<textarea  name="content" rows="2" cols="100" class="form-control ckmce" >'.@$arrRowData['content'].'</textarea>'; 
+$inputContent           =   '<textarea  name="content" rows="2" cols="100" class="form-control summer-editor" >'.@$arrRowData['content'].'</textarea>'; 
 
 $inputDescription       =   '<textarea name="description" rows="2" cols="100" class="form-control" >'.@$arrRowData['description'].'</textarea>'; 
 $inputMetakeyword             =   '<textarea  name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
@@ -191,11 +191,11 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         var image_files = $(image_ctrl).get(0).files;        
         if(image_files.length > 0){            
             image_file  = image_files[0];  
-        }        
+        }             
         /* end xử lý image */
         var image_hidden=$('input[name="image_hidden"]').val(); 
         var intro=$('textarea[name="intro"]').val();        
-        var content=CKEDITOR.instances['content'].getData();
+        var content=$('textarea[name="content"]').summernote('code');        
         var description=$('textarea[name="description"]').val();
         var meta_keyword=$('textarea[name="meta_keyword"]').val();
         var meta_description=$('textarea[name="meta_description"]').val();
@@ -275,44 +275,19 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
             },
         });
     }
-    $(function() {
-      $('textarea[name="content"]').summernote({
-        height: 500,
-        callbacks:{
-            onImageUpload : function(files,editor,welEditable){
-                
+    $(document).ready(function(){
+        var token =$('form[name="frm"]').find('input[name="_token"]').val() ;           
+        var callback_url='<?php echo route('adminsystem.media.saveSummerFile'); ?>';
+        $('textarea[name="content"]').summernote({
+            height: 500,
+            callbacks:{
+                onImageUpload : function(files,editor,welEditable){                         
+                   for(var i = 0; i < files.length; i++) {
+                    uploadSummerFile(this,files[i],token,callback_url);
+                }                
             }
         }
-      });
-    });
-    function changeFile(){
-        $("input.note-form-control").change(function(){
-            console.log('abc');
         });
-    }
-    changeFile();
-    /*function uploadFile(file, editor, welEditable) {
-        data = new FormData();
-        data.append("files", file);
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: base_url + "ajax/file-upload",
-            data: data,
-            cache: false,
-            contentType: false,
-            processData: false,
-            type: "POST",
-            success: function(data){
-                $('#content').summernote('editor.insertImage', data);
-            },
-            error: function(){
-                toastr.error("<strong>Lỗi!</strong><br/>Dung lượng file vượt quá kích thước cho phép (2MB)");
-            }
-        });
-    }*/
+    });    
 </script>
 @endsection()            
