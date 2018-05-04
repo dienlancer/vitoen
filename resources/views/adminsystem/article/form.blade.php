@@ -10,7 +10,7 @@ $inputFullName          =   '<input type="text" class="form-control" name="fulln
  
 $inputAlias             =   '<input type="text" class="form-control" name="alias"     disabled     value="'.@$arrRowData['alias'].'">';
 $inputIntro             =   '<textarea name="intro" rows="5" cols="100" class="form-control" >'.@$arrRowData['intro'].'</textarea>'; 
-$inputContent           =   '<textarea  name="content" rows="2" cols="100" class="form-control" >'.@$arrRowData['content'].'</textarea>'; 
+$inputContent           =   '<textarea  name="content" rows="2" cols="100" class="form-control ckmce" >'.@$arrRowData['content'].'</textarea>'; 
 
 $inputDescription       =   '<textarea name="description" rows="2" cols="100" class="form-control" >'.@$arrRowData['description'].'</textarea>'; 
 $inputMetakeyword             =   '<textarea  name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
@@ -157,17 +157,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
                         <label class="col-md-2 control-label"><b>Nội dung</b></label>
                         <div class="col-md-10">                            
                             <?php echo $inputContent; ?>
-                            <span class="help-block"></span>
-                            <script type="text/javascript" language="javascript">  
-                                var options = {
-                                    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-                                    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-                                    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-                                    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{ csrf_field() }}'
-                                };                         
-                                CKEDITOR.replace('content', options);
-                            </script>
-                           <span class="help-block"></span>
+                            <span class="help-block"></span>                            
                        </div>
                    </div>                       
                 </div>                                                                       
@@ -285,5 +275,44 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
             },
         });
     }
+    $(function() {
+      $('textarea[name="content"]').summernote({
+        height: 500,
+        callbacks:{
+            onImageUpload : function(files,editor,welEditable){
+                
+            }
+        }
+      });
+    });
+    function changeFile(){
+        $("input.note-form-control").change(function(){
+            console.log('abc');
+        });
+    }
+    changeFile();
+    /*function uploadFile(file, editor, welEditable) {
+        data = new FormData();
+        data.append("files", file);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: base_url + "ajax/file-upload",
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: "POST",
+            success: function(data){
+                $('#content').summernote('editor.insertImage', data);
+            },
+            error: function(){
+                toastr.error("<strong>Lỗi!</strong><br/>Dung lượng file vượt quá kích thước cho phép (2MB)");
+            }
+        });
+    }*/
 </script>
 @endsection()            
