@@ -7,12 +7,11 @@ function uploadSummerFile(ctrl,summer_file,token,callback_url){
 		type: 'POST',
 		data: dataItem,
 		async: false,
-		success: function (data) {
+		success: function (data) {			
 			if(data.checked==1){
 				$(ctrl).summernote('editor.insertImage', data.summer_url,function(summer_img){										
 					$(summer_img).css('width','100%');
 				});
-
 			}else{                    
 				showMsg('note',data);                         
 			}
@@ -128,6 +127,36 @@ function PhanCachSoTien(Ctrl) {
 	}
 	Ctrl.value = vNewMoney;
 }
+function loadSummerNote(token,callback_url){
+	$('textarea.summer-editor').summernote({
+    		height: 500,		
+    		toolbar: [    
+    		['fontname'],		
+    		['style', ['bold', 'italic', 'underline','strikethrough','superscript', 'subscript', 'clear']],			
+    		['fontsize'],
+    		['color'],
+    		['style', ['ul', 'ol']],
+    		['paragraph'],	
+    		['table'],		
+    		['picture'],
+    		['link'],
+    		['video'],			
+    		['hr'],
+    		['undo'],
+    		['redo'],
+    		['fullscreen'],
+    		['codeview'],			
+    		['help']		
+    		],
+    		callbacks:{
+    			onImageUpload : function(files,editor,welEditable){                          
+    				for(var i = 0; i < files.length; i++) {
+    					uploadSummerFile(this,files[i],token,callback_url);
+    				}
+    			}                    		
+    		}
+    	});
+}
 $(document).ready(function(){
 	basicTable.init();
 	$('table.table-recursive > thead > tr > th > input[name="checkall-toggle"]').change(function(){		
@@ -137,26 +166,5 @@ $(document).ready(function(){
 		});
 	});	
 	setTimeout(hideMsg,60000,'note');	
-	$('textarea.summer-editor').summernote({
-		height: 500,		
-		toolbar: [    
-			['fontname'],		
-			['style', ['bold', 'italic', 'underline','strikethrough','superscript', 'subscript', 'clear']],			
-			['fontsize'],
-			['color'],
-			['style', ['ul', 'ol']],
-			['paragraph'],	
-			['table'],		
-			['picture'],
-			['link'],
-			['video'],			
-			['hr'],
-			['undo'],
-			['redo'],
-			['fullscreen'],
-			['codeview'],			
-			['help']		
-		],
-		
-	});
+
 });

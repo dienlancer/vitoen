@@ -407,29 +407,8 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
             },
         });
     }
-    $(document).ready(function(){
-        var token =$('form[name="frm"]').find('input[name="_token"]').val() ;           
-        var callback_url='<?php echo route('adminsystem.media.saveSummerFile'); ?>';
-        $('textarea[name="detail"]').summernote({
-            
-            callbacks:{
-                onImageUpload : function(files,editor,welEditable){                         
-                   for(var i = 0; i < files.length; i++) {
-                    uploadSummerFile(this,files[i],token,callback_url);
-                }                
-            }
-        }
-        });
-        $('textarea[name="technical_detail"]').summernote({
-            
-            callbacks:{
-                onImageUpload : function(files,editor,welEditable){                         
-                   for(var i = 0; i < files.length; i++) {
-                    uploadSummerFile(this,files[i],token,callback_url);
-                }                
-            }
-        }
-        });
-    });    
+    var token =$('form[name="frm"]').find('input[name="_token"]').val() ;           
+    var callback_url='<?php echo route('adminsystem.media.saveSummerFile'); ?>';    	
+    loadSummerNote(token,callback_url);    
 </script>
 @endsection()            
