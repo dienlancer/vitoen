@@ -137,4 +137,26 @@ $(document).ready(function(){
 		});
 	});	
 	setTimeout(hideMsg,60000,'note');	
+	$('textarea.summer-editor').summernote({
+		height: 500,		
+		toolbar: [    
+			['fontname'],		
+			['style', ['bold', 'italic', 'underline','strikethrough','superscript', 'subscript', 'clear']],			
+			['fontsize'],
+			['color'],
+			['style', ['ul', 'ol']],
+			['paragraph'],	
+			['table'],		
+			['picture'],
+			['link'],
+			['video'],			
+			['hr'],
+			['undo'],
+			['redo'],
+			['fullscreen'],
+			['codeview'],			
+			['help']		
+		],
+		
+	});
 });

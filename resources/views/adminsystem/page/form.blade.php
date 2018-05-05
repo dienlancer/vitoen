@@ -281,7 +281,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
         var token =$('form[name="frm"]').find('input[name="_token"]').val() ;           
         var callback_url='<?php echo route('adminsystem.media.saveSummerFile'); ?>';
         $('textarea[name="content"]').summernote({
-            height: 500,
+            
             callbacks:{
                 onImageUpload : function(files,editor,welEditable){                         
                    for(var i = 0; i < files.length; i++) {
