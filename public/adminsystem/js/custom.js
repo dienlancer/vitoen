@@ -1,4 +1,6 @@
-function uploadSummerFile(ctrl,summer_file,token,callback_url){        
+  function uploadSummerFile(ctrl,summer_file){
+  	var callback_url=$('input[name="callback_url"]').val();
+	var token = $('input[name="_token"]').val();  		        
 	var dataItem = new FormData();      
 	dataItem.append('summer_file',summer_file);
 	dataItem.append('_token',token);   
@@ -26,10 +28,18 @@ function uploadSummerFile(ctrl,summer_file,token,callback_url){
 		contentType: false,
 		processData: false
 	});
-}    
-function loadSummerNote(token,callback_url){
+}  
+  function loadSummerNote(){
 	$('textarea.summer-editor').summernote({
-    		height: 500,		
+    		height: 500,	
+    		popover: {
+    			image: [
+    			['custom', ['imageAttributes']],
+    			['imagesize', ['imageSize100', 'imageSize50', 'imageSize25']],
+    			['float', ['floatLeft', 'floatRight', 'floatNone']],
+    			['remove', ['removeMedia']]
+    			],
+    		},	
     		toolbar: [    
     		['fontname'],		
     		['style', ['bold', 'italic', 'underline','strikethrough','superscript', 'subscript', 'clear']],			
@@ -49,14 +59,16 @@ function loadSummerNote(token,callback_url){
     		['help']		
     		],
     		callbacks:{
-    			onImageUpload : function(files,editor,welEditable){                          
+    			onImageUpload : function(files,editor,welEditable){     				    				    				
     				for(var i = 0; i < files.length; i++) {
-    					uploadSummerFile(this,files[i],token,callback_url);
+    					uploadSummerFile(this,files[i]);
     				}
-    			}                    		
+    			}                   		
     		}
     	});
 }
+
+
 function checkAllAgent(cid){
 	var tbl=$(cid).closest("table");	
 	var checkStatus = cid.checked;
@@ -166,5 +178,5 @@ $(document).ready(function(){
 		});
 	});	
 	setTimeout(hideMsg,60000,'note');	
-
+	loadSummerNote();   
 });

@@ -144,7 +144,7 @@ var palette = renderer.create('<div class="note-color-palette"/>', function ($no
         });
     }
 });
-var dialog = renderer.create('<div class="modal" aria-hidden="false" tabindex="-1" role="dialog"/>', function ($node, options) {
+var dialog = renderer.create('<div class="modal nobita" aria-hidden="false" tabindex="-1" role="dialog"/>', function ($node, options) {
     if (options.fade) {
         $node.addClass('fade');
     }
@@ -6113,15 +6113,10 @@ var ImageDialog = /** @class */ (function () {
             '<input class="note-image-input note-form-control note-input" ',
             ' type="file" name="files" accept="image/*" multiple="multiple" />',
             imageLimitation,
-            '</div>',
-            '<div class="form-group note-group-image-url" style="overflow:auto;">',
-            '<label class="note-form-label">' + this.lang.image.url + '</label>',
-            '<input class="note-image-url form-control note-form-control note-input ',
-            ' col-md-12" type="text" />',
-            '</div>'
+            '</div>'            
         ].join('');
         var buttonClass = 'btn btn-primary note-btn note-btn-primary note-image-btn';
-        var footer = "<button type=\"submit\" href=\"#\" class=\"" + buttonClass + "\" disabled>" + this.lang.image.insert + "</button>";
+        var footer = "<a  href=\"javascript:void(0)\"  class=\"" + buttonClass + "\" disabled>" + this.lang.image.insert + "</a>";
         this.$dialog = this.ui.dialog({
             title: this.lang.image.insert,
             fade: this.options.dialogsFade,

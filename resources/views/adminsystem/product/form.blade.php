@@ -38,6 +38,7 @@ if(count(@$arrRowData)>0){
     }        
 }   
 $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'.@$strImage.'" />';
+$inputCallback='<input type="hidden" name="callback_url"  value="'.route('adminsystem.media.saveSummerFile').'" />';
 ?>
 <div class="portlet light bordered">
     <div class="portlet-title">
@@ -63,6 +64,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
             echo $inputPictureHidden;             
             echo $inputID;
             echo $inputAliasMenu;
+            echo $inputCallback;
             ?>                
             <div class="form-body">                
                 <div class="row">
@@ -407,8 +409,5 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"   value="'
             },
         });
     }
-    var token =$('form[name="frm"]').find('input[name="_token"]').val() ;           
-    var callback_url='<?php echo route('adminsystem.media.saveSummerFile'); ?>';    	
-    loadSummerNote(token,callback_url);    
 </script>
 @endsection()            
