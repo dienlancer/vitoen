@@ -29,9 +29,10 @@
 		processData: false
 	});
 }  
-  function loadSummerNote(){
-	$('textarea.summer-editor').summernote({
-    		height: 500,	
+
+function loadSummerNote(){
+	$('textarea.summer-editor').summernote({						
+    		height: 500,    		    	
     		popover: {
     			image: [
     			['custom', ['imageAttributes']],
@@ -43,10 +44,10 @@
     		toolbar: [    
     		['fontname'],		
     		['style', ['bold', 'italic', 'underline','strikethrough','superscript', 'subscript', 'clear']],			
-    		['fontsize'],
+    		['fontsize'],    		
     		['color'],
-    		['style', ['ul', 'ol']],
-    		['paragraph'],	
+    		['style', ['ul', 'ol']],    		
+    		['paragraph'],	    		
     		['table'],		
     		['picture'],
     		['link'],
