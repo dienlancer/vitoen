@@ -181,7 +181,8 @@ class ProductController extends Controller {
        }
       if ($checked == 1) {  
           $image_name='';
-              if($image_file != null){                                           
+              if($image_file != null){   
+              
                 $image_name=uploadImage($image_file['name'],$image_file['tmp_name'],$width,$height);                                  
               }  
           if(empty($id)){
