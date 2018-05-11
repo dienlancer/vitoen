@@ -197,6 +197,53 @@ $company=$setting['contacted_person']['field_value'];
 				} 	   			
 				?>				
 			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="caphethuocla margin-top-15 padding-bottom-15">
+					<div class="feedback">
+						<div class="vivanan">
+							<div class="fata">TƯ VẤN CÙNG CHUYÊN GIA</div>
+							<div class="pootoo"><a href="<?php echo route('frontend.index.index',['thang-nhom']); ?>">THANG NHÔM</a></div>
+						</div>					
+					</div>
+					<div class="rinux">
+						<?php 
+						$query=DB::table('article')
+						->join('article_category','article.id','=','article_category.article_id')
+						->join('category_article','category_article.id','=','article_category.category_id')
+						->where('category_article.id',13);
+						$source_article=$query->select('article.id','article.alias','article.fullname')
+						->groupBy('article.id','article.alias','article.fullname')
+						->orderBy('article.id','desc')
+						->take(10)
+						->get()
+						->toArray();
+						$source_article=convertToArray($source_article);
+						$ct_k=1;
+						if(count($source_article) > 0){
+							foreach ($source_article as $key => $value) {
+								$ct_fullname=$value['fullname'];
+								$ct_alias=$value['alias'];
+								?>
+								<div class="col-sm-6">
+									<div class="sidamex margin-top-15">
+										<span><img src="<?php echo asset('upload/pointer_icon.png'); ?>"></span>
+										<span><a href="<?php echo route('frontend.index.index',[$ct_alias]); ?>"><?php echo $ct_fullname; ?></a></span>
+									</div>
+								</div>
+								<?php
+								if($ct_k % 2 == 0){
+									?><div class="clr"></div><?php 
+								}
+								$ct_k++;
+							}
+						}						
+						?>
+					</div>
+					<div class="clr"></div>
+				</div>
+			</div>
 		</div>	
 		<?php 		
 	}		
@@ -327,50 +374,6 @@ $company=$setting['contacted_person']['field_value'];
 		<?php 		
 	}						
 	?>	
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="caphethuocla margin-top-15 padding-bottom-15">
-				<div class="feedback">
-					<div class="vivanan">
-						<div class="fata">TƯ VẤN CÙNG CHUYÊN GIA</div>
-						<div class="pootoo"><a href="<?php echo route('frontend.index.index',['thang-nhom']); ?>">THANG NHÔM</a></div>
-					</div>					
-				</div>
-				<div class="rinux">
-					<?php 
-					$query=DB::table('article')
-					->join('article_category','article.id','=','article_category.article_id')
-					->join('category_article','category_article.id','=','article_category.category_id')
-					->where('category_article.id',13);
-					$source_article=$query->select('article.id','article.alias','article.fullname')
-					->groupBy('article.id','article.alias','article.fullname')
-					->orderBy('article.id','desc')
-					->take(10)
-					->get()
-					->toArray();
-					$source_article=convertToArray($source_article);
-					$ct_k=1;
-					foreach ($source_article as $key => $value) {
-						$ct_fullname=$value['fullname'];
-						$ct_alias=$value['alias'];
-						?>
-						<div class="col-sm-6">
-							<div class="sidamex margin-top-15">
-								<span><img src="<?php echo asset('upload/pointer_icon.png'); ?>"></span>
-								<span><a href="<?php echo route('frontend.index.index',[$ct_alias]); ?>"><?php echo $ct_fullname; ?></a></span>
-							</div>
-						</div>
-						<?php
-						if($ct_k % 2 == 0){
-							?><div class="clr"></div><?php 
-						}
-						$ct_k++;
-					}
-					?>
-				</div>
-				<div class="clr"></div>
-			</div>
-		</div>
-	</div>
+	
 </div>
 @endsection()               

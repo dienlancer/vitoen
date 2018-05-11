@@ -10,6 +10,7 @@ $inputAlias             =   '<input type="text" class="form-control" name="alias
  
 $inputMetakeyword             =   '<textarea  name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
 $inputMetadescription             =   '<textarea  name="meta_description" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_description'].'</textarea>'; 
+$inputContent           =   '<textarea  name="content" rows="2" cols="100" class="form-control summer-editor" >'.@$arrRowData['content'].'</textarea>'; 
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"   value="'.@$arrRowData['sort_order'].'">';
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
@@ -29,6 +30,7 @@ if(count(@$arrRowData)>0){
     }        
 }    
 $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.@$strImage.'" />';
+$inputCallback='<input type="hidden" name="callback_url"  value="'.route('adminsystem.media.saveSummerFile').'" />';
 ?>
 <div class="portlet light bordered">
     <div class="portlet-title">
@@ -52,7 +54,8 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
             {{ csrf_field() }}          
                 <?php echo $inputPictureHidden; ?>                
                 <?php echo  $inputID; ?>
-                <?php echo $inputAliasMenu; ?>            
+                <?php echo $inputAliasMenu; ?>   
+                <?php echo $inputCallback; ?>                   
             <div class="form-body">
                 <div class="row">
                     <div class="form-group col-md-12">
@@ -104,6 +107,15 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
                         <label class="col-md-2 control-label"><b>Meta description</b></label>
                         <div class="col-md-10">                            
                             <?php echo $inputMetadescription; ?>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>   
+                </div> 
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Nội dung</b></label>
+                        <div class="col-md-10">                            
+                            <?php echo $inputContent; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
@@ -163,6 +175,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
         }        
         /* end xử lý image */
         var image_hidden=$('input[name="image_hidden"]').val(); 
+        var content=$('textarea[name="content"]').summernote('code'); 
         var sort_order=$('input[name="sort_order"]').val();
         var status=$('select[name="status"]').val();     
         var token = $('input[name="_token"]').val();   
@@ -179,6 +192,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden"  value="'.
             dataItem.append('image',image_file);
         } 
         dataItem.append('image_hidden',image_hidden);
+        dataItem.append('content',content);
         dataItem.append('sort_order',sort_order); 
         dataItem.append('status',status); 
         dataItem.append('_token',token);       

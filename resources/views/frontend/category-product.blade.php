@@ -75,20 +75,9 @@
 	</div>
 	<div class="margin-top-15">
 		<?php 
-		$page = getPage('content-bottom-category');		
-
+		if(!empty(@$category['content'])){
+			echo @$category['content'];
+		}		
 		?>
-		<div class="zuna-home">
-			<div class="cot-1">
-				<div class="margin-left-10"><img src="<?php echo asset('upload/iconlogo.ico'); ?>"></div>
-				<h2 class="margin-left-10"><a href="javascript:void(0);"><?php echo $page['fullname']; ?></a></h2>
-			</div>							
-			<div class="clr"></div>
-		</div>
-		<div>
-			<?php 
-			echo $page['content'];
-			?>
-		</div>
 	</div>
 </form>
