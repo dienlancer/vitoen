@@ -131,13 +131,6 @@ function fnPrice($value){
   }
   return $strCurrency;
 }
-function randomString($length = 5){
-  $arrCharacter = array_merge(range('a','z'), range(0,9));
-  $arrCharacter = implode($arrCharacter, '');
-  $arrCharacter = str_shuffle($arrCharacter);
-  $result   = substr($arrCharacter, 0, $length);
-  return $result;
-}
 function randomCodeNumber(){
   $data = range(1,9);
   $subject=implode($data, '');

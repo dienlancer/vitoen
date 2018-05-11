@@ -125,7 +125,7 @@ $inputCallback='<input type="hidden" name="callback_url"  value="'.route('admins
                     <div class="form-group col-md-12">
                         <label class="col-md-2 control-label"><b>Hình</b></label>
                         <div class="col-md-4">
-                            <div><font color="red"><b>Vui lòng cập nhật ảnh dưới 2MB</b></font></div>
+                            <div><font color="red"><b>Kích thước ảnh không được vượt quá <?php echo (int)max_size_upload; ?>MB</b></font></div>
                             <div><input type="file"  name="image"  />   </div>                               
                             <div class="picture-area"><?php echo $picture; ?>                      </div>
                             <div class="clr"></div>
