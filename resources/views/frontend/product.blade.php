@@ -411,7 +411,8 @@ if(count($item) > 0){
                     <div class="fb-comments" data-href="<?php echo $permalink; ?>" data-numposts="10"></div>
                 </div>
             </div>           
-        </div>        
+        </div>   
+        <div class="clr"></div>     
         <?php              
         $category_id=$item['category_id'];               
         $dataProduct=DB::table('product')                        
