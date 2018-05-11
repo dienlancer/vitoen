@@ -65,13 +65,25 @@ class MediaController extends Controller {
     if(isset($_FILES["summer_file"])){
       $summer_file         =   $_FILES["summer_file"];
     }   
-    $summer_name='';
-    if($summer_file != null){                                                
-      $summer_name=uploadMediaFile($summer_file['name'],$summer_file['tmp_name']);
+    /* begin checkfilesize */
+    $file_size=0;
+    if($summer_file != null){        
+      $file_size=((int)@$summer_file['size'])/1024/1024;
+      if($file_size > (int)max_size_upload ){
+        $checked = 0;               
+        $msg["status"]      = "Vui lòng nhập hình ảnh dưới 2MB";
+      }
     }
-    $summer_url='/upload/'.$summer_name;
-
-    $msg['success']='Lưu thành công';     
+    /* end checkfilesize */
+    $summer_url='';
+    if((int)@$checked == 1){
+      $summer_name='';
+      if($summer_file != null){                                                
+        $summer_name=uploadMediaFile($summer_file['name'],$summer_file['tmp_name']);
+      }
+      $summer_url='/upload/'.$summer_name;
+      $msg['success']='Lưu thành công';     
+    }    
     $info = array(
       "checked"       => $checked,          
       'msg'       => $msg,               
