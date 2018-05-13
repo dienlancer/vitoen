@@ -2135,6 +2135,16 @@ form[name='frm-search'] input[name='q']{
     color: #ffffff;
     font-weight: bold;
 }
+.navajava h2,.navajava h3{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.navajava h2{
+	font-size: 24px;
+}
+.navajava h3{
+	font-size: 18px;
+}
 @media (max-width: 768px){    
     .feedback{
         float: none;

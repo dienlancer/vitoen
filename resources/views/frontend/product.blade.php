@@ -38,7 +38,8 @@ if(count($item) > 0){
     
         <div class="breadcrumb-title margin-top-15">
             <?php echo $breadcrumb; ?>
-        </div>        	           
+        </div>      
+        <div class="row">
             <div class="col-lg-4 no-padding-left">
                 <div class="margin-top-15">
                     <div class="pdetail-chipu">
@@ -47,51 +48,51 @@ if(count($item) > 0){
                 </div>
                 <?php 
                 if(count($arrPicture) > 0){
-                	?>
-                	<div class="margin-top-5">
-                		<script type="text/javascript" language="javascript">
-                			$(document).ready(function(){
-                				$(".prodetail").owlCarousel({
-                					autoplay:true,                    
-                					loop:true,
-                					margin:2,                        
-                					nav:true,            
-                					mouseDrag: true,
-                					touchDrag: true,                                
-                					responsiveClass:true,
-                					responsive:{
-                						0:{
-                							items:1
-                						},
-                						600:{
-                							items:1
-                						},
-                						1000:{
-                							items:4
-                						}
-                					}
-                				});
-                				var chevron_left='<i class="fa fa-chevron-left"></i>';
-                				var chevron_right='<i class="fa fa-chevron-right"></i>';
-                				$("div.prodetail div.owl-prev").html(chevron_left);
-                				$("div.prodetail div.owl-next").html(chevron_right);
-                			});                
-                		</script>
-                		<div class="owl-carousel prodetail owl-theme">
-                			<?php 
-                			for($i=0;$i<count($arrPicture);$i++){                                            
-                				$small_thumbnail=asset('/upload/'.$product_width.'x'.$product_height.'-'.$arrPicture[$i]);    
-                				$large_thumbnail=asset('/upload/'.$arrPicture[$i]);                            
-                				?>
-                				<div class="pdetail-chipu">									
-                					<a href="javascript:void(0)" onclick="changeImage('<?php echo $small_thumbnail; ?>','<?php echo $large_thumbnail; ?>');"><img  src="<?php echo $small_thumbnail; ?>" width="<?php echo (int)$product_width/5; ?>" /></a>									                                        
-                				</div>
-                				<?php                                    
-                			}                           
-                			?>        
-                		</div>
-                	</div>
-                	<?php
+                    ?>
+                    <div class="margin-top-5">
+                        <script type="text/javascript" language="javascript">
+                            $(document).ready(function(){
+                                $(".prodetail").owlCarousel({
+                                    autoplay:true,                    
+                                    loop:true,
+                                    margin:2,                        
+                                    nav:true,            
+                                    mouseDrag: true,
+                                    touchDrag: true,                                
+                                    responsiveClass:true,
+                                    responsive:{
+                                        0:{
+                                            items:1
+                                        },
+                                        600:{
+                                            items:1
+                                        },
+                                        1000:{
+                                            items:4
+                                        }
+                                    }
+                                });
+                                var chevron_left='<i class="fa fa-chevron-left"></i>';
+                                var chevron_right='<i class="fa fa-chevron-right"></i>';
+                                $("div.prodetail div.owl-prev").html(chevron_left);
+                                $("div.prodetail div.owl-next").html(chevron_right);
+                            });                
+                        </script>
+                        <div class="owl-carousel prodetail owl-theme">
+                            <?php 
+                            for($i=0;$i<count($arrPicture);$i++){                                            
+                                $small_thumbnail=asset('/upload/'.$product_width.'x'.$product_height.'-'.$arrPicture[$i]);    
+                                $large_thumbnail=asset('/upload/'.$arrPicture[$i]);                            
+                                ?>
+                                <div class="pdetail-chipu">                                 
+                                    <a href="javascript:void(0)" onclick="changeImage('<?php echo $small_thumbnail; ?>','<?php echo $large_thumbnail; ?>');"><img  src="<?php echo $small_thumbnail; ?>" width="<?php echo (int)$product_width/5; ?>" /></a>                                                                            
+                                </div>
+                                <?php                                    
+                            }                           
+                            ?>        
+                        </div>
+                    </div>
+                    <?php
                 }
                 ?>                
             </div>
@@ -104,20 +105,20 @@ if(count($item) > 0){
                 </div>
                 <hr class="product-ngang" />
                 <div class="margin-top-5 tell-price">
-                	<?php 
-                	$price=$item['price'];                	
-                	$html_price='';                     
-                	if((int)@$price > 0){                              		
-                		$html_price=fnPrice($price)  ;              
-                	}else{
-                		$html_price='LIÊN HỆ' ;                  
-                	}   	
-                    echo '<span class="pdetail-price-on">'.$html_price.'</span>' ;                	
-                	?>
+                    <?php 
+                    $price=$item['price'];                  
+                    $html_price='';                     
+                    if((int)@$price > 0){                                   
+                        $html_price=fnPrice($price)  ;              
+                    }else{
+                        $html_price='LIÊN HỆ' ;                  
+                    }       
+                    echo '<span class="pdetail-price-on">'.$html_price.'</span>' ;                  
+                    ?>
                 </div>                
                 <div class="box-product-param">
-                	<!-- begin biến chung -->
-                	<?php 
+                    <!-- begin biến chung -->
+                    <?php 
                     $query=\DB::table('category_param');
                     $query->where('alias','<>','mau')->where('alias','<>','kich-thuoc')->where('parent_id','=',0);
                     $father_data=$query->select('category_param.id','category_param.fullname','category_param.alias')
@@ -245,7 +246,7 @@ if(count($item) > 0){
                         <?php
                     }
                     ?>                
-                    <!-- end kích thước -->                	
+                    <!-- end kích thước -->                 
                 </div>   
                 <div class="margin-top-15">
                     <?php 
@@ -345,9 +346,11 @@ if(count($item) > 0){
                     </div>                                                                   
                 </form>                
     </div>
+        </div>  	           
+            
     <div class="clr"></div>
 
-        <div class="margin-top-15">
+        <div class="margin-top-15 navajava">
             <script type="text/javascript" language="javascript">
                 function openCity(evt, cityName) {    
                     var i, tabcontent, tablinks;
