@@ -1567,7 +1567,7 @@ class IndexController extends Controller {
               $mail->addAddress($email_to, $contacted_person);   
               $mail->Subject = 'Thông tin đặt hàng từ khách hàng '.$fullname.' - '.$phone ;   
               $html_content='';     
-              $html_content .='<table border="1" cellspacing="5" cellpadding="5" width="100%">';
+              $html_content .='<table border="1" cellspacing="5" cellpadding="5" width="50%">';
               $html_content .='<thead>';
               $html_content .='<tr>';
               $html_content .='<th colspan="2"><h3>Thông tin từ khách hàng</h3></th>';
