@@ -67,13 +67,19 @@ class MediaController extends Controller {
     }   
     /* begin checkfilesize */
     $file_size=0;
-    if($summer_file != null){        
-      $file_size=((int)@$summer_file['size'])/1024/1024;
-      if($file_size > (int)max_size_upload ){
+    if($summer_file != null){              
+      if((int)@$summer_file['size']==0){
         $checked = 0;               
         $msg["status"]      = "Vui lòng nhập hình ảnh dưới 2MB";
-      }
+      }else{
+        $file_size=@$summer_file['size']/1024/1024;
+        if($file_size > (int)max_size_upload ){
+          $checked = 0;               
+          $msg["status"]      = "Vui lòng nhập hình ảnh dưới 2MB";
+        }
+      }      
     }
+
     /* end checkfilesize */
     $summer_url='';
     if((int)@$checked == 1){
@@ -88,7 +94,7 @@ class MediaController extends Controller {
       "checked"       => $checked,          
       'msg'       => $msg,               
       "summer_url"            => $summer_url
-    );             
+    );        
     return $info;                       
   }
 	
