@@ -214,8 +214,8 @@ class IndexController extends Controller {
     $pagination=new PaginationModel($arrPagination);
     $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
 
-    $data=$query->select('product.id','product.alias','product.fullname','product.price','product.sale_price','product.image','product.intro','product.count_view')
-    ->groupBy('product.id','product.alias','product.fullname','product.price','product.sale_price','product.image','product.intro','product.count_view')
+    $data=$query->select('product.id','product.alias','product.fullname','product.price','product.sale_price','product.image','product.alt_image','product.intro','product.count_view')
+    ->groupBy('product.id','product.alias','product.fullname','product.price','product.sale_price','product.image','product.alt_image','product.intro','product.count_view')
     ->orderBy('product.created_at', 'desc')
     ->skip($position)
     ->take($totalItemsPerPage)
@@ -316,8 +316,8 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=$query->select('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')                
-                    ->groupBy('article.id','article.alias','article.fullname','article.image','article.intro','article.count_view')
+        $data=$query->select('article.id','article.alias','article.fullname','article.image','article.alt_image','article.intro','article.count_view')                
+                    ->groupBy('article.id','article.alias','article.fullname','article.image','article.alt_image','article.intro','article.count_view')
                     ->orderBy('article.created_at', 'desc')
                     ->skip($position)
                     ->take($totalItemsPerPage)
@@ -370,8 +370,8 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=$query->select('product.id','product.alias','product.fullname','product.image','product.intro','product.price','product.sale_price')                
-                ->groupBy('product.id','product.alias','product.fullname','product.image','product.intro','product.price','product.sale_price')
+        $data=$query->select('product.id','product.alias','product.fullname','product.image','product.alt_image','product.intro','product.price','product.sale_price')                
+                ->groupBy('product.id','product.alias','product.fullname','product.image','product.alt_image','product.intro','product.price','product.sale_price')
                 ->orderBy('product.created_at', 'desc')
                 ->skip($position)
                 ->take($totalItemsPerPage)
@@ -406,8 +406,8 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=$query->select('product.id','product.alias','product.fullname','product.image')                                
-                    ->groupBy('product.id','product.alias','product.fullname','product.image')
+        $data=$query->select('product.id','product.alias','product.fullname','product.image','product.alt_image')                                
+                    ->groupBy('product.id','product.alias','product.fullname','product.image','product.alt_image')
                     ->orderBy('product.created_at', 'desc')
                     ->skip($position)
                     ->take($totalItemsPerPage)

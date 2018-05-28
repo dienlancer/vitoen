@@ -43,7 +43,7 @@ if(count($item) > 0){
             <div class="col-lg-4 no-padding-left">
                 <div class="margin-top-15">
                     <div class="pdetail-chipu">
-                        <div class="image-detail"><img class="zoom_img" src="<?php echo $small_img; ?>" data-zoom-image="<?php echo $large_img; ?>" /></div>
+                        <div class="image-detail"><img alt="<?php echo @$item['alt_image']; ?>" class="zoom_img" src="<?php echo $small_img; ?>" data-zoom-image="<?php echo $large_img; ?>" /></div>
                     </div>                    
                 </div>
                 <?php 
@@ -419,11 +419,11 @@ if(count($item) > 0){
         <?php              
         $category_id=$item['category_id'];               
         $dataProduct=DB::table('product')                        
-        ->select('product.id','product.alias','product.fullname','product.image','product.intro','product.price','product.sale_price')
+        ->select('product.id','product.alias','product.fullname','product.image','product.alt_image','product.intro','product.price','product.sale_price')
         ->where('product.category_id', $category_id)
         ->where('product.id','<>',(int)@$id)
         ->where('product.status',1)       
-        ->groupBy('product.id','product.alias','product.fullname','product.image','product.intro','product.price','product.sale_price')
+        ->groupBy('product.id','product.alias','product.fullname','product.image','product.alt_image','product.intro','product.price','product.sale_price')
         ->orderBy('product.created_at', 'desc')                
         ->get()
         ->toArray();         
@@ -481,7 +481,7 @@ if(count($item) > 0){
         				?>
         				<div class="box-product">
                                             <div class="box-product-img">
-                                                <center><figure><a href="<?php echo $pdetail_permalink; ?>"><img src="<?php echo $pdetail_img; ?>"></a></figure></center>
+                                                <center><figure><a href="<?php echo $pdetail_permalink; ?>"><img alt="<?php echo @$value['alt_image']; ?>"  src="<?php echo $pdetail_img; ?>"></a></figure></center>
                                             </div>
                                             <div class="box-product-intro-title"><a href="<?php echo $pdetail_permalink; ?>"><b><?php echo $pdetail_fullname; ?></b></a></div>
                                             <div class="box-product-price">

@@ -73,7 +73,7 @@ if(count($arrCart) > 0){
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="vi" xmlns="http://www.w3.org/1999/xhtml" prefix="og: http://ogp.me/ns#">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">  
@@ -170,11 +170,7 @@ if(count($arrCart) > 0){
 	<!-- begin fancybox -->
 	<script language="javascript" type="text/javascript" src="{{asset('public/frontend/js/jquery.fancybox.min.js')}}"                 ></script>
 	<link href="{{asset('public/frontend/css/jquery.fancybox.min.css')}}" rel="stylesheet" type="text/css" />
-	<!-- end fancybox -->
-	<!-- begin ckeditor-->
-	<script language="javascript" type="text/javascript" src="{{asset('public/frontend/ckeditor/ckeditor.js')}}"                 ></script>
-    <script language="javascript" type="text/javascript" src="{{asset('public/frontend/ckfinder/ckfinder.js')}}"                 ></script>
-    <!-- end ckeditor-->
+	<!-- end fancybox -->	
 	<!-- begin custom -->
 	<link rel="stylesheet" href="{{ asset('public/frontend/css/menu-horizontal-right.css') }}" />
 	<link rel="stylesheet" href="{{ asset('public/frontend/css/menu-horizontal-right-dmsp.css') }}" />
@@ -404,7 +400,7 @@ if(count($arrCart) > 0){
 								<div class="nippet">
 									<center>
 										<a href="<?php echo url('/'); ?>">                
-											<img src="<?php echo $seo_logo_frontend;?>" />
+											<img src="<?php echo $seo_logo_frontend;?>" alt='<?php echo @$seo["alt_logo"]; ?>' />
 										</a>
 									</center>	
 								</div>					

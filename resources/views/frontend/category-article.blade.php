@@ -24,7 +24,7 @@
 				$count_view_text=number_format($count_view,0,",",".");				
 				?>
 				<div class="box-row margin-top-10">
-					<div class="col-sm-4 no-padding-left"><div class="box-img"><center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $image; ?>" /></a></figure></center></div></div>
+					<div class="col-sm-4 no-padding-left"><div class="box-img"><center><figure><a href="<?php echo $permalink; ?>"><img alt="<?php echo @$value['alt_image']; ?>" src="<?php echo $image; ?>" /></a></figure></center></div></div>
 					<div class="col-sm-8 no-padding-left">
 						<h3 class="box-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h3>
 						<div class="margin-top-5">

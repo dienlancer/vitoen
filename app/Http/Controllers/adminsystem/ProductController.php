@@ -116,7 +116,8 @@ class ProductController extends Controller {
             $technical_detail               =   trim($request->technical_detail);
             $video_id = trim($request->video_id);
             $intro                =   trim($request->intro);
-            $image_hidden         =   trim($request->image_hidden);                       
+            $image_hidden         =   trim($request->image_hidden);   
+            $alt_image                =   trim($request->alt_image);                    
             $sort_order           =   trim($request->sort_order);          
             $category_id	        =		trim($request->category_id);             
             $category_param_id    =   ($request->category_param_id);            
@@ -223,7 +224,8 @@ class ProductController extends Controller {
           $item->detail           = $detail;  
           $item->technical_detail           = $technical_detail;    
           $item->video_id = $video_id;   
-          $item->intro            = $intro;            
+          $item->intro            = $intro;  
+          $item->alt_image          = $alt_image;          
           $item->category_id      = (int)@$category_id;                                      
           $item->sort_order 	    =	(int)@$sort_order;                
           $item->updated_at 	    =	date("Y-m-d H:i:s",time());  

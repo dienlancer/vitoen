@@ -43,7 +43,7 @@ $company=$setting['contacted_person']['field_value'];
 								$alt2=$value["alt"];
 								$featuredImg2=asset('upload/'.$value["image"]);
 								?>
-								<div><img src="<?php echo $featuredImg2; ?>" alt="<?php echo $alt2; ?>" /></div>
+								<div><img src="<?php echo $featuredImg2; ?>" alt="<?php echo $alt2; ?>" title="<?php echo $value['caption']; ?>" /></div>
 								<?php 
 							}
 							?>              
@@ -68,7 +68,7 @@ $company=$setting['contacted_person']['field_value'];
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="teraff margin-top-15">
-					<div class="vinboom"><a href="<?php echo route('frontend.index.index',[$ft_alias]); ?>"><?php echo $ft_fullname; ?></a></div>
+					<h2 class="vinboom"><a href="<?php echo route('frontend.index.index',[$ft_alias]); ?>"><?php echo $ft_fullname; ?></a></h2>
 					<div class="raka">
 						<?php     
 						$args = array(                         
@@ -95,8 +95,8 @@ $company=$setting['contacted_person']['field_value'];
 				$query=DB::table('product')
 				->join('category_product','product.category_id','=','category_product.id');			 
 				$query->whereIn('product.category_id',$source_category_id);   
-				$ft_source_product=$query->select('product.id','product.code','product.fullname','product.alias','product.image','category_product.fullname as category_name','product.price','product.sale_price')
-				->groupBy('product.id','product.code','product.fullname','product.alias','product.image','category_product.fullname','product.price','product.sale_price')
+				$ft_source_product=$query->select('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','category_product.fullname as category_name','product.price','product.sale_price')
+				->groupBy('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','category_product.fullname','product.price','product.sale_price')
 				->orderBy('product.id','desc')->take(10)->get()->toArray();     
 				if(count($ft_source_product)){
 					$ft_source_product=convertToArray($ft_source_product);
@@ -143,14 +143,13 @@ $company=$setting['contacted_person']['field_value'];
 									$html_price=fnPrice($ft_product_price) ;
 								}else{
 									$html_price='Giá : Liên hệ' ;
-								}   			
-								
+								}   											
 								?>
 								<div class="box-product">
 									<div class="box-product-img">
-										<center><figure><a href="<?php echo $ft_product_permalink; ?>"><img src="<?php echo $ft_product_img; ?>"></a></figure></center>
+										<center><figure><a href="<?php echo $ft_product_permalink; ?>"><img src="<?php echo $ft_product_img; ?>" alt="<?php echo @$value2['alt_image']; ?>"></a></figure></center>
 									</div>
-									<div class="box-product-intro-title"><a href="<?php echo $ft_product_permalink; ?>"><b><?php echo $ft_product_title; ?></b></a></div>
+									<h3 class="box-product-intro-title"><a href="<?php echo $ft_product_permalink; ?>"><b><?php echo $ft_product_title; ?></b></a></h3>
 									<?php 
 									/* begin thương hiệu */		
 									$trademark='';
@@ -259,7 +258,7 @@ $company=$setting['contacted_person']['field_value'];
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="teraff margin-top-15">
-					<div class="vinboom"><a href="<?php echo route('frontend.index.index',[$ft_alias]); ?>"><?php echo $ft_fullname; ?></a></div>
+					<h2 class="vinboom"><a href="<?php echo route('frontend.index.index',[$ft_alias]); ?>"><?php echo $ft_fullname; ?></a></h2>
 					
 					<div class="clr"></div>
 				</div>
@@ -267,8 +266,8 @@ $company=$setting['contacted_person']['field_value'];
 				$query=DB::table('product')
 				->join('category_product','product.category_id','=','category_product.id');			 
 				$query->whereIn('product.category_id',$source_category_id);   
-				$ft_source_product=$query->select('product.id','product.code','product.fullname','product.alias','product.image','category_product.fullname as category_name','product.price','product.sale_price')
-				->groupBy('product.id','product.code','product.fullname','product.alias','product.image','category_product.fullname','product.price','product.sale_price')
+				$ft_source_product=$query->select('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','category_product.fullname as category_name','product.price','product.sale_price')
+				->groupBy('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','category_product.fullname','product.price','product.sale_price')
 				->orderBy('product.id','desc')->take(10)->get()->toArray();     
 				if(count($ft_source_product)){
 					$ft_source_product=convertToArray($ft_source_product);
@@ -320,9 +319,9 @@ $company=$setting['contacted_person']['field_value'];
 								?>
 								<div class="box-product">
 									<div class="box-product-img">
-										<center><figure><a href="<?php echo $ft_product_permalink; ?>"><img src="<?php echo $ft_product_img; ?>"></a></figure></center>
+										<center><figure><a href="<?php echo $ft_product_permalink; ?>"><img src="<?php echo $ft_product_img; ?>" alt="<?php echo $value2['alt_image']; ?>"></a></figure></center>
 									</div>
-									<div class="box-product-intro-title"><a href="<?php echo $ft_product_permalink; ?>"><b><?php echo $ft_product_title; ?></b></a></div>
+									<h3 class="box-product-intro-title"><a href="<?php echo $ft_product_permalink; ?>"><b><?php echo $ft_product_title; ?></b></a></h3>
 									<?php 
 									/* begin thương hiệu */		
 									$trademark='';

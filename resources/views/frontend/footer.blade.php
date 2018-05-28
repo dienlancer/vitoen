@@ -83,10 +83,10 @@
 					$pinterest_url=$setting['pinterest_url']['field_value'];   
 					?>
 					<ul class="inline-block connected-social">
-						<li><a href="<?php echo $facebook_url; ?>"><img src="<?php echo asset('upload/facebook-icon.png'); ?>"></a></li>
-						<li><a href="<?php echo $twitter_url; ?>"><img src="<?php echo asset('upload/twitter-icon.png'); ?>"></a></li>
-						<li><a href="<?php echo $google_plus; ?>"><img src="<?php echo asset('upload/google-plus.png'); ?>"></a></li>
-						<li><a href="<?php echo $youtube_url; ?>"><img src="<?php echo asset('upload/youtube-icon.png'); ?>"></a></li>												
+						<li><a href="<?php echo $facebook_url; ?>" rel='nofollow' ><img src="<?php echo asset('upload/facebook-icon.png'); ?>"></a></li>
+						<li><a href="<?php echo $twitter_url; ?>" rel='nofollow'><img src="<?php echo asset('upload/twitter-icon.png'); ?>"></a></li>
+						<li><a href="<?php echo $google_plus; ?>" rel='nofollow'><img src="<?php echo asset('upload/google-plus.png'); ?>"></a></li>
+						<li><a href="<?php echo $youtube_url; ?>" rel='nofollow'><img src="<?php echo asset('upload/youtube-icon.png'); ?>"></a></li>												
 					</ul>
 					<div class="clr"></div>  
 				</div>

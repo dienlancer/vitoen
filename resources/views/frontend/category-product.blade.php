@@ -47,7 +47,7 @@
 				<div class="col-sm-3 no-padding">
 					<div class="box-product box-product-rian">
 						<div class="box-product-img">
-							<center><figure><a href="<?php echo $product_permalink; ?>"><img src="<?php echo $product_img; ?>"></a></figure></center>
+							<center><figure><a href="<?php echo $product_permalink; ?>"><img alt="<?php echo @$value['alt_image']; ?>" src="<?php echo $product_img; ?>"></a></figure></center>
 						</div>
 						<h3 class="box-product-intro-title"><a href="<?php echo $product_permalink; ?>"><b><?php echo $product_fullname; ?></b></a></h3>
 						<div class="box-product-price">
