@@ -9,7 +9,7 @@
 	</div>
 	<h1 style="display: none;"><?php echo @$category['fullname']; ?></h1>
 	<h2 style="display: none;"><?php echo @$meta_description; ?></h2>
-	<div class="row">
+	<div>
 		<?php 	
 		if(count($items) > 0){
 			$k=1;			
@@ -23,20 +23,25 @@
 				$count_view=(int)@$value['count_view'];
 				$count_view_text=number_format($count_view,0,",",".");				
 				?>
-				<div class="box-row margin-top-10">
-					<div class="col-sm-4 no-padding-left"><div class="box-img"><center><figure><a href="<?php echo $permalink; ?>"><img alt="<?php echo @$value['alt_image']; ?>" src="<?php echo $image; ?>" /></a></figure></center></div></div>
-					<div class="col-sm-8 no-padding-left">
-						<h3 class="box-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h3>
-						<div class="margin-top-5">
-							<div class="view-post-count">
-								<i class="fa fa-eye" aria-hidden="true"></i><span class="margin-left-5"><?php echo $count_view_text; ?>&nbsp;lượt xem	</span>
-							</div>							
-						</div>
-						<div class="margin-top-5 box-intro"><?php echo $intro; ?></div>
-						<div class="box-readmore margin-top-10"><a href="<?php echo $permalink; ?>">Xem chi tiết</a></div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="box-row margin-top-10">
+							<div class="row">
+								<div class="col-sm-4"><div class="box-img"><center><figure><a href="<?php echo $permalink; ?>"><img alt="<?php echo @$value['alt_image']; ?>" src="<?php echo $image; ?>" /></a></figure></center></div></div>
+								<div class="col-sm-8">
+									<h3 class="box-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h3>
+									<div class="margin-top-5">
+										<div class="view-post-count">
+											<i class="fa fa-eye" aria-hidden="true"></i><span class="margin-left-5"><?php echo $count_view_text; ?>&nbsp;lượt xem	</span>
+										</div>							
+									</div>
+									<div class="margin-top-5 box-intro"><?php echo $intro; ?></div>
+									<div class="box-readmore margin-top-10"><a href="<?php echo $permalink; ?>">Xem chi tiết</a></div>
+								</div>
+							</div>					
+						</div>	
 					</div>
-					<div class="clr"></div>
-				</div>
+				</div>				
 				<?php			
 			}
 		}else{
@@ -45,10 +50,14 @@
 		?>
 	</div>
 	<div class="margin-top-15">
-		<?php 
-		if(count($items) > 0){
-			echo $pagination->showPagination();
-		}  
-		?>
+		<div class="row">
+			<div class="col-lg-12">
+				<?php 
+				if(count($items) > 0){
+					echo $pagination->showPagination();
+				}  		
+				?>	
+			</div>
+		</div>		
 	</div>
 </form>

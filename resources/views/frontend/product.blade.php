@@ -40,7 +40,7 @@ if(count($item) > 0){
             <?php echo $breadcrumb; ?>
         </div>      
         <div class="row">
-            <div class="col-lg-4 no-padding-left">
+            <div class="col-lg-4">
                 <div class="margin-top-15">
                     <div class="pdetail-chipu">
                         <div class="image-detail"><img alt="<?php echo @$item['alt_image']; ?>" class="zoom_img" src="<?php echo $small_img; ?>" data-zoom-image="<?php echo $large_img; ?>" /></div>
@@ -96,7 +96,7 @@ if(count($item) > 0){
                 }
                 ?>                
             </div>
-            <div class="col-lg-8 no-padding-left">
+            <div class="col-lg-8">
                 <h1 class="margin-top-15 product-detail-title">
                     <?php echo $title; ?>
                 </h1>
