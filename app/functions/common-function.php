@@ -25,7 +25,25 @@ function uploadImage($name,$tmp_name,$width,$height){
   /* end code_alias */
   $image_name=$image_slug. '-' . $code_alias .'.'.$ext;     
   $image_path=base_path("upload".DS.$image_name);  
-  move_uploaded_file($image_tmp_name, $image_path);  
+  move_uploaded_file($image_tmp_name, $image_path);
+  /* begin watermark */  
+  $overlay=base_path("upload".DS.'marked-logo.png');
+  $watermark =    imagecreatefrompng($overlay);
+  $source = getimagesize($image_path);
+  $source_mime = $source['mime'];
+  $source_x = $source[0];
+  $source_y = $source[1];
+  $image=null;
+  if($source_mime == "image/png"){
+    $image = imagecreatefrompng($image_path);
+  }else if($source_mime == "image/jpeg"){
+    $image = imagecreatefromjpeg($image_path);
+  }else if($source_mime == "image/gif"){
+    $image = imagecreatefromgif($image_path);
+  }
+  imagecopy($image, $watermark, 10,10, 0, 0, imagesx($watermark), imagesy($watermark));
+  imagepng($image, $image_path);
+  /* end watermark */
   if((int)@$width > 0 && (int)@$height > 0){
     require_once base_path("app".DS."scripts".DS."PhpThumb".DS."ThumbLib.inc.php") ;       
     $thumb = PhpThumbFactory::create($image_path);        

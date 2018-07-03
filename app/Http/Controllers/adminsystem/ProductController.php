@@ -88,54 +88,54 @@ class ProductController extends Controller {
         }
         
     }
-        public function save(Request $request){
-            $id 					        =		trim($request->id);      
-            $code                 =   randomCodeNumber(); 
-            $fullname 				    =		trim($request->fullname);          
-            $alias                =   trim($request->alias);
-            $alias_menu           =   trim($request->alias_menu);
-            
-            $meta_keyword         =   trim($request->meta_keyword);
-            $meta_description     =   trim($request->meta_description);
-            $image_file           =   null;
-            $source_image_child=array();
-            $source_image_child_hidden=array();
-            if(isset($_FILES["image"])){
-              $image_file         =   $_FILES["image"];
-            }                        
-            if(isset($_FILES['source_image_child'])){
-              $source_image_child=$_FILES['source_image_child'];
-            }                            
-            if(isset($request->source_image_child_hidden)){
-              $source_image_child_hidden=$request->source_image_child_hidden;                        
-            }            
-            $status               =   trim($request->status);
-            $price                =   trim($request->price);   
-            $sale_price           =   trim($request->sale_price);                    
-            $detail               =   trim($request->detail);
-            $technical_detail               =   trim($request->technical_detail);
-            $video_id = trim($request->video_id);
-            $intro                =   trim($request->intro);
-            $image_hidden         =   trim($request->image_hidden);   
-            $alt_image                =   trim($request->alt_image);                    
-            $sort_order           =   trim($request->sort_order);          
-            $category_id	        =		trim($request->category_id);             
-            $category_param_id    =   ($request->category_param_id);            
-            $data 		            =   array();
-            
-            $item		              =   null;
-            
-            $info                 =   array();
-      $checked              =   1;                           
-      $msg                =   array();
-            $setting= getSettingSystem();
+              public function save(Request $request){
+                $id 					        =		trim($request->id);      
+                $code                 =   randomCodeNumber(); 
+                $fullname 				    =		trim($request->fullname);          
+                $alias                =   trim($request->alias);
+                $alias_menu           =   trim($request->alias_menu);
+                
+                $meta_keyword         =   trim($request->meta_keyword);
+                $meta_description     =   trim($request->meta_description);
+                $image_file           =   null;
+                $source_image_child=array();
+                $source_image_child_hidden=array();
+                if(isset($_FILES["image"])){
+                  $image_file         =   $_FILES["image"];
+                }                        
+                if(isset($_FILES['source_image_child'])){
+                  $source_image_child=$_FILES['source_image_child'];
+                }                            
+                if(isset($request->source_image_child_hidden)){
+                  $source_image_child_hidden=$request->source_image_child_hidden;                        
+                }            
+                $status               =   trim($request->status);
+                $price                =   trim($request->price);   
+                $sale_price           =   trim($request->sale_price);                    
+                $detail               =   trim($request->detail);
+                $technical_detail               =   trim($request->technical_detail);
+                $video_id = trim($request->video_id);
+                $intro                =   trim($request->intro);
+                $image_hidden         =   trim($request->image_hidden);   
+                $alt_image                =   trim($request->alt_image);                    
+                $sort_order           =   trim($request->sort_order);          
+                $category_id	        =		trim($request->category_id);             
+                $category_param_id    =   ($request->category_param_id);            
+                $data 		            =   array();
+                
+                $item		              =   null;
+                
+                $info                 =   array();
+                $checked              =   1;                           
+                $msg                =   array();
+                $setting= getSettingSystem();
                 $width=$setting['product_width']['field_value'];
                 $height=$setting['product_height']['field_value'];           
-            if(empty($code)){
+                if(empty($code)){
                  $checked = 0;
                  
                  $msg["code"] = "Thiếu mã sản phẩm";
-            }else{
+               }else{
                 $data=array();
                 if (empty($id)) {
                   $data=ProductModel::whereRaw("trim(lower(code)) = ?",[trim(mb_strtolower($code,'UTF-8'))])->get()->toArray();           
@@ -147,150 +147,150 @@ class ProductController extends Controller {
                   
                   $msg["code"] = "Mã sản phẩm đã tồn tại";
                 }       
-            }      
-            if(empty($fullname)){
+              }      
+              if(empty($fullname)){
                $checked = 0;               
                $msg["fullname"] = "Thiếu tên sản phẩm";
-           }else{
-                $data=array();
-                if (empty($id)) {
-                  $data=ProductModel::whereRaw("trim(lower(fullname)) = ?",[trim(mb_strtolower($fullname,'UTF-8'))])->get()->toArray();	        	
-                }else{
-                  $data=ProductModel::whereRaw("trim(lower(fullname)) = ? and id != ?",[trim(mb_strtolower($fullname,'UTF-8')),(int)@$id])->get()->toArray();		
-                }  
-                if (count($data) > 0) {
-                  $checked = 0;
-                  
-                  $msg["fullname"] = "Tên sản phẩm đã tồn tại";
-                }      	
-            }          
-      
-      if(empty($category_id)){
-        $checked = 0;
-        
-        $msg["category_id"]      = "Thiếu danh mục";
-      }      
-      /* begin checkfilesize */
-      $file_size=0;
-      if($image_file != null){        
-        $file_size=((int)@$image_file['size'])/1024/1024;
-        if($file_size > (int)max_size_upload ){
-          $checked = 0;               
-          $msg["status"]      = "Vui lòng nhập hình ảnh dưới 2MB";
-        }
-      }
-      /* end checkfilesize */
-      if(empty($sort_order)){
-           $checked = 0;
-           
-           $msg["sort_order"] 		= "Sort order is required";
-      }
-       if((int)$status==-1){
-           $checked = 0;
-           
-           $msg["status"] 			= "Status is required";
-       }
-      if ($checked == 1) {  
-          $image_name='';
-              if($image_file != null){   
-              
-                $image_name=uploadImage($image_file['name'],$image_file['tmp_name'],$width,$height);                                  
+             }else{
+              $data=array();
+              if (empty($id)) {
+                $data=ProductModel::whereRaw("trim(lower(fullname)) = ?",[trim(mb_strtolower($fullname,'UTF-8'))])->get()->toArray();	        	
+              }else{
+                $data=ProductModel::whereRaw("trim(lower(fullname)) = ? and id != ?",[trim(mb_strtolower($fullname,'UTF-8')),(int)@$id])->get()->toArray();		
               }  
-          if(empty($id)){
-                $item 				= 	new ProductModel; 
-                $item->code             = $code;
-                if(!empty($image_name)){
-                  $item->image    =   trim($image_name) ;  
-                }  
+              if (count($data) > 0) {
+                $checked = 0;
                 
-                $item->created_at 	=	date("Y-m-d H:i:s",time());                        		
-          } else{
-                $item				=	ProductModel::find((int)@$id);   
-                $item->image=null;                       
-                    if(!empty($image_hidden)){
-                      $item->image =$image_hidden;          
-                    }
-                    if(!empty($image_name))  {
-                  $item->image=$image_name;                                                
-                }               		  		 	
-          }            
-          $item->fullname 		    =	$fullname;                
-          $item->alias 			      =	$alias;            
-          $item->meta_keyword     = $meta_keyword;
-          $item->meta_description = $meta_description;                  
-          $item->status           = (int)@$status; 
-          $item->price            = (int)(str_replace('.', '',@$price)) ;
-          $item->sale_price       = (int)(str_replace('.', '',@$sale_price)) ;                                 
-          $item->detail           = $detail;  
-          $item->technical_detail           = $technical_detail;    
-          $item->video_id = $video_id;   
-          $item->intro            = $intro;  
-          $item->alt_image          = $alt_image;          
-          $item->category_id      = (int)@$category_id;                                      
-          $item->sort_order 	    =	(int)@$sort_order;                
-          $item->updated_at 	    =	date("Y-m-d H:i:s",time());  
-          // begin upload product child image 
-          $data_image_child=array();
-          if(count($source_image_child_hidden) > 0){
-            $data_image_child=$source_image_child_hidden;
-          }
-          if(count($source_image_child) > 0){
-            foreach ($source_image_child['name'] as $key => $value) {
-              $item_name=uploadImage($value,$source_image_child['tmp_name'][$key],$width,$height);
-              $data_image_child[]=$item_name;
-            }
-          }
-          $item->child_image=null;
-          if(count($data_image_child) > 0){
-            $item->child_image=json_encode($data_image_child);  
-          }          
-          // end upload product child image  	        	
-          $item->save();  	
-          $dataMenu=MenuModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias_menu,'UTF-8'))])->get()->toArray();
-          if(count($dataMenu) > 0){
-            foreach ($dataMenu as $key => $value) {                   
-              $menu_id=(int)$value['id'];
-              $sql = "update  `menu` set `alias` = '".$alias."' WHERE `id` = ".$menu_id;           
-                DB::statement($sql);    
+                $msg["fullname"] = "Tên sản phẩm đã tồn tại";
+              }      	
             }          
-          }    
-          /* begin category param */
-                if(!empty(@$category_param_id)){
-                  $source_category_param_id=explode(',', $category_param_id) ; 
-                  $arrPostParam=PostParamModel::whereRaw("post_id = ?",[(int)@$item->id])->select("param_id")->get()->toArray();
-                  $arrCategoryParamID=array();
-                  foreach ($arrPostParam as $key => $value) {
-                    $arrCategoryParamID[]=$value["param_id"];
-                  }                  
-                  $selected=@$source_category_param_id;
-                  sort($selected);
-                  sort($arrCategoryParamID);                           
-                  $resultCompare=0;
-                  if($selected == $arrCategoryParamID){
-                    $resultCompare=1;       
-                  }
-                  if($resultCompare==0){
-                    PostParamModel::whereRaw("post_id = ?",[(int)@$item->id])->delete();  
-                    foreach ($selected as $key => $value) {
-                      $param_id=$value;
-                      $postParam=new PostParamModel;
-                      $postParam->post_id=(int)@$item->id;
-                      $postParam->param_id=(int)@$param_id;            
-                      $postParam->save();
-                    }
-                  }       
-                }  
-                PostParamModel::whereRaw("param_id = ?",[0])->delete();
-                /* end category param */                         
+            
+            if(empty($category_id)){
+              $checked = 0;
+              
+              $msg["category_id"]      = "Thiếu danh mục";
+            }      
+            /* begin checkfilesize */
+            $file_size=0;
+            if($image_file != null){        
+              $file_size=((int)@$image_file['size'])/1024/1024;
+              if($file_size > (int)max_size_upload ){
+                $checked = 0;               
+                $msg["status"]      = "Vui lòng nhập hình ảnh dưới 2MB";
+              }
+            }
+            /* end checkfilesize */
+            if(empty($sort_order)){
+             $checked = 0;
+             
+             $msg["sort_order"] 		= "Sort order is required";
+           }
+           if((int)$status==-1){
+             $checked = 0;
+             
+             $msg["status"] 			= "Status is required";
+           }
+           if ($checked == 1) {  
+            $image_name='';
+            if($image_file != null){   
+              
+              $image_name=uploadImage($image_file['name'],$image_file['tmp_name'],$width,$height);                                  
+            }  
+            if(empty($id)){
+              $item 				= 	new ProductModel; 
+              $item->code             = $code;
+              if(!empty($image_name)){
+                $item->image    =   trim($image_name) ;  
+              }  
+              
+              $item->created_at 	=	date("Y-m-d H:i:s",time());                        		
+            } else{
+              $item				=	ProductModel::find((int)@$id);   
+              $item->image=null;                       
+              if(!empty($image_hidden)){
+                $item->image =$image_hidden;          
+              }
+              if(!empty($image_name))  {
+                $item->image=$image_name;                                                
+              }               		  		 	
+            }            
+            $item->fullname 		    =	$fullname;                
+            $item->alias 			      =	$alias;            
+            $item->meta_keyword     = $meta_keyword;
+            $item->meta_description = $meta_description;                  
+            $item->status           = (int)@$status; 
+            $item->price            = (int)(str_replace('.', '',@$price)) ;
+            $item->sale_price       = (int)(str_replace('.', '',@$sale_price)) ;                                 
+            $item->detail           = $detail;  
+            $item->technical_detail           = $technical_detail;    
+            $item->video_id = $video_id;   
+            $item->intro            = $intro;  
+            $item->alt_image          = $alt_image;          
+            $item->category_id      = (int)@$category_id;                                      
+            $item->sort_order 	    =	(int)@$sort_order;                
+            $item->updated_at 	    =	date("Y-m-d H:i:s",time());  
+                                // begin upload product child image 
+            $data_image_child=array();
+            if(count($source_image_child_hidden) > 0){
+              $data_image_child=$source_image_child_hidden;
+            }
+            if(count($source_image_child) > 0){
+              foreach ($source_image_child['name'] as $key => $value) {
+                $item_name=uploadImage($value,$source_image_child['tmp_name'][$key],$width,$height);
+                $data_image_child[]=$item_name;
+              }
+            }
+            $item->child_image=null;
+            if(count($data_image_child) > 0){
+              $item->child_image=json_encode($data_image_child);  
+            }          
+                                // end upload product child image  	        	
+            $item->save();  	
+            $dataMenu=MenuModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias_menu,'UTF-8'))])->get()->toArray();
+            if(count($dataMenu) > 0){
+              foreach ($dataMenu as $key => $value) {                   
+                $menu_id=(int)$value['id'];
+                $sql = "update  `menu` set `alias` = '".$alias."' WHERE `id` = ".$menu_id;           
+                DB::statement($sql);    
+              }          
+            }    
+            /* begin category param */
+            if(!empty(@$category_param_id)){
+              $source_category_param_id=explode(',', $category_param_id) ; 
+              $arrPostParam=PostParamModel::whereRaw("post_id = ?",[(int)@$item->id])->select("param_id")->get()->toArray();
+              $arrCategoryParamID=array();
+              foreach ($arrPostParam as $key => $value) {
+                $arrCategoryParamID[]=$value["param_id"];
+              }                  
+              $selected=@$source_category_param_id;
+              sort($selected);
+              sort($arrCategoryParamID);                           
+              $resultCompare=0;
+              if($selected == $arrCategoryParamID){
+                $resultCompare=1;       
+              }
+              if($resultCompare==0){
+                PostParamModel::whereRaw("post_id = ?",[(int)@$item->id])->delete();  
+                foreach ($selected as $key => $value) {
+                  $param_id=$value;
+                  $postParam=new PostParamModel;
+                  $postParam->post_id=(int)@$item->id;
+                  $postParam->param_id=(int)@$param_id;            
+                  $postParam->save();
+                }
+              }       
+            }  
+            PostParamModel::whereRaw("param_id = ?",[0])->delete();
+            /* end category param */                         
             $msg['success']='Lưu thành công';  
-    }
-    $info = array(
-        "checked"       => $checked,          
-        'msg'       => $msg,      
-        'link_edit'=>route('adminsystem.'.$this->_controller.'.getForm',['edit',@$item->id])
-      );  		 			       
-    return $info;       
-    }
+          }
+          $info = array(
+            "checked"       => $checked,          
+            'msg'       => $msg,      
+            'link_edit'=>route('adminsystem.'.$this->_controller.'.getForm',['edit',@$item->id])
+          );  		 			       
+          return $info;       
+          }
           public function changeStatus(Request $request){
                   $id             =       (int)$request->id;     
                   
