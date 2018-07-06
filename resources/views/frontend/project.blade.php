@@ -48,12 +48,12 @@ if(count($item) > 0){
         </div>
 <div class="margin-top-10 box-article">		
     <div>
-        <div class="col-lg-4 no-padding-left">
+        <div class="col-lg-4-left">
             <div class="margin-top-15">
                 <img class="zoom_img" src="<?php echo $small_img; ?>" data-zoom-image="<?php echo $large_img; ?>" />
             </div>
         </div>
-        <div class="col-lg-8 no-padding-left">
+        <div class="col-lg-8-left">
             <div class="margin-top-15 product-detail-title">
                 <?php echo $title; ?>
             </div>
@@ -61,9 +61,9 @@ if(count($item) > 0){
                 <b>Lượt xem:</b>&nbsp;<?php echo $count_view; ?>
             </div>
             <div class="margin-top-10">
-                <div class="col-sm-3 no-padding-left"><a href="<?php echo $province_permalink; ?>"><?php echo $province_name; ?></a></div>
-                <div class="col-sm-3 no-padding-left"><a href="<?php echo $district_permalink; ?>"><?php echo $district_name; ?></a></div>
-                <div class="col-sm-6 no-padding-left"><?php echo $street; ?></div>                                                  
+                <div class="col-sm-3-left"><a href="<?php echo $province_permalink; ?>"><?php echo $province_name; ?></a></div>
+                <div class="col-sm-3-left"><a href="<?php echo $district_permalink; ?>"><?php echo $district_name; ?></a></div>
+                <div class="col-sm-6-left"><?php echo $street; ?></div>                                                  
                 <div class="clr"></div>
             </div>
             <div class="margin-top-5 product-price">
@@ -144,8 +144,8 @@ if(count($item) > 0){
                     $count_view_text=number_format($count_view,0,",",".");
                     ?>
                     <div class="box-row margin-top-10">
-                        <div class="col-lg-4 no-padding-left"><div class="box-img"><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $image; ?>" /></a></figure></div></div>
-                        <div class="col-lg-8 no-padding-left">
+                        <div class="col-lg-4-left"><div class="box-img"><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $image; ?>" /></a></figure></div></div>
+                        <div class="col-lg-8-left">
                             <h3 class="box-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h3>
                             <div class="margin-top-5"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo $count_view_text; ?>&nbsp;lượt xem</div>
                             <div class="margin-top-5 box-intro"><?php echo $intro; ?></div>

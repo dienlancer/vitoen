@@ -33,13 +33,13 @@ use App\DistrictModel;
 				$unit=$value['unit'];
 				?>
 				<div class="box-row margin-top-10">
-					<div class="col-sm-4 no-padding-left"><div class="box-img"><center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $image; ?>" /></a></figure></center></div></div>
-					<div class="col-sm-8 no-padding-left">
+					<div class="col-sm-4"><div class="box-img"><center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $image; ?>" /></a></figure></center></div></div>
+					<div class="col-sm-8">
 						<h3 class="box-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h3>
 						<div class="margin-top-10">
-							<div class="col-sm-3 no-padding-left"><a href="<?php echo $province_permalink; ?>"><?php echo $province_name; ?></a></div>
-							<div class="col-sm-3 no-padding-left"><a href="<?php echo $district_permalink; ?>"><?php echo $district_name; ?></a></div>
-							<div class="col-sm-6 no-padding-left"><?php echo $street; ?></div>													
+							<div class="col-sm-3"><a href="<?php echo $province_permalink; ?>"><?php echo $province_name; ?></a></div>
+							<div class="col-sm-3"><a href="<?php echo $district_permalink; ?>"><?php echo $district_name; ?></a></div>
+							<div class="col-sm-6"><?php echo $street; ?></div>													
 							<div class="clr"></div>
 						</div>
 						<div class="margin-top-10"><span class="project-lbl-price">Giá:</span><span class="project-lbl-price-number margin-left-5"><?php echo $total_cost; ?></span><span class="margin-left-5 project-lbl-price-number"><?php echo $unit; ?></span></div>	

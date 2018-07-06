@@ -6,7 +6,7 @@ $map_url=$setting['map_url']['field_value'];
 	Liên hệ
 </div>		
 <div class="box-article margin-top-10">
-	<div class="col-md-4 contact no-padding-left">
+	<div class="col-md-4 contact">
 		<form method="post" name="frm-contact" class="margin-top-15" enctype="multipart/form-data">							
 			{{ csrf_field() }}      			
 			<?php 
@@ -43,7 +43,7 @@ $map_url=$setting['map_url']['field_value'];
 			</div>				
 		</form>
 	</div>
-	<div class="col-md-8 contact-info no-padding-left">
+	<div class="col-md-8 contact-info">
 		<div class="margin-top-15">
 			<?php 
 			$module=getPage("thong-tin-lien-he-widget");

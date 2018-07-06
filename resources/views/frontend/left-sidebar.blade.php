@@ -38,10 +38,10 @@ switch ($component) {
                 $content=$data_featured_article[$i]['content'];
                 ?>
                 <div class="product-index">
-                    <div class="col-lg-4 no-padding">
+                    <div class="col-lg-4">
                         <center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $featureImg; ?>"></a></figure></center>
                     </div>
-                    <div class="col-lg-8 no-padding-right">
+                    <div class="col-lg-8-right">
                         <div class="margin-top-15"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></div>                          
                     </div>
                     <div class="clr"></div>
@@ -104,10 +104,10 @@ switch ($component) {
                         }              
                 ?>
                 <div class="product-index">
-                    <div class="col-lg-4 no-padding-right">
+                    <div class="col-lg-4-right">
                         <center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $featureImg; ?>"></a></figure></center>
                     </div>
-                    <div class="col-lg-8 no-padding-right">
+                    <div class="col-lg-8-right">
                         <div class="margin-top-15"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></div>
                         <div class="product-index-status"><?php echo $html_price; ?></div>
                     </div>

@@ -18,7 +18,7 @@ $map_url=$setting['map_url']['field_value'];
 				$video_url=$value['video_url'];
 				$image=asset('upload/'.$value['image']);
 				?>
-				<div class="col-lg-3 no-padding-left">
+				<div class="col-lg-3">
 					<div class="margin-top-15">
 						<div class="relative liverpool">
 						<div><center><img src="<?php echo $image; ?>" /></center></div>			
