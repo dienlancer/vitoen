@@ -359,10 +359,90 @@ if(count($arrCart) > 0){
 		<div class="bg-social">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-8"></div>
-					<div class="col-lg-4"></div>
+					<div class="col-lg-2">
+						<div class="social-left">
+							<ul class="social-icon">
+								<li><a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a></li>
+								<li><a href="javascript:void(0);"><i class="fab fa-twitter"></i></a></li>
+								<li><a href="javascript:void(0);"><i class="fab fa-google"></i></a></li>
+								<li><a href="javascript:void(0);"><i class="fab fa-youtube"></i></a></li>								
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-8">
+						<?php     
+						$args = array(                         
+							'menu_class'            => 'menu-header-top',                            
+							'before_wrapper'        => '<div class="healthcare">',
+							'before_title'          => '',
+							'after_title'           => '',
+							'before_wrapper_ul'     =>  '',
+							'after_wrapper_ul'      =>  '',
+							'after_wrapper'         => '</div>'     ,
+							'link_before'           => '', 
+							'link_after'            => '',                                                                    
+							'theme_location'        => 'menu-header-top' ,
+							'menu_li_actived'       => 'current-menu-item',
+							'menu_item_has_children'=> 'menu-item-has-children',
+							'alias'                 => ''
+						);                 
+						wp_nav_menu($args);                          
+						?>      
+					</div>
+					<div class="col-lg-2">
+						<div class="hotline-header">
+							<div><i class="fas fa-phone-volume"></i></div>
+							<div class="margin-left-10"><?php echo $telephone; ?></div>
+						</div>
+					</div>
 				</div>
 			</div>				
+		</div>
+		<div class="header-logo-search">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2">
+						<center>
+							<a href="<?php echo url('/'); ?>">                
+								<img src="<?php echo $seo_logo_frontend;?>" alt='<?php echo @$seo["alt_logo"]; ?>' />
+							</a> 
+						</center>	
+					</div>
+					<?php 
+					$data_category_product=App\CategoryProductModel::select('id','fullname','parent_id')->orderby('sort_order','asc')->get()->toArray();
+					$source_category_product_recursive=array();
+					function loadCategoryProductRecursive($data ,$parent=null,$str="--",&$source_recursive){
+						foreach ($data as $key => $val) {    
+							$id=$val["id"];
+							$fullname=$val["fullname"];  
+							$parent_id=$val["parent_id"];    
+							if((int)@$val["parent_id"] == (int)@$parent) {          
+								$source_recursive[$key]["id"]=$id;
+								$source_recursive[$key]["fullname"]=$str . $fullname;              
+								$source_recursive[$key]["parent_id"]=$parent_id;                  
+								loadCategoryProductRecursive($data,$id,$str."--------",$source_recursive);
+							}
+						}  
+					}
+					loadCategoryProductRecursive($data_category_product ,0,"",$source_category_product_recursive)   ; 	
+					$ddlCategoryProduct      =   cmsSelectboxCategory("category_product_id","category-prd-ddl",$source_category_product_recursive,0,"",'Chọn danh mục');				
+					?>
+					<div class="col-lg-10">
+						<form action="<?php echo route('frontend.index.search'); ?>" method="POST" name="frm-search">
+							{{ csrf_field() }}
+							<div class="searching-header" >
+								<div>
+									<?php echo $ddlCategoryProduct; ?>
+								</div>
+								<div class="radas"><input type="text" name="q" autocomplete="off" placeholder="Tìm kiếm sản phẩm" value="<?php echo @$q; ?>"></div>
+								<div>
+									<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();"><i class="fas fa-search"></i></a>	
+								</div>
+							</div>							
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>						
 		<div class="mobilemenu padding-top-15">
 			<div class="container">

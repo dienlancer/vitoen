@@ -104,8 +104,6 @@ h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:0;}
 .margin-right-40{margin-right: 40px;}
 .margin-right-45{margin-right: 45px;}
 
-
-.row{margin-left:0;margin-right:0;}
 .no-padding{
     padding-left: 0;
     padding-right: 0;
@@ -1502,8 +1500,7 @@ div.ducati  h2{
     margin: 5px 0px;
 }
 form[name='frm-search']{
-    position: relative;
-  
+       width: 600px;
 }
 .bg-menu{
     background: #1F3B73;
@@ -1853,12 +1850,15 @@ ul.bankList {
     height: 100%;
 }
 form[name='frm-search'] a{
-    padding: 6px 10px 6px 0px;
-    font-size: 17px;
-    color: #333333;
+    padding: 6px 9px;
+    font-size: 15px;
+    display: block;
+    background: #114a82;
+    color: #fff;
     position: absolute;
-    top: 0px;
-    right: 0px;
+    right: 2px;
+    top: 2px;
+    border-radius: 17px;
 }
 form[name='frm-search'] input[name='q']{
     border: none;
@@ -2145,6 +2145,96 @@ form[name='frm-search'] input[name='q']{
 }
 .navajava h3{
 	font-size: 18px;
+}
+.hotline-header{
+    display: flex;
+    align-items: center;
+    background: #ED1C24;
+    justify-content: center;
+    color: #ffffff;
+    padding: 6px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 6px;
+}
+.social-left,.healthcare{
+    padding: 6px 0px;
+    display: flex;
+    align-items: center;
+}
+.healthcare{
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+}
+.social-icon,.menu-header-top{
+    list-style: none;
+
+}
+.social-icon li{
+    display: inline-block;
+    margin-left: 5px;
+}
+.menu-header-top li{
+    display: inline-block;
+}
+.social-icon li a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.social-icon li:nth-child(1) a {
+    background: #ffffff;
+    border: 2px solid #005896;
+    color: #005896;
+    border-radius: 15px;
+    padding: 5px 8px;
+}
+.social-icon li:nth-child(2) a {
+    background: #ffffff;
+    border: 2px solid #47a0df;
+    color: #47a0df;
+    border-radius: 15px;
+    padding:5px 5px;
+}
+.social-icon li:nth-child(3) a {
+    background: #ffffff;
+    border: 2px solid #ffa800;
+    color: #ffa800;
+    border-radius: 15px;
+    padding:5px 5px;
+}
+.social-icon li:nth-child(4) a {
+    background: #ffffff;
+    border: 2px solid #ff0000;
+    color: #ff0000;
+    border-radius: 15px;
+    padding: 5px 4px;
+}
+.menu-header-top li a{
+    display: block;
+    color: #fff;
+}
+.header-logo-search{
+        background: #FBFBFB;
+    padding: 30px 0px;
+}
+.searching-header{
+      display: flex;
+    align-items: center;
+    background: #fff;
+    border: 2px solid #114a82;
+    border-radius: 30px;
+    position: relative;
+}
+.category-prd-ddl{
+    background: #DDDDDD;
+    padding: 8px 0px;
+    border: 0;
+    border-radius: 18px 0px 0 18px;
+}
+.radas{
+    width: 55%;
 }
 @media (max-width: 768px){    
     .feedback{

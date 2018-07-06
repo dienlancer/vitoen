@@ -15,7 +15,7 @@
 					<div>
 
 							<a href="<?php echo url('/'); ?>">                
-								<img src="<?php echo $seo_logo_frontend;?>" />
+								<img src="<?php echo asset('/upload/logo-footer.png') ;?>" />
 							</a>
 						
 					</div>	

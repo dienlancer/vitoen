@@ -54,6 +54,34 @@ function uploadImage($name,$tmp_name,$width,$height){
   }  
   return $image_name;
 }
+function uploadImageNoMarked($name,$tmp_name,$width,$height){        
+  $image_name=$name;                  
+  $image_tmp_name=$tmp_name;
+  $ext = pathinfo($image_name, PATHINFO_EXTENSION);                  
+  $image_slug=str_slug($image_name,'.');
+  $pattern_ext='#.png|.jpg|.gif#';
+  $pattern_dot='#\.#';
+  $image_slug=preg_replace($pattern_ext, '', $image_slug);                      
+  $image_slug=preg_replace($pattern_dot, '-', $image_slug);   
+  /* begin code_alias */
+  $source_character = array_merge(range('a','z'), range(0,9));
+  $code = implode($source_character, '');
+  $code = str_shuffle($code);
+  $code_alias   = substr($code, 0, 20);
+  /* end code_alias */
+  $image_name=$image_slug. '-' . $code_alias .'.'.$ext;     
+  $image_path=base_path("upload".DS.$image_name);  
+  move_uploaded_file($image_tmp_name, $image_path);  
+  if((int)@$width > 0 && (int)@$height > 0){
+    require_once base_path("app".DS."scripts".DS."PhpThumb".DS."ThumbLib.inc.php") ;       
+    $thumb = PhpThumbFactory::create($image_path);        
+    $thumb->adaptiveResize($width, $height);
+    $prefix = $width . 'x' . $height ;
+    $veston =base_path('upload' . DS . $prefix . '-' . $image_name);       
+    $thumb->save($veston);
+  }  
+  return $image_name;
+}
 function uploadMediaFile($name,$tmp_name){        
   $image_name=$name;                  
   $image_tmp_name=$tmp_name;
