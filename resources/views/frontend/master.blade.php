@@ -623,7 +623,7 @@ if(count($arrCart) > 0){
 						?>
 					</div>
 					<?php 
-					$source_featured_product=App\ProductModel::whereRaw('status = ?',[1])->select('id','fullname','alias','image','price','sale_price')->take(20)->orderBy('id','desc')->get()->toArray();							
+					$source_featured_product=App\ProductModel::whereRaw('status = ?',[1])->select('id','fullname','alias','image','price')->orderBy('id','desc')->take(20)->get()->toArray();							
 					if(count($source_featured_product) > 0){
 						?>
 						<div class="margin-top-15 thamluang">		
