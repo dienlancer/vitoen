@@ -15,46 +15,8 @@ $pinterest_url=$setting['pinterest_url']['field_value'];
 $company=$setting['contacted_person']['field_value'];
 ?>
 <h1 style="display: none;"><?php echo $seo["title"]; ?></h1>
-<div class="container">
-	<div class="row">
-		<div class="col-lg-12">
-			<?php 
-			$data_slideshow2=getBanner("slideshow");
-			if(count($data_slideshow2) > 0){
-				$items2=$data_slideshow2["items"];
-				if(count($items2) > 0){
-					?>
-					<div class="slideshow">
-						<script type="text/javascript" language="javascript">        
-							$(document).ready(function(){
-								$(".slick-slideshow").slick({
-									dots: false,
-									autoplay:true,
-									arrows:false,
-									adaptiveHeight:true,
-									slidesToShow: 1,
-									slidesToScroll: 1,        
-								});  
-							});     
-						</script>
-						<div class="slick-slideshow">    
-							<?php 
-							foreach ($items2 as $key => $value) {
-								$alt2=$value["alt"];
-								$featuredImg2=asset('upload/'.$value["image"]);
-								?>
-								<div><img src="<?php echo $featuredImg2; ?>" alt="<?php echo $alt2; ?>" title="<?php echo $value['caption']; ?>" /></div>
-								<?php 
-							}
-							?>              
-						</div>
-					</div>
-					<?php
-				}  
-			}
-			?>
-		</div>
-	</div>	
+
+<div class="container">	
 	<?php 
 	$ft_source_category=App\CategoryProductModel::whereRaw('alias = ?',['thang-nhom'])->select('id','fullname','alias')->get()->toArray();
 	$source_category_id=array();
@@ -101,37 +63,9 @@ $company=$setting['contacted_person']['field_value'];
 				if(count($ft_source_product)){
 					$ft_source_product=convertToArray($ft_source_product);
 					?>
-					<div class="ritakuta padding-top-5">
-						<script type="text/javascript" language="javascript">
-							$(document).ready(function(){
-								$(".<?php echo $ft_alias; ?>").owlCarousel({
-									autoplay:false,                    
-									loop:true,
-									margin:10,                        
-									nav:false,            
-									mouseDrag: true,
-									touchDrag: true,                                
-									responsiveClass:true,
-									responsive:{
-										0:{
-											items:1
-										},
-										600:{
-											items:5
-										},
-										1000:{
-											items:5
-										}
-									}
-								});
-								var chevron_left='<i class="fa fa-chevron-left"></i>';
-								var chevron_right='<i class="fa fa-chevron-right"></i>';
-								$("div.<?php echo $ft_alias; ?> div.owl-prev").html(chevron_left);
-								$("div.<?php echo $ft_alias; ?> div.owl-next").html(chevron_right);
-							});                
-						</script>
-						<div class="owl-carousel <?php echo $ft_alias; ?> owl-theme">
-							<?php 							
+					<div class="ritakuta">
+						<?php 		
+							$k=1;					
 							foreach($ft_source_product as $key2 => $value2){
 								$ft_product_id=$value2['id'];
 								$ft_product_img=get_product_thumbnail($value2['image']) ;
@@ -182,68 +116,26 @@ $company=$setting['contacted_person']['field_value'];
 										}
 									}
 									/* end thương hiệu */		
-									?>									
+									?>	
 									<div class="box-product-price">
 										<div><center><span class="price-on"><?php echo $html_price; ?></span></center></div>
-									</div>
+									</div>																	
 								</div>
 								<?php
+								if((int)@$k%5==0){
+									?>
+									<div class="clr"></div>
+									<?php
+								}
+								$k++;
 							}
 							?>
-						</div>
 					</div>
 					<?php
 				} 	   			
 				?>				
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="caphethuocla margin-top-15 padding-bottom-15">
-					<div class="feedback">
-						<div class="vivanan">
-							<div class="fata">TƯ VẤN CÙNG CHUYÊN GIA</div>
-							<div class="pootoo"><a href="<?php echo route('frontend.index.index',['thang-nhom']); ?>">THANG NHÔM</a></div>
-						</div>					
-					</div>
-					<div class="rinux">
-						<?php 
-						$query=DB::table('article')
-						->join('article_category','article.id','=','article_category.article_id')
-						->join('category_article','category_article.id','=','article_category.category_id')
-						->where('category_article.id',13);
-						$source_article=$query->select('article.id','article.alias','article.fullname')
-						->groupBy('article.id','article.alias','article.fullname')
-						->orderBy('article.id','desc')
-						->take(10)
-						->get()
-						->toArray();
-						$source_article=convertToArray($source_article);
-						$ct_k=1;
-						if(count($source_article) > 0){
-							foreach ($source_article as $key => $value) {
-								$ct_fullname=$value['fullname'];
-								$ct_alias=$value['alias'];
-								?>
-								<div class="col-sm-6">
-									<div class="sidamex margin-top-15">
-										<span><img src="<?php echo asset('upload/pointer_icon.png'); ?>"></span>
-										<span><a href="<?php echo route('frontend.index.index',[$ct_alias]); ?>"><?php echo $ct_fullname; ?></a></span>
-									</div>
-								</div>
-								<?php
-								if($ct_k % 2 == 0){
-									?><div class="clr"></div><?php 
-								}
-								$ct_k++;
-							}
-						}						
-						?>
-					</div>
-					<div class="clr"></div>
-				</div>
-			</div>
-		</div>	
+		</div>		
 		<?php 		
 	}		
 	$ft_source_category=App\CategoryProductModel::whereRaw('alias = ?',['bang-keo'])->select('id','fullname','alias')->get()->toArray();	
@@ -273,37 +165,9 @@ $company=$setting['contacted_person']['field_value'];
 					$ft_source_product=convertToArray($ft_source_product);
 
 					?>
-					<div class="ritakuta padding-top-5">
-						<script type="text/javascript" language="javascript">
-							$(document).ready(function(){
-								$(".<?php echo $ft_alias; ?>").owlCarousel({
-									autoplay:false,                    
-									loop:true,
-									margin:10,                        
-									nav:false,            
-									mouseDrag: true,
-									touchDrag: true,                                
-									responsiveClass:true,
-									responsive:{
-										0:{
-											items:1
-										},
-										600:{
-											items:5
-										},
-										1000:{
-											items:5
-										}
-									}
-								});
-								var chevron_left='<i class="fa fa-chevron-left"></i>';
-								var chevron_right='<i class="fa fa-chevron-right"></i>';
-								$("div.<?php echo $ft_alias; ?> div.owl-prev").html(chevron_left);
-								$("div.<?php echo $ft_alias; ?> div.owl-next").html(chevron_right);
-							});                
-						</script>
-						<div class="owl-carousel <?php echo $ft_alias; ?> owl-theme">
-							<?php 							
+					<div class="ritakuta">
+						<?php 		
+							$k=1;					
 							foreach($ft_source_product as $key2 => $value2){
 								$ft_product_id=$value2['id'];
 								$ft_product_img=get_product_thumbnail($value2['image']) ;
@@ -319,7 +183,7 @@ $company=$setting['contacted_person']['field_value'];
 								?>
 								<div class="box-product">
 									<div class="box-product-img">
-										<center><figure><a href="<?php echo $ft_product_permalink; ?>"><img src="<?php echo $ft_product_img; ?>" alt="<?php echo $value2['alt_image']; ?>"></a></figure></center>
+										<center><figure><a href="<?php echo $ft_product_permalink; ?>"><img src="<?php echo $ft_product_img; ?>" alt="<?php echo @$value2['alt_image']; ?>"></a></figure></center>
 									</div>
 									<h3 class="box-product-intro-title"><a href="<?php echo $ft_product_permalink; ?>"><b><?php echo $ft_product_title; ?></b></a></h3>
 									<?php 
@@ -354,16 +218,20 @@ $company=$setting['contacted_person']['field_value'];
 										}
 									}
 									/* end thương hiệu */		
-									?>
-									
+									?>	
 									<div class="box-product-price">
 										<div><center><span class="price-on"><?php echo $html_price; ?></span></center></div>
-									</div>
+									</div>																	
 								</div>
 								<?php
+								if((int)@$k%5==0){
+									?>
+									<div class="clr"></div>
+									<?php
+								}
+								$k++;
 							}
 							?>
-						</div>
 					</div>
 					<?php
 				} 	   			

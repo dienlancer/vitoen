@@ -362,10 +362,10 @@ if(count($arrCart) > 0){
 					<div class="col-lg-2">
 						<div class="social-left">
 							<ul class="social-icon">
-								<li><a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a></li>
-								<li><a href="javascript:void(0);"><i class="fab fa-twitter"></i></a></li>
-								<li><a href="javascript:void(0);"><i class="fab fa-google"></i></a></li>
-								<li><a href="javascript:void(0);"><i class="fab fa-youtube"></i></a></li>								
+								<li><a href="<?php echo $facebook_url; ?>"><i class="fab fa-facebook-f"></i></a></li>
+								<li><a href="<?php echo $twitter_url; ?>"><i class="fab fa-twitter"></i></a></li>
+								<li><a href="<?php echo $google_plus; ?>"><i class="fab fa-google"></i></a></li>
+								<li><a href="<?php echo $youtube_url; ?>"><i class="fab fa-youtube"></i></a></li>								
 							</ul>
 						</div>
 					</div>
@@ -428,19 +428,309 @@ if(count($arrCart) > 0){
 					$ddlCategoryProduct      =   cmsSelectboxCategory("category_product_id","category-prd-ddl",$source_category_product_recursive,0,"",'Chọn danh mục');				
 					?>
 					<div class="col-lg-10">
-						<form action="<?php echo route('frontend.index.search'); ?>" method="POST" name="frm-search">
-							{{ csrf_field() }}
-							<div class="searching-header" >
-								<div>
-									<?php echo $ddlCategoryProduct; ?>
-								</div>
-								<div class="radas"><input type="text" name="q" autocomplete="off" placeholder="Tìm kiếm sản phẩm" value="<?php echo @$q; ?>"></div>
-								<div>
-									<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();"><i class="fas fa-search"></i></a>	
-								</div>
-							</div>							
-						</form>
+						<div class="ruden">
+							<form action="<?php echo route('frontend.index.search'); ?>" method="POST" name="frm-search">
+								{{ csrf_field() }}
+								<div class="searching-header" >
+									<div>
+										<?php echo $ddlCategoryProduct; ?>
+									</div>
+									<div class="radas"><input type="text" name="q" autocomplete="off" placeholder="Tìm kiếm sản phẩm" value="<?php echo @$q; ?>"></div>
+									<div>
+										<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();"><i class="fas fa-search"></i></a>	
+									</div>
+								</div>							
+							</form>
+							<div class="margin-left-30">
+								<div class="timex relative">
+									<a href="javascript:void(0)"><img src="<?php echo asset('/upload/icon-cart.png'); ?>"></a>
+									<!-- begin icon-cart -->
+									<?php
+									$class_cart_box='ridoo'; 
+									$ssName="vmart";
+									$arrCart=array();
+									if(Session::has($ssName)){
+										$arrCart=Session::get($ssName);  
+										ksort($arrCart);  
+									}
+									if(count($arrCart) > 0){
+										$class_cart_box='nadoo';
+									}                       
+									?>
+									<div class="leem <?php echo $class_cart_box; ?>">
+										<form name="frm-product-top"  method="POST" enctype="multipart/form-data">
+											{{ csrf_field() }}                                        
+											<div class="margin-top-5 x-table-cart">
+												<?php                         
+												if(Session::has($ssName)){
+													$arrCart=Session::get($ssName);  
+													ksort($arrCart);  
+													if(count($arrCart) > 0){    
+														?>
+														<table  class="com_product16" cellpadding="0" cellspacing="0" width="100%">
+
+															<tbody>
+																<?php 
+																foreach ($arrCart as $cart_key => $cart_value) {
+																	$cart_product_id=$cart_value['product_id'];
+																	$cart_product_code=$cart_value['product_code'];
+																	$cart_product_name=$cart_value['product_name'];
+																	$cart_product_alias=$cart_value['product_alias'];
+																	$cart_product_link               =   route('frontend.index.index',[$cart_product_alias]);    
+																	$cart_product_image=$cart_value['product_image'];
+																	$cart_product_price_text         =   fnPrice($cart_value["product_price"]);
+																	$cart_product_total_price_text   =   fnPrice($cart_value["product_total_price"]);
+																	$cart_product_quantity           =   $cart_value["product_quantity"];
+																	$cart_img=get_product_thumbnail($cart_product_image);                                        
+																	?>      
+																	<tr pro_id=<?php echo $cart_product_id; ?> >            
+																		<td class="com_product20" ><img src="<?php echo $cart_img; ?>" ></td>
+
+																		<td align="left" class="com_product22">
+																			<div><a href="<?php echo $cart_product_link; ?>"><?php echo $cart_product_name; ?></a></div>
+																			<div><input  type="text" onkeypress="return isNumberKey(event)" onblur='changeTotalPrice(this);' value="<?php echo $cart_product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $cart_product_id; ?>]">      </div>  
+																		</td>
+																		<td align="right" class="com_product23" >
+																			<div class="tt-pri"><?php echo $cart_product_total_price_text; ?></div>
+																			<div><a href="javascript:void(0);" onclick="deleteRowCart(this);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>
+																		</td>                                            
+																	</tr>                          
+																	<?php
+																}         
+																?>
+															</tbody>
+														</table>           
+														<?php                                                                   
+													}
+												}                     
+												?>                
+											</div>    
+											<?php                           
+
+											$style_ttkh='';
+											if(count($arrCart) > 0){
+												$style_ttkh='block';
+											}else{
+												$style_ttkh='none';
+											}                
+											?>            								
+											<div class="note"  style="display: none;"></div>
+											<div class="margin-top-15 tbl-ttkh" style="display: <?php echo $style_ttkh; ?>">
+												<div class="ttkh">Thông tin khách hàng</div>
+												<div class="margin-top-15">
+													<input type="text" class="ttkh-text" name="customer_name" value="" placeholder="Tên người nhận">
+												</div>
+												<div class="margin-top-15">
+													<input type="text" class="ttkh-text" name="customer_phone" value="" placeholder="Số điện thoại">
+												</div>
+												<div class="margin-top-15">
+													<input type="text" class="ttkh-text" name="customer_address" value="" placeholder="Địa chỉ">
+												</div>
+												<div class="margin-top-15">
+													<input type="text" class="ttkh-text" name="customer_email" value="" placeholder="Email">
+												</div>
+												<div class="margin-top-15">
+													<input type="text" class="ttkh-text" name="customer_note" value="" placeholder="Ghi chú: Màu sắc, thời gian giao hàng,...">
+												</div>
+												<div class="margin-top-15">
+													<a href="javascript:void(0);" onclick="checkout(this);" class="kh-checkout_2">Thanh toán</a>
+													<a href="<?php echo url('/'); ?>" class="kh-mua-them_2">Mua thêm</a>
+												</div>
+											</div>                                                                   
+										</form>           
+									</div>
+									<!-- end icon-cart -->
+								</div>								
+							</div>
+						</div>						
+					</div>					
+				</div>
+			</div>
+		</div>	
+		<div class="bg-blue">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3">
+						<div class="canon">
+                            <div class="cata">
+                                <i><span></span><span></span><span></span></i>
+                            </div>
+                            <div class="margin-left-15"><b>Danh mục sản phẩm</b></div>                      
+                        </div>
 					</div>
+					<div class="col-lg-9"></div>
+				</div>
+			</div>
+		</div>	
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">	
+					<?php     
+					$args = array(                         
+						'menu_class'            => 'cateprodhorizontalright', 					                     
+						'before_wrapper'        => '<div class="cate-product-horizontal-right">',
+						'before_title'          => '',
+						'after_title'           => '',
+						'before_wrapper_ul'     =>  '',
+						'after_wrapper_ul'      =>  '',
+						'after_wrapper'         => '</div>'     ,
+						'link_before'       	=> '<div><i class="fa fa-angle-double-right" aria-hidden="true"></i></div>', 
+						'link_after'        	=> '<div><i class="fa fa-caret-down pull-right" aria-hidden="true"></i></div>',                                        
+						'theme_location'        => 'main-menu' ,
+						'menu_li_actived'       => 'current-menu-item',
+						'menu_item_has_children'=> 'menu-item-has-children',
+						'alias'                 => $seo_alias
+					);                    
+					wp_nav_menu($args);
+					?>              
+				</div>
+				<div class="col-lg-9">
+					<div class="margin-top-5">
+						<?php 
+						$data_slideshow2=getBanner("slideshow");
+						if(count($data_slideshow2) > 0){
+							$items2=$data_slideshow2["items"];
+							if(count($items2) > 0){
+								?>
+								<div class="slideshow">
+									<script type="text/javascript" language="javascript">        
+										$(document).ready(function(){
+											$(".slick-slideshow").slick({
+												dots: false,
+												autoplay:true,
+												arrows:false,
+												adaptiveHeight:true,
+												slidesToShow: 1,
+												slidesToScroll: 1,        
+											});  
+										});     
+									</script>
+									<div class="slick-slideshow">    
+										<?php 
+										foreach ($items2 as $key => $value) {
+											$alt2=$value["alt"];
+											$featuredImg2=asset('upload/'.$value["image"]);
+											?>
+											<div><img src="<?php echo $featuredImg2; ?>" alt="<?php echo $alt2; ?>" title="<?php echo $value['caption']; ?>" /></div>
+											<?php 
+										}
+										?>              
+									</div>
+								</div>
+								<?php
+							}  
+						}
+						?>
+					</div>
+					<?php 
+					$source_featured_product=App\ProductModel::whereRaw('status = ?',[1])->select('id','fullname','alias','image','price','sale_price')->take(20)->orderBy('id','desc')->get()->toArray();							
+					if(count($source_featured_product) > 0){
+						?>
+						<div class="margin-top-15 thamluang">		
+							<script type="text/javascript" language="javascript">
+								$(document).ready(function(){
+									$(".featured-product").owlCarousel({
+										autoplay:false,                    
+										loop:true,
+										margin:0,                        
+										nav:false,            
+										mouseDrag: true,
+										touchDrag: true,                                
+										responsiveClass:true,
+										responsive:{
+											0:{
+												items:1
+											},
+											600:{
+												items:1
+											},
+											1000:{
+												items:4
+											}
+										}
+									});
+									var chevron_left='<i class="fa fa-chevron-left"></i>';
+									var chevron_right='<i class="fa fa-chevron-right"></i>';
+									$("div.featured-product div.owl-prev").html(chevron_left);
+									$("div.featured-product div.owl-next").html(chevron_right);
+								});                
+							</script>
+							<div class="owl-carousel featured-product owl-theme">
+								<?php 	
+											
+								foreach($source_featured_product as $key2 => $value){
+									$ft_product_id=$value['id'];
+									$ft_product_img=get_product_thumbnail($value['image']) ;
+									$ft_product_permalink=route('frontend.index.index',[$value['alias']]);
+									$ft_product_title=$value['fullname'];
+									$ft_product_price=$value['price'];	
+									$html_price='';                     
+									if((int)@$ft_product_price > 0){              
+										$html_price=fnPrice($ft_product_price) ;
+									}else{
+										$html_price='Giá : Liên hệ' ;
+									}									
+																				
+									?>
+									<div class="box-product-2 margin-top-10">
+										<div class="box-product-img">
+											<center><figure><a href="<?php echo $ft_product_permalink; ?>"><img src="<?php echo $ft_product_img; ?>" alt="<?php echo @$value['alt_image']; ?>"></a></figure></center>
+										</div>
+										<h3 class="box-product-intro-title"><a href="<?php echo $ft_product_permalink; ?>"><b><?php echo $ft_product_title; ?></b></a></h3>
+										<?php 
+										/* begin thương hiệu */		
+										$trademark='';
+										$father_data=App\CategoryParamModel::whereRaw('alias = ?',['thuong-hieu'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
+										if(count($father_data) > 0){
+											$children_data=App\CategoryParamModel::whereRaw('parent_id = ?',[(int)@$father_data[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
+											$arr_id=array();
+											if(count($children_data) > 0){
+												foreach ($children_data as $child_key => $child_value){
+													$arr_id[]=(int)@$child_value['id'];
+												}                        				
+												$data_category_param=DB::table('category_param')
+												->join('post_param','category_param.id','=','post_param.param_id')
+												->whereIn('post_param.param_id',@$arr_id)
+												->where('post_param.post_id',(int)@$ft_product_id)
+												->select('category_param.id','category_param.fullname')
+												->get()
+												->toArray();                        				
+												?>
+												<div class="trademark">
+													<center>
+														<span>Thương hiệu:&nbsp;</span>
+														<span>
+															<font color="#333333">
+																<?php 
+																if(count($data_category_param) > 0){
+																	$data_category_param=convertToArray($data_category_param);
+																	$trademark=$data_category_param[0]['fullname'];									
+																	echo $trademark;				
+																} else{
+																	echo 'Đang cập nhật';
+																}																
+																?>											
+															</font>
+														</span>
+													</center>										
+												</div>
+												<?php												                       			
+											}
+										}
+										/* end thương hiệu */		
+										?>									
+										<div class="box-product-price">
+											<div><center><span class="price-on"><?php echo $html_price; ?></span></center></div>
+										</div>
+									</div>
+									<?php
+								}
+								?>
+							</div>				
+						</div>
+						<?php
+					}				
+					?>							
 				</div>
 			</div>
 		</div>						

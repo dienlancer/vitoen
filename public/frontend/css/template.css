@@ -13,7 +13,7 @@
 body{
     font-size:14px;
     color:#585858;
-    background:transparent;
+    background: #fbfbfb;
     font-family: 'OpenSans';
     
 }
@@ -1031,11 +1031,12 @@ div.ducati  h2{
         color: #004A8F;
         font-size: 13px
 }
-.box-product{
-    border-right: 1px solid #eee;
-    border-top: 1px solid #eee;
-    border-left: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+.box-product{    
+        border-top:1px solid #ddd;
+    border-left:1px solid #ddd;
+    float: left;
+    width: 20%;
+    background: #ffffff
 }
 
 .hotline{
@@ -1872,15 +1873,15 @@ form[name='frm-search'] input[name='q']{
     flex-direction: row;
     justify-content: center;
 }
-.tem-cart{
+.tem-cart a{
         display: block;
     text-align: center;
-    color: #ffffff;
+    color: #333;
     transition: all 0.5s ease-in-out;
     padding: 10px 0px;
     font-size: 20px;
 }
-.tem-cart:hover{
+.tem-cart a:hover{
     background: #d54d4d;
 }
 .nimme{
@@ -1900,11 +1901,8 @@ form[name='frm-search'] input[name='q']{
     margin: 15px 15px 0px 15px;
 
 }
-.box-product-price{
-    border-top: 1px solid #eee;
-    background: linear-gradient(to bottom, #f8f8f8 0%, #ffffff 100%);
-    margin: 10px 1px 0px 1px;
-    padding: 5px 15px 5px 15px;
+.box-product-price{    
+    margin: 10px 0px 10px 0px;   
 }
 .danhmucspfooter li a{
     color: #ffffff
@@ -2008,7 +2006,7 @@ form[name='frm-search'] input[name='q']{
         width: 500px;
     background: #ffffff;
     position: absolute;
-    top: 49px;
+    top: 35px;
     right: -1px;
     z-index: 2;
     border: 1px solid #bbb;
@@ -2075,10 +2073,11 @@ form[name='frm-search'] input[name='q']{
 }
 .teraff{
     border-top:2px solid #bf1e2d;
+    background: #fff;
 }
 .vinboom{
     float: left;
-    border-left: 1px solid #c6c6c6;
+    border-left:1px solid #ddd;
     padding-left: 10px;
 }
 .vinboom a{
@@ -2101,10 +2100,11 @@ form[name='frm-search'] input[name='q']{
     font-weight: bold;
     padding: 10px;
     display: block;
-    border-right:1px solid #c6c6c6;
+    border-right:1px solid #ddd;
 }
 .ritakuta{
-    border-top: 1px solid #c6c6c6;
+    border-bottom:1px solid #ddd;
+    border-right:1px solid #ddd;
 }
 .caphethuocla{
     background: url('../images/banner-dang-muc-may.jpg') no-repeat center center;
@@ -2124,7 +2124,7 @@ form[name='frm-search'] input[name='q']{
 .fata{
     color: #fff200;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 20px;        
 }
 .pootoo a{
     color: #ffffff;
@@ -2149,7 +2149,7 @@ form[name='frm-search'] input[name='q']{
 .hotline-header{
     display: flex;
     align-items: center;
-    background: #ED1C24;
+    background: #cd0000;
     justify-content: center;
     color: #ffffff;
     padding: 6px 10px;
@@ -2216,7 +2216,7 @@ form[name='frm-search'] input[name='q']{
     color: #fff;
 }
 .header-logo-search{
-        background: #FBFBFB;
+        
     padding: 30px 0px;
 }
 .searching-header{
@@ -2236,6 +2236,56 @@ form[name='frm-search'] input[name='q']{
 .radas{
     width: 55%;
 }
+.ruden{
+    display: flex;
+    align-items: center;
+}
+.bg-blue{
+    background: #114a82;
+}
+.canon {
+    padding: 8px 10px;
+    background: #cd0000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+   
+}
+.cata{
+    color: #fff200;
+    font-weight: bold;
+    font-size: 20px;
+        padding-top: 4px;
+}
+.cata span {
+    width: 16px;
+    height: 1px;
+    background-color: #fff;
+    display: block;
+    margin-bottom: 4px;
+}
+.ramusmen{
+    background: #930cb0;
+    
+}
+.radian{
+    background: #0078aa;
+   
+}
+.cate-product-horizontal-right{
+    background: #ffffff
+}
+.thamluang {    
+    
+    
+}
+.box-product-2{
+    border-left:1px solid #ddd;
+    border-bottom:  1px solid #ddd;      
+    border-top: 1px solid #ddd;
+    background: #fff;
+}
+
 @media (max-width: 768px){    
     .feedback{
         float: none;
