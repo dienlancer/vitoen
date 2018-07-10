@@ -17,13 +17,13 @@ $company=$setting['contacted_person']['field_value'];
 <h1 style="display: none;"><?php echo $seo["title"]; ?></h1>
 <div class="container">	
 	<?php 
-	$source_category=App\CategoryProductModel::whereRaw('status = ? and parent_id = ?',[1,0])->select('id','fullname','alias')->orderBy('sort_order','asc')->get()->toArray();
-	$source_category_id=array();
+	$source_category=App\CategoryProductModel::whereRaw('status = ? and parent_id = ?',[1,0])->select('id','fullname','alias')->orderBy('sort_order','asc')->get()->toArray();	
 	if(count($source_category) > 0){
 		foreach ($source_category as $key => $value) {
 			$ft_id=$value['id'];
 			$ft_fullname=$value['fullname'];
 			$ft_alias=$value['alias'];
+			$source_category_id=array();
 			$source_category_id[]=(int)@$ft_id;
 			getStringCategoryID($ft_id,$source_category_id,'category_product');
 			$source_child_category=App\CategoryProductModel::whereRaw('status = ? and parent_id = ?',[1,(int)@$ft_id])->select('id','fullname','alias')->orderBy('sort_order','asc')->take(6)->get()->toArray();

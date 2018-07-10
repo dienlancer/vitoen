@@ -592,18 +592,17 @@ div.opacity-absolute::before{
     list-style: square;
 }
 footer{
- color: #ffffff;
- padding-bottom: 15px;
- background: #114a82;
- 
+    color: #333;
+    padding-bottom: 15px;
+    background: #fff;
 }
 
 .brabel{
-    font-size: 15px;
-    text-transform: uppercase;
+font-size: 15px;
+    
     font-weight: bold;
-    border-bottom: 1px solid #ffffff;
     padding-bottom: 10px;
+    background: url(../images/dash-double-footer.png) repeat-x bottom;
 }
 .tialia{
     font-size: 15px;
@@ -1578,7 +1577,7 @@ form[name='frm-search']{
     border-bottom: 1px solid #dddddd;
 }
 .price-on{
-    color: #F00;
+    color: #cd0000;
     font-weight: bold;
     font-size: 14px;
 }
@@ -2275,17 +2274,57 @@ form[name='frm-search'] input[name='q']{
 .cate-product-horizontal-right{
     background: #ffffff
 }
-.thamluang {    
-    
-    
-}
 .box-product-2{
     border-left:1px solid #ddd;
     border-bottom:  1px solid #ddd;      
     border-top: 1px solid #ddd;
     background: #fff;
 }
-
+.dang-ky-email {
+    background: #114a82;
+    margin-top: 15px;
+    padding: 10px 0px;
+}
+.txt-email{
+    border: 1px solid #ffffff;
+    width: 400px;
+    padding: 6px 0px;
+}
+.btn-register-info a{
+        display: block;
+    background: #FFF078;
+    padding: 6px 20px;
+    color: #333;
+    font-weight: bold;
+}
+.goc-tu-van{
+    background: #ffffff;
+    padding-bottom: 15px    
+}
+.box-featured-article{
+    margin-top: 15px;
+}
+.article-per a{
+    color: #333;    
+}
+.nioc{
+       margin-top: 15px;
+    color: #114a82;
+    font-weight: bold;
+    font-size: 20px;
+}
+.content-bottom{
+    background: #E6E6E6;
+    padding-bottom: 10px;
+}
+.dmcontentbottom li a{
+        color: #333;
+    display: block;
+    margin-top: 10px;
+}
+.dmcontentbottom{
+    list-style: circle;
+}
 @media (max-width: 768px){    
     .feedback{
         float: none;
