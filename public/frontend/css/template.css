@@ -711,6 +711,7 @@ font-size: 15px;
 .box-row{
     border: 1px solid #dddddd;
     padding: 5px;
+    background: #ffffff;
 }
 .box-intro{
     text-align: justify;
@@ -977,7 +978,7 @@ div.ducati  h2{
     margin-left: 0;
 }
 .box-inner-content{
-    background: #ffffff;
+    
     padding-bottom: 15px;
 }
 
@@ -2374,10 +2375,16 @@ form[name='frm-search'] input[name='q']{
     .txt-email{
         width: 100%;
     }
-    .box-product,.box-product-category{
+    .box-product,.box-product-category,.related-news{
         width: 100%;
     }
-
+    .related-news{
+        float: none;
+    }
+    .related-news-right{
+        margin-left: 0;
+        margin-top: 15px;
+    }
     .feedback{
         float: none;
     }

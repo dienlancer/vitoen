@@ -268,16 +268,7 @@ if(!empty($alias)){
                 switch ($component) {                          
                     case "contact": 
                     ?>@include("frontend.contact")<?php   
-                    break;      
-                    case "categories-album": 
-                    ?>@include("frontend.categories-album")<?php   
-                    break;   
-                    case "album": 
-                    ?>@include("frontend.album")<?php   
-                    break; 
-                    case "category-video": 
-                    ?>@include("frontend.category-video")<?php   
-                    break;                                                                                     
+                    break;                                                                                                       
                 }  
                 ?>
                 
