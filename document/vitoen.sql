@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2018 at 06:38 AM
+-- Generation Time: Jul 10, 2018 at 07:35 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.1.17
 
@@ -792,7 +792,6 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 (57, 'Trang chủ', 'trang-chu', 0, 5, 0, NULL, 1, 1, '2018-01-10 07:14:21', '2018-01-10 07:14:21'),
 (61, 'Liên hệ', 'lien-he', 0, 5, 0, NULL, 3, 1, '2018-01-10 07:15:34', '2018-03-04 12:48:59'),
 (340, 'Thang nhôm', 'thang-nhom', 0, 1, 0, '', 1, 1, '2018-02-26 07:47:48', '2018-07-09 10:55:11'),
-(388, 'Thang nhôm', 'thang-nhom', 0, 10, 0, '', 1, 1, '2018-02-28 16:53:11', '2018-04-16 09:18:09'),
 (406, 'Sản phẩm', 'nen-mua-may-tinh-xach-tay-cua-hang-nao', 0, 5, 0, '', 2, 1, '2018-03-04 12:48:56', '2018-03-19 10:34:58'),
 (407, 'Laptop', 'van-thang-nhom', 406, 5, 1, '', 1, 1, '2018-03-04 12:49:11', '2018-03-04 12:49:11'),
 (423, 'Thang nhôm rút', 'thang-nhom-rut', 340, 1, 1, '', 2, 1, '2018-04-16 07:45:36', '2018-04-18 06:41:02'),
@@ -806,16 +805,6 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 (446, 'Thang nhôm cách điện', 'thang-nhom-cach-dien', 340, 1, 1, '', 13, 1, '2018-04-24 03:25:19', '2018-04-24 03:25:19'),
 (450, 'Thang nhôm trượt', 'thang-nhom-truot', 340, 1, 1, '', 17, 1, '2018-04-24 03:35:15', '2018-04-24 03:35:15'),
 (451, 'Tư vấn', 'tu-van', 0, 3, 0, '', 1, 1, '2018-04-29 15:54:18', '2018-04-29 15:54:18'),
-(453, 'Thang nhôm chữ A', 'thang-nhom-chu-a', 0, 11, 0, '', 1, 1, '2018-05-03 02:25:00', '2018-05-03 02:25:00'),
-(454, 'Thang nhôm rút', 'thang-nhom-rut', 0, 11, 0, '', 2, 1, '2018-05-03 02:25:14', '2018-05-03 02:46:13'),
-(465, 'Tất cả các thiết bị thang nhôm', 'thang-nhom', 0, 11, 0, '', 6, 1, '2018-05-03 02:48:10', '2018-05-03 02:48:10'),
-(466, 'Băng keo', 'bang-keo', 0, 10, 0, '', 2, 1, '2018-05-03 04:38:00', '2018-05-03 04:38:00'),
-(467, 'Thang nhôm chữ A', 'thang-nhom-chu-a', 0, 8, 0, '', 1, 1, '2018-05-03 07:23:50', '2018-05-03 07:23:50'),
-(472, 'Thang nhôm rút', 'thang-nhom-rut', 0, 8, 0, '', 1, 1, '2018-05-03 07:25:46', '2018-05-03 07:25:46'),
-(473, 'Thang nhôm Sumika', 'thang-nhom-sumika', 0, 8, 0, '', 1, 1, '2018-05-03 07:25:53', '2018-05-03 07:25:53'),
-(474, 'Thang nhôm nikawa', 'thang-nhom-nikawa', 0, 8, 0, '', 1, 1, '2018-05-03 07:26:01', '2018-05-03 07:26:04'),
-(475, 'Thang nhôm nikita', 'thang-nhom-nikita', 0, 8, 0, '', 1, 1, '2018-05-03 07:26:11', '2018-05-03 07:26:11'),
-(476, 'Thang nhôm ghế', 'thang-nhom-ghe', 0, 8, 0, '', 1, 1, '2018-05-03 07:26:18', '2018-05-03 07:26:18'),
 (482, 'Liên hệ', 'lien-he', 0, 9, 0, '', 6, 1, '2018-05-03 07:31:42', '2018-05-03 07:32:21'),
 (484, 'Thiết bị nâng đỡ', 'thiet-bi-nang-do', 0, 1, 0, '', 14, 1, '2018-05-08 03:45:40', '2018-07-09 10:55:11'),
 (485, 'Kệ trưng bày', 'ke-trung-bay', 0, 1, 0, '', 3, 1, '2018-05-08 04:11:10', '2018-07-09 10:55:11'),
@@ -828,16 +817,8 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 (492, 'Máy chế biến gỗ', 'may-che-bien-go', 0, 1, 0, '', 10, 1, '2018-05-08 04:13:41', '2018-07-09 10:55:11'),
 (493, 'Máy làm đá sạch', 'may-lam-da-sach', 0, 1, 0, '', 11, 1, '2018-05-08 04:13:54', '2018-07-09 10:55:11'),
 (494, 'Dụng cụ gia đình', 'dung-cu-gia-dinh', 0, 1, 0, '', 12, 1, '2018-05-08 04:14:12', '2018-07-09 10:55:11'),
-(495, 'Thang nhôm ghế', 'thang-nhom-ghe', 0, 11, 0, '', 3, 0, '2018-05-08 07:21:46', '2018-05-22 04:24:46'),
-(496, 'Thang nhôm bàn', 'thang-nhom-ban', 0, 11, 0, '', 4, 1, '2018-05-08 07:29:39', '2018-05-08 07:29:39'),
-(497, 'Thang nhôm trượt', 'thang-nhom-truot', 0, 11, 0, '', 5, 1, '2018-05-08 07:30:10', '2018-05-08 07:30:10'),
 (500, 'Sản phẩm tổng hợp', 'san-pham-tong-hop', 0, 1, 0, '', 13, 1, '2018-05-18 04:19:52', '2018-07-09 10:55:11'),
 (501, 'Thang nhôm thẳng', 'thang-nhom-thang', 340, 1, 1, '', 3, 1, '2018-05-22 04:20:08', '2018-05-22 04:20:27'),
-(502, 'Thang nhôm thẳng', 'thang-nhom-thang', 0, 11, 0, '', 3, 1, '2018-05-22 04:24:21', '2018-05-22 04:24:21'),
-(503, 'Chính sách giao hàng', 'chinh-sach-giao-hang', 0, 13, 0, '', 1, 1, '2018-07-06 09:14:39', '2018-07-06 09:14:39'),
-(504, 'Hướng dẫn mua hàng', 'huong-dan-mua-hang', 0, 13, 0, '', 2, 1, '2018-07-06 09:15:12', '2018-07-06 09:15:12'),
-(505, 'Quy chế hoạt động', 'quy-che-hoat-dong', 0, 13, 0, '', 3, 1, '2018-07-06 09:15:46', '2018-07-06 09:15:46'),
-(506, 'Đổi trả bảo hành', 'doi-tra-bao-hanh', 0, 13, 0, '', 4, 1, '2018-07-06 09:16:14', '2018-07-06 09:16:14'),
 (507, 'Vitoen là ai ?', 'vitoen-la-ai', 0, 9, 0, '', 1, 1, '2018-07-10 03:59:26', '2018-07-10 03:59:26'),
 (508, 'Quan điểm kinh doanh', 'quan-diem-kinh-doanh', 0, 9, 0, '', 2, 1, '2018-07-10 03:59:57', '2018-07-10 03:59:57'),
 (509, 'Cơ hội việc làm', 'co-hoi-viec-lam', 0, 9, 0, '', 3, 1, '2018-07-10 04:00:34', '2018-07-10 04:00:34'),
@@ -846,7 +827,11 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 (512, 'Chính sách bảo hành', 'chinh-sach-bao-hanh', 0, 14, 0, '', 2, 1, '2018-07-10 04:03:42', '2018-07-10 04:03:42'),
 (513, 'Chính sách bảo mật', 'chinh-sach-bao-mat', 0, 14, 0, '', 3, 1, '2018-07-10 04:04:08', '2018-07-10 04:04:08'),
 (514, 'Các hình thức thanh toán', 'cac-hinh-thuc-thanh-toan', 0, 14, 0, '', 4, 1, '2018-07-10 04:04:32', '2018-07-10 04:04:32'),
-(515, 'Vận chuyển giao hàng', 'van-chuyen-giao-hang', 0, 14, 0, '', 5, 1, '2018-07-10 04:05:00', '2018-07-10 04:05:00');
+(515, 'Vận chuyển giao hàng', 'van-chuyen-giao-hang', 0, 14, 0, '', 5, 1, '2018-07-10 04:05:00', '2018-07-10 04:05:00'),
+(516, 'Hướng dẫn mua hàng', 'huong-dan-mua-hang', 0, 13, 0, '', 1, 1, '2018-07-10 05:00:47', '2018-07-10 05:00:47'),
+(517, 'Chính sách bảo hành', 'chinh-sach-bao-hanh', 0, 13, 0, '', 2, 1, '2018-07-10 05:01:17', '2018-07-10 05:01:17'),
+(518, 'Các hình thức thanh toán', 'cac-hinh-thuc-thanh-toan', 0, 13, 0, '', 4, 1, '2018-07-10 05:01:49', '2018-07-10 05:01:49'),
+(519, 'Chính sách bảo mật', 'chinh-sach-bao-mat', 0, 13, 0, '', 3, 1, '2018-07-10 05:02:44', '2018-07-10 05:02:44');
 
 -- --------------------------------------------------------
 
@@ -873,11 +858,7 @@ INSERT INTO `menu_type` (`id`, `fullname`, `theme_location`, `status`, `sort_ord
 (1, 'MainMenu', 'main-menu', 1, 1, '2017-12-15 03:37:06', '2018-02-22 17:15:43'),
 (3, 'Tin tức sự kiện', 'ttsk', 1, 1, '2018-01-03 04:22:54', '2018-07-06 09:13:41'),
 (5, 'MobileMenu', 'mobile-menu', 1, 1, '2018-01-09 19:31:48', '2018-07-06 09:13:41'),
-(8, 'Danh mục sản phẩm', 'danhmucspfooter', 1, 1, '2018-02-28 06:56:55', '2018-07-06 09:13:41'),
 (9, 'VỀ CHÚNG TÔI', 'about-us', 1, 1, '2018-02-28 07:19:49', '2018-07-10 03:57:45'),
-(10, 'Sản phẩm', 'dmsp-left', 1, 1, '2018-02-28 16:52:58', '2018-07-06 09:13:41'),
-(11, 'Thang nhôm', 'thang-nhom', 1, 1, '2018-05-03 02:24:06', '2018-05-03 02:24:06'),
-(12, 'Băng keo', 'bang-keo', 1, 1, '2018-05-03 02:24:15', '2018-05-03 02:24:15'),
 (13, 'MenuHeaderTop', 'menu-header-top', 1, 1, '2018-07-06 09:13:19', '2018-07-06 09:13:41'),
 (14, 'CHÍNH SÁCH', 'policy', 1, 1, '2018-07-10 04:02:04', '2018-07-10 04:02:04');
 
@@ -988,17 +969,13 @@ CREATE TABLE `page` (
 
 INSERT INTO `page` (`id`, `fullname`, `alias`, `theme_location`, `image`, `alt_image`, `intro`, `content`, `description`, `meta_keyword`, `meta_description`, `count_view`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'THÔNG TIN LIÊN HỆ', 'thong-tin-lien-he', 'intro-footer', NULL, '', '', '<p>Địa chỉ: Lầu 2, số 52 Trần Văn Danh, Phường 13, Quận Tân Bình, TP Hồ Chí Minh, Việt Nam</p><p>Điện thoại: 0908437498<br></p><p>\r\nEmail: vitoen.vn@gmail.com</p><p>\r\nWebsite:http://vitoen.com/</p>', '', '', '', NULL, 6, 1, '2017-12-28 04:10:41', '2018-07-10 04:32:45'),
-(6, 'Fanpage', 'fanpage', 'fanpage-footer', NULL, NULL, '<div class=\"fb-page\" data-href=\"https://www.facebook.com/Công-Ty-TNHH-Vitoen-2061782747436059\" data-tabs=\"timeline\" data-width=\"250\" data-height=\"200\" data-small-header=\"true\" data-adapt-container-width=\"true\" data-hide-cover=\"false\" data-show-facepile=\"true\"><blockquote cite=\"https://www.facebook.com/Công-Ty-TNHH-Vitoen-2061782747436059\" class=\"fb-xfbml-parse-ignore\"><a href=\"https://www.facebook.com/gonguyenlieumy/\">CÔNG TY TNHH VITOEN</a></blockquote></div>', '<p><br></p>', '', '', '', NULL, 7, 1, '2018-01-19 02:31:15', '2018-05-07 05:11:40'),
-(16, 'Chính sách giao hàng', 'chinh-sach-giao-hang', '', NULL, 'SEO ALT Chính sách giao hàng', '', '<p></p><p></p><p></p><p><br></p>', '', '', 'Chính sách giao hàng tại Công ty Vitoen cung cấp các chính sách cụ thể về việc phân phối, giao hàng sản phẩm cho người dùng có nhu cầu mua.', 31, 1, 1, '2018-05-03 07:29:48', '2018-07-02 00:44:02'),
-(17, 'Đổi trả bảo hành', 'doi-tra-bao-hanh', '', NULL, NULL, '', '', '', '', '', 31, 1, 1, '2018-05-03 07:30:00', '2018-06-29 09:36:32'),
-(18, 'Hướng dẫn mua hàng', 'huong-dan-mua-hang', '', NULL, NULL, '', '', '', '', '', 28, 1, 1, '2018-05-03 07:30:13', '2018-06-29 09:36:01'),
-(19, 'Quy chế hoạt động', 'quy-che-hoat-dong', '', NULL, NULL, '', '', '', '', '', 29, 1, 1, '2018-05-03 07:30:25', '2018-07-05 07:21:06'),
+(18, 'Hướng dẫn mua hàng', 'huong-dan-mua-hang', '', NULL, NULL, '', '', '', '', '', 29, 1, 1, '2018-05-03 07:30:13', '2018-07-10 05:17:13'),
 (20, 'Giới thiệu bottom content', 'gioi-thieu-bottom-content', 'intro-content-bottom', NULL, '', '', '<p style=\"text-align: justify;\">DC Mobile chuyên cung cấp các thiết bị laptop cũ, phụ kiện, đã qua sử dụng của các sản phẩm chính hãng và uy tín trên thế giới như Laptop Dell, HP, Sony v.v. </p><p style=\"text-align: justify; \">DC Mobile là một thương hiệu trực thuộc Công Ty TNHH Vidoco. Cũng là một doanh nghiệp có trách nhiệm xã hội cung cấp các cơ hội đào tạo và việc làm cho những người có hoàn cảnh khó khăn ở Việt Nam. Chúng tôi luôn dành hơn 51% lợi nhuận của mình để phục vụ cộng đồng người yếu thế.</p>', '', '', '', NULL, 1, 1, '2018-07-10 03:26:39', '2018-07-10 03:29:16'),
 (21, 'Vitoen là ai ?', 'vitoen-la-ai', '', NULL, '', '', '<p><br></p>', '', '', '', NULL, 1, 1, '2018-07-10 03:52:29', '2018-07-10 03:52:29'),
 (22, 'Quan điểm kinh doanh', 'quan-diem-kinh-doanh', '', NULL, '', '', '<p><br></p>', '', '', '', NULL, 1, 1, '2018-07-10 03:53:12', '2018-07-10 03:53:12'),
 (23, 'Cơ hội việc làm', 'co-hoi-viec-lam', '', NULL, '', '', '<p><br></p>', '', '', '', NULL, 1, 1, '2018-07-10 03:53:38', '2018-07-10 03:53:38'),
 (24, 'Hợp tác trao đổi', 'hop-tac-trao-doi', '', NULL, '', '', '<p><br></p>', '', '', '', NULL, 1, 1, '2018-07-10 03:54:12', '2018-07-10 03:54:12'),
-(25, 'Chính sách bảo hành', 'chinh-sach-bao-hanh', '', NULL, '', '', '<p><br></p>', '', '', '', NULL, 1, 1, '2018-07-10 03:55:08', '2018-07-10 03:55:08'),
+(25, 'Chính sách bảo hành', 'chinh-sach-bao-hanh', '', NULL, '', '', '<p><br></p>', '', '', '', 1, 1, 1, '2018-07-10 03:55:08', '2018-07-10 05:29:51'),
 (26, 'Chính sách bảo mật', 'chinh-sach-bao-mat', '', NULL, '', '', '<p><br></p>', '', '', '', NULL, 1, 1, '2018-07-10 03:55:39', '2018-07-10 03:55:39'),
 (27, 'Các hình thức thanh toán', 'cac-hinh-thuc-thanh-toan', '', NULL, '', '', '<p><br></p>', '', '', '', 1, 1, 1, '2018-07-10 03:56:14', '2018-07-10 04:21:54'),
 (28, 'Vận chuyển giao hàng', 'van-chuyen-giao-hang', '', NULL, '', '', '<p><br></p>', '', '', '', NULL, 1, 1, '2018-07-10 03:56:41', '2018-07-10 03:56:41'),
@@ -3793,7 +3770,7 @@ ALTER TABLE `invoice_detail`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=516;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=520;
 
 --
 -- AUTO_INCREMENT for table `menu_type`

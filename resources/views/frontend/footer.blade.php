@@ -14,7 +14,7 @@ $seo_logo_frontend=asset('upload/'.$seo['logo_frontend']);
 						{{ csrf_field() }}
 						<div class="ruden">
 							<div class="margin-left-15"><input type="text" name="email" class="txt-email"></div>
-							<div class="btn-register-info margin-left-15"><a href="javascript:void(0);" onclick="document.forms['frm-register-info'].submit();">Gửi</a></div>
+							<div class="btn-register-info margin-left-15"><a href="javascript:void(0);" >Gửi</a></div>
 						</div>
 					</form>
 				</div>

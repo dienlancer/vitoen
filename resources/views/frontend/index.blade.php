@@ -30,21 +30,7 @@ if(!empty($alias)){
                     'menu_item_has_children'=> 'menu-item-has-children',
                     'alias'                 => $seo_alias,
                 );    
-                $argsDanhMucSanPham = array(                         
-                    'menu_class'            => 'categoryproduct',                            
-                    'before_wrapper'        => '<div class="box-category margin-top-15">',
-                    'before_title'          => '<h2 class="menu-right-title">',
-                    'after_title'           => '</h2>',
-                    'before_wrapper_ul'     =>  '<div class="category-product-wrapper">',
-                    'after_wrapper_ul'      =>  '</div>',
-                    'after_wrapper'         => '</div>'     ,
-                    'link_before'           => '', 
-                    'link_after'            => '',                                                                    
-                    'theme_location'        => 'dmsp-left' ,
-                    'menu_li_actived'       => 'current-menu-item',
-                    'menu_item_has_children'=> 'menu-item-has-children',
-                    'alias'                 => $seo_alias,
-                );    
+                
                 switch ($component) {
                     case 'articles':
                     case 'category-article':
