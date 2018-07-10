@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2018 at 12:55 PM
+-- Generation Time: Jul 10, 2018 at 06:06 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.1.17
 
@@ -789,11 +789,7 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `level`, `menu_class`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(57, 'Trang chủ', 'trang-chu', 0, 5, 0, NULL, 1, 1, '2018-01-10 07:14:21', '2018-01-10 07:14:21'),
-(61, 'Liên hệ', 'lien-he', 0, 5, 0, NULL, 3, 1, '2018-01-10 07:15:34', '2018-03-04 12:48:59'),
 (340, 'Thang nhôm', 'thang-nhom', 0, 1, 0, '', 1, 1, '2018-02-26 07:47:48', '2018-07-09 10:55:11'),
-(406, 'Sản phẩm', 'nen-mua-may-tinh-xach-tay-cua-hang-nao', 0, 5, 0, '', 2, 1, '2018-03-04 12:48:56', '2018-03-19 10:34:58'),
-(407, 'Laptop', 'van-thang-nhom', 406, 5, 1, '', 1, 1, '2018-03-04 12:49:11', '2018-03-04 12:49:11'),
 (423, 'Thang nhôm rút', 'thang-nhom-rut', 340, 1, 1, '', 2, 1, '2018-04-16 07:45:36', '2018-04-18 06:41:02'),
 (424, 'Thang nhôm chữ A', 'thang-nhom-chu-a', 340, 1, 1, '', 1, 1, '2018-04-16 07:51:02', '2018-04-18 06:40:45'),
 (433, 'Thang nhôm ghế', 'thang-nhom-ghe', 340, 1, 1, '', 8, 1, '2018-04-16 07:54:50', '2018-04-16 07:54:50'),
@@ -858,7 +854,6 @@ CREATE TABLE `menu_type` (
 INSERT INTO `menu_type` (`id`, `fullname`, `theme_location`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
 (1, 'MainMenu', 'main-menu', 1, 1, '2017-12-15 03:37:06', '2018-02-22 17:15:43'),
 (3, 'Tin tức sự kiện', 'ttsk', 1, 1, '2018-01-03 04:22:54', '2018-07-06 09:13:41'),
-(5, 'MobileMenu', 'mobile-menu', 1, 1, '2018-01-09 19:31:48', '2018-07-06 09:13:41'),
 (9, 'VỀ CHÚNG TÔI', 'about-us', 1, 1, '2018-02-28 07:19:49', '2018-07-10 03:57:45'),
 (13, 'MenuHeaderTop', 'menu-header-top', 1, 1, '2018-07-06 09:13:19', '2018-07-06 09:13:41'),
 (14, 'CHÍNH SÁCH', 'policy', 1, 1, '2018-07-10 04:02:04', '2018-07-10 04:02:04');
