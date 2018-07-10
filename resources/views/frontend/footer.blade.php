@@ -192,6 +192,11 @@ $seo_logo_frontend=asset('upload/'.$seo['logo_frontend']);
 				</div>				
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				&copy;Bản quyền thuộc về VITOEN.  Thiết kế web bởi <a href="https://vidoco.vn/"><font color="#333"><b>VIDOCO</b></font></a>.
+			</div>
+		</div>
 	</div>
 </footer>
 <div class="modal fade modal-add-cart" id="modal-alert-add-cart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
