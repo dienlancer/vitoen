@@ -7,7 +7,7 @@ $seo_logo_frontend=asset('upload/'.$seo['logo_frontend']);
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="ruden">
+				<div class="tamia">
 					<div><img src="<?php echo asset('upload/icon-email.png'); ?>"></div>
 					<div class="margin-left-15"><font color="#ffffff"><b>ĐĂNG KÝ NHẬN THÔNG TIN KHUYẾN MÃI</b></font></div>
 					<form name="frm-register-info" method="POST" action="">
@@ -57,7 +57,7 @@ $seo_logo_frontend=asset('upload/'.$seo['logo_frontend']);
 								<a href="<?php echo $article_permalink; ?>"><img src="<?php echo $article_thumbnail; ?>"></a>
 							</div>
 							<div class="col-lg-8">
-								<div class="article-per"><a href="<?php echo $article_permalink; ?>"><?php echo $article_name; ?></a></div>
+								<div class="article-per"><a href="<?php echo $article_permalink; ?>"><b><?php echo $article_name; ?></b></a></div>
 							</div>
 						</div>
 					</div>

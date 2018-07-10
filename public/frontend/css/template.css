@@ -1037,7 +1037,13 @@ div.ducati  h2{
     width: 20%;
     background: #ffffff
 }
-
+.box-product-category{    
+        border-top:1px solid #ddd;
+    border-left:1px solid #ddd;
+    float: left;
+    width: 25%;
+    background: #ffffff
+}
 .hotline{
     font-size: 30px;
     color: #0c62ad;
@@ -1865,7 +1871,7 @@ form[name='frm-search'] input[name='q']{
     outline: none;
     padding: 8px 10px;
     width: 100%;
-    border-radius: 20px;
+    
 }
 .rimex{
        display: flex;
@@ -2233,7 +2239,10 @@ form[name='frm-search'] input[name='q']{
     border-radius: 18px 0px 0 18px;
 }
 .radas{
-    width: 55%;
+    width: 30%;
+}
+.radan{
+    width:64%;
 }
 .ruden{
     display: flex;
@@ -2274,7 +2283,7 @@ form[name='frm-search'] input[name='q']{
 .cate-product-horizontal-right{
     background: #ffffff
 }
-.box-product-2{
+.box-product-master{
     border-left:1px solid #ddd;
     border-bottom:  1px solid #ddd;      
     border-top: 1px solid #ddd;
@@ -2325,7 +2334,50 @@ form[name='frm-search'] input[name='q']{
 .dmcontentbottom{
     list-style: circle;
 }
+.tamia{
+    display: flex;
+    align-items: center;
+}
+.box-round-category{
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
 @media (max-width: 768px){    
+    .cateprodhorizontalright li:hover > ul{
+        display: none;
+    }
+    form[name='frm-search']{
+        width: 100%;
+    }
+    .menu-header-top li{
+        display: block;
+    }
+    .social-left{
+        justify-content: center;
+    }
+    .searching-header{
+        margin-top: 15px;
+    }
+    .radas{
+        display: none;
+    }
+    .radan {
+    width: 80%;
+    margin-left: 15px;
+    }
+    .shinichikudo li{
+        display: block;
+    }
+    .tamia{
+        display: block;
+    }
+    .txt-email{
+        width: 100%;
+    }
+    .box-product,.box-product-category{
+        width: 100%;
+    }
+
     .feedback{
         float: none;
     }
@@ -2333,6 +2385,7 @@ form[name='frm-search'] input[name='q']{
         margin-left: 0;
     margin-top: 0;
     }
+
     .caphethuocla{
         background: transparent;
     }

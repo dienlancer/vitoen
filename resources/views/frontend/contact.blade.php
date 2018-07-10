@@ -46,7 +46,7 @@ $map_url=$setting['map_url']['field_value'];
 	<div class="col-md-8 contact-info">
 		<div class="margin-top-15">
 			<?php 
-			$module=getPage("thong-tin-lien-he-widget");
+			$module=getPage("form-lien-he");
 			if(count($module) > 0){				
 				$content=$module['content'];
 				echo $content;	
@@ -56,6 +56,6 @@ $map_url=$setting['map_url']['field_value'];
 	</div>
 	<div class="clr"></div>
 </div>
-<div class="margin-top-15">
+<div class="margin-top-15">	
 	<iframe src="<?php echo $map_url; ?>" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
 </div>

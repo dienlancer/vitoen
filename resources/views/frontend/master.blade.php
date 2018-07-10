@@ -432,10 +432,10 @@ if(count($arrCart) > 0){
 							<form action="<?php echo route('frontend.index.search'); ?>" method="POST" name="frm-search">
 								{{ csrf_field() }}
 								<div class="searching-header" >
-									<div>
+									<div class="radas">
 										<?php echo $ddlCategoryProduct; ?>
 									</div>
-									<div class="radas"><input type="text" name="q" autocomplete="off" placeholder="Tìm kiếm sản phẩm" value="<?php echo @$q; ?>"></div>
+									<div class="radan"><input type="text" name="q" autocomplete="off" placeholder="Tìm kiếm sản phẩm" value="<?php echo @$q; ?>"></div>
 									<div>
 										<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();"><i class="fas fa-search"></i></a>	
 									</div>
@@ -672,7 +672,7 @@ if(count($arrCart) > 0){
 									}									
 																				
 									?>
-									<div class="box-product-2 margin-top-10">
+									<div class="box-product-master margin-top-10">
 										<div class="box-product-img">
 											<center><figure><a href="<?php echo $ft_product_permalink; ?>"><img src="<?php echo $ft_product_img; ?>" alt="<?php echo @$value['alt_image']; ?>"></a></figure></center>
 										</div>
@@ -734,10 +734,11 @@ if(count($arrCart) > 0){
 				</div>
 			</div>
 		</div>						
-		<div class="mobilemenu padding-top-15">
+		<!--<div class="mobilemenu padding-top-15">
 			<div class="container">
-				<div>
-					<nav class="navbar navbar-default">
+				<div class="row">
+					<div class="col-lg-12">
+						<nav class="navbar navbar-default">
 						<div class="container-fluid">
 							<div class="navbar-header">
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -769,9 +770,10 @@ if(count($arrCart) > 0){
 							</div>
 						</div>
 					</nav>
+					</div>					
 				</div>
 			</div>
-		</div>    
+		</div>-->    
 	</header>
 @yield("content")
 @include("frontend.footer")
@@ -788,15 +790,6 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
-<!-- begin alo phone -->
-<!--<div class="quick-alo-phone quick-alo-green quick-alo-show" id="quick-alo-phoneIcon" >
-  <a href="tel:<?php echo $telephone; ?>" title="Liên hệ nhanh">
-  <div class="quick-alo-ph-circle"></div>
-  <div class="quick-alo-ph-circle-fill"></div>
-  <div class="quick-alo-ph-img-circle"></div>
-  </a>
-</div>-->
-<!-- end alo phone -->
 </body>
 </html>
 

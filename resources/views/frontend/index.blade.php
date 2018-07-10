@@ -185,7 +185,7 @@ if(!empty($alias)){
                                     }       
                                     ?>
                                     <div >
-                                        <div class="box-product box-product-rian">
+                                        <div class="box-product-rian">
                                             <div class="box-product-img">
                                                 <center><figure><a href="<?php echo $featured_product_link; ?>"><img src="<?php echo $featured_product_img; ?>"></a></figure></center>
                                             </div>

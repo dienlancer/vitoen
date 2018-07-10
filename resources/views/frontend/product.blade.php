@@ -428,7 +428,7 @@ if(count($item) > 0){
         ->get()
         ->toArray();         
         $dataProduct=convertToArray($dataProduct);     
-        if(count($dataProduct) > 0){
+        if(count($dataProduct) > 0){            
         	?>
         	<div class="margin-top-15 product-detail-content">
         		Sản phẩm liên quan
@@ -438,24 +438,24 @@ if(count($item) > 0){
         			$(document).ready(function(){
         				$(".prodetail").owlCarousel({
         					autoplay:false,                    
-        					loop:true,
-        					margin:25,                        
-        					nav:true,            
-        					mouseDrag: false,
-        					touchDrag: false,                                
-        					responsiveClass:true,
-        					responsive:{
-        						0:{
-        							items:1
-        						},
-        						600:{
-        							items:1
-        						},
-        						1000:{
-        							items:4
-        						}
-        					}
-        				});
+                            loop:true,
+                            margin:0,                        
+                            nav:false,            
+                            mouseDrag: true,
+                            touchDrag: true,                                
+                            responsiveClass:true,
+                            responsive:{
+                                0:{
+                                    items:1
+                                },
+                                600:{
+                                    items:1
+                                },
+                                1000:{
+                                    items:4
+                                }
+                            }
+                        });
         				var chevron_left='<i class="fa fa-chevron-left"></i>';
         				var chevron_right='<i class="fa fa-chevron-right"></i>';
         				$("div.prodetail div.owl-prev").html(chevron_left);
@@ -467,27 +467,68 @@ if(count($item) > 0){
         			foreach($dataProduct as $key => $value){
         				$pdetail_id=$value['id'];
         				$pdetail_alias=$value['alias'];
-        				$pdetail_fullname=$value['fullname'];
-        				$fullname_excerpt=substr($pdetail_fullname, 0,100);
+        				$pdetail_name=$value['fullname'];        				
         				$pdetail_permalink=route('frontend.index.index',[$pdetail_alias]) ;
         				$pdetail_img =get_product_thumbnail($value['image']) ;	
         				$product_price=$value['price']; 
-                                $html_price='';                     
-                                if((int)@$product_price > 0){              
-                                    $html_price=fnPrice($product_price) ;
-                                }else{
-                                    $html_price='Giá : Liên hệ' ;
-                                }       
+                        $html_price='';                     
+                        if((int)@$product_price > 0){              
+                            $html_price=fnPrice($product_price) ;
+                        }else{
+                            $html_price='Giá : Liên hệ' ;
+                        }       
         				?>
-        				<div class="box-product">
-                                            <div class="box-product-img">
-                                                <center><figure><a href="<?php echo $pdetail_permalink; ?>"><img alt="<?php echo @$value['alt_image']; ?>"  src="<?php echo $pdetail_img; ?>"></a></figure></center>
-                                            </div>
-                                            <div class="box-product-intro-title"><a href="<?php echo $pdetail_permalink; ?>"><b><?php echo $pdetail_fullname; ?></b></a></div>
-                                            <div class="box-product-price">
-                                        <div><center><span class="price-on"><?php echo $html_price; ?></span></center></div>
+        				<div class="box-product-master margin-top-10">
+                            <div class="box-product-img">
+                                <center><figure><a href="<?php echo $pdetail_permalink; ?>"><img src="<?php echo $pdetail_img; ?>" alt="<?php echo @$value['alt_image']; ?>"></a></figure></center>
+                            </div>
+                            <h3 class="box-product-intro-title"><a href="<?php echo $pdetail_permalink; ?>"><b><?php echo $pdetail_name; ?></b></a></h3>
+                            <?php 
+                            /* begin thương hiệu */     
+                            $trademark='';
+                            $father_data=App\CategoryParamModel::whereRaw('alias = ?',['thuong-hieu'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
+                            if(count($father_data) > 0){
+                                $children_data=App\CategoryParamModel::whereRaw('parent_id = ?',[(int)@$father_data[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
+                                $arr_id=array();
+                                if(count($children_data) > 0){
+                                    foreach ($children_data as $child_key => $child_value){
+                                        $arr_id[]=(int)@$child_value['id'];
+                                    }                                       
+                                    $data_category_param=DB::table('category_param')
+                                    ->join('post_param','category_param.id','=','post_param.param_id')
+                                    ->whereIn('post_param.param_id',@$arr_id)
+                                    ->where('post_param.post_id',(int)@$pdetail_id)
+                                    ->select('category_param.id','category_param.fullname')
+                                    ->get()
+                                    ->toArray();                                        
+                                    ?>
+                                    <div class="trademark">
+                                        <center>
+                                            <span>Thương hiệu:&nbsp;</span>
+                                            <span>
+                                                <font color="#333333">
+                                                    <?php 
+                                                    if(count($data_category_param) > 0){
+                                                        $data_category_param=convertToArray($data_category_param);
+                                                        $trademark=$data_category_param[0]['fullname'];                                 
+                                                        echo $trademark;                
+                                                    } else{
+                                                        echo 'Đang cập nhật';
+                                                    }                                                               
+                                                    ?>                                          
+                                                </font>
+                                            </span>
+                                        </center>                                       
                                     </div>
-                                        </div>
+                                    <?php                                                                               
+                                }
+                            }
+                            /* end thương hiệu */       
+                            ?>                                  
+                            <div class="box-product-price">
+                                <div><center><span class="price-on"><?php echo $html_price; ?></span></center></div>
+                            </div>
+                        </div>
         				<?php
         			}
         			?>

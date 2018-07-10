@@ -1,7 +1,7 @@
 <form method="post" class="frm margin-top-15" name="frm">
 	<input type="hidden" name="filter_page" value="1">         
 	{{ csrf_field() }}	
-	<?php 	
+	<?php 		
 	$breadcrumb='';	
 	$seo=getSeo();
 	$seo_title=$seo["title"];
@@ -27,66 +27,105 @@
 		<?php echo $breadcrumb; ?>
 	</div>
 	<?php 			
-	if(count($items) > 0){			
-		$k=0;			
-		foreach ($items as $key => $value) {
-			$product_id=$value['id'];
-			$product_alias=$value['alias'];
-			$product_fullname=$value['fullname'];
-			$product_permalink=route('frontend.index.index',[$product_alias]) ;
-			$product_img =get_product_thumbnail($value['image']) ;		
-			$product_price=$value['price'];	
-			$html_price='';                     
-			if((int)@$product_price > 0){              
-				$html_price=fnPrice($product_price) ;
-			}else{
-				$html_price='Giá : Liên hệ' ;
-			}   
-			if($k%3 == 0){
-				echo '<div class="row">';
-			}	
-			?>
-			<div class="col-sm-4">
-				<div class="box-product box-product-rian">
+	if(count($items) > 0){	
+		?>
+		<div class="margin-top-5 box-round-category">
+			<?php 
+			$k=1;			
+			foreach ($items as $key => $value) {
+				$product_id=$value['id'];
+				$product_alias=$value['alias'];
+				$product_name=$value['fullname'];
+				$product_permalink=route('frontend.index.index',[$product_alias]) ;
+				$product_img =get_product_thumbnail($value['image']) ;		
+				$product_price=$value['price'];	
+				$html_price='';                     
+				if((int)@$product_price > 0){              
+					$html_price=fnPrice($product_price) ;
+				}else{
+					$html_price='Giá : Liên hệ' ;
+				}   
+							
+				?>
+				<div class="box-product-category">
 					<div class="box-product-img">
-						<center><figure><a href="<?php echo $product_permalink; ?>"><img alt="<?php echo @$value['alt_image']; ?>" src="<?php echo $product_img; ?>"></a></figure></center>
+						<center><figure><a href="<?php echo $product_permalink; ?>"><img src="<?php echo $product_img; ?>" alt="<?php echo @$value2['alt_image']; ?>"></a></figure></center>
 					</div>
-					<h3 class="box-product-intro-title"><a href="<?php echo $product_permalink; ?>"><b><?php echo $product_fullname; ?></b></a></h3>
+					<h3 class="box-product-intro-title"><a href="<?php echo $product_permalink; ?>"><b><?php echo $product_name; ?></b></a></h3>
+					<?php 
+					/* begin thương hiệu */		
+					$trademark='';
+					$father_data=App\CategoryParamModel::whereRaw('alias = ?',['thuong-hieu'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
+					if(count($father_data) > 0){
+						$children_data=App\CategoryParamModel::whereRaw('parent_id = ?',[(int)@$father_data[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
+						$arr_id=array();
+						if(count($children_data) > 0){
+							foreach ($children_data as $child_key => $child_value){
+								$arr_id[]=(int)@$child_value['id'];
+							}                        				
+							$data_category_param=DB::table('category_param')
+							->join('post_param','category_param.id','=','post_param.param_id')
+							->whereIn('post_param.param_id',@$arr_id)
+							->where('post_param.post_id',(int)@$product_id)
+							->select('category_param.id','category_param.fullname')
+							->get()
+							->toArray();                        				
+							if(count($data_category_param) > 0){
+								$data_category_param=convertToArray($data_category_param);
+								$trademark=$data_category_param[0]['fullname'];
+								?>
+								<div class="trademark">
+									<center>
+										<span>Thương hiệu:&nbsp;</span><span><font color="#333333"><?php echo $trademark; ?></font></span>
+									</center>										
+								</div>
+								<?php
+							}                        				
+						}
+					}
+					/* end thương hiệu */		
+					?>	
 					<div class="box-product-price">
 						<div><center><span class="price-on"><?php echo $html_price; ?></span></center></div>
-					</div>
+					</div>																	
 				</div>
-			</div>
-			<?php	
-			$k++;		
-			if($k%3==0 || $k==count($items)){
-				echo '</div>';
-			}			
-		}
+				<?php					
+				if((int)$k%4==0 || $k == count($items)){
+					echo '<div class="clr"></div>';
+				} 		
+				$k++;	
+			}
+			?>
+		</div>		
+		<?php				
 	}else{
 		echo '<div class="margin-top-15"><center>Đang cập nhật...</center></div>';
-	}
-	?>
-	<div class="margin-top-15">
-		<div class="row">
-			<div class="col-lg-12">
-				<?php 
-				if(count($items) > 0){
+	}		
+	if(count($items) > 0){
+		?>		
+		<div class="margin-top-5">
+			<div class="row">
+				<div class="col-lg-12">
+					<?php 
 					echo $pagination->showPagination();
-				}  		
-				?>	
-			</div>
-		</div>		
-	</div>
-	<div class="margin-top-15">
-		<div class="row">
-			<div class="col-lg-12">
-				<?php 
-				if(!empty(@$category['content'])){
-					echo @$category['content'];
-				}		
-				?>
-			</div>
-		</div>		
-	</div>
+					?>
+				</div>
+			</div>		
+		</div>
+		<?php		
+	} 
+	if(!empty(@$category['content'])){
+		?>
+		<div class="margin-top-15">
+			<div class="row">
+				<div class="col-lg-12">
+					<?php 
+					echo @$category['content'];		
+					?>
+				</div>
+			</div>		
+		</div>
+		<?php		
+	} 		
+	?>		
 </form>
