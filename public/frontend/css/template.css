@@ -135,7 +135,7 @@ table td{padding-left:10px;padding-bottom:10px;}
 figure{overflow:hidden;position:relative;display:inline-block;vertical-align:top;}
 figure img{-webkit-transition:all 0.5s linear;transition:all 0.5s linear;-webkit-transform:scale3d(1, 1, 1);transform:scale3d(1, 1, 1);}
 figure:hover img{-webkit-transform:scale3d(1.2, 1.2, 1);transform:scale3d(1.2, 1.2, 1);}
-div.mobilemenu{
+.mobilemenu{
     display: none;
 }
 .navbar-default {
@@ -2385,6 +2385,13 @@ form[name='frm-search'] input[name='q']{
         margin-left: 0;
         margin-top: 15px;
     }
+    .cate-product-horizontal-right,.bg-blue{
+        display: none;
+    }
+    .mobilemenu{
+        display: block;
+        background: #ffffff;
+    } 
     .feedback{
         float: none;
     }
@@ -2402,10 +2409,7 @@ form[name='frm-search'] input[name='q']{
     .rinux{
         width: 100%;
     }
-    .mobilemenu{
-        display: block;
-        background: #ffffff;
-    }    
+    
 
     .covu{
         display: none;
@@ -2426,6 +2430,7 @@ form[name='frm-search'] input[name='q']{
 }
 
 @media (max-width: 576px){
+    
     .cot-1{
         width: auto;
         background:none;
@@ -2435,4 +2440,5 @@ form[name='frm-search'] input[name='q']{
     .pdetail-price-detail-on{
         font-size: 13px;
     }
+
 }
