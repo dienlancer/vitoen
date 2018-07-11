@@ -6,7 +6,7 @@ if(!empty($alias)){
 ?>
 @extends("frontend.master")
 @section("content")
-<div class="box-inner-content">
+
     <div class="container">    
         <div class="row">
             <?php             
@@ -14,6 +14,7 @@ if(!empty($alias)){
             case 'two-column':  
             ?>
             <div class="col-sm-3">
+                @include("frontend.sidebar-category-product")     
                 <?php                                      
                 $argsTinTucSuKien = array(                         
                     'menu_class'            => 'categoryarticle',                            
@@ -35,7 +36,8 @@ if(!empty($alias)){
                     case 'articles':
                     case 'category-article':
                     case 'article':
-                    case 'page':                
+                    case 'page':     
+                    case 'contact':           
                     wp_nav_menu($argsTinTucSuKien);  
                     $data_featured_news=\App\ArticleModel::whereRaw('status = 1')->select('id','fullname','alias','intro','image')->orderBy('created_at','desc')->take(10)->get()->toArray();
 
@@ -254,11 +256,14 @@ if(!empty($alias)){
                     break;
                     case "hoa-don":                                                
                     ?>@include("frontend.invoice")<?php
-                    break;                                                                        
+                    break;  
+                    case "contact": 
+                    ?>@include("frontend.contact")<?php   
+                    break;                                                                          
                 }
                 ?>
             </div>
-            <div class="clr"></div>
+            
             <?php          
             break;
             case 'full-width':        
@@ -273,12 +278,12 @@ if(!empty($alias)){
                 ?>
                 
             </div> 
-            <div class="clr"></div>           
+                       
             <?php
             break;
         }
         ?>    
         </div>        
     </div>
-</div>
+
 @endsection()               

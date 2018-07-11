@@ -15,6 +15,16 @@ $pinterest_url=$setting['pinterest_url']['field_value'];
 $company=$setting['contacted_person']['field_value'];
 ?>
 <h1 style="display: none;"><?php echo $seo["title"]; ?></h1>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">	
+			@include("frontend.sidebar-category-product")     
+		</div>
+		<div class="col-lg-9">
+			@include("frontend.banner-slide")     							
+		</div>
+	</div>
+</div>	
 <div class="container">	
 	<?php 
 	$source_category=App\CategoryProductModel::whereRaw('status = ? and parent_id = ?',[1,0])->select('id','fullname','alias')->orderBy('sort_order','asc')->get()->toArray();	

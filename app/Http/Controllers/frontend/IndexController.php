@@ -482,7 +482,7 @@ class IndexController extends Controller {
         $checked=1;        
         $msg=array();
         $data=array();                
-        $layout="full-width";     
+        $layout="two-column";     
         $component='contact';
         $alias="lien-he";   
         if($request->isMethod('post'))     {  

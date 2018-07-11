@@ -647,9 +647,10 @@ font-size: 15px;
     color: #0c62ad
 }
 .tieu-de::after{
-    font-family: 'FontAwesome';
+    font-family: 'Font Awesome 5 Free';
     content: "\f105";
     margin-left: 15px;
+    font-weight: bold;
 }
 .tieu-de-bai-viet{
     font-size: 15px;
