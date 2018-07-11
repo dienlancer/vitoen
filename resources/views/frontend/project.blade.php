@@ -144,7 +144,7 @@ if(count($item) > 0){
                     $count_view_text=number_format($count_view,0,",",".");
                     ?>
                     <div class="box-row margin-top-10">
-                        <div class="col-lg-4-left"><div class="box-img"><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $image; ?>" /></a></figure></div></div>
+                        <div class="col-lg-4-left"><div class="box-img"><a href="<?php echo $permalink; ?>"><img src="<?php echo $image; ?>" /></a></div></div>
                         <div class="col-lg-8-left">
                             <h3 class="box-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h3>
                             <div class="margin-top-5"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo $count_view_text; ?>&nbsp;lượt xem</div>

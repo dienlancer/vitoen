@@ -18,7 +18,7 @@ $map_url=$setting['map_url']['field_value'];
 				$small_image=asset('upload/400x250-'.$value['image']);
 				?>
 				<div class="box-photo">
-					<center><figure><a data-fancybox="gallery" href="<?php echo $large_image ; ?>"><img src="<?php echo $small_image; ?>" /></a></figure></center>
+					<center><a data-fancybox="gallery" href="<?php echo $large_image ; ?>"><img src="<?php echo $small_image; ?>" /></a></center>
 				</div>
 				<?php
 				if($k%7==0 || $k==count($items)){

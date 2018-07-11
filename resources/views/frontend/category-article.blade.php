@@ -27,7 +27,7 @@
 					<div class="col-lg-12">
 						<div class="box-row margin-top-10">
 							<div class="row">
-								<div class="col-sm-4"><div class="box-img"><center><figure><a href="<?php echo $permalink; ?>"><img alt="<?php echo @$value['alt_image']; ?>" src="<?php echo $image; ?>" /></a></figure></center></div></div>
+								<div class="col-sm-4"><div class="box-img"><center><a href="<?php echo $permalink; ?>"><img alt="<?php echo @$value['alt_image']; ?>" src="<?php echo $image; ?>" /></a></center></div></div>
 								<div class="col-sm-8">
 									<h3 class="box-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h3>
 									<div class="margin-top-5">

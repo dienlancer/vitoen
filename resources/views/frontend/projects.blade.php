@@ -33,7 +33,7 @@ use App\DistrictModel;
 				$unit=$value['unit'];
 				?>
 				<div class="box-row margin-top-10">
-					<div class="col-sm-4"><div class="box-img"><center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $image; ?>" /></a></figure></center></div></div>
+					<div class="col-sm-4"><div class="box-img"><center><a href="<?php echo $permalink; ?>"><img src="<?php echo $image; ?>" /></a></center></div></div>
 					<div class="col-sm-8">
 						<h3 class="box-title"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></h3>
 						<div class="margin-top-10">

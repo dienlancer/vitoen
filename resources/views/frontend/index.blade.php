@@ -61,9 +61,9 @@ if(!empty($alias)){
                                 <div>
                                     <div>
                                         <center>
-                                            <figure>
+                                            
                                                 <a href="<?php echo $featured_news_link; ?>"><img src="<?php echo $featured_news_image; ?>"></a>
-                                            </figure>
+                                            
                                         </center>      
                                     </div> 
                                     <div class="margin-top-5 box-title"><a href="<?php echo $featured_news_link ?>"><?php echo $featured_news_name; ?></a></div>                            
@@ -187,7 +187,7 @@ if(!empty($alias)){
                                     <div >
                                         <div class="box-product-rian">
                                             <div class="box-product-img">
-                                                <center><figure><a href="<?php echo $featured_product_link; ?>"><img src="<?php echo $featured_product_img; ?>"></a></figure></center>
+                                                <center><a href="<?php echo $featured_product_link; ?>"><img src="<?php echo $featured_product_img; ?>"></a></center>
                                             </div>
                                             <div class="box-product-intro-title"><a href="<?php echo $featured_product_link; ?>"><b><?php echo $featured_product_name; ?></b></a></div>
                                             <div class="box-product-price">

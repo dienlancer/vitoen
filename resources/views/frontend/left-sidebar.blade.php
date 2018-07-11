@@ -39,7 +39,7 @@ switch ($component) {
                 ?>
                 <div class="product-index">
                     <div class="col-lg-4">
-                        <center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $featureImg; ?>"></a></figure></center>
+                        <center><a href="<?php echo $permalink; ?>"><img src="<?php echo $featureImg; ?>"></a></center>
                     </div>
                     <div class="col-lg-8-right">
                         <div class="margin-top-15"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></div>                          
@@ -105,7 +105,7 @@ switch ($component) {
                 ?>
                 <div class="product-index">
                     <div class="col-lg-4-right">
-                        <center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $featureImg; ?>"></a></figure></center>
+                        <center><a href="<?php echo $permalink; ?>"><img src="<?php echo $featureImg; ?>"></a></center>
                     </div>
                     <div class="col-lg-8-right">
                         <div class="margin-top-15"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></div>

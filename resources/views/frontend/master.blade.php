@@ -708,7 +708,7 @@ if(count($arrCart) > 0){
 									?>
 									<div class="box-product-master margin-top-10">
 										<div class="box-product-img">
-											<center><figure><a href="<?php echo $ft_product_permalink; ?>"><img src="<?php echo $ft_product_img; ?>" alt="<?php echo @$value['alt_image']; ?>"></a></figure></center>
+											<center><a href="<?php echo $ft_product_permalink; ?>"><img src="<?php echo $ft_product_img; ?>" alt="<?php echo @$value['alt_image']; ?>"></a></center>
 										</div>
 										<h3 class="box-product-intro-title"><a href="<?php echo $ft_product_permalink; ?>"><b><?php echo $ft_product_title; ?></b></a></h3>
 										<?php 

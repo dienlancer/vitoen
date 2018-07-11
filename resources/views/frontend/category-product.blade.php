@@ -49,7 +49,7 @@
 				?>
 				<div class="box-product-category">
 					<div class="box-product-img">
-						<center><figure><a href="<?php echo $product_permalink; ?>"><img src="<?php echo $product_img; ?>" alt="<?php echo @$value2['alt_image']; ?>"></a></figure></center>
+						<center><a href="<?php echo $product_permalink; ?>"><img src="<?php echo $product_img; ?>" alt="<?php echo @$value2['alt_image']; ?>"></a></center>
 					</div>
 					<h3 class="box-product-intro-title"><a href="<?php echo $product_permalink; ?>"><b><?php echo $product_name; ?></b></a></h3>
 					<?php 
