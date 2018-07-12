@@ -42,8 +42,11 @@ $company=$setting['contacted_person']['field_value'];
 				<div class="col-lg-12">
 					<div class="teraff margin-top-15">
 						<h2 class="vinboom"><a href="<?php echo route('frontend.index.index',[$ft_alias]); ?>"><?php echo @$ft_fullname; ?></a></h2>
-						<div class="raka">
-							<ul class="shinichikudo">
+						<?php 
+						if(count($source_child_category) > 0){
+							?>
+							<div class="raka litu">
+								<ul class="shinichikudo">
 									<?php 
 									foreach ($source_child_category as $key_child => $value_child) {
 										$ft_child_id=$value_child['id'];
@@ -53,10 +56,15 @@ $company=$setting['contacted_person']['field_value'];
 										<li><a href="<?php echo route('frontend.index.index',[$ft_child_alias]); ?>"><div><?php echo $ft_child_fullname; ?></div></a></li>
 										<?php
 									}
-									?>
-									<li><a href="<?php echo route('frontend.index.index',[@$ft_alias]); ?>"><div>Xem tất cả&nbsp;<i class="fas fa-angle-right"></i></div></a></li>
+									?>									
 								</ul>
-						</div>
+							</div>
+							<?php
+						}
+						?>			
+						<div class="raka">
+							<a href="<?php echo route('frontend.index.index',[@$ft_alias]); ?>"><div>Xem tất cả&nbsp;<i class="fas fa-angle-right"></i></div></a>
+						</div>			
 						<div class="clr"></div>
 					</div>
 					<?php 
