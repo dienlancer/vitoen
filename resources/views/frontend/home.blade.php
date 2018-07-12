@@ -4,7 +4,7 @@
 use Illuminate\Support\Facades\DB;
 $setting=getSettingSystem();
 $seo=getSeo();
-$telephone=$setting['telephone']['field_value'];
+$hotline1=$setting['hotline1']['field_value'];
 $email_to=$setting['email_to']['field_value'];
 $facebook_url=$setting['facebook_url']['field_value'];
 $twitter_url=$setting['twitter_url']['field_value'];

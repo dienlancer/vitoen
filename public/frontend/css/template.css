@@ -1051,6 +1051,11 @@ div.ducati  h2{
     color: #0c62ad;
     text-align: right;
 }
+.hotline-top {        
+    font-family: 'Anton';
+    color: #cd0000;
+    font-size: 20px;
+}
 .fixed {
     position: fixed; 
     top: 0; 
@@ -1089,13 +1094,20 @@ div.ducati  h2{
     text-transform: uppercase;
 }
 .employee-name{	
-   font-style: italic;
-   font-size: 12px;
-   font-weight: bold;
+       font-style: italic;
+    font-size: 15px;
+    font-weight: bold;
+    color: #114982;
+}
+.hotline-sidebar{
+    color: #cd0000;
+    font-weight: bold;
+    font-size: 20px;
 }
 .box-support{
     width: 100%;    
     box-shadow: 1px 1px 1px #888888;
+    background: #fff;
 }
 .phone-tel{
     color: #d10000
@@ -2344,6 +2356,8 @@ form[name='frm-search'] input[name='q']{
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 }
+
+
 @media (max-width: 768px){    
     .cateprodhorizontalright li:hover > ul{
         display: none;

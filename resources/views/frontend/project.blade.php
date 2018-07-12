@@ -31,7 +31,7 @@ if(count($item) > 0){
     $address=$setting['address']['field_value'];
     $email_to=$setting['email_to']['field_value'];
     $contacted_person=$setting['contacted_person']['field_value'];
-    $telephone=$setting['telephone']['field_value'];
+    $hotline1=$setting['hotline1']['field_value'];
     $office=$setting['office']['field_value'];    
     /* end setting */    
     $province=ProvinceModel::find((int)@$item['province_id'])->toArray();    
@@ -70,7 +70,7 @@ if(count($item) > 0){
                 <span class="project-lbl-price">Giá:</span><span class="project-lbl-price-number margin-left-5"><?php echo $total_cost; ?></span><span class="margin-left-5 project-lbl-price-number"><?php echo $unit; ?></span>
             </div>                                
             <div class="margin-top-5">
-                <span class="phone-tel"><i class="fa fa-phone" aria-hidden="true"></i></span>&nbsp;Hotline:&nbsp;<?php echo $telephone; ?>
+                <span class="phone-tel"><i class="fa fa-phone" aria-hidden="true"></i></span>&nbsp;Hotline:&nbsp;<?php echo $hotline1; ?>
             </div>                
             <div class="margin-top-5">
                 <img src="<?php echo asset('upload/tru-so.png'); ?>">&nbsp;Vp giao dịch:&nbsp;<?php echo $office; ?>

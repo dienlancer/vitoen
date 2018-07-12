@@ -25,7 +25,7 @@ if(count($item) > 0){
 	$address=$setting['address']['field_value'];
 	$email_to=$setting['email_to']['field_value'];
 	$contacted_person=$setting['contacted_person']['field_value'];
-	$telephone=$setting['telephone']['field_value'];
+	$hotline1=$setting['hotline1']['field_value'];
 	
 	$product_width = $setting['product_width']['field_value'];
 	$product_height = $setting['product_height']['field_value'];

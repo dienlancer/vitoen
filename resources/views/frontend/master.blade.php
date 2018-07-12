@@ -1,7 +1,8 @@
 <?php 
 $setting=getSettingSystem();
 $seo=getSeo();
-$telephone=$setting['telephone']['field_value'];
+$hotline1=$setting['hotline1']['field_value'];
+$hotline2=$setting['hotline2']['field_value'];
 $email_to=$setting['email_to']['field_value'];
 $facebook_url=$setting['facebook_url']['field_value'];
 $twitter_url=$setting['twitter_url']['field_value'];
@@ -369,7 +370,7 @@ if(count($arrCart) > 0){
 							</ul>
 						</div>
 					</div>
-					<div class="col-lg-8">
+					<div class="col-lg-10">
 						<?php     
 						$args = array(                         
 							'menu_class'            => 'menu-header-top',                            
@@ -388,13 +389,7 @@ if(count($arrCart) > 0){
 						);                 
 						wp_nav_menu($args);                          
 						?>      
-					</div>
-					<div class="col-lg-2">
-						<div class="hotline-header">
-							<div><i class="fas fa-phone-volume"></i></div>
-							<div class="margin-left-10"><?php echo $telephone; ?></div>
-						</div>
-					</div>
+					</div>					
 				</div>
 			</div>				
 		</div>
@@ -427,7 +422,7 @@ if(count($arrCart) > 0){
 					loadCategoryProductRecursive($data_category_product ,0,"",$source_category_product_recursive)   ; 	
 					$ddlCategoryProduct      =   cmsSelectboxCategory("category_product_id","category-prd-ddl",$source_category_product_recursive,0,"",'Chọn danh mục');				
 					?>
-					<div class="col-lg-10">
+					<div class="col-lg-8">
 						<div class="ruden">
 							<form action="<?php echo route('frontend.index.search'); ?>" method="POST" name="frm-search">
 								{{ csrf_field() }}
@@ -543,7 +538,11 @@ if(count($arrCart) > 0){
 								</div>								
 							</div>
 						</div>						
-					</div>					
+					</div>	
+					<div class="col-lg-2">
+						<div class="hotline-top"><?php echo $hotline1; ?></div>
+						<div class="hotline-top"><?php echo $hotline2; ?></div>
+					</div>				
 				</div>
 			</div>
 		</div>	
