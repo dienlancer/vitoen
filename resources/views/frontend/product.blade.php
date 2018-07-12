@@ -419,11 +419,11 @@ if(count($item) > 0){
         <?php              
         $category_id=$item['category_id'];               
         $dataProduct=DB::table('product')                        
-        ->select('product.id','product.alias','product.fullname','product.image','product.alt_image','product.intro','product.price','product.sale_price')
+        ->select('product.id','product.alias','product.fullname','product.image','product.alt_image','product.intro','product.price','product.sale_off','product.sale_price')
         ->where('product.category_id', $category_id)
         ->where('product.id','<>',(int)@$id)
         ->where('product.status',1)       
-        ->groupBy('product.id','product.alias','product.fullname','product.image','product.alt_image','product.intro','product.price','product.sale_price')
+        ->groupBy('product.id','product.alias','product.fullname','product.image','product.alt_image','product.intro','product.price','product.sale_off','product.sale_price')
         ->orderBy('product.created_at', 'desc')                
         ->get()
         ->toArray();         
@@ -436,11 +436,11 @@ if(count($item) > 0){
         	<div class="margin-top-15">
         		<script type="text/javascript" language="javascript">
         			$(document).ready(function(){
-        				$(".prodetail").owlCarousel({
-        					autoplay:false,                    
+        				$(".productdetail").owlCarousel({
+        					autoplay:true,                    
                             loop:true,
                             margin:0,                        
-                            nav:false,            
+                            nav:true,            
                             mouseDrag: true,
                             touchDrag: true,                                
                             responsiveClass:true,
@@ -458,11 +458,11 @@ if(count($item) > 0){
                         });
         				var chevron_left='<i class="fa fa-chevron-left"></i>';
         				var chevron_right='<i class="fa fa-chevron-right"></i>';
-        				$("div.prodetail div.owl-prev").html(chevron_left);
-        				$("div.prodetail div.owl-next").html(chevron_right);
+        				$("div.productdetail div.owl-prev").html(chevron_left);
+        				$("div.productdetail div.owl-next").html(chevron_right);
         			});                
         		</script>
-        		<div class="owl-carousel prodetail owl-theme">
+        		<div class="owl-carousel productdetail owl-theme">
         			<?php 
         			foreach($dataProduct as $key => $value){
         				$pdetail_id=$value['id'];
@@ -471,16 +471,35 @@ if(count($item) > 0){
         				$pdetail_permalink=route('frontend.index.index',[$pdetail_alias]) ;
         				$pdetail_img =get_product_thumbnail($value['image']) ;	
         				$product_price=$value['price']; 
+                        $product_sale_price=$value['sale_price'];                           
                         $html_price='';                     
-                        if((int)@$product_price > 0){              
-                            $html_price=fnPrice($product_price) ;
-                        }else{
-                            $html_price='Giá : Liên hệ' ;
-                        }       
+                        if((int)@$product_price == 0 && (int)@$product_sale_price == 0){              
+                            $html_price='<span class="price-on">Giá : Liên hệ</span>' ;
+
+                        }else{                              
+                            if((int)@$product_sale_price == 0){
+                                $html_price='<span class="price-on">'.convertToTextPrice($product_price).'&nbsp;đ'.'</span>'  ;
+                            }else{
+                                $html_price='<div><span class="price-off">'.convertToTextPrice($product_price).'&nbsp;đ</span></div>';
+                                $html_price.='<div><span class="price-on">'.convertToTextPrice($product_sale_price).'&nbsp;đ</span></div>';
+                            }                               
+                        }         
         				?>
         				<div class="box-product-master margin-top-10">
-                            <div class="box-product-img">
+                            <div class="box-product-img canai">
                                 <center><a href="<?php echo $pdetail_permalink; ?>"><img src="<?php echo $pdetail_img; ?>" alt="<?php echo @$value['alt_image']; ?>"></a></center>
+                                <?php 
+                                if((int)@$value['sale_off'] > 0){
+                                    ?>
+                                    <div class="pricetag">
+                                        <div class="canai">
+                                            <img src="<?php echo asset('upload/pricetag.png'); ?>" >
+                                            <div class="riman">-<?php echo @$value['sale_off']; ?>%</div>                                       
+                                        </div>                                      
+                                    </div>
+                                    <?php
+                                }
+                                ?>      
                             </div>
                             <h3 class="box-product-intro-title"><a href="<?php echo $pdetail_permalink; ?>"><b><?php echo $pdetail_name; ?></b></a></h3>
                             <?php 
@@ -526,7 +545,7 @@ if(count($item) > 0){
                             /* end thương hiệu */       
                             ?>                                  
                             <div class="box-product-price">
-                                <div><center><span class="price-on"><?php echo $html_price; ?></span></center></div>
+                                        <?php echo $html_price; ?>
                             </div>
                         </div>
         				<?php

@@ -43,10 +43,7 @@ $company=$setting['contacted_person']['field_value'];
 					<div class="teraff margin-top-15">
 						<h2 class="vinboom"><a href="<?php echo route('frontend.index.index',[$ft_alias]); ?>"><?php echo @$ft_fullname; ?></a></h2>
 						<div class="raka">
-							<?php 
-							if(count($source_child_category) > 0){
-								?>
-								<ul class="shinichikudo">
+							<ul class="shinichikudo">
 									<?php 
 									foreach ($source_child_category as $key_child => $value_child) {
 										$ft_child_id=$value_child['id'];
@@ -57,19 +54,22 @@ $company=$setting['contacted_person']['field_value'];
 										<?php
 									}
 									?>
+									<li><a href="<?php echo route('frontend.index.index',[@$ft_alias]); ?>"><div>Xem tất cả&nbsp;<i class="fas fa-angle-right"></i></div></a></li>
 								</ul>
-								<?php
-							}
-							?>
 						</div>
 						<div class="clr"></div>
 					</div>
 					<?php 
 					$query=DB::table('product')
 					->join('category_product','product.category_id','=','category_product.id');			 
-					$query->whereIn('product.category_id',$source_category_id);   
-					$source_product=$query->select('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','category_product.fullname as category_name','product.price')
-					->groupBy('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','category_product.fullname','product.price','product.sale_price')
+					$query->whereIn('product.category_id',$source_category_id); 
+					$query->where(function($query){
+						$query->where('product.sale_off',0)
+						->orWhere('product.sale_off',null)
+						->orWhere('product.sale_off','');
+					});
+					$source_product=$query->select('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','category_product.fullname as category_name','product.price','sale_off','product.sale_price')
+					->groupBy('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','category_product.fullname','product.price','sale_off','product.sale_price')
 					->orderBy('product.id','desc')->take(10)->get()->toArray();   					
 					if(count($source_product) > 0){
 						$data_product=convertToArray($source_product);
@@ -83,12 +83,19 @@ $company=$setting['contacted_person']['field_value'];
 								$ft_product_permalink=route('frontend.index.index',[$value2['alias']]);
 								$ft_product_title=$value2['fullname'];
 								$ft_product_price=$value2['price'];	
+								$ft_product_sale_price=$value2['sale_price'];							
 								$html_price='';                     
-								if((int)@$ft_product_price > 0){              
-									$html_price=fnPrice($ft_product_price) ;
-								}else{
-									$html_price='Giá : Liên hệ' ;
-								}   											
+								if((int)@$ft_product_price == 0 && (int)@$ft_product_sale_price == 0){              
+									$html_price='<span class="price-on">Giá : Liên hệ</span>' ;
+									
+								}else{								
+									if((int)@$ft_product_sale_price == 0){
+										$html_price='<span class="price-on">'.convertToTextPrice($ft_product_price).'&nbsp;đ'.'</span>'  ;
+									}else{
+										$html_price='<div><span class="price-off">'.convertToTextPrice($ft_product_price).'&nbsp;đ</span></div>';
+										$html_price.='<div><span class="price-on">'.convertToTextPrice($ft_product_sale_price).'&nbsp;đ</span></div>';
+									}								
+								}													
 								?>
 								<div class="box-product">
 									<div class="box-product-img">
@@ -129,8 +136,8 @@ $company=$setting['contacted_person']['field_value'];
 									/* end thương hiệu */		
 									?>	
 									<div class="box-product-price">
-										<div><center><span class="price-on"><?php echo $html_price; ?></span></center></div>
-									</div>																	
+										<?php echo $html_price; ?>
+									</div>																
 								</div>
 								<?php
 								if((int)@$k%5==0){

@@ -39,17 +39,35 @@
 				$product_permalink=route('frontend.index.index',[$product_alias]) ;
 				$product_img =get_product_thumbnail($value['image']) ;		
 				$product_price=$value['price'];	
+				$product_sale_price=$value['sale_price'];							
 				$html_price='';                     
-				if((int)@$product_price > 0){              
-					$html_price=fnPrice($product_price) ;
-				}else{
-					$html_price='Giá : Liên hệ' ;
-				}   
-							
+				if((int)@$product_price == 0 && (int)@$product_sale_price == 0){              
+					$html_price='<span class="price-on">Giá : Liên hệ</span>' ;
+
+				}else{								
+					if((int)@$product_sale_price == 0){
+						$html_price='<span class="price-on">'.convertToTextPrice($product_price).'&nbsp;đ'.'</span>'  ;
+					}else{
+						$html_price='<div><span class="price-off">'.convertToTextPrice($product_price).'&nbsp;đ</span></div>';
+						$html_price.='<div><span class="price-on">'.convertToTextPrice($product_sale_price).'&nbsp;đ</span></div>';
+					}								
+				}				
 				?>
 				<div class="box-product-category">
-					<div class="box-product-img">
-						<center><a href="<?php echo $product_permalink; ?>"><img src="<?php echo $product_img; ?>" alt="<?php echo @$value2['alt_image']; ?>"></a></center>
+					<div class="box-product-img canai">
+						<center><a href="<?php echo $product_permalink; ?>"><img src="<?php echo $product_img; ?>" alt="<?php echo @$value['alt_image']; ?>"></a></center>
+						<?php 
+						if((int)@$value['sale_off'] > 0){
+							?>
+							<div class="pricetag">
+							<div class="canai">
+								<img src="<?php echo asset('upload/pricetag.png'); ?>" >
+								<div class="riman">-<?php echo @$value['sale_off']; ?>%</div>										
+							</div>										
+						</div>
+							<?php
+						}
+						?>						
 					</div>
 					<h3 class="box-product-intro-title"><a href="<?php echo $product_permalink; ?>"><b><?php echo $product_name; ?></b></a></h3>
 					<?php 
@@ -86,7 +104,7 @@
 					/* end thương hiệu */		
 					?>	
 					<div class="box-product-price">
-						<div><center><span class="price-on"><?php echo $html_price; ?></span></center></div>
+										<?php echo $html_price; ?>
 					</div>																	
 				</div>
 				<?php					

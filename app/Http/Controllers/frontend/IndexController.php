@@ -214,8 +214,8 @@ class IndexController extends Controller {
     $pagination=new PaginationModel($arrPagination);
     $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
 
-    $data=$query->select('product.id','product.alias','product.fullname','product.price','product.sale_price','product.image','product.alt_image','product.intro','product.count_view')
-    ->groupBy('product.id','product.alias','product.fullname','product.price','product.sale_price','product.image','product.alt_image','product.intro','product.count_view')
+    $data=$query->select('product.id','product.alias','product.fullname','product.price','product.sale_off','product.sale_price','product.image','product.alt_image','product.intro','product.count_view')
+    ->groupBy('product.id','product.alias','product.fullname','product.price','product.sale_off','product.sale_price','product.image','product.alt_image','product.intro','product.count_view')
     ->orderBy('product.created_at', 'desc')
     ->skip($position)
     ->take($totalItemsPerPage)
@@ -370,9 +370,9 @@ class IndexController extends Controller {
         );           
         $pagination=new PaginationModel($arrPagination);
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
-        $data=$query->select('product.id','product.alias','product.fullname','product.image','product.alt_image','product.intro','product.price','product.sale_price')                
-                ->groupBy('product.id','product.alias','product.fullname','product.image','product.alt_image','product.intro','product.price','product.sale_price')
-                ->orderBy('product.created_at', 'desc')
+        $data=$query->select('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','product.price','sale_off','product.sale_price')               
+                ->groupBy('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','product.price','sale_off','product.sale_price')
+                ->orderBy('product.id', 'desc')
                 ->skip($position)
                 ->take($totalItemsPerPage)
                 ->get()->toArray();   

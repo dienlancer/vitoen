@@ -441,18 +441,18 @@ div.opacity-absolute::before{
     right: 0;
     top:-43px;
 }
-.prodetail .owl-prev, .prodetail .owl-next{
+.productdetail .owl-prev, .productdetail .owl-next{
  background:#0c62ad;
  color: #ffffff;
  padding: 5px 11px;
 }
-.prodetail .owl-prev{
+.productdetail .owl-prev{
   position: absolute;
   right: 35px;
   top:-50px;
 
 }
-.prodetail .owl-next{
+.productdetail .owl-next{
     position: absolute;
     right: 0;
     top:-50px;
@@ -1006,6 +1006,7 @@ div.ducati  h2{
 .sale-price{
     float: left;
 }
+
 .old-price{
     float: right;
 }
@@ -1597,14 +1598,12 @@ form[name='frm-search']{
     font-weight: bold;
     font-size: 14px;
 }
-.price-off{
-    color: #505050;
+.price-off{    
     text-decoration: line-through;
 }
 .price-detail-on{
     color: #F00;
-    font-weight: bold;
-    font-size: 14px;
+    font-weight: bold;    
 }
 .pdetail-price-detail-on{
     color: #F00;
@@ -1918,6 +1917,7 @@ form[name='frm-search'] input[name='q']{
 }
 .box-product-price{    
     margin: 10px 0px 10px 0px;   
+    text-align: center;
 }
 .danhmucspfooter li a{
     color: #ffffff
@@ -2090,21 +2090,22 @@ form[name='frm-search'] input[name='q']{
     display: inline-block;
 }
 .teraff{
-    border-top:2px solid #bf1e2d;
+    border-bottom:2px solid #114a82;
     background: #fff;
+    margin-bottom: 2px;
 }
 .vinboom{
-    float: left;
-    border-left:1px solid #ddd;
-    padding-left: 10px;
+    float: left;   
 }
 .vinboom a{
-    color: #bf1e2d;
+    color: #ffffff;
     font-weight: bold;
-    padding: 10px 0px;
+    padding: 12px 12px;
     display: block;
     text-transform: uppercase;
     font-size: 15px;
+    background: #114a82;
+
 }
 .raka{
     float: right;
@@ -2376,6 +2377,13 @@ form[name='frm-search'] input[name='q']{
     top: 0;
     left: 0;
 }
+.tim-kiem-sp{
+    background: #cd0000;
+    padding: 10px;
+    color: #ffffff;
+    font-weight: bold;
+    margin-top: 30px;
+}
 @media (max-width: 768px){    
     .cateprodhorizontalright li:hover > ul{
         display: none;
@@ -2425,6 +2433,9 @@ form[name='frm-search'] input[name='q']{
         display: block;
         background: #ffffff;
     } 
+    .healthcare{
+        display: none;
+    }
     .feedback{
         float: none;
     }

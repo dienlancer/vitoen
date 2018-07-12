@@ -43,7 +43,7 @@
 					<script type="text/javascript" language="javascript">
 						$(document).ready(function(){
 							$(".featured-product").owlCarousel({
-								autoplay:false,                    
+								autoplay:true,                    
 								loop:true,
 								margin:0,                        
 								nav:false,            
@@ -76,24 +76,36 @@
 							$ft_product_img=get_product_thumbnail($value['image']) ;
 							$ft_product_permalink=route('frontend.index.index',[$value['alias']]);
 							$ft_product_title=$value['fullname'];
-							$ft_product_price=$value['price'];								
+							$ft_product_price=$value['price'];	
+							$ft_product_sale_price=$value['sale_price'];							
 							$html_price='';                     
-							if((int)@$ft_product_price > 0){              
-								$html_price=fnPrice($ft_product_price) ;
-							}else{
-								$html_price='Giá : Liên hệ' ;
+							if((int)@$ft_product_price == 0 && (int)@$ft_product_sale_price == 0){              
+								$html_price='<span class="price-on">Giá : Liên hệ</span>' ;
+								
+							}else{								
+								if((int)@$ft_product_sale_price == 0){
+									$html_price='<span class="price-on">'.convertToTextPrice($ft_product_price).'&nbsp;đ'.'</span>'  ;
+								}else{
+									$html_price='<div><span class="price-off">'.convertToTextPrice($ft_product_price).'&nbsp;đ</span></div>';
+									$html_price.='<div><span class="price-on">'.convertToTextPrice($ft_product_sale_price).'&nbsp;đ</span></div>';
+								}								
 							}									
-
 							?>
 							<div class="box-product-master margin-top-10">
 								<div class="box-product-img canai">
 									<center><a href="<?php echo $ft_product_permalink; ?>"><img src="<?php echo $ft_product_img; ?>" alt="<?php echo @$value['alt_image']; ?>"></a></center>
-									<div class="pricetag">
-										<div class="canai">
-											<img src="<?php echo asset('upload/pricetag.png'); ?>" >
-											<div class="riman">-<?php echo @$value['sale_off']; ?>%</div>										
-										</div>										
-									</div>
+									<?php 
+									if((int)@$value['sale_off'] > 0){
+										?>
+										<div class="pricetag">
+											<div class="canai">
+												<img src="<?php echo asset('upload/pricetag.png'); ?>" >
+												<div class="riman">-<?php echo @$value['sale_off']; ?>%</div>										
+											</div>										
+										</div>
+										<?php
+									}
+									?>									
 								</div>
 								<h3 class="box-product-intro-title"><a href="<?php echo $ft_product_permalink; ?>"><b><?php echo $ft_product_title; ?></b></a></h3>
 								<?php 
@@ -139,7 +151,7 @@
 								/* end thương hiệu */		
 								?>									
 								<div class="box-product-price">
-									<div><center><span class="price-on"><?php echo $html_price; ?></span></center></div>
+									<?php echo $html_price; ?>
 								</div>
 							</div>
 							<?php

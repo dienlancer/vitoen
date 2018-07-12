@@ -98,7 +98,7 @@ if(!empty($alias)){
                     );                    
                     wp_nav_menu($argsDanhMucSanPham2);                    
                     /* begin tìm kiếm sản phẩm theo thuộc tính */
-                    ?>
+                    ?>                    
                     <form name="frm-search-product-param" action='<?php echo route('frontend.index.search') ?>'  method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="category_id" value="<?php echo @$category['id']; ?>">
@@ -112,6 +112,9 @@ if(!empty($alias)){
                         ->toArray(); 
                         $data_father=convertToArray($data_father);
                         if(count($data_father) > 0){
+                            ?>
+                            <div class="tim-kiem-sp">TÌM KIẾM SẢN PHẨM</div>
+                            <?php
                             foreach ($data_father as $key_father => $value_father) {
                                 $father_id=$value_father['id'];
                                 $father_fullname=$value_father['fullname'];                            
