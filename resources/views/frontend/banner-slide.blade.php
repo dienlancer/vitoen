@@ -36,7 +36,7 @@
 				?>
 			</div>
 			<?php 
-			$source_featured_product=App\ProductModel::whereRaw('status = ?',[1])->select('id','fullname','alias','image','price')->orderBy('id','desc')->take(20)->get()->toArray();							
+			$source_featured_product=App\ProductModel::whereRaw('status = ? and sale_off > ?',[1,0])->select('id','fullname','alias','image','alt_image','price','sale_price','sale_off')->orderBy('sale_off','asc')->take(20)->get()->toArray();							
 			if(count($source_featured_product) > 0){
 				?>
 				<div class="margin-top-15 thamluang">		
@@ -76,7 +76,7 @@
 							$ft_product_img=get_product_thumbnail($value['image']) ;
 							$ft_product_permalink=route('frontend.index.index',[$value['alias']]);
 							$ft_product_title=$value['fullname'];
-							$ft_product_price=$value['price'];	
+							$ft_product_price=$value['price'];								
 							$html_price='';                     
 							if((int)@$ft_product_price > 0){              
 								$html_price=fnPrice($ft_product_price) ;
@@ -86,8 +86,14 @@
 
 							?>
 							<div class="box-product-master margin-top-10">
-								<div class="box-product-img">
+								<div class="box-product-img canai">
 									<center><a href="<?php echo $ft_product_permalink; ?>"><img src="<?php echo $ft_product_img; ?>" alt="<?php echo @$value['alt_image']; ?>"></a></center>
+									<div class="pricetag">
+										<div class="canai">
+											<img src="<?php echo asset('upload/pricetag.png'); ?>" >
+											<div class="riman">-<?php echo @$value['sale_off']; ?>%</div>										
+										</div>										
+									</div>
 								</div>
 								<h3 class="box-product-intro-title"><a href="<?php echo $ft_product_permalink; ?>"><b><?php echo $ft_product_title; ?></b></a></h3>
 								<?php 

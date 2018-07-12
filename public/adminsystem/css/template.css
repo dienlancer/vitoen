@@ -145,6 +145,10 @@ h3.rio i{
 .box-logo,.recommend{
     display: flex;
 }
+.raba{
+    display: flex;
+    align-items: center;
+}
 .page-header.navbar.navbar-fixed-top, .page-header.navbar.navbar-static-top{
     z-index: 3;
 }

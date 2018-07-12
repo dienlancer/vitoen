@@ -14,7 +14,7 @@ $seo_logo_frontend=asset('upload/'.$seo['logo_frontend']);
 						{{ csrf_field() }}
 						<div class="ruden">
 							<div class="margin-left-15"><input type="text" name="email" class="txt-email"></div>
-							<div class="btn-register-info margin-left-15"><a href="javascript:void(0);" >Gửi</a></div>
+							<div class="btn-register-info margin-left-5"><a href="javascript:void(0);" >Gửi</a></div>
 						</div>
 					</form>
 				</div>
@@ -32,8 +32,8 @@ $seo_logo_frontend=asset('upload/'.$seo['logo_frontend']);
 			->join('article_category','article.id','=','article_category.article_id')
 			->join('category_article','category_article.id','=','article_category.category_id')
 			->where('category_article.alias','tu-van');
-		$source_article=$query->select('article.id','article.fullname','article.alias','article.image')
-							->groupBy('article.id','article.fullname','article.alias','article.image')
+		$source_article=$query->select('article.id','article.fullname','article.alias','article.image','article.alt_image')
+							->groupBy('article.id','article.fullname','article.alias','article.image','article.alt_image')
 							->orderBy('article.id','desc')
 							->take(12)
 							->get()
@@ -54,7 +54,7 @@ $seo_logo_frontend=asset('upload/'.$seo['logo_frontend']);
 					<div class="box-featured-article">
 						<div class="row">
 							<div class="col-lg-4">
-								<a href="<?php echo $article_permalink; ?>"><img src="<?php echo $article_thumbnail; ?>"></a>
+								<a href="<?php echo $article_permalink; ?>"><img src="<?php echo $article_thumbnail; ?>" alt="<?php echo @$value['alt_image']; ?>"></a>
 							</div>
 							<div class="col-lg-8">
 								<div class="article-per"><a href="<?php echo $article_permalink; ?>"><b><?php echo $article_name; ?></b></a></div>
@@ -77,7 +77,7 @@ $seo_logo_frontend=asset('upload/'.$seo['logo_frontend']);
 		<div class="row">
 			<div class="col-sm-4">	
 				<div class="margin-top-15">
-					<center><a href="<?php echo url('/'); ?>"><img src="<?php echo $seo_logo_frontend; ?>" width="150"></a></center>
+					<center><a href="<?php echo url('/'); ?>"><img src="<?php echo $seo_logo_frontend; ?>" alt='<?php echo @$seo["alt_logo"]; ?>' width="150"></a></center>
 				</div>
 				<div>
 					<?php 

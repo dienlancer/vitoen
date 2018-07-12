@@ -56,7 +56,7 @@ Route::group(["prefix"=>"adminsystem","middleware"=>"TestLogin"],function(){
 		Route::post("update-status",["as"=>"adminsystem.product.updateStatus","uses"=>"adminsystem\ProductController@updateStatus"]);
 		Route::post("change-status",["as"=>"adminsystem.product.changeStatus","uses"=>"adminsystem\ProductController@changeStatus"]);
 		Route::post("trash",["as"=>"adminsystem.product.trash","uses"=>"adminsystem\ProductController@trash"]);
-		
+		Route::post("set-sale-price",["as"=>"adminsystem.product.setSalePrice","uses"=>"adminsystem\ProductController@setSalePrice"]);
 		Route::post("create-alias",["as"=>"adminsystem.product.createAlias","uses"=>"adminsystem\ProductController@createAlias"]);
 	});		
 	Route::group(["prefix"=>"privilege"],function(){		

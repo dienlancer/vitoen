@@ -111,6 +111,7 @@ class ProductController extends Controller {
                 }            
                 $status               =   trim($request->status);
                 $price                =   trim($request->price);   
+                $sale_off             =   trim($request->sale_off);
                 $sale_price           =   trim($request->sale_price);                    
                 $detail               =   trim($request->detail);
                 $technical_detail               =   trim($request->technical_detail);
@@ -170,6 +171,10 @@ class ProductController extends Controller {
               
               $msg["category_id"]      = "Thiếu danh mục";
             }      
+            if((int)@$sale_off >= 100){
+              $checked=0;
+              $msg['sale_off_100']='Giảm giá không được lớn hơn hoặc bằng 100'; 
+            }
             /* begin checkfilesize */
             $file_size=0;
             if($image_file != null){        
@@ -220,6 +225,7 @@ class ProductController extends Controller {
             $item->meta_description = $meta_description;                  
             $item->status           = (int)@$status; 
             $item->price            = (int)(str_replace('.', '',@$price)) ;
+            $item->sale_off         = (int)@$sale_off;
             $item->sale_price       = (int)(str_replace('.', '',@$sale_price)) ;                                 
             $item->detail           = $detail;  
             $item->technical_detail           = $technical_detail;    
@@ -485,6 +491,35 @@ class ProductController extends Controller {
         "alias"            => $alias
       );                       
       return $info;
+      }
+      function setSalePrice(Request $request){
+        $info                 =   array();
+        $checked              =   1;                           
+        $msg                =   array();
+        $price                =  trim($request->price)  ;        
+        $pattern_dot='#\.#';
+        $price=preg_replace($pattern_dot, '', $price);         
+        $sale_off=trim($request->sale_off);
+        $sale_price_html='';        
+        if((int)@$sale_off >= 100){
+          $checked=0;
+          $msg['sale_off_100']='Giảm giá không được lớn hơn hoặc bằng 100'; 
+        }
+        if((int)@$checked == 1){
+          if((int)@$sale_off > 0){
+            $sale_price=$price - (int)@$price * @$sale_off / 100;
+          }else{
+            $sale_price=0;
+          }
+          $sale_price_html=convertToTextPrice($sale_price);
+          $msg['success']='Lấy dữ liệu thành công';
+        }        
+        $info = array(
+          "checked"       => $checked,          
+          'msg'       => $msg,      
+          "sale_price"            => $sale_price_html
+        );                       
+        return $info;
       }
 }
 ?>

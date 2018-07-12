@@ -11,7 +11,8 @@ $inputAlias             =   '<input type="text" class="form-control" name="alias
 $inputMetakeyword             =   '<textarea  name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
 $inputMetadescription             =   '<textarea  name="meta_description" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_description'].'</textarea>'; 
 $inputPrice             =   '<input type="text" class="form-control" name="price" onkeyup="PhanCachSoTien(this);"       value="'.convertToTextPrice(@$arrRowData['price']).'">';
-$inputSalePrice             =   '<input type="text" class="form-control" name="sale_price" onkeyup="PhanCachSoTien(this);"       value="'.convertToTextPrice(@$arrRowData['sale_price']).'">';
+$inputSaleOff             =   '<input type="text" class="form-control" name="sale_off" onblur="setSalePrice();" onkeypress="return isNumberKey(event)"      value="'.(int)@$arrRowData['sale_off'].'">';
+$inputSalePrice             =   '<input type="text" class="form-control" name="sale_price" disabled       value="'.convertToTextPrice(@$arrRowData['sale_price']).'">';
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
 $ddlStatus              =   cmsSelectbox("status","form-control",$arrStatus,$status,"");
@@ -91,6 +92,15 @@ $inputCallback='<input type="hidden" name="callback_url"  value="'.route('admins
                         <label class="col-md-2 control-label"><b>Giá</b></label>
                         <div class="col-md-10">
                             <?php echo $inputPrice; ?>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>      
+                </div> 
+                <div class="row"> 
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Giảm</b></label>
+                        <div class="col-md-10">
+                            <div class="raba"><div><?php echo $inputSaleOff; ?></div>&nbsp;<div>%</div></div>
                             <span class="help-block"></span>
                         </div>
                     </div>      
@@ -315,6 +325,7 @@ $inputCallback='<input type="hidden" name="callback_url"  value="'.route('admins
         /* end source child image */
         var status=$('select[name="status"]').val();             
         var price=$('input[name="price"]').val();
+        var sale_off=$('input[name="sale_off"]').val();
         var sale_price=$('input[name="sale_price"]').val();       
         var intro=$('textarea[name="intro"]').val(); 
         var detail=$('textarea[name="detail"]').summernote('code'); 
@@ -336,6 +347,7 @@ $inputCallback='<input type="hidden" name="callback_url"  value="'.route('admins
         dataItem.append('alt_image',alt_image);
         dataItem.append('status',status); 
         dataItem.append('price',price);
+        dataItem.append('sale_off',sale_off);
         dataItem.append('sale_price',sale_price);
         dataItem.append('intro',intro);
         dataItem.append('detail',detail);
@@ -415,6 +427,35 @@ $inputCallback='<input type="hidden" name="callback_url"  value="'.route('admins
                 spinner.show();
             },
         });
+    }
+    function setSalePrice(){
+        var price    = $('form[name="frm"]').find('input[name="price"]').val();
+        var sale_off    = $('form[name="frm"]').find('input[name="sale_off"]').val();
+        var token       = $('form[name="frm"]').find('input[name="_token"]').val();
+        var dataItem={                      
+            "price":price,
+            "sale_off":sale_off,            
+            "_token": token
+        }; 
+        $.ajax({
+            url: '<?php echo route("adminsystem.product.setSalePrice"); ?>',
+            type: 'POST',
+            data: dataItem,            
+            async: false,
+            success: function (data) {                
+                $('form[name="frm"]').find('input[name="sale_price"]').val(data.sale_price);    
+                if(data.checked == 0){
+                    showMsg('note',data);                           
+                }                             
+                spinner.hide();
+            },
+            error : function (data){
+                spinner.hide();
+            },
+            beforeSend  : function(jqXHR,setting){
+                spinner.show();
+            },
+        }); 
     }
 </script>
 @endsection()            

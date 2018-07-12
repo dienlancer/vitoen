@@ -20,7 +20,7 @@ $map_url=$setting['map_url']['field_value'];
 				?>
 				<div class="col-lg-3">
 					<div class="margin-top-15">
-						<div class="relative liverpool">
+						<div class="liverpool">
 						<div><center><img src="<?php echo $image; ?>" /></center></div>			
 						<div class="youtube"></div>		
 						<div class="youtube-img" >

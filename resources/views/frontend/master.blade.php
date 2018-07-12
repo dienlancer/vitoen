@@ -3,6 +3,8 @@ $setting=getSettingSystem();
 $seo=getSeo();
 $hotline1=$setting['hotline1']['field_value'];
 $hotline2=$setting['hotline2']['field_value'];
+$cskh1=$setting['cskh1']['field_value'];
+$cskh2=$setting['cskh2']['field_value'];
 $email_to=$setting['email_to']['field_value'];
 $facebook_url=$setting['facebook_url']['field_value'];
 $twitter_url=$setting['twitter_url']['field_value'];
@@ -437,7 +439,7 @@ if(count($arrCart) > 0){
 								</div>							
 							</form>
 							<div class="margin-left-30">
-								<div class="timex relative">
+								<div class="timex canai">
 									<a href="javascript:void(0)"><img src="<?php echo asset('/upload/icon-cart.png'); ?>"></a>
 									<!-- begin icon-cart -->
 									<?php
@@ -540,8 +542,14 @@ if(count($arrCart) > 0){
 						</div>						
 					</div>	
 					<div class="col-lg-2">
-						<div class="hotline-top"><?php echo $hotline1; ?></div>
-						<div class="hotline-top"><?php echo $hotline2; ?></div>
+						<div class="row">
+							<div class="col-xs-6"><div class="hotline-top"><?php echo $cskh1; ?></div></div>
+							<div class="col-xs-6"><div class="hotline-top"><?php echo $hotline1; ?></div></div>
+						</div>
+						<div class="row">
+							<div class="col-xs-6"><div class="hotline-top"><?php echo $cskh2; ?></div></div>
+							<div class="col-xs-6"><div class="hotline-top"><?php echo $hotline2; ?></div></div>
+						</div>												
 					</div>				
 				</div>
 			</div>
