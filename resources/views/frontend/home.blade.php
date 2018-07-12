@@ -62,9 +62,9 @@ $company=$setting['contacted_person']['field_value'];
 							<?php
 						}
 						?>			
-						<div class="raka">
+						<!--<div class="raka">
 							<a href="<?php echo route('frontend.index.index',[@$ft_alias]); ?>"><div>Xem tất cả&nbsp;<i class="fas fa-angle-right"></i></div></a>
-						</div>			
+						</div>-->			
 						<div class="clr"></div>
 					</div>
 					<?php 
