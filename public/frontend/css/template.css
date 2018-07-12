@@ -1916,8 +1916,9 @@ form[name='frm-search'] input[name='q']{
 
 }
 .box-product-price{    
-    margin: 10px 0px 10px 0px;   
+    margin: 10px 0px 10px 0px;
     text-align: center;
+    height: 40px;
 }
 .danhmucspfooter li a{
     color: #ffffff

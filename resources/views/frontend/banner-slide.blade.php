@@ -36,7 +36,7 @@
 				?>
 			</div>
 			<?php 
-			$source_featured_product=App\ProductModel::whereRaw('status = ? and sale_off > ?',[1,0])->select('id','fullname','alias','image','alt_image','price','sale_price','sale_off')->orderBy('sale_off','asc')->take(20)->get()->toArray();							
+			$source_featured_product=App\ProductModel::whereRaw('status = ? and price > ? and sale_off > ? and sale_price > ?',[1,0,0,0])->select('id','fullname','alias','image','alt_image','price','sale_price','sale_off')->orderBy('sale_off','asc')->take(20)->get()->toArray();							
 			if(count($source_featured_product) > 0){
 				?>
 				<div class="margin-top-15 thamluang">		

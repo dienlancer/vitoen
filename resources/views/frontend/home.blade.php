@@ -71,11 +71,11 @@ $company=$setting['contacted_person']['field_value'];
 					$query=DB::table('product')
 					->join('category_product','product.category_id','=','category_product.id');			 
 					$query->whereIn('product.category_id',$source_category_id); 
-					$query->where(function($query){
+					/*$query->where(function($query){
 						$query->where('product.sale_off',0)
 						->orWhere('product.sale_off',null)
 						->orWhere('product.sale_off','');
-					});
+					});*/
 					$source_product=$query->select('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','category_product.fullname as category_name','product.price','sale_off','product.sale_price')
 					->groupBy('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','category_product.fullname','product.price','sale_off','product.sale_price')
 					->orderBy('product.id','desc')->take(10)->get()->toArray();   					
@@ -106,8 +106,20 @@ $company=$setting['contacted_person']['field_value'];
 								}													
 								?>
 								<div class="box-product">
-									<div class="box-product-img">
+									<div class="box-product-img canai">
 										<center><a href="<?php echo $ft_product_permalink; ?>"><img src="<?php echo $ft_product_img; ?>" alt="<?php echo @$value2['alt_image']; ?>"></a></center>
+										<?php 
+										if((int)@$value2['sale_off'] > 0){
+											?>
+											<div class="pricetag">
+												<div class="canai">
+													<img src="<?php echo asset('upload/pricetag.png'); ?>" >
+													<div class="riman">-<?php echo @$value2['sale_off']; ?>%</div>										
+												</div>										
+											</div>
+											<?php
+										}
+										?>		
 									</div>
 									<h3 class="box-product-intro-title"><a href="<?php echo $ft_product_permalink; ?>"><b><?php echo $ft_product_title; ?></b></a></h3>
 									<?php 
