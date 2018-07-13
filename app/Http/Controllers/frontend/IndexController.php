@@ -1573,7 +1573,7 @@ class IndexController extends Controller {
               $mail->Port = $smtp_port;                            
               $mail->setFrom($email_from, $fullname);
               $mail->addAddress($email_to, $contacted_person);   
-              $mail->Subject = 'Thông tin đặt hàng từ khách hàng '.$fullname.' - '.$phone ;                               
+              $mail->Subject = 'Thông tin đặt hàng từ khách hàng '.@$fullname.' - '.@$phone ;                               
               $html_content='';     
               $html_content .='<div><center><h2>THÔNG TIN KHÁCH HÀNG</h2></center</div>';   
               $html_content .='<table border="1"  cellspacing="5" cellpadding="5" width="100%">';         
