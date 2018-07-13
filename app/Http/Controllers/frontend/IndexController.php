@@ -1515,7 +1515,8 @@ class IndexController extends Controller {
             $item->sort_order   =   1;
             $item->created_at   =   date("Y-m-d H:i:s",time());
             $item->updated_at   =   date("Y-m-d H:i:s",time());
-            $item->save();                   
+            $item->save();    
+            $tr_cart='';               
             if(count($arrCart) > 0){
               foreach ($arrCart as $key => $value) {
                 $invoice_id=$item->id;
@@ -1526,6 +1527,13 @@ class IndexController extends Controller {
                 $product_price=$value["product_price"];                                  
                 $product_quantity=$value["product_quantity"];                         
                 $product_total_price=$value["product_total_price"];
+                $tr_cart .='<tr>';
+                $tr_cart .='<td>'.$product_code.'</td>';
+                $tr_cart .='<td>'.$product_name.'</td>';                          
+                $tr_cart .='<td align="right">'.convertToTextPrice($product_price).' đ</td>';
+                $tr_cart .='<td align="right">'.$product_quantity.'</td>';
+                $tr_cart .='<td align="right">'.convertToTextPrice($product_total_price).' đ</td>';
+                $tr_cart .='</tr>';     
                 $itemInvoiceDetail=new InvoiceDetailModel;                          
                 $itemInvoiceDetail->invoice_id=$invoice_id;
                 $itemInvoiceDetail->product_id=$product_id;
@@ -1565,58 +1573,38 @@ class IndexController extends Controller {
               $mail->Port = $smtp_port;                            
               $mail->setFrom($email_from, $fullname);
               $mail->addAddress($email_to, $contacted_person);   
-              $mail->Subject = 'Thông tin đặt hàng từ khách hàng '.$fullname.' - '.$phone ;   
+              $mail->Subject = 'Thông tin đặt hàng từ khách hàng '.$fullname.' - '.$phone ;                               
               $html_content='';     
-              $html_content .='<table border="1" cellspacing="5" cellpadding="5" width="50%">';
-              $html_content .='<thead>';
-              $html_content .='<tr>';
-              $html_content .='<th colspan="2"><h3>Thông tin từ khách hàng</h3></th>';
-              $html_content .='</tr>';
-              $html_content .='</thead>';
+              $html_content .='<div><center><h2>THÔNG TIN KHÁCH HÀNG</h2></center</div>';   
+              $html_content .='<table border="1"  cellspacing="5" cellpadding="5" width="100%">';         
               $html_content .='<tbody>';
-              $html_content .='<tr><td width="20%">Mã số đơn hàng</td><td width="80%">'.$order_code.'</td></tr>';
-              $html_content .='<tr><td>Họ và tên</td><td>'.$fullname.'</td></tr>';
-              $html_content .='<tr><td>Email</td><td>'.$email.'</td></tr>';
-              $html_content .='<tr><td>Điện thoại</td><td>'.$phone.'</td></tr>';              
-              $html_content .='<tr><td>Địa chỉ</td><td>'.$address.'</td></tr>';
-              $html_content .='<tr><td>Nội dung</td><td>'.$note.'</td></tr>';   
-              $html_content .='<tr><td>Số lượng</td><td>'.$total_quantity.'</td></tr>';   
-              $html_content .='<tr><td>Thành tiền</td><td>'.fnPrice($total_price).'</td></tr>';          
+              $html_content .='<tr><td width="20%">Mã số đơn hàng</td><td width="80%">'.@$order_code.'</td></tr>';
+              $ordered_date=datetimeConverterVn(@$item->created_at);
+              $html_content .='<tr><td>Ngày đặt hàng</td><td>'.@$ordered_date.'</td></tr>';
+              $html_content .='<tr><td>Họ và tên</td><td>'.@$fullname.'</td></tr>';
+              $html_content .='<tr><td>Email</td><td>'.@$email.'</td></tr>';
+              $html_content .='<tr><td>Điện thoại</td><td>'.@$phone.'</td></tr>';                                  
+              $html_content .='<tr><td>Địa chỉ</td><td>'.@$address.'</td></tr>';
+              $html_content .='<tr><td>Nội dung</td><td>'.@$note.'</td></tr>';   
+              $html_content .='<tr><td>Số lượng</td><td>'.@$total_quantity.'</td></tr>';   
+              $html_content .='<tr><td>Thành tiền</td><td>'.convertToTextPrice(@$total_price).' đ</td></tr>';          
               $html_content .='</tbody>';
-              $html_content .='</table>';   
-              $html_content .='<table border="1" cellspacing="5" cellpadding="5" width="100%">';
+              $html_content .='</table>';  
+              $html_content .='<div style="margin-top:20px"><center><h2>DANH SÁCH MẶT HÀNG</h2></center</div>';   
+              $html_content .='<table border="1" cellspacing="5"  cellpadding="5" width="100%">';
               $html_content .='<thead>';
               $html_content .='<tr>';
               $html_content .='<th>Mã sản phẩm</th>';
-              $html_content .='<th>Tên sản phẩm</th>';
-              
+              $html_content .='<th>Tên sản phẩm</th>';              
               $html_content .='<th>Đơn giá</th>';
               $html_content .='<th>Số lượng đặt mua</th>';
               $html_content .='<th>Tổng giá</th>';
               $html_content .='</tr>';
               $html_content .='</thead>';
               $html_content .='<tbody>';
-              if(count($arrCart) > 0){
-                foreach ($arrCart as $key => $value) {
-                  $product_id=$value["product_id"];    
-                  $product_code=$value["product_code"];  
-                  $product_name=$value["product_name"];                                                    
-                    
-                  $product_price=$value["product_price"];                                  
-                  $product_quantity=$value["product_quantity"];                         
-                  $product_total_price=$value["product_total_price"];
-                  $html_content .='<tr>';
-                  $html_content .='<td>'.$product_code.'</td>';
-                  $html_content .='<td>'.$product_name.'</td>';  
-                  
-                  $html_content .='<td align="right">'.fnPrice($product_price).'</td>';
-                  $html_content .='<td align="right">'.$product_quantity.'</td>';
-                  $html_content .='<td align="right">'.fnPrice($product_total_price).'</td>';
-                  $html_content .='</tr>';  
-                }                
-              }          
+              $html_content .=$tr_cart;
               $html_content .='</tbody>';
-              $html_content .='</table>';                                 
+              $html_content .='</table>';        
               $mail->msgHTML($html_content);
               $mail->Send();
               $msg['success']='Đặt hàng thành công';           

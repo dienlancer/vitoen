@@ -2437,6 +2437,9 @@ form[name='frm-search'] input[name='q']{
     .healthcare{
         display: none;
     }
+    .raka{
+        display: none;
+    }
     .feedback{
         float: none;
     }
