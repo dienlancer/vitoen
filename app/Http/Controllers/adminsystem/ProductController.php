@@ -175,6 +175,10 @@ class ProductController extends Controller {
               $checked=0;
               $msg['sale_off_100']='Giảm giá không được lớn hơn hoặc bằng 100'; 
             }
+            if((int)@$sale_off > (int)@$price ){
+              $checked=0;
+              $msg['price']='Giá không được bằng 0';
+            }
             /* begin checkfilesize */
             $file_size=0;
             if($image_file != null){        
@@ -504,6 +508,10 @@ class ProductController extends Controller {
         if((int)@$sale_off >= 100){
           $checked=0;
           $msg['sale_off_100']='Giảm giá không được lớn hơn hoặc bằng 100'; 
+        }
+        if((int)@$price == 0){
+          $checked=0;
+          $msg['price']='Giá không được bằng 0';  
         }
         if((int)@$checked == 1){
           if((int)@$sale_off > 0){
