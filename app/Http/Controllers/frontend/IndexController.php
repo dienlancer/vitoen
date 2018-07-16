@@ -454,9 +454,7 @@ class IndexController extends Controller {
       $arrCart=array();
       if(Session::has($this->_ssNameCart)){
         $arrCart=Session::get($this->_ssNameCart);
-      }
-      echo "<pre>".print_r($arrQTY,true)."</pre>";         
-      echo "<pre>".print_r($arrCart,true)."</pre>";die();
+      }      
       if(count($arrCart) > 0){
         foreach ($arrCart as $key => $value) {    
           $product_quantity=(int)$arrQTY[$key];
@@ -471,8 +469,7 @@ class IndexController extends Controller {
             unset($arrCart[$key]);
           }
         }
-      }              
-      $cart["cart"]=$arrCart;                    
+      }                     
       Session::put($this->_ssNameCart,$arrCart);                   
       if(count($arrCart)==0){
         Session::forget($this->_ssNameCart);              
