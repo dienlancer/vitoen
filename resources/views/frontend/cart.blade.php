@@ -39,11 +39,8 @@ if(count($arrCart) > 0){
 					$product_price_text 		=	fnPrice($value["product_price"]);
 					$product_total_price_text 	= 	fnPrice($value["product_total_price"]);
 					$quantity+=(int)@$product_quantity;
-					$total_price+=(float)$value["product_total_price"];				
-					$delete_cart				=	route('frontend.index.trash');
-					$continue_link 				=	url('/');
-					$delete_link 				=	route('frontend.index.delete',[$product_id]);
-					$checkout_link 				=	route('frontend.index.checkout');
+					$total_price+=(float)$value["product_total_price"];									
+					$delete_link 				=	route('frontend.index.delete',[$product_id]);					
 					?>
 					<tr>			
 						<td class="td-left"><a href="<?php echo $product_link ?>"><?php echo $product_name; ?></a></td>
@@ -51,7 +48,7 @@ if(count($arrCart) > 0){
 						<td align="center" class="com_product22" ><input  type="text" onkeypress="return isNumberKey(event)" value="<?php echo $product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $product_id; ?>]">		
 						</td>
 						<td align="right" class="com_product23" ><?php echo $product_total_price_text; ?></td>
-						<td align="center" class="com_product24" ><a href="<?php echo $delete_link; ?>" onclick="return xacnhanxoa();"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+						<td align="center" class="com_product24" ><a href="<?php echo route('frontend.index.checkout'); ?>" onclick="return xacnhanxoa();"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 					</tr>
 					<?php
 				} 
@@ -60,20 +57,19 @@ if(count($arrCart) > 0){
 			<tfoot>
 				<tr>
 					<td colspan="2">
-						<a href="<?php echo $delete_cart; ?>" class="com_product28"><div><i class="far fa-trash-alt"></i></div><div class="margin-left-5">Xóa giỏ hàng</div></a>
+						<a href="<?php echo route('frontend.index.trash'); ?>" class="com_product28"><div><i class="far fa-trash-alt"></i></div><div class="margin-left-5">Xóa giỏ hàng</div></a>
 						<a href="javascript:void(0);" onclick="document.forms['frm'].submit();" class="com_product28">
 							<div><i class="fas fa-sync-alt"></i></div>
 							<div class="margin-left-5">Cập nhật</div>
 						</a>												
-						<a href="<?php echo $continue_link; ?>" class="com_product28">
+						<a href="<?php echo route('frontend.index.getHome'); ?>" class="com_product28">
 							<div><i class="fas fa-backward"></i></div>
 							<div class="margin-left-5">Tiếp tục mua hàng</div> 
 						</a>
-						<a href="<?php echo $checkout_link; ?>" class="com_product28">							
+						<a href="<?php echo route('frontend.index.checkout'); ?>" class="com_product28">							
 							<div >Thanh toán</div>
 							<div class="margin-left-5"><i class="fas fa-forward"></i></div>
-						</a>
-						<input type="hidden" name="action" value="update-cart" />									
+						</a>													
 					</td>			
 					<td><center><?php echo $quantity ?></center></td>
 					<td class="td-right"><?php echo fnPrice($total_price) ; ?></td>

@@ -857,17 +857,9 @@ class IndexController extends Controller {
       }
       
       public function checkout(){          
-        $arrUser=array();              
-        $user = Sentinel::forceCheck(); 
-        if(!empty($user)){                
-          $arrUser = $user->toArray();    
-        }              
-        if(count($arrUser) > 0){
-          $link="frontend.index.confirmCheckout";
-        }else{
-          $link="frontend.index.loginCheckout";
-        }
-        return redirect()->route($link); 
+        $component="checkout";    
+        $layout="two-column";   
+        return view("frontend.index",compact("component","layout"));   
       }
       public function confirmCheckout(Request $request){
       	$checked=1;
