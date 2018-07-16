@@ -580,6 +580,15 @@ form[name='frm-search'] input[name='q']{border:none;outline:none;padding:8px 10p
     font-size: 11px;
     line-height: 20px;
 }
+.price-on-detail{
+	font-size: 20px;
+}
+.td-left{
+	text-align: left;
+}
+.td-right{
+	text-align: right;
+}
 @media (max-width:768px){.cateprodhorizontalright li:hover > ul{display:none;}
 form[name='frm-search']{width:100%;}
 .menu-header-top li{display:block;}

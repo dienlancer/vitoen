@@ -119,7 +119,7 @@ if(count($arrCart) > 0){
 	<link rel="stylesheet" href="{{ asset('public/frontend/jquery-ui/jquery-ui.css') }}" />
 	<!-- end jquery-ui -->
 	<!-- begin font-awesome -->
-	<link rel="stylesheet" href="{{ asset('public/frontend/web-fonts-with-css/css/fontawesome-all.min.css') }}" />	
+	<link rel="stylesheet" href="{{ asset('public/frontend/fontawesome/css/all.css') }}" />	
 	<!-- end font-awesome -->	
 	<!-- begin ddsmoothmenu -->
 	<script src="{{ asset('public/frontend/js/ddsmoothmenu.js') }}"></script>

@@ -14,19 +14,20 @@ if(count($arrCart) > 0){
 	?>
 	<form name="frm" method="post" action="" class="margin-top-15">
 		{{ csrf_field() }}
-		<table   cellpadding="0" cellspacing="0" width="100%">
+		<table class="com_product16" cellpadding="0" cellspacing="0" width="100%">
 			<thead>
 				<tr>	
 					<th>Sản phẩm</th>
-					<th>Giá</th>
+					<th><center>Giá</center></th>
 					<th>Số lượng</th>
-					<th>Tổng giá</th>
+					<th><center>Tổng giá</center></th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php	
 				$total_price=0;
+				$quantity=0;
 				foreach ($arrCart as $key => $value) {	
 					$product_id=$value["product_id"];      
 					$product_name 				=	$value["product_name"];
@@ -37,24 +38,48 @@ if(count($arrCart) > 0){
 					$product_quantity			=	$value["product_quantity"];
 					$product_price_text 		=	fnPrice($value["product_price"]);
 					$product_total_price_text 	= 	fnPrice($value["product_total_price"]);
+					$quantity+=(int)@$product_quantity;
 					$total_price+=(float)$value["product_total_price"];				
-					$delete_cart				=	route('frontend.index.deleteAll');
+					$delete_cart				=	route('frontend.index.trash');
 					$continue_link 				=	url('/');
 					$delete_link 				=	route('frontend.index.delete',[$product_id]);
 					$checkout_link 				=	route('frontend.index.checkout');
 					?>
 					<tr>			
-						<td ><a href="<?php echo $product_link ?>"><?php echo $product_name; ?></a></td>
-						<td align="right" ><?php echo $product_price_text; ?></td>
-						<td align="center" ><input  type="text" onkeypress="return isNumberKey(event)" value="<?php echo $product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $product_id; ?>]">		
+						<td class="td-left"><a href="<?php echo $product_link ?>"><?php echo $product_name; ?></a></td>
+						<td align="right" class="com_product21" ><?php echo $product_price_text; ?></td>
+						<td align="center" class="com_product22" ><input  type="text" onkeypress="return isNumberKey(event)" value="<?php echo $product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $product_id; ?>]">		
 						</td>
-						<td align="right" ><?php echo $product_total_price_text; ?></td>
-						<td align="center" ><a href="<?php echo $delete_link; ?>"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+						<td align="right" class="com_product23" ><?php echo $product_total_price_text; ?></td>
+						<td align="center" class="com_product24" ><a href="<?php echo $delete_link; ?>"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 					</tr>
 					<?php
 				} 
 				?>					
-			</tbody>			
+			</tbody>	
+			<tfoot>
+				<tr>
+					<td colspan="2">
+						<a href="<?php echo $delete_cart; ?>" class="com_product28"><div><i class="far fa-trash-alt"></i></div><div class="margin-left-5">Xóa giỏ hàng</div></a>
+						<a href="javascript:void(0);" onclick="document.forms['frm'].submit();" class="com_product28">
+							<div><i class="fas fa-sync-alt"></i></div>
+							<div class="margin-left-5">Cập nhật</div>
+						</a>												
+						<a href="<?php echo $continue_link; ?>" class="com_product28">
+							<div><i class="fas fa-backward"></i></div>
+							<div class="margin-left-5">Tiếp tục mua hàng</div> 
+						</a>
+						<a href="<?php echo $checkout_link; ?>" class="com_product28">							
+							<div >Thanh toán</div>
+							<div class="margin-left-5"><i class="fas fa-forward"></i></div>
+						</a>
+						<input type="hidden" name="action" value="update-cart" />									
+					</td>			
+					<td><center><?php echo $quantity ?></center></td>
+					<td class="td-right"><?php echo fnPrice($total_price) ; ?></td>
+					<td></td>
+				</tr>
+			</tfoot>		
 		</table>
 	</form>
 	<?php

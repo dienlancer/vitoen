@@ -370,7 +370,7 @@ Route::post("adminsystem/logout",["as"=>"adminsystem.logout","uses"=>"adminsyste
 Route::match(["get","post"],"/",["as"=>"frontend.index.getHome","uses"=>"frontend\IndexController@getHome"]);
 Route::match(["get","post"],"{alias}.html",["as"=>"frontend.index.index","uses"=>"frontend\IndexController@index"]);
 Route::match(["get","post"],"gio-hang",["as"=>"frontend.index.viewCart","uses"=>"frontend\IndexController@viewCart"]);
-Route::match(["get","post"],"xoa-gio-hang",["as"=>"frontend.index.deleteAll","uses"=>"frontend\IndexController@deleteAll"]);
+Route::match(["get","post"],"xoa-gio-hang",["as"=>"frontend.index.trash","uses"=>"frontend\IndexController@trash"]);
 Route::match(["get","post"],"xoa/{id}",["as"=>"frontend.index.delete","uses"=>"frontend\IndexController@delete"]);
 Route::match(["get","post"],"dang-ky",["as"=>"frontend.index.register","uses"=>"frontend\IndexController@register"]);
 Route::match(["get","post"],"tai-khoan",["as"=>"frontend.index.viewAccount","uses"=>"frontend\IndexController@viewAccount"]);

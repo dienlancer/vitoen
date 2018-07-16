@@ -449,12 +449,14 @@ class IndexController extends Controller {
     $layout="two-column";     
     $component='cart';                 
     if($request->isMethod('post')){
-      $arrQTY=$request->quantity;                 
+      $arrQTY=$request->quantity;                  
       $ssCart=array();
       $arrCart=array();
       if(Session::has($this->_ssNameCart)){
         $arrCart=Session::get($this->_ssNameCart);
-      }         
+      }
+      echo "<pre>".print_r($arrQTY,true)."</pre>";         
+      echo "<pre>".print_r($arrCart,true)."</pre>";die();
       if(count($arrCart) > 0){
         foreach ($arrCart as $key => $value) {    
           $product_quantity=(int)$arrQTY[$key];
@@ -609,7 +611,7 @@ class IndexController extends Controller {
         $data=supporterTiepluaConverter($data);            
         return $data;
       }
-      public function deleteAll(){          
+      public function trash(){          
           if(Session::has($this->_ssNameCart)){
             Session::forget($this->_ssNameCart);
           }                   

@@ -103,16 +103,22 @@ if(count($item) > 0){
                 <b>Lượt xem:</b>&nbsp;<?php echo $count_view; ?>
             </div>
             <hr class="product-ngang" />
-            <div class="margin-top-5 tell-price">
-                <?php 
-                $price=$item['price'];                  
+            <div class="margin-top-5">
+                <?php                 
+                $price=$item['price'];   
+                $sale_price=$item['sale_price'];               
                 $html_price='';                     
-                if((int)@$price > 0){                                   
-                    $html_price=fnPrice($price)  ;              
-                }else{
-                    $html_price='LIÊN HỆ' ;                  
-                }       
-                echo '<span class="pdetail-price-on">'.$html_price.'</span>' ;                  
+                if((int)@$price == 0 && (int)@$sale_price == 0){              
+                    $html_price='<span class="price-on price-on-detail">Giá : Liên hệ</span>' ;                    
+                }else{                              
+                    if((int)@$sale_price == 0){
+                        $html_price='<span class="price-on price-on-detail">'.fnPrice($price).'</span>'  ;
+                    }else{
+                        $html_price='<div><span class="price-off">'.fnPrice($price).'</span></div>';
+                        $html_price.='<div><span class="price-on price-on-detail">'.fnPrice($sale_price).'</span></div>';
+                    }                               
+                }     
+                echo $html_price;  
                 ?>
             </div>                
             <div class="box-product-param">
