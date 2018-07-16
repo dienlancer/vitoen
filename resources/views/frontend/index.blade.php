@@ -80,7 +80,7 @@ if(!empty($alias)){
                     case 'products':        
                     case 'category-product':
                     case 'product':
-                                                                        
+                    case 'cart':                                        
                     $argsDanhMucSanPham2 = array(                         
                         'menu_class'            => 'dmspleft',                                        
                         'before_wrapper'        => '<div class="dmsp-left">',
@@ -230,7 +230,7 @@ if(!empty($alias)){
                     case "product":                                                
                     ?>@include("frontend.product")<?php
                     break;
-                    case "gio-hang":                                                
+                    case "cart":                                                
                     ?>@include("frontend.cart")<?php
                     break; 
                     case "register":                                                

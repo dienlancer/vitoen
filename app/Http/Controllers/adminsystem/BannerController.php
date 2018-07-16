@@ -105,7 +105,7 @@ public function save(Request $request){
     $setting= getSettingSystem();
     $width=0;
     $height=0;                            
-    $image_name=uploadImage($image_file['name'],$image_file['tmp_name'],$width,$height);              
+    $image_name=uploadImageNoMarked($image_file['name'],$image_file['tmp_name'],$width,$height);              
   }  
   if(empty($id)){
     $item 				= 	new BannerModel;       

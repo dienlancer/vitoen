@@ -7,554 +7,474 @@ if(count($item) > 0){
     $alias=$item["alias"];
     $permalink=route('frontend.index.index',[$alias]);
 
-	$intro=$item["intro"];
-	$detail=$item['detail'];
+    $intro=$item["intro"];
+    $detail=$item['detail'];
     $technical_detail=$item['technical_detail'];  
     $video_id=$item['video_id'];
-	$small_img=get_product_thumbnail($item['image']);
-	$large_img=asset('upload/'.$item['image']) ;
-	/* begin cập nhật count view */
-	$count_view=(int)@$item['count_view'];
-	$count_view++;
-	$row                =   App\ProductModel::find((int)@$id); 
-	$row->count_view=$count_view;
-	$row->save();
-	$count_view_text=number_format($count_view,0,",",".");
-	/* end cập nhật count view */
-	/* begin setting */
-	$address=$setting['address']['field_value'];
-	$email_to=$setting['email_to']['field_value'];
-	$contacted_person=$setting['contacted_person']['field_value'];
-	$hotline1=$setting['hotline1']['field_value'];
-	
-	$product_width = $setting['product_width']['field_value'];
-	$product_height = $setting['product_height']['field_value'];
-	/* end setting */    	
-	$arrPicture=json_decode($item['child_image']);
-	$arrPicture[]=$item['image']; 	
-	$dataCategory=App\CategoryProductModel::find((int)@$item['category_id'])->toArray();   
-	$breadcrumb= getBreadCrumbCategoryProduct($dataCategory);	
-    ?>    
-    
-        <div class="breadcrumb-title margin-top-15">
-            <?php echo $breadcrumb; ?>
-        </div>      
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="margin-top-15">
-                    <div class="pdetail-chipu">
-                        <div class="image-detail"><img alt="<?php echo @$item['alt_image']; ?>" class="zoom_img" src="<?php echo $small_img; ?>" data-zoom-image="<?php echo $large_img; ?>" /></div>
-                    </div>                    
+    $small_img=get_product_thumbnail($item['image']);
+    $large_img=asset('upload/'.$item['image']) ;
+    /* begin cập nhật count view */
+    $count_view=(int)@$item['count_view'];
+    $count_view++;
+    $row                =   App\ProductModel::find((int)@$id); 
+    $row->count_view=$count_view;
+    $row->save();
+    $count_view_text=number_format($count_view,0,",",".");
+    /* end cập nhật count view */
+    /* begin setting */
+    $address=$setting['address']['field_value'];
+    $email_to=$setting['email_to']['field_value'];
+    $contacted_person=$setting['contacted_person']['field_value'];
+    $hotline1=$setting['hotline1']['field_value'];
+
+    $product_width = $setting['product_width']['field_value'];
+    $product_height = $setting['product_height']['field_value'];
+    /* end setting */    	
+    $arrPicture=json_decode($item['child_image']);
+    $arrPicture[]=$item['image']; 	
+    $dataCategory=App\CategoryProductModel::find((int)@$item['category_id'])->toArray();   
+    $breadcrumb= getBreadCrumbCategoryProduct($dataCategory);	
+    ?>        
+    <div class="breadcrumb-title margin-top-15">
+        <?php echo $breadcrumb; ?>
+    </div>      
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="margin-top-15">
+                <div class="pdetail-chipu">
+                    <div class="image-detail"><img alt="<?php echo @$item['alt_image']; ?>" class="zoom_img" src="<?php echo $small_img; ?>" data-zoom-image="<?php echo $large_img; ?>" /></div>
+                </div>                    
+            </div>
+            <?php 
+            if(count($arrPicture) > 0){
+                ?>
+                <div class="margin-top-5">
+                    <script type="text/javascript" language="javascript">
+                        $(document).ready(function(){
+                            $(".prodetail").owlCarousel({
+                                autoplay:true,                    
+                                loop:true,
+                                margin:2,                        
+                                nav:true,            
+                                mouseDrag: true,
+                                touchDrag: true,                                
+                                responsiveClass:true,
+                                responsive:{
+                                    0:{
+                                        items:1
+                                    },
+                                    600:{
+                                        items:1
+                                    },
+                                    1000:{
+                                        items:4
+                                    }
+                                }
+                            });
+                            var chevron_left='<i class="fa fa-chevron-left"></i>';
+                            var chevron_right='<i class="fa fa-chevron-right"></i>';
+                            $("div.prodetail div.owl-prev").html(chevron_left);
+                            $("div.prodetail div.owl-next").html(chevron_right);
+                        });                
+                    </script>
+                    <div class="owl-carousel prodetail owl-theme">
+                        <?php 
+                        for($i=0;$i<count($arrPicture);$i++){                                            
+                            $small_thumbnail=asset('/upload/'.$product_width.'x'.$product_height.'-'.$arrPicture[$i]);    
+                            $large_thumbnail=asset('/upload/'.$arrPicture[$i]);                            
+                            ?>
+                            <div class="pdetail-chipu">                                 
+                                <a href="javascript:void(0)" onclick="changeImage('<?php echo $small_thumbnail; ?>','<?php echo $large_thumbnail; ?>');"><img  src="<?php echo $small_thumbnail; ?>" width="<?php echo (int)$product_width/5; ?>" /></a>                                                                            
+                            </div>
+                            <?php                                    
+                        }                           
+                        ?>        
+                    </div>
                 </div>
+                <?php
+            }
+            ?>                
+        </div>
+        <div class="col-lg-8">
+            <h1 class="margin-top-15 product-detail-title">
+                <?php echo $title; ?>
+            </h1>
+            <div class="margin-top-5">
+                <b>Lượt xem:</b>&nbsp;<?php echo $count_view; ?>
+            </div>
+            <hr class="product-ngang" />
+            <div class="margin-top-5 tell-price">
                 <?php 
-                if(count($arrPicture) > 0){
-                    ?>
-                    <div class="margin-top-5">
-                        <script type="text/javascript" language="javascript">
-                            $(document).ready(function(){
-                                $(".prodetail").owlCarousel({
-                                    autoplay:true,                    
-                                    loop:true,
-                                    margin:2,                        
-                                    nav:true,            
-                                    mouseDrag: true,
-                                    touchDrag: true,                                
-                                    responsiveClass:true,
-                                    responsive:{
-                                        0:{
-                                            items:1
-                                        },
-                                        600:{
-                                            items:1
-                                        },
-                                        1000:{
-                                            items:4
+                $price=$item['price'];                  
+                $html_price='';                     
+                if((int)@$price > 0){                                   
+                    $html_price=fnPrice($price)  ;              
+                }else{
+                    $html_price='LIÊN HỆ' ;                  
+                }       
+                echo '<span class="pdetail-price-on">'.$html_price.'</span>' ;                  
+                ?>
+            </div>                
+            <div class="box-product-param">
+                <!-- begin biến chung -->
+                <?php 
+                $query=\DB::table('category_param');
+                $query->where('alias','<>','mau')->where('alias','<>','kich-thuoc')->where('parent_id','=',0);
+                $father_data=$query->select('category_param.id','category_param.fullname','category_param.alias')
+                ->groupBy('category_param.id','category_param.fullname','category_param.alias')
+                ->orderBy('category_param.sort_order', 'asc')
+                ->get()
+                ->toArray();    
+                $father_data=convertToArray($father_data);                  
+                if(count($father_data) > 0){
+                    foreach ($father_data as $father_key => $father_value) {
+                        $father_id=$father_value['id'];     
+                        $father_alias=$father_value['alias'];
+                        $father_fullname=$father_value['fullname'];                            
+                        $children_data=App\CategoryParamModel::whereRaw('parent_id = ?',[(int)@$father_id])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();                       
+                        $arr_id=array();
+                        if(count($children_data) > 0){
+                            foreach ($children_data as $child_key => $child_value){
+                                $arr_id[]=(int)@$child_value['id'];
+                            }
+                            $data_post_param=DB::table('post_param')
+                            ->whereIn('post_param.param_id',$arr_id)
+                            ->where('post_param.post_id',(int)@$id)
+                            ->select('id')
+                            ->get()
+                            ->toArray();
+                            if(count($data_post_param) > 0){
+                                ?>
+                                <div class="padding-top-10">
+                                    <div class="col-sm-3"><b><?php echo $father_fullname; ?></b></div>
+                                    <div class="col-sm-9">
+                                        <?php 
+                                        foreach ($children_data as $child_key => $child_value) {
+                                            $data_post_param_2=App\PostParamModel::whereRaw('post_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
+                                            if(count($data_post_param_2) > 0){
+                                                ?><div class="block-text"><?php echo $child_value['fullname']; ?></div><?php
+                                            }
+                                        }
+                                        ?>
+                                    </div> 
+                                    <div class="clr"></div>                 
+                                </div>
+                                <?php
+                            }
+                        }                            
+                    }                        
+                }   
+                ?>                
+                <!-- end biến chung -->   
+                <!-- begin màu -->
+                <?php 
+                $father_data=App\CategoryParamModel::whereRaw('alias = ?',['mau'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
+                if(count($father_data) > 0){
+                    $children_data=App\CategoryParamModel::whereRaw('parent_id = ?',[(int)@$father_data[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
+                    $arr_id=array();
+                    if(count($children_data) > 0){
+                        foreach ($children_data as $child_key => $child_value){
+                            $arr_id[]=(int)@$child_value['id'];
+                        }
+                        $data_post_param=DB::table('post_param')
+                        ->whereIn('post_param.param_id',$arr_id)
+                        ->where('post_param.post_id',(int)@$id)
+                        ->select('id')
+                        ->get()
+                        ->toArray();
+                        if(count($data_post_param) > 0){
+                            ?>
+                            <div class="margin-top-10">
+                                <div class="col-sm-3"><b>Màu</b></div>
+                                <div class="col-sm-9">
+                                    <?php 
+                                    foreach ($children_data as $child_key => $child_value) {
+                                        $data_post_param_2=App\PostParamModel::whereRaw('post_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
+                                        if(count($data_post_param_2) > 0){
+                                            ?><div class="block-color" style="background: <?php echo $child_value['param_value']; ?>"></div><?php
                                         }
                                     }
-                                });
-                                var chevron_left='<i class="fa fa-chevron-left"></i>';
-                                var chevron_right='<i class="fa fa-chevron-right"></i>';
-                                $("div.prodetail div.owl-prev").html(chevron_left);
-                                $("div.prodetail div.owl-next").html(chevron_right);
-                            });                
-                        </script>
-                        <div class="owl-carousel prodetail owl-theme">
-                            <?php 
-                            for($i=0;$i<count($arrPicture);$i++){                                            
-                                $small_thumbnail=asset('/upload/'.$product_width.'x'.$product_height.'-'.$arrPicture[$i]);    
-                                $large_thumbnail=asset('/upload/'.$arrPicture[$i]);                            
-                                ?>
-                                <div class="pdetail-chipu">                                 
-                                    <a href="javascript:void(0)" onclick="changeImage('<?php echo $small_thumbnail; ?>','<?php echo $large_thumbnail; ?>');"><img  src="<?php echo $small_thumbnail; ?>" width="<?php echo (int)$product_width/5; ?>" /></a>                                                                            
-                                </div>
-                                <?php                                    
-                            }                           
-                            ?>        
-                        </div>
-                    </div>
+                                    ?>
+                                </div> 
+                                <div class="clr"></div>                 
+                            </div>
+                            <?php
+                        }
+                    }
+                    ?>                  
                     <?php
                 }
                 ?>                
-            </div>
-            <div class="col-lg-8">
-                <h1 class="margin-top-15 product-detail-title">
-                    <?php echo $title; ?>
-                </h1>
-                <div class="margin-top-5">
-                    <b>Lượt xem:</b>&nbsp;<?php echo $count_view; ?>
-                </div>
-                <hr class="product-ngang" />
-                <div class="margin-top-5 tell-price">
-                    <?php 
-                    $price=$item['price'];                  
-                    $html_price='';                     
-                    if((int)@$price > 0){                                   
-                        $html_price=fnPrice($price)  ;              
-                    }else{
-                        $html_price='LIÊN HỆ' ;                  
-                    }       
-                    echo '<span class="pdetail-price-on">'.$html_price.'</span>' ;                  
-                    ?>
-                </div>                
-                <div class="box-product-param">
-                    <!-- begin biến chung -->
-                    <?php 
-                    $query=\DB::table('category_param');
-                    $query->where('alias','<>','mau')->where('alias','<>','kich-thuoc')->where('parent_id','=',0);
-                    $father_data=$query->select('category_param.id','category_param.fullname','category_param.alias')
-                    ->groupBy('category_param.id','category_param.fullname','category_param.alias')
-                    ->orderBy('category_param.sort_order', 'asc')
-                    ->get()
-                    ->toArray();    
-                    $father_data=convertToArray($father_data);                  
-                    if(count($father_data) > 0){
-                        foreach ($father_data as $father_key => $father_value) {
-                            $father_id=$father_value['id'];     
-                            $father_alias=$father_value['alias'];
-                            $father_fullname=$father_value['fullname'];                            
-                            $children_data=App\CategoryParamModel::whereRaw('parent_id = ?',[(int)@$father_id])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();                       
-                            $arr_id=array();
-                            if(count($children_data) > 0){
-                                foreach ($children_data as $child_key => $child_value){
-                                    $arr_id[]=(int)@$child_value['id'];
-                                }
-                                $data_post_param=DB::table('post_param')
-                                    ->whereIn('post_param.param_id',$arr_id)
-                                    ->where('post_param.post_id',(int)@$id)
-                                    ->select('id')
-                                    ->get()
-                                    ->toArray();
-                                if(count($data_post_param) > 0){
+                <!-- end màu -->  
+                <!-- begin kích thước -->
+                <?php 
+                $father_data=App\CategoryParamModel::whereRaw('alias = ?',['kich-thuoc'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
+                if(count($father_data) > 0){
+                    $children_data=App\CategoryParamModel::whereRaw('parent_id = ?',[(int)@$father_data[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
+                    $arr_id=array();
+                    if(count($children_data) > 0){
+                        foreach ($children_data as $child_key => $child_value){
+                            $arr_id[]=(int)@$child_value['id'];
+                        }
+                        $data_post_param=DB::table('post_param')
+                        ->whereIn('post_param.param_id',$arr_id)
+                        ->where('post_param.post_id',(int)@$id)
+                        ->select('id')
+                        ->get()
+                        ->toArray();
+                        if(count($data_post_param) > 0){
+                            ?>
+                            <div class="margin-top-10">
+                                <div class="col-sm-3"><b>Kích thước</b></div>
+                                <div class="col-sm-9">
+                                    <?php 
+                                    foreach ($children_data as $child_key => $child_value) {
+                                        $data_post_param_2=App\PostParamModel::whereRaw('post_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
+                                        if(count($data_post_param_2) > 0){
+                                            ?><div class="block-size"><?php echo $child_value['fullname']; ?></div><?php
+                                        }
+                                    }
                                     ?>
-                                    <div class="padding-top-10">
-                                        <div class="col-sm-3"><b><?php echo $father_fullname; ?></b></div>
-                                        <div class="col-sm-9">
-                                            <?php 
-                                            foreach ($children_data as $child_key => $child_value) {
-                                                $data_post_param_2=App\PostParamModel::whereRaw('post_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
-                                                if(count($data_post_param_2) > 0){
-                                                    ?><div class="block-text"><?php echo $child_value['fullname']; ?></div><?php
-                                                }
-                                            }
-                                            ?>
-                                        </div> 
-                                        <div class="clr"></div>                 
-                                    </div>
-                                    <?php
-                                }
-                            }                            
-                        }                        
-                    }   
-                    ?>                
-                    <!-- end biến chung -->   
-                    <!-- begin màu -->
-                    <?php 
-                    $father_data=App\CategoryParamModel::whereRaw('alias = ?',['mau'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
-                    if(count($father_data) > 0){
-                        $children_data=App\CategoryParamModel::whereRaw('parent_id = ?',[(int)@$father_data[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
-                        $arr_id=array();
-                        if(count($children_data) > 0){
-                            foreach ($children_data as $child_key => $child_value){
-                                $arr_id[]=(int)@$child_value['id'];
-                            }
-                            $data_post_param=DB::table('post_param')
-                            ->whereIn('post_param.param_id',$arr_id)
-                            ->where('post_param.post_id',(int)@$id)
-                            ->select('id')
-                            ->get()
-                            ->toArray();
-                            if(count($data_post_param) > 0){
-                                ?>
-                                <div class="margin-top-10">
-                                    <div class="col-sm-3"><b>Màu</b></div>
-                                    <div class="col-sm-9">
-                                        <?php 
-                                        foreach ($children_data as $child_key => $child_value) {
-                                            $data_post_param_2=App\PostParamModel::whereRaw('post_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
-                                            if(count($data_post_param_2) > 0){
-                                                ?><div class="block-color" style="background: <?php echo $child_value['param_value']; ?>"></div><?php
-                                            }
-                                        }
-                                        ?>
-                                    </div> 
-                                    <div class="clr"></div>                 
-                                </div>
-                                <?php
-                            }
+                                </div> 
+                                <div class="clr"></div>                 
+                            </div>
+                            <?php
                         }
-                        ?>                  
-                        <?php
                     }
-                    ?>                
-                    <!-- end màu -->  
-                    <!-- begin kích thước -->
+                    ?>                  
+                    <?php
+                }
+                ?>                
+                <!-- end kích thước -->                 
+            </div>   
+            <div class="margin-top-15">
+                <?php 
+                if((int)@$price > 0){
+                    ?>
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart"  onclick="addToCart();" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Mua ngay</span>
+                    </a>  
                     <?php 
-                    $father_data=App\CategoryParamModel::whereRaw('alias = ?',['kich-thuoc'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
-                    if(count($father_data) > 0){
-                        $children_data=App\CategoryParamModel::whereRaw('parent_id = ?',[(int)@$father_data[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
-                        $arr_id=array();
-                        if(count($children_data) > 0){
-                            foreach ($children_data as $child_key => $child_value){
-                                $arr_id[]=(int)@$child_value['id'];
-                            }
-                            $data_post_param=DB::table('post_param')
-                            ->whereIn('post_param.param_id',$arr_id)
-                            ->where('post_param.post_id',(int)@$id)
-                            ->select('id')
-                            ->get()
-                            ->toArray();
-                            if(count($data_post_param) > 0){
-                                ?>
-                                <div class="margin-top-10">
-                                    <div class="col-sm-3"><b>Kích thước</b></div>
-                                    <div class="col-sm-9">
-                                        <?php 
-                                        foreach ($children_data as $child_key => $child_value) {
-                                            $data_post_param_2=App\PostParamModel::whereRaw('post_id = ? and param_id = ?',[(int)@$id,(int)@$child_value['id']])->select('id')->get()->toArray();
-                                            if(count($data_post_param_2) > 0){
-                                                ?><div class="block-size"><?php echo $child_value['fullname']; ?></div><?php
-                                            }
-                                        }
-                                        ?>
-                                    </div> 
-                                    <div class="clr"></div>                 
-                                </div>
-                                <?php
-                            }
-                        }
-                        ?>                  
-                        <?php
-                    }
-                    ?>                
-                    <!-- end kích thước -->                 
-                </div>   
-                <div class="margin-top-15">
-                    <?php 
-                    if((int)@$price > 0){
-                        ?>
-                        <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart"  onclick="addToCart(document.forms['frm-product-detail']);" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Mua ngay</span>
-                        </a>  
-                        <?php 
-                    }else{
-                        ?>
-                        <a href="<?php echo url('lien-he'); ?>" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Liên hệ</span>
-                        </a>  
-                        <?php
-                    }
-                    ?>                                    
-                </div>                  
-                <form name="frm-product-detail"  method="POST" enctype="multipart/form-data">
-                    {{ csrf_field() }}                                        
-                    <div class="margin-top-5 x-table-cart">
-                        <?php 
-                        $ssName="vmart";
-                        $arrCart=array();
-                        if(Session::has($ssName)){
-                            $arrCart=Session::get($ssName);                                
-                            ksort($arrCart);                            
-                            if(count($arrCart)){    
-                                ?>
-                                <table  class="com_product16" cellpadding="0" cellspacing="0" width="100%">
-
-                                    <tbody>
-                                        <?php 
-                                        foreach ($arrCart as $cart_key => $cart_value) {
-                                            $cart_product_id=$cart_value['product_id'];
-                                            $cart_product_code=$cart_value['product_code'];
-                                            $cart_product_name=$cart_value['product_name'];
-                                            $cart_product_alias=$cart_value['product_alias'];
-                                            $cart_product_link               =   route('frontend.index.index',[$cart_product_alias]);    
-                                            $cart_product_image=$cart_value['product_image'];
-                                            $cart_product_price_text         =   fnPrice($cart_value["product_price"]);
-                                            $cart_product_total_price_text   =   fnPrice($cart_value["product_total_price"]);
-                                            $cart_product_quantity           =   $cart_value["product_quantity"];
-                                            $cart_img=get_product_thumbnail($cart_product_image);                                        
-                                            ?>      
-                                            <tr pro_id=<?php echo $cart_product_id; ?> >            
-                                                <td class="com_product20" ><img src="<?php echo $cart_img; ?>" ></td>
-
-                                                <td align="left" class="com_product22">
-                                                    <div><a href="<?php echo $cart_product_link; ?>"><?php echo $cart_product_name; ?></a></div>
-                                                    <div><input  type="text" onkeypress="return isNumberKey(event)" onblur='changeTotalPrice(this);' value="<?php echo $cart_product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $cart_product_id; ?>]">      </div>  
-                                                </td>
-                                                <td align="right" class="com_product23" >
-                                                    <div class="tt-pri"><?php echo $cart_product_total_price_text; ?></div>
-                                                    <div><a href="javascript:void(0);" onclick="deleteRowCart(this);"><i class="fa fa-trash" aria-hidden="true"></i><span class="margin-left-5">Xóa</span></a></div>
-                                                </td>                                            
-                                            </tr>                          
-                                            <?php
-                                        }         
-                                        ?>
-                                    </tbody>
-                                </table>           
-                                <?php                                                                   
-                            }
-                        }                     
-                        ?>                
-                    </div>    
-                    <?php                           
-                        
-                    $style_ttkh='';
-                    if(count($arrCart) > 0){
-                        $style_ttkh='block';
-                    }else{
-                        $style_ttkh='none';
-                    }                
-                    ?>            
-                    <div class="note padding-top-5" style="display: none;"></div>    
-                    <div class="margin-top-15 tbl-ttkh" style="display: <?php echo $style_ttkh; ?>">
-                        <div class="ttkh">Thông tin khách hàng</div>
-                        <div class="margin-top-15">
-                            <input type="text" class="ttkh-text" name="customer_name" value="" placeholder="Tên người nhận">
-                        </div>
-                        <div class="margin-top-15">
-                            <input type="text" class="ttkh-text" name="customer_phone" value="" placeholder="Số điện thoại">
-                        </div>
-                        <div class="margin-top-15">
-                            <input type="text" class="ttkh-text" name="customer_address" value="" placeholder="Địa chỉ">
-                        </div>
-                        <div class="margin-top-15">
-                            <input type="text" class="ttkh-text" name="customer_email" value="" placeholder="Email">
-                        </div>
-                        <div class="margin-top-15">
-                            <input type="text" class="ttkh-text" name="customer_note" value="" placeholder="Ghi chú: Màu sắc, thời gian giao hàng,...">
-                        </div>
-                        <div class="margin-top-15">
-                            <a href="javascript:void(0);" onclick="checkout(this);" class="kh-checkout">Thanh toán</a>
-                            <a href="<?php echo url('/'); ?>" class="kh-mua-them">Mua thêm</a>
-                        </div>
-                    </div>                                                                   
-                </form>                
-    </div>
-        </div>  	           
-            
+                }else{
+                    ?>
+                    <a href="<?php echo url('lien-he'); ?>" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Liên hệ</span>
+                    </a>  
+                    <?php
+                }
+                ?>                                    
+            </div>                                  
+        </div>
+    </div>  	           
+    <form name="frm-product-detail"  method="POST" enctype="multipart/form-data">
+        {{ csrf_field() }}
+        <input type="hidden" name="id" name="<?php echo @$item['id']; ?>">
+    </form>
     <div class="clr"></div>
 
-        <div class="margin-top-15 navajava">
-            <script type="text/javascript" language="javascript">
-                function openCity(evt, cityName) {    
-                    var i, tabcontent, tablinks;
-                    tabcontent = document.getElementsByClassName("tabcontent");
-                    for (i = 0; i < tabcontent.length; i++) {
-                        tabcontent[i].style.display = "none";
-                    }   
-                    tablinks = document.getElementsByClassName("tablinks");
-                    for (i = 0; i < tablinks.length; i++) {
-                        tablinks[i].className = tablinks[i].className.replace(" active", "");
-                    }   
-                    document.getElementById(cityName).style.display = "block";
-                    evt.currentTarget.className += " active";
-                }
-                jQuery(document).ready(function(){
-                    jQuery("#thong-tin").show();
-                    jQuery("div.tab > button.tablinks:first-child").addClass('active');
-                });
-            </script>       
-            <div class="tab">
-                <button class="tablinks h-title" onclick="openCity(event, 'thong-tin')">Thông tin</button>
-                <button class="tablinks h-title" onclick="openCity(event, 'technical')">Thông số kỹ thuật</button>               
-                <button class="tablinks h-title" onclick="openCity(event, 'video')">Video</button>
-                              
-                <button class="tablinks h-title" onclick="openCity(event, 'comments')">Bình luận</button>                                 
-                <div class="clr"></div>           
-            </div>
-            <div id="thong-tin" class="tabcontent">
-               <div class="margin-top-15">
-                <?php
-                if(!empty($detail)){
-                    echo $detail; 
-                }                
-                ?>                   
-               </div>
-            </div>
-            <div id="technical" class="tabcontent">
-                <div class="margin-top-15">
-                    <?php
-                    if(!empty($technical_detail)){
-                        echo $technical_detail; 
-                    }                 
-                    ?>
-                        
-                    </div>
-            </div>          
-            <div id="video" class="tabcontent">
-                <div class="margin-top-15">
-                    <?php 
-                    if(!empty($video_id)){
-                        ?>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $video_id; ?>?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                        <?php 
-                    }
-                    ?>
-                    
-                </div> 
-            </div>                
-            <div id="comments" class="tabcontent">
-                <div class="margin-top-15">
-                    <div class="fb-comments" data-href="<?php echo $permalink; ?>" data-numposts="10"></div>
-                </div>
-            </div>           
-        </div>   
-        <div class="clr"></div>     
-        <?php              
-        $category_id=$item['category_id'];               
-        $dataProduct=DB::table('product')                        
-        ->select('product.id','product.alias','product.fullname','product.image','product.alt_image','product.intro','product.price','product.sale_off','product.sale_price')
-        ->where('product.category_id', $category_id)
-        ->where('product.id','<>',(int)@$id)
-        ->where('product.status',1)       
-        ->groupBy('product.id','product.alias','product.fullname','product.image','product.alt_image','product.intro','product.price','product.sale_off','product.sale_price')
-        ->orderBy('product.created_at', 'desc')                
-        ->get()
-        ->toArray();         
-        $dataProduct=convertToArray($dataProduct);     
-        if(count($dataProduct) > 0){            
-        	?>
-        	<div class="margin-top-15 product-detail-content">
-        		Sản phẩm liên quan
-        	</div> 
-        	<div class="margin-top-15">
-        		<script type="text/javascript" language="javascript">
-        			$(document).ready(function(){
-        				$(".productdetail").owlCarousel({
-        					autoplay:true,                    
-                            loop:true,
-                            margin:0,                        
-                            nav:true,            
-                            mouseDrag: true,
-                            touchDrag: true,                                
-                            responsiveClass:true,
-                            responsive:{
-                                0:{
-                                    items:1
-                                },
-                                600:{
-                                    items:1
-                                },
-                                1000:{
-                                    items:4
-                                }
-                            }
-                        });
-        				var chevron_left='<i class="fa fa-chevron-left"></i>';
-        				var chevron_right='<i class="fa fa-chevron-right"></i>';
-        				$("div.productdetail div.owl-prev").html(chevron_left);
-        				$("div.productdetail div.owl-next").html(chevron_right);
-        			});                
-        		</script>
-        		<div class="owl-carousel productdetail owl-theme">
-        			<?php 
-        			foreach($dataProduct as $key => $value){
-        				$pdetail_id=$value['id'];
-        				$pdetail_alias=$value['alias'];
-        				$pdetail_name=$value['fullname'];        				
-        				$pdetail_permalink=route('frontend.index.index',[$pdetail_alias]) ;
-        				$pdetail_img =get_product_thumbnail($value['image']) ;	
-        				$product_price=$value['price']; 
-                        $product_sale_price=$value['sale_price'];                           
-                        $html_price='';                     
-                        if((int)@$product_price == 0 && (int)@$product_sale_price == 0){              
-                            $html_price='<span class="price-on">Giá : Liên hệ</span>' ;
+    <div class="margin-top-15 navajava">
+        <script type="text/javascript" language="javascript">
+            function openCity(evt, cityName) {    
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }   
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }   
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+            jQuery(document).ready(function(){
+                jQuery("#thong-tin").show();
+                jQuery("div.tab > button.tablinks:first-child").addClass('active');
+            });
+        </script>       
+        <div class="tab">
+            <button class="tablinks h-title" onclick="openCity(event, 'thong-tin')">Thông tin</button>
+            <button class="tablinks h-title" onclick="openCity(event, 'technical')">Thông số kỹ thuật</button>               
+            <button class="tablinks h-title" onclick="openCity(event, 'video')">Video</button>
 
-                        }else{                              
-                            if((int)@$product_sale_price == 0){
-                                $html_price='<span class="price-on">'.convertToTextPrice($product_price).'&nbsp;đ'.'</span>'  ;
-                            }else{
-                                $html_price='<div><span class="price-off">'.convertToTextPrice($product_price).'&nbsp;đ</span></div>';
-                                $html_price.='<div><span class="price-on">'.convertToTextPrice($product_sale_price).'&nbsp;đ</span></div>';
-                            }                               
-                        }         
-        				?>
-        				<div class="box-product-master margin-top-10">
-                            <div class="box-product-img canai">
-                                <center><a href="<?php echo $pdetail_permalink; ?>"><img src="<?php echo $pdetail_img; ?>" alt="<?php echo @$value['alt_image']; ?>"></a></center>
-                                <?php 
-                                if((int)@$value['sale_off'] > 0){
-                                    ?>
-                                    <div class="pricetag">
-                                        <div class="canai">
-                                            <img src="<?php echo asset('upload/pricetag.png'); ?>" >
-                                            <div class="riman">-<?php echo @$value['sale_off']; ?>%</div>                                       
-                                        </div>                                      
-                                    </div>
-                                    <?php
-                                }
-                                ?>      
-                            </div>
-                            <h3 class="box-product-intro-title"><a href="<?php echo $pdetail_permalink; ?>"><b><?php echo $pdetail_name; ?></b></a></h3>
-                            <?php 
-                            /* begin thương hiệu */     
-                            $trademark='';
-                            $father_data=App\CategoryParamModel::whereRaw('alias = ?',['thuong-hieu'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
-                            if(count($father_data) > 0){
-                                $children_data=App\CategoryParamModel::whereRaw('parent_id = ?',[(int)@$father_data[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
-                                $arr_id=array();
-                                if(count($children_data) > 0){
-                                    foreach ($children_data as $child_key => $child_value){
-                                        $arr_id[]=(int)@$child_value['id'];
-                                    }                                       
-                                    $data_category_param=DB::table('category_param')
-                                    ->join('post_param','category_param.id','=','post_param.param_id')
-                                    ->whereIn('post_param.param_id',@$arr_id)
-                                    ->where('post_param.post_id',(int)@$pdetail_id)
-                                    ->select('category_param.id','category_param.fullname')
-                                    ->get()
-                                    ->toArray();                                        
-                                    ?>
-                                    <div class="trademark">
-                                        <center>
-                                            <span>Thương hiệu:&nbsp;</span>
-                                            <span>
-                                                <font color="#333333">
-                                                    <?php 
-                                                    if(count($data_category_param) > 0){
-                                                        $data_category_param=convertToArray($data_category_param);
-                                                        $trademark=$data_category_param[0]['fullname'];                                 
-                                                        echo $trademark;                
-                                                    } else{
-                                                        echo 'Đang cập nhật';
-                                                    }                                                               
-                                                    ?>                                          
-                                                </font>
-                                            </span>
-                                        </center>                                       
-                                    </div>
-                                    <?php                                                                               
-                                }
-                            }
-                            /* end thương hiệu */       
-                            ?>                                  
-                            <div class="box-product-price">
-                                        <?php echo $html_price; ?>
-                            </div>
-                        </div>
-        				<?php
-        			}
-        			?>
-        		</div>
-        	</div>
-        	<?php 
-        }                     
+            <button class="tablinks h-title" onclick="openCity(event, 'comments')">Bình luận</button>                                 
+            <div class="clr"></div>           
+        </div>
+        <div id="thong-tin" class="tabcontent">
+         <div class="margin-top-15">
+            <?php
+            if(!empty($detail)){
+                echo $detail; 
+            }                
+            ?>                   
+        </div>
+    </div>
+    <div id="technical" class="tabcontent">
+        <div class="margin-top-15">
+            <?php
+            if(!empty($technical_detail)){
+                echo $technical_detail; 
+            }                 
+            ?>
+
+        </div>
+    </div>          
+    <div id="video" class="tabcontent">
+        <div class="margin-top-15">
+            <?php 
+            if(!empty($video_id)){
+                ?>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $video_id; ?>?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <?php 
+            }
+            ?>
+
+        </div> 
+    </div>                
+    <div id="comments" class="tabcontent">
+        <div class="margin-top-15">
+            <div class="fb-comments" data-href="<?php echo $permalink; ?>" data-numposts="10"></div>
+        </div>
+    </div>           
+</div>   
+<div class="clr"></div>     
+<?php              
+$category_id=$item['category_id'];               
+$dataProduct=DB::table('product')                        
+->select('product.id','product.alias','product.fullname','product.image','product.alt_image','product.intro','product.price','product.sale_off','product.sale_price')
+->where('product.category_id', $category_id)
+->where('product.id','<>',(int)@$id)
+->where('product.status',1)       
+->groupBy('product.id','product.alias','product.fullname','product.image','product.alt_image','product.intro','product.price','product.sale_off','product.sale_price')
+->orderBy('product.created_at', 'desc')                
+->get()
+->toArray();         
+$dataProduct=convertToArray($dataProduct);     
+if(count($dataProduct) > 0){            
+   ?>
+   <div class="margin-top-15 product-detail-content">
+      Sản phẩm liên quan
+  </div> 
+  <div class="margin-top-15">
+      <script type="text/javascript" language="javascript">
+         $(document).ready(function(){
+            $(".productdetail").owlCarousel({
+               autoplay:true,                    
+               loop:true,
+               margin:0,                        
+               nav:true,            
+               mouseDrag: true,
+               touchDrag: true,                                
+               responsiveClass:true,
+               responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:1
+                },
+                1000:{
+                    items:4
+                }
+            }
+        });
+            var chevron_left='<i class="fa fa-chevron-left"></i>';
+            var chevron_right='<i class="fa fa-chevron-right"></i>';
+            $("div.productdetail div.owl-prev").html(chevron_left);
+            $("div.productdetail div.owl-next").html(chevron_right);
+        });                
+    </script>
+    <div class="owl-carousel productdetail owl-theme">
+     <?php 
+     foreach($dataProduct as $key => $value){
+        $pdetail_id=$value['id'];
+        $pdetail_alias=$value['alias'];
+        $pdetail_name=$value['fullname'];        				
+        $pdetail_permalink=route('frontend.index.index',[$pdetail_alias]) ;
+        $pdetail_img =get_product_thumbnail($value['image']) ;	
+        $product_price=$value['price']; 
+        $product_sale_price=$value['sale_price'];                           
+        $html_price='';                     
+        if((int)@$product_price == 0 && (int)@$product_sale_price == 0){              
+            $html_price='<span class="price-on">Giá : Liên hệ</span>' ;
+
+        }else{                              
+            if((int)@$product_sale_price == 0){
+                $html_price='<span class="price-on">'.convertToTextPrice($product_price).'&nbsp;đ'.'</span>'  ;
+            }else{
+                $html_price='<div><span class="price-off">'.convertToTextPrice($product_price).'&nbsp;đ</span></div>';
+                $html_price.='<div><span class="price-on">'.convertToTextPrice($product_sale_price).'&nbsp;đ</span></div>';
+            }                               
+        }         
+        ?>
+        <div class="box-product-master margin-top-10">
+            <div class="box-product-img canai">
+                <center><a href="<?php echo $pdetail_permalink; ?>"><img src="<?php echo $pdetail_img; ?>" alt="<?php echo @$value['alt_image']; ?>"></a></center>
+                <?php 
+                if((int)@$value['sale_off'] > 0){
+                    ?>
+                    <div class="pricetag">
+                        <div class="canai">
+                            <img src="<?php echo asset('upload/pricetag.png'); ?>" >
+                            <div class="riman">-<?php echo @$value['sale_off']; ?>%</div>                                       
+                        </div>                                      
+                    </div>
+                    <?php
+                }
+                ?>      
+            </div>
+            <h3 class="box-product-intro-title"><a href="<?php echo $pdetail_permalink; ?>"><b><?php echo $pdetail_name; ?></b></a></h3>
+            <?php 
+            /* begin thương hiệu */     
+            $trademark='';
+            $father_data=App\CategoryParamModel::whereRaw('alias = ?',['thuong-hieu'])->select('id')->orderBy('sort_order','asc')->get()->toArray();
+            if(count($father_data) > 0){
+                $children_data=App\CategoryParamModel::whereRaw('parent_id = ?',[(int)@$father_data[0]['id']])->select('id','alias','fullname','param_value')->orderBy('sort_order','asc')->get()->toArray();
+                $arr_id=array();
+                if(count($children_data) > 0){
+                    foreach ($children_data as $child_key => $child_value){
+                        $arr_id[]=(int)@$child_value['id'];
+                    }                                       
+                    $data_category_param=DB::table('category_param')
+                    ->join('post_param','category_param.id','=','post_param.param_id')
+                    ->whereIn('post_param.param_id',@$arr_id)
+                    ->where('post_param.post_id',(int)@$pdetail_id)
+                    ->select('category_param.id','category_param.fullname')
+                    ->get()
+                    ->toArray();                                        
+                    ?>
+                    <div class="trademark">
+                        <center>
+                            <span>Thương hiệu:&nbsp;</span>
+                            <span>
+                                <font color="#333333">
+                                    <?php 
+                                    if(count($data_category_param) > 0){
+                                        $data_category_param=convertToArray($data_category_param);
+                                        $trademark=$data_category_param[0]['fullname'];                                 
+                                        echo $trademark;                
+                                    } else{
+                                        echo 'Đang cập nhật';
+                                    }                                                               
+                                    ?>                                          
+                                </font>
+                            </span>
+                        </center>                                       
+                    </div>
+                    <?php                                                                               
+                }
+            }
+            /* end thương hiệu */       
+            ?>                                  
+            <div class="box-product-price">
+                <?php echo $html_price; ?>
+            </div>
+        </div>
+        <?php
+    }
+    ?>
+</div>
+</div>
+<?php 
+}                     
 }
 ?>
 <script language="javascript" type="text/javascript">
@@ -576,31 +496,31 @@ if(count($item) > 0){
             zoomWindowFadeOut: 750
         });
     }    
-    function addToCart(xForm){
-            var token =$(xForm).find('input[name="_token"]').val();         
-            var quantity = 1;
-            var dataItem={
-                "id":<?php echo @$item['id']; ?>,            
-                "quantity":quantity,
-                "_token": token
-            };
-            $.ajax({
-                url: '<?php echo route("frontend.index.addToCart"); ?>',
-                type: 'POST',
-                data: dataItem,
-                async: false,
-                success: function (data) {
-                    restartCart(data);
-                    var thong_bao='Sản phẩm đã được thêm vào trong giỏ hàng';                       
-                    $(".modal-add-cart .modal-body").empty();              
-                    $(".modal-add-cart .modal-body").append(thong_bao);
-                },
-                error : function (data){
+    function addToCart(){
+        var id=$('form[name="frm-product-detail"]').find('input[name="id"]').val();             
+        var token =$('form[name="frm-product-detail"]').find('input[name="_token"]').val();             
+        var quantity = 1;
+        var dataItem={
+            "id":id,            
+            "quantity":quantity,
+            "_token": token
+        };
+        $.ajax({
+            url: '<?php echo route("frontend.index.addToCart"); ?>',
+            type: 'POST',
+            data: dataItem,
+            async: false,
+            success: function (data) {                
+                var thong_bao='Sản phẩm đã được thêm vào trong giỏ hàng';                       
+                $(".modal-add-cart .modal-body").empty();              
+                $(".modal-add-cart .modal-body").append(thong_bao);
+            },
+            error : function (data){
 
-                },
-                beforeSend  : function(jqXHR,setting){
+            },
+            beforeSend  : function(jqXHR,setting){
 
-                },
-            });
-        }    
+            },
+        });
+    }    
 </script> 
