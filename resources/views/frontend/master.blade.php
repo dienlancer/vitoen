@@ -111,8 +111,8 @@ if(count($arrCart) > 0){
 	<link rel="icon" href="<?php echo $seo_favicon; ?>" type="image/x-icon">
 	<script src="{{ asset('public/frontend/js/jquery-3.2.1.js') }}"></script>
 	<!--begin bootstrap-->
-	<script src="{{ asset('public/frontend/js/bootstrap.js') }}"></script>
-	<link rel="stylesheet" href="{{ asset('public/frontend/css/bootstrap.css') }}" />
+	<script src="{{ asset('public/frontend/js/bootstrap.min.js') }}"></script>
+	<link rel="stylesheet" href="{{ asset('public/frontend/css/bootstrap.min.css') }}" />
 	<!--end bootstrap-->
 	<!-- begin jquery-ui -->
 	<script src="{{ asset('public/frontend/jquery-ui/jquery-ui.min.js') }}"></script>
