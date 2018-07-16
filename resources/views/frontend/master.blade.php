@@ -291,12 +291,31 @@ if(count($arrCart) > 0){
 										<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();"><i class="fas fa-search"></i></a>	
 									</div>
 								</div>							
-							</form>
-							<div class="margin-left-30">
-								<div class="timex canai">
-									<a href="<?php echo route('frontend.index.viewCart'); ?>"><img src="<?php echo asset('/upload/icon-cart.png'); ?>"></a>									
-								</div>								
-							</div>
+							</form>							
+							<div class="timex canai">
+								<center><a href="<?php echo route('frontend.index.viewCart'); ?>"><img src="<?php echo asset('/upload/icon-cart.png'); ?>"></a></center>	
+								<?php 
+								$ssName="vmart";
+								$arrCart=array();
+								$display='';
+								$total_quantity=0;
+								if(Session::has($ssName)){
+									$arrCart=Session::get($ssName);  
+									ksort($arrCart);  
+								}
+								if(count($arrCart) > 0){
+									$display='block';
+									foreach ($arrCart as $key => $value){
+										$total_quantity+=(int)$value['product_quantity'];              
+									}
+								}else{
+									$display='none';
+								}   
+								?>								
+								<div class="samadu" style="display: <?php echo $display; ?>">
+									<?php echo $total_quantity; ?>
+								</div>
+							</div>															
 						</div>						
 					</div>	
 					<div class="col-lg-2">

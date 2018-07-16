@@ -445,39 +445,39 @@ class IndexController extends Controller {
   }
 
       
-      public function viewCart(Request $request){   
-          $layout="two-column";     
-          $component='cart';                 
-        if($request->isMethod('post')){
-            $arrQTY=$request->quantity;                 
-              $ssCart=array();
-              $arrCart=array();
-              if(Session::has($this->_ssNameCart)){
-                $arrCart=Session::get($this->_ssNameCart);
-              }         
-              if(count($arrCart) > 0){
-                foreach ($arrCart as $key => $value) {    
-                    $product_quantity=(int)$arrQTY[$key];
-                    $product_price = (float)$arrCart[$key]["product_price"];
-                    $product_total_price=$product_quantity * $product_price;
-                    $arrCart[$key]["product_quantity"]=$product_quantity;
-                    $arrCart[$key]["product_total_price"]=$product_total_price;
-                }
-                foreach ($arrCart as $key => $value) {
-                  $product_quantity=(int)$arrCart[$key]["product_quantity"];
-                  if($product_quantity==0){
-                    unset($arrCart[$key]);
-                  }
-                }
-              }              
-              $cart["cart"]=$arrCart;                    
-              Session::put($this->_ssNameCart,$arrCart);                   
-              if(count($arrCart)==0){
-                Session::forget($this->_ssNameCart);              
-              }                
-        }            
-        return view("frontend.index",compact("component","layout"));
-      }
+  public function viewCart(Request $request){   
+    $layout="two-column";     
+    $component='cart';                 
+    if($request->isMethod('post')){
+      $arrQTY=$request->quantity;                 
+      $ssCart=array();
+      $arrCart=array();
+      if(Session::has($this->_ssNameCart)){
+        $arrCart=Session::get($this->_ssNameCart);
+      }         
+      if(count($arrCart) > 0){
+        foreach ($arrCart as $key => $value) {    
+          $product_quantity=(int)$arrQTY[$key];
+          $product_price = (float)$arrCart[$key]["product_price"];
+          $product_total_price=$product_quantity * $product_price;
+          $arrCart[$key]["product_quantity"]=$product_quantity;
+          $arrCart[$key]["product_total_price"]=$product_total_price;
+        }
+        foreach ($arrCart as $key => $value) {
+          $product_quantity=(int)$arrCart[$key]["product_quantity"];
+          if($product_quantity==0){
+            unset($arrCart[$key]);
+          }
+        }
+      }              
+      $cart["cart"]=$arrCart;                    
+      Session::put($this->_ssNameCart,$arrCart);                   
+      if(count($arrCart)==0){
+        Session::forget($this->_ssNameCart);              
+      }                
+    }            
+    return view("frontend.index",compact("component","layout"));
+  }
       public function contact(Request $request){           
         $checked=1;        
         $msg=array();
@@ -1346,63 +1346,63 @@ class IndexController extends Controller {
               }                  
       }
       public function addToCart(Request $request){
-          $id=$request->id;
-          $quantity=$request->quantity;   
-          $data=ProductModel::find((int)$id);          
-          $product_id=(int)($data['id']);
-          $product_code=$data["code"];
-          $product_name=$data["fullname"];
-          $product_alias=$data["alias"];
-          $product_image=$data["image"];
-          $price=(float)@$data["price"];
-          $sale_price=(float)@$data["sale_price"];
-          $product_price=$price;
-          if($sale_price > 0){
-            $product_price=$sale_price;
-          }   
-          $product_quantity=(int)@$quantity;   
-          $total_quantity=0;                
+        $id=$request->id;
+        $quantity=$request->quantity;   
+        $data=ProductModel::find((int)$id);          
+        $product_id=(int)@$id;
+        $product_code=$data["code"];
+        $product_name=$data["fullname"];
+        $product_alias=$data["alias"];
+        $product_image=$data["image"];
+        $price=(float)@$data["price"];
+        $sale_price=(float)@$data["sale_price"];
+        $product_price=$price;
+        if($sale_price > 0){
+          $product_price=$sale_price;
+        }   
+        $product_quantity=(int)@$quantity;   
+        $total_quantity=0;                
+        $arrCart=array();
+        if(Session::has($this->_ssNameCart)){
+          $arrCart=Session::get($this->_ssNameCart);
+        }                             
+        if((int)@$product_id > 0){            
+          if(count($arrCart) == 0){
+            $arrCart[$product_id]["product_quantity"] = $product_quantity;
+          }
+          else{
+            if(!isset($arrCart[$product_id])){
+              $arrCart[$product_id]["product_quantity"] = $product_quantity;                 
+            }                        
+            else{
+              $arrCart[$product_id]["product_quantity"] = $arrCart[$product_id]["product_quantity"] + $product_quantity;                  
+            }                               
+          }
+          $arrCart[$product_id]["product_id"]=$product_id;  
+          $arrCart[$product_id]["product_code"]=$product_code;
+          $arrCart[$product_id]["product_name"]=$product_name;
+          $arrCart[$product_id]["product_alias"]=$product_alias;      
+          $arrCart[$product_id]["product_image"]=$product_image;          
+          $arrCart[$product_id]["product_price"]=$product_price;                      
+          $product_quantity=(int)@$arrCart[$product_id]["product_quantity"];
+          $product_total_price=$product_price * $product_quantity;
+          $arrCart[$product_id]["product_total_price"]=($product_total_price);                              
+          Session::put($this->_ssNameCart,$arrCart);    
           $arrCart=array();
-          if(Session::has($this->_ssNameCart)){
-            $arrCart=Session::get($this->_ssNameCart);
-          }                             
-          if($product_id > 0){            
-              if(count($arrCart) == 0){
-                $arrCart[$product_id]["product_quantity"] = $product_quantity;
-              }
-              else{
-                    if(!isset($arrCart[$product_id])){
-                      $arrCart[$product_id]["product_quantity"] = $product_quantity;                 
-                    }                        
-                    else{
-                      $arrCart[$product_id]["product_quantity"] = $arrCart[$product_id]["product_quantity"] + $product_quantity;                  
-                    }                               
-              }
-              $arrCart[$product_id]["product_id"]=$product_id;  
-              $arrCart[$product_id]["product_code"]=$product_code;
-              $arrCart[$product_id]["product_name"]=$product_name;
-              $arrCart[$product_id]["product_alias"]=$product_alias;      
-              $arrCart[$product_id]["product_image"]=$product_image;          
-              $arrCart[$product_id]["product_price"]=$product_price;                      
-              $product_quantity=(int)$arrCart[$product_id]["product_quantity"];
-              $product_total_price=$product_price * $product_quantity;
-              $arrCart[$product_id]["product_total_price"]=($product_total_price);                              
-              Session::put($this->_ssNameCart,$arrCart);    
-              $arrCart=array();
-              if(Session::has($this->_ssNameCart)){    
-                  $arrCart = @Session::get($this->_ssNameCart);    
-              }    
-              if(count($arrCart) > 0){
-                foreach ($arrCart as $key => $value){
-                  $total_quantity+=(int)$value['product_quantity'];              
-                }
-              }                                                        
+          if(Session::has($this->_ssNameCart)){    
+            $arrCart = @Session::get($this->_ssNameCart);    
           }    
-          ksort($arrCart);
-          $dataReturn=array(                            
-                            'cart'=>$arrCart
-                          );
-        return $dataReturn;
+          if(count($arrCart) > 0){
+            foreach ($arrCart as $key => $value){
+              $total_quantity+=(int)$value['product_quantity'];              
+            }
+          }                                                        
+        }    
+        ksort($arrCart);
+        $info=array(                            
+          'quantity'=>$total_quantity
+        );
+        return $info;
       }   
       function changeTotalPrice(Request $request){
         $id=$request->id;

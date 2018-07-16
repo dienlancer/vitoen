@@ -266,7 +266,7 @@ if(count($item) > 0){
     </div>  	           
     <form name="frm-product-detail"  method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <input type="hidden" name="id" name="<?php echo @$item['id']; ?>">
+        <input type="hidden" name="id" value="<?php echo @$item['id']; ?>">
     </form>
     <div class="clr"></div>
 
@@ -511,9 +511,12 @@ if(count($dataProduct) > 0){
             data: dataItem,
             async: false,
             success: function (data) {                
-                var thong_bao='Sản phẩm đã được thêm vào trong giỏ hàng';                       
+                var thong_bao='Sản phẩm đã được thêm vào giỏ hàng';                       
                 $(".modal-add-cart .modal-body").empty();              
                 $(".modal-add-cart .modal-body").append(thong_bao);
+                $('.samadu').show();
+                $('.samadu').empty();
+                $('.samadu').append(data.quantity);                
             },
             error : function (data){
 

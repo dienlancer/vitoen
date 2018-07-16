@@ -504,7 +504,7 @@ form[name='frm-search'] input[name='q']{border:none;outline:none;padding:8px 10p
 .cara{margin-bottom:0;}
 .tich-tac{list-style:none;}
 .tich-tac li{margin-left:0;}
-.timex{float:right;width:50px;}
+.timex{width:50px;}
 .katalena{position:fixed;bottom:0;right:0;z-index:2;}
 .katalena a{background:linear-gradient(#474747, #000000);text-align:center;border:1px solid #000000;padding:8px 70px;font-size:16px;display:block;color:#ffffff !important;}
 .katalena a:hover{color:#ffffff !important;}
@@ -568,6 +568,17 @@ form[name='frm-search'] input[name='q']{border:none;outline:none;padding:8px 10p
 .pricetag img{width:50px !important;}
 .riman{position:absolute;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#ffffff;font-weight:bold;top:0;left:0;}
 .tim-kiem-sp{background:#cd0000;padding:10px;color:#ffffff;font-weight:bold;margin-top:30px;}
+.samadu{
+	color: #ffffff;
+    position: absolute;
+    background: #cd0000;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 4px;
+}
 @media (max-width:768px){.cateprodhorizontalright li:hover > ul{display:none;}
 form[name='frm-search']{width:100%;}
 .menu-header-top li{display:block;}
