@@ -377,7 +377,7 @@ Route::match(["get","post"],"tai-khoan",["as"=>"frontend.index.viewAccount","use
 Route::match(["get","post"],"dang-nhap",["as"=>"frontend.index.login","uses"=>"frontend\IndexController@login"]);
 Route::match(["get","post"],"bao-mat",["as"=>"frontend.index.viewSecurity","uses"=>"frontend\IndexController@viewSecurity"]);
 Route::match(["get","post"],"lien-he",["as"=>"frontend.index.contact","uses"=>"frontend\IndexController@contact"]);
-Route::get("thanh-toan",["as"=>"frontend.index.checkout","uses"=>"frontend\IndexController@checkout"]);
+Route::match(["get","post"],"thanh-toan",["as"=>"frontend.index.checkout","uses"=>"frontend\IndexController@checkout"]);
 Route::get("hoan-tat-giao-dich",["as"=>"frontend.index.finishCheckout","uses"=>"frontend\IndexController@finishCheckout"]);
 Route::get("luu-don-hang",["as"=>"frontend.index.saveInvoice","uses"=>"frontend\IndexController@saveInvoice"]);
 Route::get("huy-giao-dich",["as"=>"frontend.index.cancelInvoice","uses"=>"frontend\IndexController@cancelInvoice"]);

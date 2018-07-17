@@ -854,11 +854,13 @@ class IndexController extends Controller {
       		}              
       	}
       	return view("frontend.index",compact("component",'msg',"data","success","layout"));         
-      }
-      
-      public function checkout(){          
+      }      
+      public function checkout(Request $request){          
       	$component="checkout";    
       	$layout="two-column";   
+      	$checked=1;
+      	$msg=array();        
+      	$data=array();
       	$ssName="vmart";
       	$arrCart=array();
       	if(Session::has($ssName)){
@@ -867,7 +869,46 @@ class IndexController extends Controller {
       	if(count(@$arrCart) == 0){      		
       		return redirect()->route('frontend.index.viewCart');
       	}
-      	return view("frontend.index",compact("component","layout"));   
+      	if($request->isMethod('post')){
+      		$data             	=   @$request->all();                 
+      		$email            	=   trim(@$request->email) ;
+      		$fullname         	=   trim(@$request->fullname);
+      		$address          	=   trim(@$request->address);
+      		$phone            	=   trim(@$request->phone);  
+      		$note 			 	=	trim(@$note);
+      		$payment_method_id 	= 	trim(@$request->payment_method_id); 
+      		if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",  mb_strtolower(trim(@$email),'UTF-8')  )){
+      			$msg["email"] = 'Email không hợp lệ';
+      			$data["email"] = '';
+      			$checked=0;
+      		}					
+      		if(mb_strlen(@$fullname) < 15){
+      			$msg["fullname"] = 'Họ tên phải từ 15 ký tự trở lên';    
+      			$data['fullname']='';        
+      			$checked = 0;
+      		}	
+      		if(mb_strlen(@$address) < 15){
+      			$msg["address"] = 'Địa chỉ phải từ 15 ký tự trở lên';      
+      			$data['address']='';      
+      			$checked = 0;
+      		}   
+      		if(mb_strlen(@$phone) < 10){
+      			$msg["phone"] = 'Điện thoại công ty phải từ 10 ký tự trở lên';   
+      			$data['phone']='';         
+      			$checked = 0;
+      		}
+      		if((int)@$payment_method_id==0){
+      			$msg["payment_method_id"] 	= 'Xin vui lòng chọn phương thức thanh toán';
+      			$data["payment_method_id"] 	= 0;                  
+      			$checked=0;
+      		}      		
+      		if((int)@$checked==1){
+      			$range_data = range(1,9);
+	      		$code=implode($range_data, '');      		
+	      		$code=str_shuffle($code);
+      		}				  
+      	}
+      	return view("frontend.index",compact("component","layout",'data','msg','checked'));   
       }
       public function confirmCheckout(Request $request){
       	$checked=1;

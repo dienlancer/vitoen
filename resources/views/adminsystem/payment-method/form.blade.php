@@ -7,7 +7,7 @@ $linkSave               =   route('adminsystem.'.$controller.'.save');
 
 $inputFullName          =   '<input type="text" class="form-control" name="fullname"      value="'.@$arrRowData['fullname'].'">';  
 $inputAlias             =   '<input type="text" class="form-control" name="alias"      value="'.@$arrRowData['alias'].'">';  
-$inputContent           =   '<textarea name="content" rows="5" cols="100" class="form-control" >'.@$arrRowData['content'].'</textarea>'; 
+$inputContent           =   '<textarea name="content" rows="5" cols="100" class="form-control summer-editor" >'.@$arrRowData['content'].'</textarea>'; 
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
 $ddlStatus              =   cmsSelectbox("status","form-control",$arrStatus,$status,"");
@@ -103,11 +103,12 @@ $inputID                =   '<input type="hidden" name="id"  value="'.@$id.'" />
             data: dataItem,
             async: false,
             success: function (data) {
-                if(data.checked==1){
-                    alert(data.msg.success);      
-                    window.location.href = "<?php echo $linkCancel; ?>";
+                console.log(data);
+               if(data.checked==1){    
+               alert(data.msg.success);                      
+                    window.location.href = data.link_edit;                    
                 }else{
-                    showMsg('note',data);              
+                    showMsg('note',data);    
                 }
                 spinner.hide();
             },
