@@ -517,7 +517,7 @@ if(count($dataProduct) > 0){
             data: dataItem,
             async: false,
             success: function (data) {                
-                var thong_bao='Sản phẩm đã được thêm vào giỏ hàng';                       
+                var thong_bao='Sản phẩm đã được thêm vào <a href="'+data.permalink+'">giỏ hàng</a>';                       
                 $(".modal-add-cart .modal-body").empty();              
                 $(".modal-add-cart .modal-body").append(thong_bao);
                 $('.samadu').show();

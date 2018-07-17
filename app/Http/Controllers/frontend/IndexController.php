@@ -857,9 +857,17 @@ class IndexController extends Controller {
       }
       
       public function checkout(){          
-        $component="checkout";    
-        $layout="two-column";   
-        return view("frontend.index",compact("component","layout"));   
+      	$component="checkout";    
+      	$layout="two-column";   
+      	$ssName="vmart";
+      	$arrCart=array();
+      	if(Session::has($ssName)){
+      		$arrCart=Session::get($ssName);    
+      	}  
+      	if(count(@$arrCart) == 0){      		
+      		return redirect()->route('frontend.index.viewCart');
+      	}
+      	return view("frontend.index",compact("component","layout"));   
       }
       public function confirmCheckout(Request $request){
       	$checked=1;
@@ -1385,13 +1393,14 @@ class IndexController extends Controller {
           }    
           if(count($arrCart) > 0){
             foreach ($arrCart as $key => $value){
-              $total_quantity+=(int)$value['product_quantity'];              
+              $total_quantity+=(int)@$value['product_quantity'];              
             }
           }                                                        
         }    
         ksort($arrCart);
         $info=array(                            
-          'quantity'=>$total_quantity
+          'quantity'=>$total_quantity,
+          'permalink'=>route('frontend.index.viewCart')
         );
         return $info;
       }   

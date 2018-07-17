@@ -12,7 +12,7 @@ if(Session::has($ssName)){
 }      
 if(count($arrCart) > 0){
 	?>
-	<form name="frm" method="post" action="" class="margin-top-15">
+	<form name="frm-view-cart" method="post" action="" class="margin-top-15">
 		{{ csrf_field() }}
 		<table class="com_product16" cellpadding="0" cellspacing="0" width="100%">
 			<thead>
@@ -39,8 +39,7 @@ if(count($arrCart) > 0){
 					$product_price_text 		=	fnPrice($value["product_price"]);
 					$product_total_price_text 	= 	fnPrice($value["product_total_price"]);
 					$quantity+=(int)@$product_quantity;
-					$total_price+=(float)$value["product_total_price"];									
-					$delete_link 				=	route('frontend.index.delete',[$product_id]);					
+					$total_price+=(float)$value["product_total_price"];																
 					?>
 					<tr>			
 						<td class="td-left"><a href="<?php echo $product_link ?>"><?php echo $product_name; ?></a></td>
@@ -48,7 +47,7 @@ if(count($arrCart) > 0){
 						<td align="center" class="com_product22" ><input  type="text" onkeypress="return isNumberKey(event)" value="<?php echo $product_quantity; ?>" size="4" class="com_product19" name="quantity[<?php echo $product_id; ?>]">		
 						</td>
 						<td align="right" class="com_product23" ><?php echo $product_total_price_text; ?></td>
-						<td align="center" class="com_product24" ><a href="<?php echo route('frontend.index.checkout'); ?>" onclick="return xacnhanxoa();"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+						<td align="center" class="com_product24" ><a href="<?php echo route('frontend.index.delete',[$product_id]); ?>" onclick="return xacnhanxoa();"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 					</tr>
 					<?php
 				} 
@@ -58,7 +57,7 @@ if(count($arrCart) > 0){
 				<tr>
 					<td colspan="2">
 						<a href="<?php echo route('frontend.index.trash'); ?>" class="com_product28"><div><i class="far fa-trash-alt"></i></div><div class="margin-left-5">Xóa giỏ hàng</div></a>
-						<a href="javascript:void(0);" onclick="document.forms['frm'].submit();" class="com_product28">
+						<a href="javascript:void(0);" onclick="document.forms['frm-view-cart'].submit();" class="com_product28">
 							<div><i class="fas fa-sync-alt"></i></div>
 							<div class="margin-left-5">Cập nhật</div>
 						</a>												
@@ -71,8 +70,8 @@ if(count($arrCart) > 0){
 							<div class="margin-left-5"><i class="fas fa-forward"></i></div>
 						</a>													
 					</td>			
-					<td><center><?php echo $quantity ?></center></td>
-					<td class="td-right"><?php echo fnPrice($total_price) ; ?></td>
+					<td><center><b><?php echo $quantity ?></b></center></td>
+					<td class="td-right"><b><?php echo fnPrice($total_price) ; ?></b></td>
 					<td></td>
 				</tr>
 			</tfoot>		
