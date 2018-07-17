@@ -50,64 +50,67 @@ $product_height = $setting['product_height']['field_value'];
             <?php echo  $inputID; ?>   
             <div class="form-body">
                 <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Tên khách hàng</b></label>
-                        <div class="col-md-9">
-                            <?php echo $inputFullName; ?>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>   
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Email</b></label>
                         <div class="col-md-9">
                             <?php echo $inputEmail; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>     
-                </div>      
+                </div>
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-3 control-label"><b>Tên khách hàng</b></label>
+                        <div class="col-md-9">
+                            <?php echo $inputFullName; ?>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>                       
+                </div>                      
+                <div class="row">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Phone</b></label>
                         <div class="col-md-9">
                             <?php echo $inputPhone; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>  
-                    <div class="form-group col-md-6">
+                    </div>                      
+                </div>      
+                <div class="row">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Địa chỉ</b></label>
                         <div class="col-md-9">
                             <?php echo $inputAddress; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>      
-                </div>       
+                    </div>   
+                </div> 
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Mã đơn hàng</b></label>
                         <div class="col-md-9">
                             <?php echo $inputCode; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>   
-                    <div class="form-group col-md-6">
+                    </div>                       
+                </div>   
+                <div class="row">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Trạng thái giao hàng</b></label>
                         <div class="col-md-9">                            
                             <?php echo $ddlStatus; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>     
-                </div>   
+                    </div>   
+                </div>
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Ghi chú</b></label>
                         <div class="col-md-9">                            
                             <?php echo $inputNote; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>   
-                    <div class="form-group col-md-6">
-                        
-                    </div>     
+                    </div>                       
                 </div>                                                
                 <div class="row">
                     <div class="col-md-12">

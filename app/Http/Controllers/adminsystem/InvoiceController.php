@@ -30,7 +30,7 @@ public function loadData(Request $request){
   }
   $data=$query->select('invoice.id','invoice.code','invoice.email','invoice.fullname','invoice.address','invoice.phone','invoice.quantity','invoice.total_price','invoice.status','invoice.created_at','invoice.updated_at')
   ->groupBy('invoice.id','invoice.code','invoice.email','invoice.fullname','invoice.address','invoice.phone','invoice.quantity','invoice.total_price','invoice.status','invoice.created_at','invoice.updated_at')
-  ->orderBy('invoice.created_at', 'desc')->get()->toArray()     ;              
+  ->orderBy('invoice.id', 'desc')->get()->toArray()     ;              
   $data=convertToArray($data);    
   $data=invoiceConverter($data,$this->_controller);            
   return $data;

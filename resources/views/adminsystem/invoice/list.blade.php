@@ -35,7 +35,7 @@ $linkTrash			=	route('adminsystem.'.$controller.'.trash');
 				<thead>
 					<tr>
 						<th width="1%"><input type="checkbox" onclick="checkAllAgent(this)"  name="checkall-toggle"></th>                
-						<th>Mã đơn hàng</th>						
+						<th>Số đơn hàng</th>						
 						<th>Email</th>
 						<th>Tên khách hàng</th>
 						<th>Phone</th>						

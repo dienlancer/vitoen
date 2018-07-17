@@ -923,7 +923,11 @@ class IndexController extends Controller {
       			$invoice->address=@$address;
       			$invoice->phone=@$phone;
       			$invoice->note=@$note;
-      			$invoice->payment_method_id=(int)@$payment_method_id;
+      			$payment_method=PaymentMethodModel::find((int)@$payment_method_id)->toArray();
+      			$payment_method_name=$payment_method['fullname'];
+      			$payment_method_content=$payment_method['content'];
+      			$invoice->payment_method_name=@$payment_method_name;
+      			$invoice->payment_method_content=@$payment_method_content;
       			$invoice->quantity=(int)@$quantity;
       			$invoice->total_price=(int)@$total_price;		      		
       			$invoice->status=0;
@@ -995,10 +999,7 @@ class IndexController extends Controller {
       			$html_content .='<tr><td>Ngày đặt hàng</td><td>'.$ordered_date.'</td></tr>';
       			$html_content .='<tr><td>Họ và tên</td><td>'.$fullname.'</td></tr>';
       			$html_content .='<tr><td>Email</td><td>'.$email.'</td></tr>';
-      			$html_content .='<tr><td>Điện thoại</td><td>'.$phone.'</td></tr>';  
-      			$payment_method=PaymentMethodModel::find((int)@$payment_method_id)->toArray();
-      			$payment_method_name=$payment_method['fullname'];
-      			$payment_method_content=$payment_method['content'];
+      			$html_content .='<tr><td>Điện thoại</td><td>'.$phone.'</td></tr>';        			
       			$html_content .='<tr><td>Phương thức thanh toán</td><td>'.$payment_method_name.'</td></tr>';      
       			$html_content .='<tr><td>Nội dung thanh toán</td><td>'.$payment_method_content.'</td></tr>';              
       			$html_content .='<tr><td>Địa chỉ</td><td>'.$address.'</td></tr>';

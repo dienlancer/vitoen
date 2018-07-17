@@ -132,12 +132,7 @@ public function deleteItem(Request $request){
   
   $info                 =   array();
   $checked              =   1;                           
-  $msg                =   array();
-  $data=InvoiceModel::whereRaw("payment_method_id = ?",[(int)@$id])->select('id')->get()->toArray();
-  if(count($data) > 0){
-    $checked                =   0;              
-    $msg['cannotdelete']                    =   "Phần tử có dữ liệu con. Vui lòng không xoá";
-  }                  
+  $msg                =   array();                  
   if($checked == 1){
     $item = PaymentMethodModel::find((int)@$id);
     $item->delete(); 
@@ -196,12 +191,7 @@ public function trash(Request $request){
     
     $msg['chooseone']            =   "Vui lòng chọn ít nhất một phần tử";
   }
-  $data=DB::table('invoice')->whereIn('payment_method_id',@$arrID)->select('id')->get()->toArray();             
-  if(count($data) > 0){
-    $checked                =   0;
-    
-    $msg['cannotdelete']                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
-  }   
+
   if($checked == 1){    
     DB::table('payment_method')->whereIn('id',@$arrID)->delete();                                 
     $msg['success']='Xóa thành công';               
