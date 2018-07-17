@@ -623,7 +623,7 @@ form[name="frm-checkout"]{
 .tichtac{
 	    border: 1px solid #ddd;
     width: 100%;
-    padding: 5px 0px;
+    padding: 5px;
 }
 .textarea-top{
 	vertical-align: top;

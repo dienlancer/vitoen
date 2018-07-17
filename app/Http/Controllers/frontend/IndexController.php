@@ -875,7 +875,7 @@ class IndexController extends Controller {
       		$fullname         	=   trim(@$request->fullname);
       		$address          	=   trim(@$request->address);
       		$phone            	=   trim(@$request->phone);  
-      		$note 			 	=	trim(@$note);
+      		$note 			 	=	trim(@$request->note);
       		$payment_method_id 	= 	trim(@$request->payment_method_id); 
       		if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",  mb_strtolower(trim(@$email),'UTF-8')  )){
       			$msg["email"] = 'Email không hợp lệ';
@@ -903,9 +903,131 @@ class IndexController extends Controller {
       			$checked=0;
       		}      		
       		if((int)@$checked==1){
+      			/* begin invoice_code */
       			$range_data = range(1,9);
-	      		$code=implode($range_data, '');      		
-	      		$code=str_shuffle($code);
+      			$invoice_code=implode($range_data, '');      		
+      			$invoice_code=str_shuffle($invoice_code);
+      			/* end invoice_code */   
+      			/* begin quantity - totalprice */   			
+      			$quantity=0;
+      			$total_price=0;				
+      			foreach ($arrCart as $key => $value){
+      				$quantity+=(int)@$value['product_quantity'];
+      				$total_price+=(float)$value["product_total_price"];		
+      			}
+      			/* end quantity - totalprice */
+      			$invoice=new InvoiceModel;
+      			$invoice->code=@$invoice_code;
+      			$invoice->email=@$email;
+      			$invoice->fullname=@$fullname;
+      			$invoice->address=@$address;
+      			$invoice->phone=@$phone;
+      			$invoice->note=@$note;
+      			$invoice->payment_method_id=(int)@$payment_method_id;
+      			$invoice->quantity=(int)@$quantity;
+      			$invoice->total_price=(int)@$total_price;		      		
+      			$invoice->status=0;
+      			$invoice->created_at=date("Y-m-d H:i:s",time());
+      			$invoice->updated_at=date("Y-m-d H:i:s",time());   
+      			$invoice->save();   
+      			$tr_cart='';
+      			foreach ($arrCart as $key => $value){
+      				$product_id=(int)@$value["product_id"];
+      				$product_code=@$value["product_code"];
+      				$product_name=@$value["product_name"];			
+      				$product_image=@$value["product_image"];			
+      				$product_price=(float)@$value["product_price"];			
+      				$product_quantity=(int)@$value["product_quantity"];			
+      				$product_total_price=(float)@$value["product_total_price"];							
+      				$tr_cart .='<tr>';
+      				$tr_cart .='<td>'.$product_code.'</td>';
+      				$tr_cart .='<td>'.$product_name.'</td>';                          
+      				$tr_cart .='<td align="right">'.fnPrice($product_price).'</td>';
+      				$tr_cart .='<td align="right">'.$product_quantity.'</td>';
+      				$tr_cart .='<td align="right">'.fnPrice($product_total_price).'</td>';
+      				$tr_cart .='</tr>';  
+      				$invoice_detail=new InvoiceDetailModel;
+      				$invoice_detail->invoice_id=(int)@$invoice->id;
+      				$invoice_detail->product_id=(int)@$product_id;
+      				$invoice_detail->product_code=@$product_code;
+      				$invoice_detail->product_name=@$product_name;
+      				$invoice_detail->product_image=@$product_image;
+      				$invoice_detail->product_price=(float)@$product_price;
+      				$invoice_detail->product_quantity=(int)@$product_quantity;
+      				$invoice_detail->product_total_price=(float)@$product_total_price;
+      				$invoice_detail->created_at=date("Y-m-d H:i:s",time());
+      				$invoice_detail->updated_at=date("Y-m-d H:i:s",time());   
+      				$invoice_detail->save();
+      			} 
+      			/* begin load config contact */
+      			$setting=getSettingSystem();    
+      			$smtp_host      = @$setting['smtp_host']['field_value'];
+      			$smtp_port      = @$setting['smtp_port']['field_value'];
+      			$smtp_auth      = @$setting['authentication']['field_value'];
+      			$encription     = @$setting['encription']['field_value'];
+      			$smtp_username  = @$setting['smtp_username']['field_value'];
+      			$smtp_password  = @$setting['smtp_password']['field_value'];
+      			$product_width=@$setting['product_width']['field_value'];
+      			$product_height=@$setting['product_height']['field_value'];
+      			$email_from     = @$email;
+      			$email_to       = @$setting['email_to']['field_value'];
+      			$contacted_person = @$setting['contacted_person']['field_value'];          
+      			/* end load config contact */         		
+      			$mail = new PHPMailer(true);
+      			$mail->SMTPDebug = 0;                           
+      			$mail->isSMTP();     
+      			$mail->CharSet = "UTF-8";          
+      			$mail->Host = $smtp_host; 
+      			$mail->SMTPAuth = $smtp_auth;                         
+      			$mail->Username = $smtp_username;             
+      			$mail->Password = $smtp_password;             
+      			$mail->SMTPSecure = $encription;                       
+      			$mail->Port = $smtp_port;                            
+      			$mail->setFrom($email_from, $fullname);
+      			$mail->addAddress($email_to, $contacted_person);   
+      			$mail->Subject = 'Thông tin đặt hàng từ khách hàng '.$fullname.' - '.$phone ;  
+      			$html_content='';     
+      			$html_content .='<div><center><h2>THÔNG TIN KHÁCH HÀNG</h2></center</div>';   
+      			$html_content .='<table border="1"  cellspacing="5" cellpadding="5" width="100%">';					
+      			$html_content .='<tbody>';
+      			$html_content .='<tr><td width="20%">Mã số đơn hàng</td><td width="80%">'.$invoice_code.'</td></tr>';
+      			$ordered_date=datetimeConverterVn($invoice->created_at);
+      			$html_content .='<tr><td>Ngày đặt hàng</td><td>'.$ordered_date.'</td></tr>';
+      			$html_content .='<tr><td>Họ và tên</td><td>'.$fullname.'</td></tr>';
+      			$html_content .='<tr><td>Email</td><td>'.$email.'</td></tr>';
+      			$html_content .='<tr><td>Điện thoại</td><td>'.$phone.'</td></tr>';  
+      			$payment_method=PaymentMethodModel::find((int)@$payment_method_id)->toArray();
+      			$payment_method_name=$payment_method['fullname'];
+      			$payment_method_content=$payment_method['content'];
+      			$html_content .='<tr><td>Phương thức thanh toán</td><td>'.$payment_method_name.'</td></tr>';      
+      			$html_content .='<tr><td>Nội dung thanh toán</td><td>'.$payment_method_content.'</td></tr>';              
+      			$html_content .='<tr><td>Địa chỉ</td><td>'.$address.'</td></tr>';
+      			$html_content .='<tr><td>Nội dung</td><td>'.$note.'</td></tr>';   
+      			$html_content .='<tr><td>Số lượng</td><td>'.$quantity.'</td></tr>';   
+      			$html_content .='<tr><td>Thành tiền</td><td>'.fnPrice($total_price).'</td></tr>';          
+      			$html_content .='</tbody>';
+      			$html_content .='</table>';  
+      			$html_content .='<div style="margin-top:20px"><center><h2>DANH SÁCH MẶT HÀNG</h2></center</div>';   
+      			$html_content .='<table border="1" cellspacing="5"  cellpadding="5" width="100%">';
+      			$html_content .='<thead>';
+      			$html_content .='<tr>';
+      			$html_content .='<th>Mã sản phẩm</th>';
+      			$html_content .='<th>Tên sản phẩm</th>';              
+      			$html_content .='<th>Đơn giá</th>';
+      			$html_content .='<th>Số lượng đặt mua</th>';
+      			$html_content .='<th>Tổng giá</th>';
+      			$html_content .='</tr>';
+      			$html_content .='</thead>';
+      			$html_content .='<tbody>';
+      			$html_content .=$tr_cart;
+      			$html_content .='</tbody>';
+      			$html_content .='</table>'; 
+      			$mail->msgHTML($html_content);
+              	$mail->Send();              	
+              	if(Session::has($this->_ssNameCart)){
+              		Session::forget($this->_ssNameCart);
+            	}             
+            	return redirect()->route('frontend.index.finishCheckout');       
       		}				  
       	}
       	return view("frontend.index",compact("component","layout",'data','msg','checked'));   
@@ -1206,30 +1328,8 @@ class IndexController extends Controller {
         $layout="two-column";   
         return view("frontend.index",compact("component","layout"));       
       }
-      public function finishCheckout(){
-      	$arrUser=array();              
-      	$user = Sentinel::forceCheck(); 
-      	if(!empty($user)){                
-      		$arrUser = $user->toArray();    
-      	}      
-      	if(count($arrUser) == 0){
-      		return redirect()->route("frontend.index.login"); 
-      	}
-		$arrCart=array();
-      	if(Session::has($this->_ssNameCart)){
-      		$arrCart=Session::get($this->_ssNameCart);
-      	} 
-      	if(count($arrCart) == 0){
-      		return redirect()->route("frontend.index.viewCart");   
-      	}    
-      	$data_invoice=array();
-      	if(Session::has($this->_ssNameInvoice)){
-      		$data_invoice=Session::get($this->_ssNameInvoice);
-      	} 
-      	if(count($data_invoice) == 0){
-      		return redirect()->route("frontend.index.viewCart");   
-      	}    
-      	$component="hoan-tat-thanh-toan";    
+      public function finishCheckout(){      			
+      	$component="finished-checkout";    
         $layout="two-column";   
         return view("frontend.index",compact("component","layout"));                  
       }  

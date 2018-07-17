@@ -81,7 +81,8 @@ if(!empty($alias)){
                     case 'category-product':
                     case 'product':
                     case 'cart':    
-                    case 'checkout':                                    
+                    case 'checkout':     
+                    case 'finished-checkout':                               
                     $argsDanhMucSanPham2 = array(                         
                         'menu_class'            => 'dmspleft',                                        
                         'before_wrapper'        => '<div class="dmsp-left">',
@@ -258,7 +259,7 @@ if(!empty($alias)){
                     case "dang-nhap-thanh-toan":                                                
                     ?>@include("frontend.login-checkout")<?php
                     break;
-                    case "hoan-tat-thanh-toan":                                                
+                    case "finished-checkout":                                                
                     ?>@include("frontend.finished-checkout")<?php
                     break;
                     case "hoa-don":                                                
