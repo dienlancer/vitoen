@@ -11,7 +11,7 @@ $inputEmail             =   '<input type="text" class="form-control" name="email
 $inputFullName          =   '<input type="text" class="form-control" name="fullname"                value="'.@$arrRowData['fullname'].'">';  
 $inputAddress           =   '<input type="text" class="form-control" name="address"                  value="'.@$arrRowData['address'].'">'; 
 $inputPhone             =   '<input type="text" class="form-control" name="phone"                      value="'.@$arrRowData['phone'].'">';  
-$inputNote              =   '<textarea  name="note" rows="2" cols="100" class="form-control" >'.@$arrRowData['note'].'</textarea>'; 
+$inputNote              =   '<textarea  name="note" rows="10" cols="100" class="form-control" >'.@$arrRowData['note'].'</textarea>'; 
 
 $lblQuantity            =   number_format((int)@$arrRowData['quantity'],0,".",",");
 $lblTotalPrice          =   number_format((int)@$arrRowData['total_price'],0,".",",");
@@ -51,6 +51,15 @@ $product_height = $setting['product_height']['field_value'];
             <div class="form-body">
                 <div class="row">
                     <div class="form-group col-md-12">
+                        <label class="col-md-3 control-label"><b>Số đơn hàng</b></label>
+                        <div class="col-md-9">
+                            <?php echo $inputCode; ?>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>                       
+                </div>   
+                <div class="row">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Email</b></label>
                         <div class="col-md-9">
                             <?php echo $inputEmail; ?>
@@ -66,15 +75,6 @@ $product_height = $setting['product_height']['field_value'];
                             <span class="help-block"></span>
                         </div>
                     </div>                       
-                </div>                      
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <label class="col-md-3 control-label"><b>Phone</b></label>
-                        <div class="col-md-9">
-                            <?php echo $inputPhone; ?>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>                      
                 </div>      
                 <div class="row">
                     <div class="form-group col-md-12">
@@ -84,16 +84,16 @@ $product_height = $setting['product_height']['field_value'];
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                </div> 
+                </div>                 
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-3 control-label"><b>Mã đơn hàng</b></label>
+                        <label class="col-md-3 control-label"><b>Phone</b></label>
                         <div class="col-md-9">
-                            <?php echo $inputCode; ?>
+                            <?php echo $inputPhone; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>                       
-                </div>   
+                    </div>                      
+                </div>                                      
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Trạng thái giao hàng</b></label>
@@ -109,6 +109,22 @@ $product_height = $setting['product_height']['field_value'];
                         <div class="col-md-9">                            
                             <?php echo $inputNote; ?>
                             <span class="help-block"></span>
+                        </div>
+                    </div>                       
+                </div>     
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-3 control-label"><b>Hình thức thanh toán</b></label>
+                        <div class="col-md-9">                            
+                            <b><?php echo @$arrRowData['payment_method_name']; ?></b>
+                        </div>
+                    </div>                       
+                </div>                                                
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-3 control-label"><b>Nội dung thanh toán</b></label>
+                        <div class="col-md-9">                            
+                            <?php echo @$arrRowData['payment_method_content']; ?>                            
                         </div>
                     </div>                       
                 </div>                                                
