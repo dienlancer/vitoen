@@ -84,10 +84,10 @@
 								
 							}else{								
 								if((int)@$ft_product_sale_price == 0){
-									$html_price='<span class="price-on">'.convertToTextPrice($ft_product_price).'&nbsp;đ'.'</span>'  ;
+									$html_price='<span class="price-on">'.fnPrice($ft_product_price).'</span>'  ;
 								}else{
-									$html_price='<div><span class="price-off">'.convertToTextPrice($ft_product_price).'&nbsp;đ</span></div>';
-									$html_price.='<div><span class="price-on">'.convertToTextPrice($ft_product_sale_price).'&nbsp;đ</span></div>';
+									$html_price='<div><span class="price-off">'.fnPrice($ft_product_price).'</span></div>';
+									$html_price.='<div><span class="price-on">'.fnPrice($ft_product_sale_price).'</span></div>';
 								}								
 							}									
 							?>

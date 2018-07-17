@@ -404,10 +404,10 @@ if(count($dataProduct) > 0){
 
         }else{                              
             if((int)@$product_sale_price == 0){
-                $html_price='<span class="price-on">'.convertToTextPrice($product_price).'&nbsp;đ'.'</span>'  ;
+                $html_price='<span class="price-on">'.fnPrice($product_price).'</span>'  ;
             }else{
-                $html_price='<div><span class="price-off">'.convertToTextPrice($product_price).'&nbsp;đ</span></div>';
-                $html_price.='<div><span class="price-on">'.convertToTextPrice($product_sale_price).'&nbsp;đ</span></div>';
+                $html_price='<div><span class="price-off">'.fnPrice($product_price).'</span></div>';
+                $html_price.='<div><span class="price-on">'.fnPrice($product_sale_price).'</span></div>';
             }                               
         }         
         ?>
