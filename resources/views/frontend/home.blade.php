@@ -42,6 +42,9 @@ $company=$setting['contacted_person']['field_value'];
 				<div class="col-lg-12">
 					<div class="teraff margin-top-15">
 						<h2 class="vinboom"><a href="<?php echo route('frontend.index.index',[$ft_alias]); ?>"><?php echo @$ft_fullname; ?></a></h2>
+						<div class="lazadaphu">
+							<a href="<?php echo route('frontend.index.index',[@$ft_alias]); ?>"><div>Xem tất cả&nbsp;<i class="fas fa-angle-right"></i></div></a>
+						</div>
 						<?php 
 						if(count($source_child_category) > 0){
 							?>
@@ -61,10 +64,7 @@ $company=$setting['contacted_person']['field_value'];
 							</div>
 							<?php
 						}
-						?>			
-						<!--<div class="raka">
-							<a href="<?php echo route('frontend.index.index',[@$ft_alias]); ?>"><div>Xem tất cả&nbsp;<i class="fas fa-angle-right"></i></div></a>
-						</div>-->			
+						?>									
 						<div class="clr"></div>
 					</div>
 					<?php 

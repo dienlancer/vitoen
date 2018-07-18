@@ -634,6 +634,16 @@ form[name="frm-checkout"]{
 	font-weight: bold;
 	text-align: center;
 }
+.lazadaphu{
+	float: right;
+}
+.lazadaphu a{
+	    color: #333;
+    font-weight: bold;
+    padding: 10px;
+    display: block;
+    
+}
 @media (max-width:768px){.cateprodhorizontalright li:hover > ul{display:none;}
 form[name='frm-search']{width:100%;}
 .menu-header-top li{display:block;}
