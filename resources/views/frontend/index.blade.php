@@ -164,13 +164,13 @@ if(!empty($alias)){
                     </form>
                     <?php
                     /* end tìm kiếm sản phẩm theo thuộc tính */        
-                    $data_featured_products=\App\ProductModel::whereRaw('status = 1')->select('id','fullname','alias','intro','image','price','sale_price')->orderBy('created_at','desc')->take(10)->get()->toArray();                                
+                    $data_featured_products=\App\ProductModel::whereRaw('status = 1')->select('id','fullname','alias','intro','image','price','sale_off','sale_price')->orderBy('created_at','desc')->take(10)->get()->toArray();                                
                     if(count($data_featured_products) > 0){                        
                         ?>
                             <script language="javascript" type="text/javascript">
                                 $(document).ready(function(){
                                     $('.bxSlider').bxSlider({
-                                        mode: 'vertical', speed: 500, slideMargin:15, infiniteLoop: true, pager: false, controls: false, minSlides: 5, maxSlides:20, moveSlides: 5, adaptiveHeight: false,auto:true
+                                        mode: 'vertical', speed: 500, slideMargin:25, infiniteLoop: true, pager: false, controls: false, minSlides: 5, maxSlides:20, moveSlides: 5, adaptiveHeight: false,auto:false
                                     });
                                 });
                             </script>                            
@@ -183,23 +183,42 @@ if(!empty($alias)){
                                     $featured_product_name=$value['fullname'];
                                     $featured_product_link=route('frontend.index.index',[$featured_product_alias]) ;
                                     $featured_product_img =get_product_thumbnail($value['image']) ;      
-                                    $ft_product_price=$value['price']; 
+                                    $featured_product_price=$value['price']; 
+                                    $featured_product_sale_price=$value['sale_price'];           
                                     $html_price='';                     
-                                    if((int)@$ft_product_price > 0){              
-                                        $html_price=fnPrice($ft_product_price) ;
-                                    }else{
-                                        $html_price='Giá : Liên hệ' ;
+                                    if((int)@$featured_product_price == 0 && (int)@$featured_product_sale_price == 0){              
+                                        $html_price='<span class="price-on">Giá : Liên hệ</span>' ;
+
+                                    }else{                              
+                                        if((int)@$featured_product_sale_price == 0){
+                                            $html_price='<span class="price-on">'.fnPrice($featured_product_price).'</span>'  ;
+                                        }else{
+                                            $html_price='<div><span class="price-off">'.fnPrice($featured_product_price).'</span></div>';
+                                            $html_price.='<div><span class="price-on">'.fnPrice($featured_product_sale_price).'</span></div>';
+                                        }                               
                                     }       
                                     ?>
-                                    <div >
+                                    <div>
                                         <div class="box-product-rian">
-                                            <div class="box-product-img">
-                                                <center><a href="<?php echo $featured_product_link; ?>"><img src="<?php echo $featured_product_img; ?>"></a></center>
+                                            <div class="box-product-img canai">
+                                                <center><a href="<?php echo $featured_product_link; ?>"><img src="<?php echo $featured_product_img; ?>" alt="<?php echo @$value['alt_image']; ?>"></a></center>
+                                                <?php 
+                                                if((int)@$value['sale_off'] > 0){
+                                                    ?>
+                                                    <div class="pricetag">
+                                                        <div class="canai">
+                                                            <img src="<?php echo asset('upload/pricetag.png'); ?>" >
+                                                            <div class="riman">-<?php echo @$value['sale_off']; ?>%</div>                                      
+                                                        </div>                                      
+                                                    </div>
+                                                    <?php
+                                                }
+                                                ?>      
                                             </div>
-                                            <div class="box-product-intro-title"><a href="<?php echo $featured_product_link; ?>"><b><?php echo $featured_product_name; ?></b></a></div>
-                                            <div class="box-product-price">
-                                                <div><center><span class="price-on"><?php echo $html_price; ?></span></center></div>
-                                            </div>
+                                            <div class="box-product-intro-title-2"><center><a href="<?php echo $featured_product_link; ?>"><b><?php echo $featured_product_name; ?></b></a></center></div>
+                                            <div>
+                                                <center><?php echo $html_price; ?></center>
+                                            </div>                                                                                           
                                         </div>
                                     </div>
                                     <?php

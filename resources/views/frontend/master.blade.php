@@ -319,14 +319,16 @@ if(count($arrCart) > 0){
 						</div>						
 					</div>	
 					<div class="col-lg-2">
-						<div class="row">
-							<div class="col-xs-6"><div class="hotline-top"><?php echo $cskh1; ?></div></div>
-							<div class="col-xs-6"><div class="hotline-top"><?php echo $hotline1; ?></div></div>
-						</div>
-						<div class="row">
-							<div class="col-xs-6"><div class="hotline-top"><?php echo $cskh2; ?></div></div>
-							<div class="col-xs-6"><div class="hotline-top"><?php echo $hotline2; ?></div></div>
-						</div>												
+						<div class="hotline-alen">
+							<div class="row">
+								<div class="col-xs-6"><div class="hotline-top"><?php echo $cskh1; ?></div></div>
+								<div class="col-xs-6"><div class="hotline-top"><?php echo $hotline1; ?></div></div>
+							</div>
+							<div class="row">
+								<div class="col-xs-6"><div class="hotline-top"><?php echo $cskh2; ?></div></div>
+								<div class="col-xs-6"><div class="hotline-top"><?php echo $hotline2; ?></div></div>
+							</div>	
+						</div>																
 					</div>				
 				</div>
 			</div>

@@ -69,7 +69,7 @@
 						}
 						?>						
 					</div>
-					<h3 class="box-product-intro-title"><a href="<?php echo $product_permalink; ?>"><b><?php echo $product_name; ?></b></a></h3>
+					<h3 class="box-product-intro-title"><center><a href="<?php echo $product_permalink; ?>"><b><?php echo $product_name; ?></b></a></center></h3>
 					<?php 
 					/* begin thương hiệu */		
 					$trademark='';

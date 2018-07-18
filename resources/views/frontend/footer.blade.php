@@ -8,8 +8,10 @@ $seo_logo_frontend=asset('upload/'.$seo['logo_frontend']);
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="tamia">
-					<div><img src="<?php echo asset('upload/icon-email.png'); ?>"></div>
-					<div class="margin-left-15"><font color="#ffffff"><b>ĐĂNG KÝ NHẬN THÔNG TIN KHUYẾN MÃI</b></font></div>
+					<div class="tamia2">
+						<div><img src="<?php echo asset('upload/icon-email.png'); ?>"></div>
+						<div class="dkntt"><font color="#ffffff"><b>ĐĂNG KÝ NHẬN THÔNG TIN KHUYẾN MÃI</b></font></div>
+					</div>					
 					<form name="frm-register-info" method="POST" action="">
 						{{ csrf_field() }}
 						<div class="ruden">
@@ -50,11 +52,11 @@ $seo_logo_frontend=asset('upload/'.$seo['logo_frontend']);
 					echo '<div class="row">';
 				}
 				?>
-				<div class="col-lg-4">
+				<div class="col-sm-4">
 					<div class="box-featured-article">
 						<div class="row">
 							<div class="col-lg-4">
-								<a href="<?php echo $article_permalink; ?>"><img src="<?php echo $article_thumbnail; ?>" alt="<?php echo @$value['alt_image']; ?>"></a>
+								<center><a href="<?php echo $article_permalink; ?>"><img src="<?php echo $article_thumbnail; ?>" alt="<?php echo @$value['alt_image']; ?>"></a></center>
 							</div>
 							<div class="col-lg-8">
 								<div class="article-per"><a href="<?php echo $article_permalink; ?>"><b><?php echo $article_name; ?></b></a></div>
@@ -109,7 +111,7 @@ $seo_logo_frontend=asset('upload/'.$seo['logo_frontend']);
 				wp_nav_menu($args);
 				?>       
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-2">
 				<?php     
 				$args = array(                         
 					'menu_class'            => 'dmcontentbottom', 					                     
@@ -129,7 +131,7 @@ $seo_logo_frontend=asset('upload/'.$seo['logo_frontend']);
 				wp_nav_menu($args);
 				?>       
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-2">
 				<?php 
 				$module=getPage("cham-soc-khach-hang");			
 				if(count($module) > 0){		
@@ -145,7 +147,27 @@ $seo_logo_frontend=asset('upload/'.$seo['logo_frontend']);
 					<?php				
 				}
 				?>						
-			</div>			
+			</div>	
+			<div class="col-sm-2">
+				<?php     
+				$args = array(                         
+					'menu_class'            => 'dmcontentbottom', 					                     
+					'before_wrapper'        => '<div class="margin-top-20">',
+					'before_title'          => '<h3 class="brabel">',
+					'after_title'           => '</h3>',
+					'before_wrapper_ul'     =>  '<div>',
+					'after_wrapper_ul'      =>  '</div>',
+					'after_wrapper'         => '</div>'     ,
+					'link_before'       	=> '', 
+					'link_after'        	=> '',                                        
+					'theme_location'        => 'service-content-bottom' ,
+					'menu_li_actived'       => 'current-menu-item',
+					'menu_item_has_children'=> 'menu-item-has-children',
+					'alias'                 => $seo_alias
+				);                    
+				wp_nav_menu($args);
+				?>       
+			</div>		
 		</div>
 	</div>
 </div>

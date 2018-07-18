@@ -55,7 +55,7 @@ if(count($item) > 0){
                                 autoplay:true,                    
                                 loop:true,
                                 margin:2,                        
-                                nav:true,            
+                                nav:false,            
                                 mouseDrag: true,
                                 touchDrag: true,                                
                                 responsiveClass:true,
@@ -366,7 +366,7 @@ if(count($dataProduct) > 0){
                autoplay:true,                    
                loop:true,
                margin:0,                        
-               nav:true,            
+               nav:false,            
                mouseDrag: true,
                touchDrag: true,                                
                responsiveClass:true,
@@ -384,8 +384,8 @@ if(count($dataProduct) > 0){
         });
             var chevron_left='<i class="fa fa-chevron-left"></i>';
             var chevron_right='<i class="fa fa-chevron-right"></i>';
-            $("div.productdetail div.owl-prev").html(chevron_left);
-            $("div.productdetail div.owl-next").html(chevron_right);
+            /*$("div.productdetail div.owl-prev").html(chevron_left);
+            $("div.productdetail div.owl-next").html(chevron_right);*/
         });                
     </script>
     <div class="owl-carousel productdetail owl-theme">
@@ -427,7 +427,7 @@ if(count($dataProduct) > 0){
                 }
                 ?>      
             </div>
-            <h3 class="box-product-intro-title"><a href="<?php echo $pdetail_permalink; ?>"><b><?php echo $pdetail_name; ?></b></a></h3>
+            <h3 class="box-product-intro-title"><center><a href="<?php echo $pdetail_permalink; ?>"><b><?php echo $pdetail_name; ?></b></a></center></h3>
             <?php 
             /* begin thương hiệu */     
             $trademark='';

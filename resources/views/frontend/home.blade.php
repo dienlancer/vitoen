@@ -121,7 +121,9 @@ $company=$setting['contacted_person']['field_value'];
 										}
 										?>		
 									</div>
-									<h3 class="box-product-intro-title"><a href="<?php echo $ft_product_permalink; ?>"><b><?php echo $ft_product_title; ?></b></a></h3>
+									<h3 class="box-product-intro-title">
+										<center><a href="<?php echo $ft_product_permalink; ?>"><b><?php echo $ft_product_title; ?></b></a></center>
+									</h3>
 									<?php 
 									/* begin thương hiệu */		
 									$trademark='';

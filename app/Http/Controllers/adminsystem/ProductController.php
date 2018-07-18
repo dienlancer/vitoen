@@ -110,9 +110,12 @@ class ProductController extends Controller {
                   $source_image_child_hidden=$request->source_image_child_hidden;                        
                 }            
                 $status               =   trim($request->status);
-                $price                =   trim($request->price);   
+                $pattern_dot='#\.#';
+                $price                =   trim($request->price);                   
+                $price=preg_replace($pattern_dot, '', $price);         
                 $sale_off             =   trim($request->sale_off);
-                $sale_price           =   trim($request->sale_price);                    
+                $sale_price           =   trim($request->sale_price);
+                $sale_price=preg_replace($pattern_dot, '', $sale_price);                      
                 $detail               =   trim($request->detail);
                 $technical_detail               =   trim($request->technical_detail);
                 $video_id = trim($request->video_id);
@@ -228,9 +231,9 @@ class ProductController extends Controller {
             $item->meta_keyword     = $meta_keyword;
             $item->meta_description = $meta_description;                  
             $item->status           = (int)@$status; 
-            $item->price            = (int)(str_replace('.', '',@$price)) ;
+            $item->price            = (int)@$price ;
             $item->sale_off         = (int)@$sale_off;
-            $item->sale_price       = (int)(str_replace('.', '',@$sale_price)) ;                                 
+            $item->sale_price       = (int)@$sale_price ;                                 
             $item->detail           = $detail;  
             $item->technical_detail           = $technical_detail;    
             $item->video_id = $video_id;   

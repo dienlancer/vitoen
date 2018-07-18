@@ -195,7 +195,7 @@ div.opacity-absolute::before{position:absolute;left:0;top:0;width:100%;height:10
 .featured-news .owl-next{position:absolute;right:0;top:-39px;}
 .other-news-list{list-style:square;}
 footer{color:#333;padding-bottom:15px;background:#fff;}
-.brabel{font-size:15px;font-weight:bold;padding-bottom:10px;background:url(../images/dash-double-footer.png) repeat-x bottom;}
+.brabel{font-size:13px;font-weight:bold;padding-bottom:10px;background:url(../images/dash-double-footer.png) repeat-x bottom;}
 .tialia{font-size:15px;text-align:justify;}
 .danh-muc{list-style:none;}
 .danh-muc li{margin-left:0;}
@@ -285,8 +285,17 @@ div.ducati h2{color:#e80000;padding:0px 0px;text-transform:uppercase;text-align:
 .thuong-hieu a{color:#0c62ad}
 .advertising{list-style:none;}
 .advertising li{margin-left:0;margin-top:5px;}
-.box-product-intro-title{margin:5px 15px 0px 15px;text-align:center;height:65px;}
-.box-product-intro-title a{color:#004A8F;font-size:13px}
+.box-product-intro-title{
+	margin-left: 5px;
+	margin-right: 5px;
+	height: 60px;
+}
+.box-product-intro-title a{color:#004A8F;font-size:13px; }
+.box-product-intro-title-2{
+	margin-left: 5px;
+	margin-right: 5px;	
+}
+.box-product-intro-title-2 a{color:#004A8F;font-size:13px; }
 .box-product{border-top:1px solid #ddd;border-left:1px solid #ddd;float:left;width:20%;background:#ffffff}
 .box-product-category{border-top:1px solid #ddd;border-left:1px solid #ddd;float:left;width:25%;background:#ffffff}
 .hotline{font-size:30px;color:#0c62ad;text-align:right;}
@@ -476,9 +485,9 @@ form[name='frm-search'] input[name='q']{border:none;outline:none;padding:8px 10p
 .hotline-ramen{float:right;}
 .box-category{background:#ffffff}
 .box-product-img{margin:15px 15px 0px 15px;}
-.box-product-price{margin:10px 0px 10px 0px;text-align:center;height:40px;}
+.box-product-price{margin:10px 0px 10px 0px;text-align:center;height: 50px;}
 .danhmucspfooter li a{color:#ffffff}
-.box-product-rian{margin-right:2px;margin-top:10px;}
+.box-product-rian{border-top: 1px solid #ddd;}
 .pdetail-chipu{border-right:1px solid #eee;border-top:1px solid #eee;border-left:1px solid #eee;border-bottom:1px solid #eee;}
 .tell-price{display:flex;align-items:center;}
 .ttkh{text-transform:uppercase;font-weight:bold;font-size:18px;}
@@ -562,6 +571,10 @@ form[name='frm-search'] input[name='q']{border:none;outline:none;padding:8px 10p
 .dmcontentbottom li a{color:#333;display:block;margin-top:10px;}
 .dmcontentbottom{list-style:circle;}
 .tamia{display:flex;align-items:center;}
+.tamia2{display:flex;align-items:center;}
+.dkntt{	
+	margin-left: 15px;
+}
 .box-round-category{border-right:1px solid #ddd;border-bottom:1px solid #ddd;}
 .pricetag{position:absolute;top:-10px;right:-10px;}
 .pricetag img{width:50px !important;}
@@ -589,33 +602,6 @@ form[name='frm-search'] input[name='q']{border:none;outline:none;padding:8px 10p
 .td-right{
 	text-align: right;
 }
-@media (max-width:768px){.cateprodhorizontalright li:hover > ul{display:none;}
-form[name='frm-search']{width:100%;}
-.menu-header-top li{display:block;}
-.social-left{justify-content:center;}
-.searching-header{margin-top:15px;}
-.radas{display:none;}
-.radan{width:80%;margin-left:15px;}
-.shinichikudo li{display:block;}
-.tamia{display:block;}
-.txt-email{width:100%;}
-.box-product,.box-product-category,.related-news{width:100%;}
-.related-news{float:none;}
-.related-news-right{margin-left:0;margin-top:15px;}
-.cate-product-horizontal-right,.bg-blue{display:none;}
-.mobilemenu{display:block;background:#ffffff;}
-.healthcare{display:none;}
-.raka{display:none;}
-.feedback{float:none;}
-.vivanan{margin-left:0;margin-top:0;}
-.caphethuocla{background:transparent;}
-.pootoo a, .sidamex a,.fata{color:#585858;}
-.rinux{width:100%;}
-.covu{display:none;}
-.himlam{width:100%;}
-.timex{display:none;}
-div.tab button{font-size:13px;margin-right:30px;}
-}
 form[name="frm-checkout"]{
     background: #ffffff;
     padding: 10px;
@@ -637,7 +623,65 @@ form[name="frm-checkout"]{
     padding: 4px 14px;    
     margin: 0px 4px 0px 0px;
 }
+.hotline-alen{
+	margin-top: 15px;	
+}
+.hotline-content-bottom{
+	width: 100%;
+	background: #cd0000;
+	padding: 5px;
+	color: #ffffff;
+	font-weight: bold;
+	text-align: center;
+}
+@media (max-width:768px){.cateprodhorizontalright li:hover > ul{display:none;}
+form[name='frm-search']{width:100%;}
+.menu-header-top li{display:block;}
+.social-left{justify-content:center;}
+.searching-header{margin-top:15px;}
+.radas{display:none;}
+.radan{width:80%;margin-left:15px;}
+.shinichikudo li{display:block;}
+
+.txt-email{width:100%;}
+.box-product-category,.related-news{width:100%;}
+.related-news{float:none;}
+.related-news-right{margin-left:0;margin-top:15px;}
+.cate-product-horizontal-right,.bg-blue{display:none;}
+.mobilemenu{display:block;background:#ffffff;}
+.healthcare{display:none;}
+.raka{display:none;}
+.feedback{float:none;}
+.vivanan{margin-left:0;margin-top:0;}
+.caphethuocla{background:transparent;}
+.pootoo a, .sidamex a,.fata{color:#585858;}
+.rinux{width:100%;}
+.covu{display:none;}
+.himlam{width:100%;}
+.timex{display:none;}
+div.tab button{font-size:13px;margin-right:30px;}
+.box-product{
+	width: 50%;
+}
+.dkntt{
+	font-size: 11px;
+}
+.hotline-alen{
+	    width: 230px;
+    margin: 15px auto 0px auto;
+}
+}
 @media (max-width:576px){.cot-1{width:auto;background:none;}
 .cot-1 a{color:#004A8F;font-size:15px}
 .pdetail-price-detail-on{font-size:13px;}
+.box-product-intro-title{
+	height: 90px
+}
+.dkntt{
+	font-size:9px;
+}
+.tamia{display:block;}
+.vinboom a{
+	font-size: 12px;
+}
 }
