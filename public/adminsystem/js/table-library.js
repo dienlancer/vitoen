@@ -506,8 +506,11 @@ var basicTable = function () {
             columns: [                
                 { data: "checked"       },                
                 { data: "fullname"      },                
-                { data: "category_name"         },                            
+                { data: "category_name" },                            
                 { data: "image"         },
+                { data: "price"         },
+                { data: "sale_off"      },
+                { data: "sale_price"    },
                 { data: "sort_order"    },
                 { data: "status"        },                                
                 { data: "edited"        },         
