@@ -160,7 +160,7 @@ if(count($arrCart) > 0){
 	<!-- begin datatables -->	
 	<script src="{{ asset('public/frontend/datatables/jquery.dataTables.min.js') }}"></script>    
 	<link rel="stylesheet" href="{{ asset('public/frontend/datatables/jquery.dataTables.min.css') }}" />
-	<script src="{{ asset('public/frontend/datatables/table-library.js') }}"></script>    
+	<script src="{{ asset('public/frontend/js/table-library.js') }}"></script>    
 	<!-- end datatables -->
 	<!-- begin youtube -->    
   <script src="{{ asset('public/frontend/modal-video/jquery-modal-video.min.js') }}"></script>
