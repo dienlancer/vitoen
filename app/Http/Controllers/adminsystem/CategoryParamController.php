@@ -200,16 +200,10 @@ public function deleteItem($id){
     $checked     =   0;
 
     $msg['cannotdelete']                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
-  }          
-  $data                   =   PostParamModel::whereRaw("param_id = ?",[(int)@$id])->get()->toArray();              
-  if(count($data) > 0){
-    $checked     =   0;
-
-    $msg['cannotdelete']                    =   "Phần tử này có dữ liệu con. Vui lòng không xoá";
-  }
-  if($checked == 1){
-    $item               =   CategoryParamModel::find((int)@$id);
-    $item->delete();      
+  }            
+  if($checked == 1){    
+    CategoryParamModel::find((int)@$id)->delete();      
+    PostParamModel::whereRaw("param_id = ?",[(int)@$id])->delete();
     $msg['success']='Xóa thành công';      
   }        
   $info = array(
@@ -259,17 +253,13 @@ public function trash(Request $request){
         if(count($data) > 0){
           $checked     =   0;
           $msg['cannotdelete']                    =   "Phần tử đã có dữ liệu con vui lòng không xóa";
-        }    
-        $data                   =   PostParamModel::whereRaw("param_id = ?",[(int)@$value])->get()->toArray();              
-        if(count($data) > 0){
-          $checked     =   0;
-          $msg['cannotdelete']                    =   "Phần tử đã có dữ liệu con vui lòng không xóa";
-        }            
+        }                 
       }                
     }
   }
   if($checked == 1){                
     DB::table('category_param')->whereIn('id',@$arrID)->delete();   
+    DB::table('post_param')->whereIn('param_id',@$arrID)->delete();
     $msg['success']='Xóa thành công';
   }
   $info = array(

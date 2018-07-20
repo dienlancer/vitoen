@@ -276,7 +276,7 @@ if(count($arrCart) > 0){
 						}  
 					}
 					loadCategoryProductRecursive($data_category_product ,0,"",$source_category_product_recursive)   ; 	
-					$ddlCategoryProduct      =   cmsSelectboxCategory("category_product_id","category-prd-ddl",$source_category_product_recursive,0,"",'Chọn danh mục');				
+					$ddlCategoryProduct      =   cmsSelectboxCategory("category_id","category-prd-ddl",$source_category_product_recursive,(int)@$category_id,"",'Chọn danh mục');				
 					?>
 					<div class="col-lg-8">
 						<div class="ruden">

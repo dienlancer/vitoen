@@ -48,8 +48,8 @@ class ProductController extends Controller {
       if(count($arrCategoryID)){
         $query->whereIn('product.category_id',$arrCategoryID);
       }   
-      $data=$query->select('product.id','product.code','product.fullname','product.alias','product.image','category_product.fullname as category_name','product.sort_order','product.status','product.created_at','product.updated_at')
-                  ->groupBy('product.id','product.code','product.fullname','product.alias','product.image','category_product.fullname','product.sort_order','product.status','product.created_at','product.updated_at')
+      $data=$query->select('product.id','product.code','product.fullname','product.alias','product.image','category_product.fullname as category_name','product.price','product.sale_off','product.sale_price','product.sort_order','product.status','product.created_at','product.updated_at')
+                  ->groupBy('product.id','product.code','product.fullname','product.alias','product.image','category_product.fullname','product.price','product.sale_off','product.sale_price','product.sort_order','product.status','product.created_at','product.updated_at')
                   ->orderBy('product.sort_order', 'asc')
                   ->get()
                   ->toArray();      

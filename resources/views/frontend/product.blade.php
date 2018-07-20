@@ -188,7 +188,7 @@ if(count($item) > 0){
                         ->select('id')
                         ->get()
                         ->toArray();
-                        if(count($data_post_param) > 0){
+                        if(count($data_post_param) > 0){ 
                             ?>
                             <div class="margin-top-10">
                                 <div class="col-sm-3"><b>Màu</b></div>

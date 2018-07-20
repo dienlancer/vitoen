@@ -157,6 +157,7 @@ class IndexController extends Controller {
     $totalItemsPerPage=0;
     $pageRange=0;      
     $currentPage=1;  
+    $category_id=0;
     $pagination ;                                              
     $setting= getSettingSystem();         
     /* end standard */     
@@ -221,7 +222,7 @@ class IndexController extends Controller {
     ->take($totalItemsPerPage)
     ->get()->toArray();   
     $items=convertToArray($data);      
-    return view("frontend.index",compact("component","items","pagination","layout","prod_param",'q','category'));
+    return view("frontend.index",compact("component","items","pagination","layout","prod_param",'q','category','category_id'));
   }  
   public function index(Request $request,$alias)
   {                     

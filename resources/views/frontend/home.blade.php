@@ -27,7 +27,7 @@ $company=$setting['contacted_person']['field_value'];
 </div>	
 <div class="container">	
 	<?php 
-	$source_category=App\CategoryProductModel::whereRaw('status = ? and parent_id = ?',[1,0])->select('id','fullname','alias')->orderBy('sort_order','asc')->get()->toArray();	
+	$source_category=App\CategoryProductModel::whereRaw('parent_id = ?',[0])->select('id','fullname','alias')->orderBy('sort_order','asc')->get()->toArray();	
 	if(count($source_category) > 0){
 		foreach ($source_category as $key => $value) {
 			$ft_id=$value['id'];
@@ -37,49 +37,44 @@ $company=$setting['contacted_person']['field_value'];
 			$source_category_id[]=(int)@$ft_id;
 			getStringCategoryID($ft_id,$source_category_id,'category_product');
 			$source_child_category=App\CategoryProductModel::whereRaw('status = ? and parent_id = ?',[1,(int)@$ft_id])->select('id','fullname','alias')->orderBy('sort_order','asc')->take(6)->get()->toArray();
-			?>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="teraff margin-top-15">
-						<h2 class="vinboom"><a href="<?php echo route('frontend.index.index',[$ft_alias]); ?>"><?php echo @$ft_fullname; ?></a></h2>
-						<div class="lazadaphu">
-							<a href="<?php echo route('frontend.index.index',[@$ft_alias]); ?>"><div>Xem tất cả&nbsp;<i class="fas fa-angle-right"></i></div></a>
-						</div>
-						<?php 
-						if(count($source_child_category) > 0){
-							?>
-							<div class="raka litu">
-								<ul class="shinichikudo">
-									<?php 
-									foreach ($source_child_category as $key_child => $value_child) {
-										$ft_child_id=$value_child['id'];
-										$ft_child_fullname=$value_child['fullname'];
-										$ft_child_alias=$value_child['alias'];
-										?>
-										<li><a href="<?php echo route('frontend.index.index',[$ft_child_alias]); ?>"><div><?php echo $ft_child_fullname; ?></div></a></li>
-										<?php
-									}
-									?>									
-								</ul>
+			$query=DB::table('product')
+			->join('category_product','product.category_id','=','category_product.id');			 
+			$query->whereIn('product.category_id',$source_category_id); 					
+			$source_product=$query->select('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','category_product.fullname as category_name','product.price','sale_off','product.sale_price')
+			->groupBy('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','category_product.fullname','product.price','sale_off','product.sale_price')
+			->orderBy('product.id','desc')->take(10)->get()->toArray();   
+			if(count(@$source_product) > 0){
+				?>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="teraff margin-top-15">
+							<h2 class="vinboom"><a href="<?php echo route('frontend.index.index',[$ft_alias]); ?>"><?php echo @$ft_fullname; ?></a></h2>
+							<div class="lazadaphu">
+								<a href="<?php echo route('frontend.index.index',[@$ft_alias]); ?>"><div>Xem tất cả&nbsp;<i class="fas fa-angle-right"></i></div></a>
 							</div>
-							<?php
-						}
-						?>									
-						<div class="clr"></div>
-					</div>
-					<?php 
-					$query=DB::table('product')
-					->join('category_product','product.category_id','=','category_product.id');			 
-					$query->whereIn('product.category_id',$source_category_id); 
-					/*$query->where(function($query){
-						$query->where('product.sale_off',0)
-						->orWhere('product.sale_off',null)
-						->orWhere('product.sale_off','');
-					});*/
-					$source_product=$query->select('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','category_product.fullname as category_name','product.price','sale_off','product.sale_price')
-					->groupBy('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','category_product.fullname','product.price','sale_off','product.sale_price')
-					->orderBy('product.id','desc')->take(10)->get()->toArray();   					
-					if(count($source_product) > 0){
+							<?php 
+							if(count($source_child_category) > 0){
+								?>
+								<div class="raka litu">
+									<ul class="shinichikudo">
+										<?php 
+										foreach ($source_child_category as $key_child => $value_child) {
+											$ft_child_id=$value_child['id'];
+											$ft_child_fullname=$value_child['fullname'];
+											$ft_child_alias=$value_child['alias'];
+											?>
+											<li><a href="<?php echo route('frontend.index.index',[$ft_child_alias]); ?>"><div><?php echo $ft_child_fullname; ?></div></a></li>
+											<?php
+										}
+										?>									
+									</ul>
+								</div>
+								<?php
+							}
+							?>									
+							<div class="clr"></div>
+						</div>
+						<?php 								
 						$data_product=convertToArray($source_product);
 						?>
 						<div class="ritakuta">
@@ -95,7 +90,7 @@ $company=$setting['contacted_person']['field_value'];
 								$html_price='';                     
 								if((int)@$ft_product_price == 0 && (int)@$ft_product_sale_price == 0){              
 									$html_price='<span class="price-on">Giá : Liên hệ</span>' ;
-									
+
 								}else{								
 									if((int)@$ft_product_sale_price == 0){
 										$html_price='<span class="price-on">'.fnPrice($ft_product_price).'</span>'  ;
@@ -170,13 +165,11 @@ $company=$setting['contacted_person']['field_value'];
 								$k++;
 							}
 							?>
-						</div>
-						<?php
-					} 
-					?>
+						</div>						
+					</div>
 				</div>
-			</div>
-			<?php
+				<?php
+			}					
 		}
 	}
 	?>

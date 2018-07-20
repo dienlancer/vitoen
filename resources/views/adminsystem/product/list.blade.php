@@ -61,6 +61,9 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 						<th>Sản phẩm</th>						
 						<th>Nhóm</th>						
 						<th width="1%">Hình ảnh</th>
+						<th>Giá</th>				
+						<th>Giảm</th>				
+						<th>Giá sau giảm</th>				
 						<th width="10%">Sắp xếp</th>
 						<th width="10%">Duyệt</th>							
 						<th width="1%">Sửa</th>  
