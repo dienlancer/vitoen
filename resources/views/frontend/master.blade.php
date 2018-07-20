@@ -82,7 +82,7 @@ if(count($arrCart) > 0){
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">  
 	<title><?php echo $seo_title; ?></title>
 	<meta name="keywords" content="<?php echo $seo_meta_keyword; ?>">
-	<meta name="description" content="<?php echo $seo_meta_description; ?>">	
+	<meta name="description" content="<?php echo $seo_meta_description . ': ' . $hotline1 ; ?>">	
 	<meta name="author" content="<?php echo $seo_author; ?>">
 	<meta name="copyright" content="<?php echo $seo_copyright; ?>">
 	<meta name="robots" content="index, archive, follow, noodp">
@@ -94,7 +94,7 @@ if(count($arrCart) > 0){
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta property="og:title" content="<?php echo $seo_title; ?>">
 	<meta property="og:type" content="website">
-	<meta property="og:description" content="<?php echo $seo_meta_description; ?>">
+	<meta property="og:description" content="<?php echo $seo_meta_description . ': ' . $hotline1; ?>">
 	<meta property="og:site_name" content="<?php echo $seo_title; ?>">
 	<meta property="og:url" content="<?php echo $seo_page_url; ?>">
 	<!-- begin google analytics -->
@@ -119,7 +119,7 @@ if(count($arrCart) > 0){
 	<link rel="stylesheet" href="{{ asset('public/frontend/jquery-ui/jquery-ui.css') }}" />
 	<!-- end jquery-ui -->
 	<!-- begin font-awesome -->
-	<link rel="stylesheet" href="{{ asset('public/frontend/fontawesome/css/all.css') }}" />	
+	<link rel="stylesheet" href="{{ asset('public/frontend/fontawesome/css/all.min.css') }}" />	
 	<!-- end font-awesome -->	
 	<!-- begin ddsmoothmenu -->
 	<script src="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu.js') }}"></script>
