@@ -299,7 +299,7 @@ div.ducati h2{color:#e80000;padding:0px 0px;text-transform:uppercase;text-align:
 .box-product{border-top:1px solid #ddd;border-left:1px solid #ddd;float:left;width:20%;background:#ffffff}
 .box-product-category{border-top:1px solid #ddd;border-left:1px solid #ddd;float:left;width:25%;background:#ffffff}
 .hotline{font-size:30px;color:#0c62ad;text-align:right;}
-.hotline-top{font-family:'Anton';color:#cd0000;font-size:18px;}
+.hotline-top,.hotline-top-2 a{font-family:'Anton';color:#cd0000;font-size:18px;}
 .fixed{position:fixed;top:0;left:0px;width:100%;z-index:2;}
 .bg-wrapper{background:transparent;}
 .toriese{box-shadow:0px 2px 8px #999;}

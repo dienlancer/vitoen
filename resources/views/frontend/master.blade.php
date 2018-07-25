@@ -73,7 +73,13 @@ if(count($arrCart) > 0){
 		$quantity+=(int)$value['product_quantity'];              
 	}
 }   
-
+$og_image=asset('upload/logo-207nqbl6drioav1yj5gm.png');
+if(!empty($item)){
+	$image=$item['image'];
+	if($image != null){
+		$og_image=asset('upload/'.$image) ;
+	}
+}
 ?>
 <!DOCTYPE html>
 <html lang="vi" xmlns="http://www.w3.org/1999/xhtml" prefix="og: http://ogp.me/ns#">
@@ -97,6 +103,7 @@ if(count($arrCart) > 0){
 	<meta property="og:description" content="<?php echo $seo_meta_description . ': ' . $hotline1; ?>">
 	<meta property="og:site_name" content="<?php echo $seo_title; ?>">
 	<meta property="og:url" content="<?php echo $seo_page_url; ?>">
+	<meta property="og:image" content="<?php echo $og_image; ?>">
 	<!-- begin google analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $seo_google_analytics; ?>"></script>
 	<script language="javascript" type="text/javascript">
@@ -322,11 +329,11 @@ if(count($arrCart) > 0){
 						<div class="hotline-alen">
 							<div class="row">
 								<div class="col-xs-6"><div class="hotline-top"><?php echo $cskh1; ?></div></div>
-								<div class="col-xs-6"><div class="hotline-top"><?php echo $hotline1; ?></div></div>
+								<div class="col-xs-6"><div class="hotline-top-2"><a href="tel:<?php echo $hotline1; ?>"><?php echo $hotline1; ?></a></div></div>
 							</div>
 							<div class="row">
 								<div class="col-xs-6"><div class="hotline-top"><?php echo $cskh2; ?></div></div>
-								<div class="col-xs-6"><div class="hotline-top"><?php echo $hotline2; ?></div></div>
+								<div class="col-xs-6"><div class="hotline-top-2"><a href="tel:<?php echo $hotline2 ?>"><?php echo $hotline2; ?></a></div></div>
 							</div>	
 						</div>																
 					</div>				
