@@ -116,77 +116,25 @@ if(!empty($item)){
 	<!-- end google analytics -->
 	<link rel="shortcut icon" href="<?php echo $seo_favicon; ?>" type="image/x-icon">
 	<link rel="icon" href="<?php echo $seo_favicon; ?>" type="image/x-icon">
-	<script src="{{ asset('public/frontend/js/jquery-3.3.1.min.js') }}"></script>
-	<!--begin bootstrap-->
-	<script src="{{ asset('public/frontend/bootstrap/bootstrap.min.js') }}"></script>
-	<link rel="stylesheet" href="{{ asset('public/frontend/bootstrap/bootstrap.min.css') }}" />
-	<!--end bootstrap-->
-	<!-- begin jquery-ui -->
-	<script src="{{ asset('public/frontend/jquery-ui/jquery-ui.min.js') }}"></script>
-	<link rel="stylesheet" href="{{ asset('public/frontend/jquery-ui/jquery-ui.css') }}" />
-	<!-- end jquery-ui -->
-	<!-- begin font-awesome -->
-	<link rel="stylesheet" href="{{ asset('public/frontend/fontawesome/css/all.min.css') }}" />	
-	<!-- end font-awesome -->	
-	<!-- begin ddsmoothmenu -->
-	<script src="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu.js') }}"></script>
-	<link rel="stylesheet" href="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu.css') }}" />
-	<link rel="stylesheet" href="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu-v2.css') }}" />
-	<!-- end ddsmoothmenu -->
-	<!-- begin slick slider -->
-	<script src="{{ asset('public/frontend/slick/slick.min.js') }}"></script>
-	<link rel="stylesheet" href="{{ asset('public/frontend/slick/slick.css') }}" />
-	<link rel="stylesheet" href="{{ asset('public/frontend/slick/slick-theme.css') }}" />
-	<!-- end slick slider -->
-	<!-- begin tab -->
-	<link rel="stylesheet" href="{{ asset('public/frontend/css/tab.css') }}" />
-	<!-- end tab-->
-	<!-- begin bxslider -->
-	<script src="{{ asset('public/frontend/bxslider/jquery.bxslider.min.js') }}"></script>
-	<link rel="stylesheet" href="{{ asset('public/frontend/bxslider/jquery.bxslider.min.css') }}" />  
-	<!-- end bxslider -->
-	<!-- begin owl_carousel -->
-	<script src="{{ asset('public/frontend/owl-carousel-2/owl.carousel.min.js') }}"></script>
-	<script src="{{ asset('public/frontend/owl-carousel-2/owl.carousel2.thumbs.min.js') }}"></script>
-	<link rel="stylesheet" href="{{ asset('public/frontend/owl-carousel-2/owl.carousel.min.css') }}" />
-	<link rel="stylesheet" href="{{ asset('public/frontend/owl-carousel-2/owl.theme.min.css') }}" /> 
-	<link rel="stylesheet" href="{{ asset('public/frontend/owl-carousel-2/themes.css') }}" />  
-	<!-- end owl_carousel -->
-	<!-- begin elevatezoom -->
-	<script src="{{ asset('public/frontend/js/jquery.elevatezoom-3.0.8.min.js') }}"></script>  
-	<!-- end elevatezoom -->
-	<!-- begin accounting -->
-	<script src="{{ asset('public/frontend/js/accounting.min.js') }}"></script>  
-	<!-- end accounting -->
-	<!-- begin pagination -->
-	<!--<link rel="stylesheet" href="{{ asset('public/frontend/css/pagination.css') }}" />-->
-	<!-- end pagination-->
-	<!-- begin product -->
-	<link rel="stylesheet" href="{{ asset('public/frontend/css/product.css') }}" />
-	<!-- end product-->
-	<!-- begin datatables -->	
-	<script src="{{ asset('public/frontend/datatables/jquery.dataTables.min.js') }}"></script>    
-	<link rel="stylesheet" href="{{ asset('public/frontend/datatables/jquery.dataTables.min.css') }}" />
-	<script src="{{ asset('public/frontend/js/table-library.js') }}"></script>    
-	<!-- end datatables -->
-	<!-- begin youtube -->    
-  <script src="{{ asset('public/frontend/modal-video/jquery-modal-video.min.js') }}"></script>
-  <script src="{{ asset('public/frontend/modal-video/modal-video.min.js') }}"></script>
-  <link rel="stylesheet" href="{{ asset('public/frontend/modal-video/modal-video.min.css') }}" />
-  <!-- end youtube -->
-  <!-- begin quick alo phone -->
-	<link rel="stylesheet" href="{{ asset('public/frontend/css/alo-phone.css') }}" />
-	<!-- end quick alo phone -->
-	<!-- begin fancybox -->
-	<script language="javascript" type="text/javascript" src="{{asset('public/frontend/fancybox/jquery.fancybox.min.js')}}"                 ></script>
-	<link href="{{asset('public/frontend/fancybox/jquery.fancybox.min.css')}}" rel="stylesheet" type="text/css" />
-	<!-- end fancybox -->	
-	<!-- begin custom -->
-	<link rel="stylesheet" href="{{ asset('public/frontend/css/menu-horizontal-right.css') }}" />
-	<link rel="stylesheet" href="{{ asset('public/frontend/css/menu-horizontal-right-dmsp.css') }}" />
-	<script language="javascript" type="text/javascript" src="{{asset('public/frontend/js/spinner.js')}}"                 ></script>
-	<script src="{{ asset('public/frontend/js/custom.js') }}"></script>    
-	<link rel="stylesheet" href="{{ asset('public/frontend/css/template.css') }}" />
+	<script src="{{ asset('public/frontend/js/jquery-3.2.1.js') }}"></script>
+	<script async src="{{ asset('public/frontend/bootstrap/bootstrap.min.js') }}"></script>
+	<script async src="{{ asset('public/frontend/jquery-ui/jquery-ui.min.js') }}"></script>
+	<script  src="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu.js') }}" ></script>
+	<link rel="stylesheet" href="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu.css') }}" />	
+	<link rel="stylesheet" href="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu-v2.css') }}" />	
+	<script async src="{{ asset('public/frontend/slick/slick.min.js') }}"></script>	
+	<script async src="{{ asset('public/frontend/bxslider/jquery.bxslider.min.js') }}"></script>	
+	<script async src="{{ asset('public/frontend/owl-carousel-2/owl.carousel.min.js') }}"></script>
+	<script async src="{{ asset('public/frontend/owl-carousel-2/owl.carousel2.thumbs.min.js') }}"></script>
+	<script async src="{{ asset('public/frontend/js/jquery.elevatezoom-3.0.8.min.js') }}"></script>  
+	<script async src="{{ asset('public/frontend/js/accounting.min.js') }}"></script>  
+	<script async src="{{ asset('public/frontend/datatables/jquery.dataTables.min.js') }}"></script>    
+	<script async src="{{ asset('public/frontend/js/table-library.js') }}"></script>    
+	<script async src="{{ asset('public/frontend/modal-video/jquery-modal-video.min.js') }}"></script>
+	<script async src="{{ asset('public/frontend/modal-video/modal-video.min.js') }}"></script>
+	<script async src="{{asset('public/frontend/fancybox/jquery.fancybox.min.js')}}"                 ></script>
+	<!--<script  src="{{asset('public/frontend/js/spinner.js')}}"                 ></script>-->
+	<script async src="{{ asset('public/frontend/js/custom.js') }}"></script>    	
 	<!-- end custom -->
 	<script type="text/javascript" language="javascript">
 		ddsmoothmenu.init({
@@ -205,7 +153,7 @@ if(!empty($item)){
 				}
 			});			
 		});  
-		var spinner = new Spinner();  		
+		//var spinner = new Spinner();  		
 	</script>	
 </head>
 <body>	
@@ -393,6 +341,29 @@ if(!empty($item)){
 	</header>
 @yield("content")
 @include("frontend.footer")
+
+
+<link  rel="stylesheet" href="{{ asset('public/frontend/bootstrap/bootstrap.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/jquery-ui/jquery-ui.css') }}" />
+<link  rel="stylesheet" href="{{ asset('public/frontend/fontawesome/css/all.min.css') }}" />
+	
+	
+
+<link rel="stylesheet" href="{{ asset('public/frontend/slick/slick.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/slick/slick-theme.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/css/tab.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/bxslider/jquery.bxslider.min.css') }}" />  
+<link rel="stylesheet" href="{{ asset('public/frontend/owl-carousel-2/owl.carousel.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/owl-carousel-2/owl.theme.min.css') }}" /> 
+<link rel="stylesheet" href="{{ asset('public/frontend/owl-carousel-2/themes.css') }}" />  
+<link rel="stylesheet" href="{{ asset('public/frontend/css/product.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/datatables/jquery.dataTables.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/modal-video/modal-video.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/css/alo-phone.css') }}" />
+<link href="{{asset('public/frontend/fancybox/jquery.fancybox.min.css')}}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="{{ asset('public/frontend/css/menu-horizontal-right.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/css/menu-horizontal-right-dmsp.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/css/template.css') }}" />
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

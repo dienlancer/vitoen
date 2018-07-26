@@ -12,8 +12,67 @@ if(!empty($alias)){
             <?php             
         switch ($layout){
             case 'two-column':  
-            ?>
-            <div class="col-sm-3">
+            ?>            
+            <div class="col-md-9 col-sm-9 col-sm-push-3">
+                <?php
+                switch ($component) {                                                                      
+                    case "category-article":    
+                    case "articles":                                                                          
+                    ?>@include("frontend.category-article")<?php
+                    break;                                         
+                    case "article":                                                            
+                    ?>@include("frontend.article")<?php
+                    break;                
+                    case "page":                                                            
+                    ?>@include("frontend.page")<?php
+                    break;            
+                    case "search-product":             
+                    case "category-product":                                       
+                    ?>@include("frontend.category-product")<?php
+                    break; 
+                    case "product":                                                
+                    ?>@include("frontend.product")<?php
+                    break;
+                    case "cart":                                                
+                    ?>@include("frontend.cart")<?php
+                    break; 
+                    case "checkout":                                                
+                    ?>@include("frontend.checkout")<?php
+                    break; 
+                    case "register":                                                
+                    ?>@include("frontend.register")<?php
+                    break;
+                    case "account":                                                
+                    ?>@include("frontend.account")<?php
+                    break;
+                    case "login":                                                
+                    ?>@include("frontend.login")<?php
+                    break;
+                    case "login-join-project":                                                
+                    ?>@include("frontend.login-join-project")<?php
+                    break;
+                    case "security":                                                
+                    ?>@include("frontend.security")<?php
+                    break;
+                    case "xac-nhan-thanh-toan":                                                
+                    ?>@include("frontend.confirm-checkout")<?php
+                    break;
+                    case "dang-nhap-thanh-toan":                                                
+                    ?>@include("frontend.login-checkout")<?php
+                    break;
+                    case "finished-checkout":                                                
+                    ?>@include("frontend.finished-checkout")<?php
+                    break;
+                    case "hoa-don":                                                
+                    ?>@include("frontend.invoice")<?php
+                    break;  
+                    case "contact": 
+                    ?>@include("frontend.contact")<?php   
+                    break;                                                                          
+                }
+                ?>
+            </div>
+            <div class="col-md-3 col-sm-3 col-sm-pull-9">
                 @include("frontend.sidebar-category-product")     
                 <?php                                      
                 $argsTinTucSuKien = array(                         
@@ -231,66 +290,6 @@ if(!empty($alias)){
                 }                                       
                 ?>                            
             </div>
-            <div class="col-sm-9">
-                <?php
-                switch ($component) {                                                                      
-                    case "category-article":    
-                    case "articles":                                                                          
-                    ?>@include("frontend.category-article")<?php
-                    break;                                         
-                    case "article":                                                            
-                    ?>@include("frontend.article")<?php
-                    break;                
-                    case "page":                                                            
-                    ?>@include("frontend.page")<?php
-                    break;            
-                    case "search-product":             
-                    case "category-product":                                       
-                    ?>@include("frontend.category-product")<?php
-                    break; 
-                    case "product":                                                
-                    ?>@include("frontend.product")<?php
-                    break;
-                    case "cart":                                                
-                    ?>@include("frontend.cart")<?php
-                    break; 
-                    case "checkout":                                                
-                    ?>@include("frontend.checkout")<?php
-                    break; 
-                    case "register":                                                
-                    ?>@include("frontend.register")<?php
-                    break;
-                    case "account":                                                
-                    ?>@include("frontend.account")<?php
-                    break;
-                    case "login":                                                
-                    ?>@include("frontend.login")<?php
-                    break;
-                    case "login-join-project":                                                
-                    ?>@include("frontend.login-join-project")<?php
-                    break;
-                    case "security":                                                
-                    ?>@include("frontend.security")<?php
-                    break;
-                    case "xac-nhan-thanh-toan":                                                
-                    ?>@include("frontend.confirm-checkout")<?php
-                    break;
-                    case "dang-nhap-thanh-toan":                                                
-                    ?>@include("frontend.login-checkout")<?php
-                    break;
-                    case "finished-checkout":                                                
-                    ?>@include("frontend.finished-checkout")<?php
-                    break;
-                    case "hoa-don":                                                
-                    ?>@include("frontend.invoice")<?php
-                    break;  
-                    case "contact": 
-                    ?>@include("frontend.contact")<?php   
-                    break;                                                                          
-                }
-                ?>
-            </div>
-            
             <?php          
             break;
             case 'full-width':        
