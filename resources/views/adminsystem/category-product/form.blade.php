@@ -113,7 +113,7 @@ $inputCallback='<input type="hidden" name="callback_url"  value="'.route('admins
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                </div> 
+                </div>                 
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="col-md-2 control-label"><b>Nội dung</b></label>
@@ -165,9 +165,9 @@ $inputCallback='<input type="hidden" name="callback_url"  value="'.route('admins
         var fullname=$('input[name="fullname"]').val();
         var alias=$('input[name="alias"]').val();
         var alias_menu=$('input[name="alias_menu"]').val();
-        
+                
         var meta_keyword=$('textarea[name="meta_keyword"]').val();
-        var meta_description=$('textarea[name="meta_description"]').val();
+        var meta_description=$('textarea[name="meta_description"]').val();        
         var category_id=$('select[name="category_id"]').val();
         /* begin xử lý image */
         var image_file=null;
@@ -189,7 +189,7 @@ $inputCallback='<input type="hidden" name="callback_url"  value="'.route('admins
         dataItem.append('alias',alias);
         dataItem.append('alias_menu',alias_menu);        
         dataItem.append('meta_keyword',meta_keyword);
-        dataItem.append('meta_description',meta_description);
+        dataItem.append('meta_description',meta_description);        
         dataItem.append('category_id',category_id);
         if(image_files.length > 0){
             dataItem.append('image',image_file);

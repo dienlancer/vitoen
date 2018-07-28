@@ -24,9 +24,20 @@
 	}	
 	?>	
 	<div class="breadcrumb-title">
-		<?php echo $breadcrumb; ?>
+		<ul itemscope itemtype="http://schema.org/BreadcrumbList" class="ul-breadcrumb" >
+			<?php echo $breadcrumb; ?>
+		</ul>		
 	</div>
-	<?php 			
+	<?php 	
+	if(!empty(@$category['meta_description'])){		
+		?>
+		<div class="category-meta-description">			
+			<?php echo @$category['meta_description'];		?>			
+		</div>
+		<div id="category-content" class="collapse category-content" ><?php echo @$category['content']; ?></div>
+		<div class="view-readmore"><center><a href="javascript:void(0);" data-toggle="collapse" data-target="#category-content">Xem thêm</a></center></div>		
+		<?php		
+	} 		
 	if(count($items) > 0){	
 		?>
 		<div class="margin-top-5 box-round-category">
@@ -132,18 +143,18 @@
 		</div>
 		<?php		
 	} 
-	if(!empty(@$category['content'])){
-		?>
-		<div class="margin-top-15">
-			<div class="row">
-				<div class="col-lg-12">
-					<?php 
-					echo @$category['content'];		
-					?>
-				</div>
-			</div>		
-		</div>
-		<?php		
-	} 		
-	?>		
+	
+	?>	
+	<script type="text/javascript" language="javascript">
+		
+		$(document).ready(function(){
+			$("#category-content").on("hide.bs.collapse", function(){
+				$(".view-readmore a").text('Xem thêm');
+			});
+			$("#category-content").on("show.bs.collapse", function(){
+				$(".view-readmore a").text('Rút gọn');
+			});
+		});
+		
+	</script>	
 </form>

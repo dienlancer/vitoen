@@ -112,7 +112,7 @@ public function save(Request $request){
     $image_file         =   $_FILES["image"];
   }
   $image_hidden           =   trim($request->image_hidden);
-  $content     =   trim($request->content);
+  $content     =   trim($request->content);  
   $sort_order 			      =		trim($request->sort_order);
   $status 				        =		trim($request->status);
   $data 		              =   array();
@@ -185,7 +185,7 @@ if ($checked == 1) {
   $item->alias 			  =	$alias;
 
   $item->meta_keyword     = $meta_keyword;
-  $item->meta_description = $meta_description;       
+  $item->meta_description = $meta_description;         
   $item->content = $content;           
   $item->parent_id 		=	(int)@$category_id;            
   $item->sort_order 	=	(int)@$sort_order;

@@ -5,7 +5,9 @@
 	$breadcrumb= getBreadCrumbCategoryArticle($category);	
 	?>
 	<div class="breadcrumb-title">
-		<?php echo $breadcrumb; ?>
+		<ul itemscope itemtype="http://schema.org/BreadcrumbList" class="ul-breadcrumb" >
+			<?php echo $breadcrumb; ?>
+		</ul>		
 	</div>
 	<h1 style="display: none;"><?php echo @$category['fullname']; ?></h1>
 	<h2 style="display: none;"><?php echo @$meta_description; ?></h2>

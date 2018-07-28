@@ -1,4 +1,4 @@
-<?php 
+<?php
 $setting=getSettingSystem();
 $seo=getSeo();
 $hotline1=$setting['hotline1']['field_value'];
@@ -33,7 +33,7 @@ $seo_meta_description="";
 if(!empty(@$meta_description)){
 	$seo_meta_description=$meta_description;
 }else{
-	$seo_meta_description=$seo["meta_description"];
+	$seo_meta_description=$seo["meta_description"] . ' ' . $hotline1;
 }
 
 
@@ -83,12 +83,15 @@ if(!empty($item)){
 ?>
 <!DOCTYPE html>
 <html lang="vi" xmlns="http://www.w3.org/1999/xhtml" prefix="og: http://ogp.me/ns#">
-<head>
+
+<head itemscope itemtype="http://schema.org/WebSite">
+	<meta itemprop='name' content="<?php echo @$seo["title"]; ?>"/>
+	<link rel="canonical" href="<?php echo url('/'); ?>" itemprop="url">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">  
 	<title><?php echo $seo_title; ?></title>
 	<meta name="keywords" content="<?php echo $seo_meta_keyword; ?>">
-	<meta name="description" content="<?php echo $seo_meta_description . ': ' . $hotline1 ; ?>">	
+	<meta name="description" content="<?php echo $seo_meta_description; ?>">	
 	<meta name="author" content="<?php echo $seo_author; ?>">
 	<meta name="copyright" content="<?php echo $seo_copyright; ?>">
 	<meta name="robots" content="index, archive, follow, noodp">
@@ -100,13 +103,13 @@ if(!empty($item)){
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta property="og:title" content="<?php echo $seo_title; ?>">
 	<meta property="og:type" content="website">
-	<meta property="og:description" content="<?php echo $seo_meta_description . ': ' . $hotline1; ?>">
+	<meta property="og:description" content="<?php echo $seo_meta_description; ?>">
 	<meta property="og:site_name" content="<?php echo $seo_title; ?>">
 	<meta property="og:url" content="<?php echo $seo_page_url; ?>">
 	<meta property="og:image" content="<?php echo $og_image; ?>">
 	<!-- begin google analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $seo_google_analytics; ?>"></script>
-	<script language="javascript" type="text/javascript">
+	<script async language="javascript" type="text/javascript">
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
@@ -116,7 +119,7 @@ if(!empty($item)){
 	<!-- end google analytics -->
 	<link rel="shortcut icon" href="<?php echo $seo_favicon; ?>" type="image/x-icon">
 	<link rel="icon" href="<?php echo $seo_favicon; ?>" type="image/x-icon">
-	<script src="{{ asset('public/frontend/js/jquery-3.2.1.js') }}"></script>
+	<script src="{{ asset('public/frontend/js/jquery-3.3.1.min.js') }}"></script>
 	<script async src="{{ asset('public/frontend/bootstrap/bootstrap.min.js') }}"></script>
 	<script async src="{{ asset('public/frontend/jquery-ui/jquery-ui.min.js') }}"></script>
 	<script  src="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu.js') }}" ></script>
@@ -133,7 +136,7 @@ if(!empty($item)){
 	<script async src="{{ asset('public/frontend/modal-video/jquery-modal-video.min.js') }}"></script>
 	<script async src="{{ asset('public/frontend/modal-video/modal-video.min.js') }}"></script>
 	<script async src="{{asset('public/frontend/fancybox/jquery.fancybox.min.js')}}"                 ></script>
-	<!--<script  src="{{asset('public/frontend/js/spinner.js')}}"                 ></script>-->
+	<script  src="{{asset('public/frontend/js/spinner.js')}}"                 ></script>
 	<script async src="{{ asset('public/frontend/js/custom.js') }}"></script>    	
 	<!-- end custom -->
 	<script type="text/javascript" language="javascript">
@@ -153,7 +156,7 @@ if(!empty($item)){
 				}
 			});			
 		});  
-		//var spinner = new Spinner();  		
+		var spinner = new Spinner();  		
 	</script>	
 </head>
 <body>	
@@ -172,12 +175,13 @@ if(!empty($item)){
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-2">
-						<div class="social-left">
-							<ul class="social-icon">
-								<li><a href="<?php echo $facebook_url; ?>"><i class="fab fa-facebook-f"></i></a></li>
-								<li><a href="<?php echo $twitter_url; ?>"><i class="fab fa-twitter"></i></a></li>
-								<li><a href="<?php echo $google_plus; ?>"><i class="fab fa-google"></i></a></li>
-								<li><a href="<?php echo $youtube_url; ?>"><i class="fab fa-youtube"></i></a></li>								
+						<div class="social-left" itemscope itemtype="http://schema.org/Organization">
+																						
+							<ul class="social-icon" itemprop="url" href="<?php echo url('/'); ?>">
+								<li><a itemprop="sameAs" href="<?php echo $facebook_url; ?>"><i class="fab fa-facebook-f"></i></a></li>
+								<li><a itemprop="sameAs" href="<?php echo $twitter_url; ?>"><i class="fab fa-twitter"></i></a></li>
+								<li><a itemprop="sameAs" href="<?php echo $google_plus; ?>"><i class="fab fa-google"></i></a></li>
+								<li><a itemprop="sameAs" href="<?php echo $youtube_url; ?>"><i class="fab fa-youtube"></i></a></li>								
 							</ul>
 						</div>
 					</div>
@@ -246,7 +250,7 @@ if(!empty($item)){
 										<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();"><i class="fas fa-search"></i></a>	
 									</div>
 								</div>							
-							</form>							
+							</form>												
 							<div class="timex canai">
 								<center><a href="<?php echo route('frontend.index.viewCart'); ?>"><img src="<?php echo asset('/upload/icon-cart.png'); ?>"></a></center>	
 								<?php 
@@ -341,14 +345,9 @@ if(!empty($item)){
 	</header>
 @yield("content")
 @include("frontend.footer")
-
-
 <link  rel="stylesheet" href="{{ asset('public/frontend/bootstrap/bootstrap.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/frontend/jquery-ui/jquery-ui.css') }}" />
 <link  rel="stylesheet" href="{{ asset('public/frontend/fontawesome/css/all.min.css') }}" />
-	
-	
-
 <link rel="stylesheet" href="{{ asset('public/frontend/slick/slick.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/frontend/slick/slick-theme.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/frontend/css/tab.css') }}" />
@@ -378,6 +377,7 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 <!--End of Tawk.to Script-->
 </body>
+
 </html>
 
 
