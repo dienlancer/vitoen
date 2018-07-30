@@ -80,13 +80,16 @@ if(!empty($item)){
 		$og_image=asset('upload/'.$image) ;
 	}
 }
+$canonical='';
+if(!empty(@$alias)){
+	$canonical=@$alias.'.html';
+}
 ?>
 <!DOCTYPE html>
 <html lang="vi" xmlns="http://www.w3.org/1999/xhtml" prefix="og: http://ogp.me/ns#">
-
 <head itemscope itemtype="http://schema.org/WebSite">
 	<meta itemprop='name' content="<?php echo @$seo["title"]; ?>"/>
-	<link rel="canonical" href="<?php echo url('/'); ?>" itemprop="url">
+	<link rel="canonical" href="<?php echo url(@$canonical); ?>" itemprop="url">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">  
 	<title><?php echo $seo_title; ?></title>
@@ -179,9 +182,9 @@ if(!empty($item)){
 																						
 							<ul class="social-icon" itemprop="url" href="<?php echo url('/'); ?>">
 								<li><a itemprop="sameAs" href="<?php echo $facebook_url; ?>"><i class="fab fa-facebook-f"></i></a></li>
-								<li><a itemprop="sameAs" href="<?php echo $twitter_url; ?>"><i class="fab fa-twitter"></i></a></li>
-								<li><a itemprop="sameAs" href="<?php echo $google_plus; ?>"><i class="fab fa-google"></i></a></li>
-								<li><a itemprop="sameAs" href="<?php echo $youtube_url; ?>"><i class="fab fa-youtube"></i></a></li>								
+								<li><a itemprop="sameAs" href="javascript:void(0);"><i class="fab fa-twitter"></i></a></li>
+								<li><a itemprop="sameAs" href="javascript:void(0);"><i class="fab fa-google"></i></a></li>
+								<li><a itemprop="sameAs" href="javascript:void(0);"><i class="fab fa-youtube"></i></a></li>								
 							</ul>
 						</div>
 					</div>

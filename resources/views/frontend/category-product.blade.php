@@ -18,8 +18,8 @@
 	else{
 		$breadcrumb='<a href="'.url('/').'">Trang chủ</a><a href="javascript:void(0);">Tìm kiếm</a>';
 		?>
-		<h1 style="display: none;"><?php echo $seo_title; ?></h1>
-		<h2 style="display: none;"><?php echo $seo_meta_description; ?></h2>
+		<h1 style="display: none;"><?php echo @$seo_title; ?></h1>
+		<h2 style="display: none;"><?php echo @$seo_meta_description; ?></h2>
 		<?php		
 	}	
 	?>	
@@ -32,7 +32,7 @@
 	if(!empty(@$category['meta_description'])){		
 		?>
 		<div class="category-meta-description">			
-			<?php echo @$category['meta_description'];		?>			
+			<?php echo @$category['meta_description'];		?>	
 		</div>
 		<div id="category-content" class="collapse category-content" ><?php echo @$category['content']; ?></div>
 		<div class="view-readmore"><center><a href="javascript:void(0);" data-toggle="collapse" data-target="#category-content">Xem thêm</a></center></div>		

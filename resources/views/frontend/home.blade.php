@@ -63,7 +63,11 @@ $company=$setting['contacted_person']['field_value'];
 											$ft_child_fullname=$value_child['fullname'];
 											$ft_child_alias=$value_child['alias'];
 											?>
-											<li><a href="<?php echo route('frontend.index.index',[$ft_child_alias]); ?>"><div><?php echo $ft_child_fullname; ?></div></a></li>
+											<li>
+												<a href="<?php echo route('frontend.index.index',[$ft_child_alias]); ?>">
+													<h3 class="category-sub"><?php echo $ft_child_fullname; ?></h3>
+												</a>
+											</li>
 											<?php
 										}
 										?>									
@@ -116,9 +120,9 @@ $company=$setting['contacted_person']['field_value'];
 										}
 										?>		
 									</div>
-									<h3 class="box-product-intro-title">
+									<h4 class="box-product-intro-title">
 										<center><a href="<?php echo $ft_product_permalink; ?>"><b><?php echo $ft_product_title; ?></b></a></center>
-									</h3>
+									</h4>
 									<?php 
 									/* begin thương hiệu */		
 									$trademark='';

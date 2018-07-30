@@ -52,7 +52,7 @@ class IndexController extends Controller {
         $msg=array();           
         $layout="two-column";     
         $component='contact';
-        $alias="lien-he-voi-chung-toi";   
+        $alias="";   
         if($request->isMethod('post'))     {  
           $data=$request->all();                    
           $fullname   = @$request->fullname;
@@ -319,7 +319,7 @@ class IndexController extends Controller {
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
         $data=$query->select('article.id','article.alias','article.fullname','article.image','article.alt_image','article.intro','article.count_view')                
                     ->groupBy('article.id','article.alias','article.fullname','article.image','article.alt_image','article.intro','article.count_view')
-                    ->orderBy('article.created_at', 'desc')
+                    ->orderBy('article.sort_order', 'desc')
                     ->skip($position)
                     ->take($totalItemsPerPage)
                     ->get()
@@ -373,7 +373,7 @@ class IndexController extends Controller {
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
         $data=$query->select('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','product.price','sale_off','product.sale_price')               
                 ->groupBy('product.id','product.code','product.fullname','product.alias','product.image','product.alt_image','product.price','sale_off','product.sale_price')
-                ->orderBy('product.id', 'desc')
+                ->orderBy('product.sort_order', 'desc')
                 ->skip($position)
                 ->take($totalItemsPerPage)
                 ->get()->toArray();   
@@ -409,7 +409,7 @@ class IndexController extends Controller {
         $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;        
         $data=$query->select('product.id','product.alias','product.fullname','product.image','product.alt_image')                                
                     ->groupBy('product.id','product.alias','product.fullname','product.image','product.alt_image')
-                    ->orderBy('product.created_at', 'desc')
+                    ->orderBy('product.sort_order', 'desc')
                     ->skip($position)
                     ->take($totalItemsPerPage)
                     ->get()

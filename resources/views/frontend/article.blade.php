@@ -50,9 +50,9 @@ if(count($dataArticleCategory) > 0){
 		</span>
 	</div>	
 	<hr class="duong-ngang" />	
-	<h2 class="margin-top-10 article-excerpt justify">
+	<div class="margin-top-10 article-excerpt justify">
 		<?php echo $intro; ?>
-	</h2>		
+	</div>		
 	<div class="margin-top-15">
 		<?php echo $content; ?>
 	</div>	

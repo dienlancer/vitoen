@@ -1,5 +1,7 @@
 <?php 
 use App\PageModel;
+$seo=getSeo();
+$seo_logo_frontend=asset('upload/'.$seo['logo_frontend']);
 if(count($item) > 0){	
 	$id=$item["id"];
 	$fullname = $item["fullname"];
@@ -27,9 +29,9 @@ if(count($item) > 0){
 		<?php 
 		if(!empty(@$intro)){
 			?>
-			<h2 class="margin-top-10 article-excerpt  justify">
+			<div class="margin-top-10 article-excerpt  justify">
 				<?php echo $intro; ?>
-			</h2>	
+			</div>	
 			<hr class="duong-ngang" />	
 			<?php
 		}
@@ -38,7 +40,34 @@ if(count($item) > 0){
 			<?php echo $content; ?>
 		</div>	
 	</div>
-	<?php
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "NewsArticle",
+			"mainEntityOfPage": {
+			"@type": "WebPage",
+			"@id": "https://google.com/article"
+		},
+		"headline": "Article headline",
+		"image": "<?php echo asset('upload/'.@$item['image']); ?>",
+		"datePublished": "<?php echo @$item['created_at']; ?>",
+		"dateModified": "<?php echo @$item['updated_at']; ?>",
+		"author": {
+		"@type": "Person",
+		"name": "Administrator"
+	},
+	"publisher": {
+	"@type": "Organization",
+	"name": "Google",
+	"logo": {
+	"@type": "ImageObject",
+	"url": "<?php echo $seo_logo_frontend; ?>"
+}
+},
+"description": "<?php echo @$intro; ?>"
+}
+</script>
+<?php
 }
 ?>	
 

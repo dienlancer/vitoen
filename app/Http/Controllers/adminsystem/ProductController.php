@@ -50,7 +50,7 @@ class ProductController extends Controller {
       }   
       $data=$query->select('product.id','product.code','product.fullname','product.alias','product.image','category_product.fullname as category_name','product.price','product.sale_off','product.sale_price','product.sort_order','product.status','product.created_at','product.updated_at')
                   ->groupBy('product.id','product.code','product.fullname','product.alias','product.image','category_product.fullname','product.price','product.sale_off','product.sale_price','product.sort_order','product.status','product.created_at','product.updated_at')
-                  ->orderBy('product.sort_order', 'asc')
+                  ->orderBy('product.sort_order', 'desc')
                   ->get()
                   ->toArray();      
       $data=convertToArray($data);    

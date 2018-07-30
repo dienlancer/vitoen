@@ -103,7 +103,7 @@ $manufacturer='';
         <h1 class="margin-top-15 product-detail-title">
             <?php echo $title; ?>
         </h1>
-        <span style="display: none;"><?php echo  @$item['code'] ?></span>
+        <span style="display: none;"><?php echo  @$item['code']; ?></span>
         <div class="margin-top-5">
             <b>Lượt xem:</b>&nbsp;<?php echo $count_view; ?>
         </div>

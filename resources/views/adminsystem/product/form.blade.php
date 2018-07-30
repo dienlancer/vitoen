@@ -20,7 +20,17 @@ $inputIntro            =   '<textarea  name="intro" rows="5" cols="100" class="f
 $inputDetail            =   '<textarea name="detail" rows="5" cols="100" class="form-control summer-editor" >'.@$arrRowData['detail'].'</textarea>'; 
 $inputTechnicalDetail            =   '<textarea name="technical_detail" rows="5" cols="100" class="form-control summer-editor" >'.@$arrRowData['technical_detail'].'</textarea>'; 
 $inputVideoId          =   '<input type="text" class="form-control" name="video_id"       value="'.@$arrRowData['video_id'].'">';
-$inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"      value="'.@$arrRowData['sort_order'].'">';
+
+$sort_order=0;
+if(@$arrRowData == null){
+    $source_product=App\ProductModel::select('id','fullname','sort_order')->orderBy('sort_order','desc')->get()->toArray();
+    if(count($source_product) > 0){
+        $sort_order=(int)@$source_product[0]['sort_order']+1;
+    }
+}else{
+    $sort_order=@$arrRowData['sort_order'];
+}
+$inputSortOrder         =   '<input type="text" class="form-control" name="sort_order"      value="'.@$sort_order.'">';
 
 $ddlCategoryProduct      =   cmsSelectboxCategory("category_id","form-control",$arrCategoryProductRecursive,@$arrRowData['category_id'],"",'Chọn danh mục');
 $ddlCategoryParam        =cmsSelectboxCategoryParamMultiple("category_param_id[]", 'form-control', @$arrCategoryParamRecursive, @$arrPostParam,"",'Chọn danh mục');

@@ -36,7 +36,7 @@ class PageController extends Controller {
       }
       $data=$query->select('page.id','page.fullname','page.alias','page.theme_location','page.image','page.sort_order','page.status','page.created_at','page.updated_at')
       ->groupBy('page.id','page.fullname','page.alias','page.theme_location','page.image','page.sort_order','page.status','page.created_at','page.updated_at')
-      ->orderBy('page.sort_order', 'asc')->get()->toArray();                
+      ->orderBy('page.sort_order', 'desc')->get()->toArray();                
       $data=convertToArray($data);    
       $data=pageConverter($data,$this->_controller);            
       return $data;
