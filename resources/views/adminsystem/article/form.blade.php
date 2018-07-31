@@ -15,11 +15,11 @@ $inputContent           =   '<textarea  name="content" rows="2" cols="100" class
 $inputDescription       =   '<textarea name="description" rows="2" cols="100" class="form-control" >'.@$arrRowData['description'].'</textarea>'; 
 $inputMetakeyword             =   '<textarea  name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
 $inputMetadescription             =   '<textarea name="meta_description" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_description'].'</textarea>'; 
-$sort_order=0;
+$sort_order=1;
 if(@$arrRowData == null){
-    $source_article=App\ArticleModel::select('id','fullname','sort_order')->orderBy('sort_order','desc')->get()->toArray();
-    if(count($source_article) > 0){
-        $sort_order=(int)@$source_article[0]['sort_order']+1;
+    $source_sort_order=App\ArticleModel::select('id','fullname','sort_order')->orderBy('sort_order','desc')->get()->toArray();
+    if(count($source_sort_order) > 0){
+        $sort_order=(int)@$source_sort_order[0]['sort_order']+1;
     }
 }else{
     $sort_order=@$arrRowData['sort_order'];

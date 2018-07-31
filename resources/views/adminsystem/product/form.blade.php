@@ -21,11 +21,11 @@ $inputDetail            =   '<textarea name="detail" rows="5" cols="100" class="
 $inputTechnicalDetail            =   '<textarea name="technical_detail" rows="5" cols="100" class="form-control summer-editor" >'.@$arrRowData['technical_detail'].'</textarea>'; 
 $inputVideoId          =   '<input type="text" class="form-control" name="video_id"       value="'.@$arrRowData['video_id'].'">';
 
-$sort_order=0;
+$sort_order=1;
 if(@$arrRowData == null){
-    $source_product=App\ProductModel::select('id','fullname','sort_order')->orderBy('sort_order','desc')->get()->toArray();
-    if(count($source_product) > 0){
-        $sort_order=(int)@$source_product[0]['sort_order']+1;
+    $source_sort_order=App\ProductModel::select('id','fullname','sort_order')->orderBy('sort_order','desc')->get()->toArray();
+    if(count($source_sort_order) > 0){
+        $sort_order=(int)@$source_sort_order[0]['sort_order']+1;
     }
 }else{
     $sort_order=@$arrRowData['sort_order'];

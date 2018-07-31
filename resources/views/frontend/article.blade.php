@@ -16,7 +16,7 @@ $row->count_view=$count_view;
 $row->save();
 $count_view_text=number_format($count_view,0,",",".");
 /* end cập nhật count view */
-$dataArticleCategory=DB::table('article_category')
+$source_category=DB::table('article_category')
 ->join('category_article','article_category.category_id','=','category_article.id')		
 ->select('category_article.id','category_article.fullname','category_article.alias')
 ->where('article_category.article_id','=',(int)@$id)					
@@ -24,28 +24,32 @@ $dataArticleCategory=DB::table('article_category')
 ->orderBy('category_article.sort_order','asc')
 ->get()->toArray();
 $arr_category_id=array();
-$arr_category_name=array();	
-$category_name='';	
-if(count($dataArticleCategory) > 0){		
-	$dataArticleCategory=convertToArray($dataArticleCategory);
-	foreach ($dataArticleCategory as $key => $value) {
-		$arr_category_id[]=$value["id"];
-		$permalink=route('frontend.index.index',[$value['alias']]);
-		$arr_category_name[]='<a href="'.$permalink.'">'.$value["fullname"].'</a>' ;						
-	}		
-	$category_name=implode(' / ', $arr_category_name);		
-}		
+$data_category=array();
+if(count($source_category) > 0){		
+	$data_category=convertToArray($source_category);
+	foreach ($data_category as $key => $value) {
+		$arr_category_id[]=$value["id"];		
+	}
+	if(count($data_category) == 1){		
+		?>
+		<div class="breadcrumb-title margin-top-5">
+			<ul itemscope itemtype="http://schema.org/BreadcrumbList" class="ul-breadcrumb">
+				<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a itemscope="" itemtype="http://schema.org/Thing" itemprop="item" href="https://www.vitoen.com"><span itemprop="name">Trang chủ</span></a><meta itemprop="position" content="1"></li>
+				<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a itemscope="" itemtype="http://schema.org/Thing" itemprop="item" href="<?php echo route('frontend.index.index',[@$data_category[0]['alias']]); ?>"><span itemprop="name"><?php echo @$data_category[0]['fullname']; ?></span></a>
+					<meta itemprop="position" content="2">
+				</li>				
+			</ul>		
+		</div>
+		<?php
+	}			
+}				
 ?>	
-<div class="margin-top-15 box-article">
+<div class="margin-top-5 box-article">	
 	<h1 class="tieu-de-bai-viet">
 		<?php echo $title; ?>		
 	</h1>
-	<div class="margin-top-15">
-		<span class="box-article-category">
-			<i class="fa fa-folder" aria-hidden="true"></i>
-			<?php echo $category_name; ?>
-		</span>
-		<span class="post-view margin-left-15">
+	<div class="margin-top-15">		
+		<span class="post-view">
 			<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo $count_view_text ?>&nbsp;Lượt xem
 		</span>
 	</div>	
