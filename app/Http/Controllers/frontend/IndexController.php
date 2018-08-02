@@ -1489,7 +1489,7 @@ class IndexController extends Controller {
       }
       public function addToCart(Request $request){
         $id=$request->id;
-        $quantity=$request->quantity;   
+        $quantity=1;   
         $data=ProductModel::find((int)@$id);          
         $product_id=(int)@$id;
         $product_code=$data["code"];
@@ -1540,12 +1540,7 @@ class IndexController extends Controller {
             }
           }                                                        
         }    
-        ksort($arrCart);
-        $info=array(                            
-          'quantity'=>$total_quantity,
-          'permalink'=>route('frontend.index.viewCart')
-        );
-        return $info;
+        return redirect()->route('frontend.index.viewCart');
       }   
       function changeTotalPrice(Request $request){
         $id=$request->id;

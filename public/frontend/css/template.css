@@ -10,23 +10,6 @@
 @font-face{font-family:"OpenSans";src:url("../fonts/OpenSans.ttf") format('truetype');}
 @font-face{font-family:"OpenSans-Bold";src:url("../fonts/OpenSans-Bold.ttf") format('truetype');}
 
-/*@import url("../bootstrap/bootstrap.min.css") print;
-@import url("../jquery-ui/jquery-ui.css") print;
-@import url("../fontawesome/css/all.min.css") print;
-@import url("../slick/slick.css") print;
-@import url("../slick/slick-theme.css") print;
-@import url("../css/tab.css") print;
-@import url("../bxslider/jquery.bxslider.min.css") print;
-@import url("../owl-carousel-2/owl.carousel.min.css") print;
-@import url("../owl-carousel-2/owl.theme.min.css") print;
-@import url("../owl-carousel-2/themes.css") print;
-@import url("../css/product.css") print;
-@import url("../datatables/jquery.dataTables.min.css") print;
-@import url("../modal-video/modal-video.min.css") print;
-@import url("../css/alo-phone.css") print;
-@import url("../fancybox/jquery.fancybox.min.css") print;
-@import url("../css/menu-horizontal-right.css") print;
-@import url("../css/menu-horizontal-right-dmsp.css") print;*/
 
 body{font-size:14px;color:#585858;background:#fbfbfb;font-family:'OpenSans';}
 table{max-width:100%;}

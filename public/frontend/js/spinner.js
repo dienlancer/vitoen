@@ -3,3 +3,4 @@ this.init();this.show=function(message){$('#spinner').find('#message').html(mess
 this.hide=function(){$('#spinner').hide();}
 this.changeMessage=function(message){$('#spinner').find('#message').html(message);}
 this.remove=function(){$('#spinner').remove();}}
+var spinner = new Spinner();

@@ -53,7 +53,7 @@ $manufacturer='';
         if(count($arrPicture) > 0){
             ?>
             <div class="margin-top-5">      
-                <script type="text/javascript" language="javascript">
+                <script type="text/javascript" language="javascript" async>
                     $(document).ready(function(){
                         $(".prodetail").owlCarousel({
                             autoplay:true,                    
@@ -268,10 +268,10 @@ $manufacturer='';
             <?php 
             if((int)@$price > 0){
                 ?>
-                <form name="frm-product-detail"  method="POST" enctype="multipart/form-data">
+                <form name="frm-product-detail"  method="POST" enctype="multipart/form-data" action="<?php echo route('frontend.index.addToCart'); ?>">
                     {{ csrf_field() }}
                     <input type="hidden" name="id" value="<?php echo @$item['id']; ?>">
-                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart"  onclick="addToCart();" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Mua ngay</span>
+                    <a href="javascript:void(0);"  onclick="document.forms['frm-product-detail'].submit();" class="add-to-cart"><i class="fas fa-shopping-cart"></i><span class="margin-left-15">Mua ngay</span>
                     </a> 
                 </form>                    
                 <?php 
@@ -343,8 +343,8 @@ if(count($dataProduct) > 0){
   </div> 
   <div class="margin-top-15">
       <script type="text/javascript" language="javascript">
-         jQuery(document).ready(function(){
-            jQuery(".productdetail").owlCarousel({
+         $(document).ready(function(){
+            $(".productdetail").owlCarousel({
                autoplay:true,                    
                loop:true,
                margin:0,                        
@@ -462,28 +462,28 @@ if(count($dataProduct) > 0){
 <?php                     
 }
 ?>
-<script language="javascript" type="text/javascript">
-    jQuery('.zoom_img').elevateZoom({
+<script language="javascript" type="text/javascript" >
+    $('.zoom_img').elevateZoom({
         zoomType: "inner",
         cursor: "crosshair",
         zoomWindowFadeIn: 500,
         zoomWindowFadeOut: 750
     });
     function changeImage(small_thumbnail,large_thumbnail){    
-        var image_detail=jQuery(".image-detail");
+        var image_detail=$(".image-detail");
         var imghtml='<img class="zoom_img" src="'+small_thumbnail+'" data-zoom-image="'+large_thumbnail+'">';        
-        jQuery(image_detail).empty();
-        jQuery(image_detail).append(imghtml);
-        jQuery('.zoom_img').elevateZoom({
+        $(image_detail).empty();
+        $(image_detail).append(imghtml);
+        $('.zoom_img').elevateZoom({
             zoomType: "inner",
             cursor: "crosshair",
             zoomWindowFadeIn: 500,
             zoomWindowFadeOut: 750
         });
     }    
-    function addToCart(){
-        var id=jQuery('form[name="frm-product-detail"]').find('input[name="id"]').val();             
-        var token =jQuery('form[name="frm-product-detail"]').find('input[name="_token"]').val();             
+    function addToCart(){        
+        var id=$('form[name="frm-product-detail"]').find('input[name="id"]').val();             
+        var token =$('form[name="frm-product-detail"]').find('input[name="_token"]').val();             
         var quantity = 1;
         var dataItem={
             "id":id,            
@@ -495,13 +495,13 @@ if(count($dataProduct) > 0){
             type: 'POST',
             data: dataItem,
             async: false,
-            success: function (data) {                       
+            success: function (data) {             
                 var thong_bao='Sản phẩm đã được thêm vào <a href="'+data.permalink+'">giỏ hàng</a>';                       
-                jQuery(".modal-add-cart .modal-body").empty();              
-                jQuery(".modal-add-cart .modal-body").append(thong_bao);
-                jQuery('.samadu').show();
-                jQuery('.samadu').empty();
-                jQuery('.samadu').append(data.quantity);                
+                $(".modal-add-cart .modal-body").empty();              
+                $(".modal-add-cart .modal-body").append(thong_bao);
+                $('.samadu').show();
+                $('.samadu').empty();
+                $('.samadu').append(data.quantity);                
             },
             error : function (data){
 
@@ -524,9 +524,9 @@ if(count($dataProduct) > 0){
         document.getElementById(cityName).style.display = "block";
         evt.currentTarget.className += " active";
     }
-    jQuery(document).ready(function(){
-        jQuery("#thong-tin").show();
-        jQuery("div.tab > button.tablinks:first-child").addClass('active');
+    $(document).ready(function(){
+        $("#thong-tin").show();
+        $("div.tab > button.tablinks:first-child").addClass('active');
     });     
 </script>  
 <script type="application/ld+json">

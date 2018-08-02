@@ -117,10 +117,16 @@ if(!empty(@$alias)){
 	<meta property="og:description" content="<?php echo $seo_meta_description; ?>" itemprop="description">
 	<meta property="og:site_name" content="<?php echo $seo_title; ?>">
 	<meta property="og:url" content="<?php echo url(@$canonical); ?>" itemprop="url">
-	<meta property="og:image" content="<?php echo $og_image; ?>" itemprop="thumbnailUrl">
+	<meta property="og:image" content="<?php echo $og_image; ?>" itemprop="thumbnailUrl">	
+	<link rel="shortcut icon" href="<?php echo $seo_favicon; ?>" type="image/x-icon">
+	<link rel="icon" href="<?php echo $seo_favicon; ?>" type="image/x-icon">	
+	<script src="{{ asset('public/frontend/js/jquery-3.3.1.min.js') }}"></script>
+	<script src="{{ asset('public/frontend/bootstrap/bootstrap.min.js') }}"  ></script>
+	<script src="{{ asset('public/frontend/js/jquery.elevatezoom-3.0.8.min.js') }}" ></script> 
+	<script src="{{ asset('public/frontend/js/spinner.js')}}"        async         ></script>		    	
 	<!-- begin google analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $seo_google_analytics; ?>"></script>
-	<script async language="javascript" type="text/javascript">
+	<script  src="https://www.googletagmanager.com/gtag/js?id=<?php echo $seo_google_analytics; ?>" async ></script>
+	<script language="javascript" type="text/javascript"  >
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
@@ -128,47 +134,6 @@ if(!empty(@$alias)){
 		gtag('config', '<?php echo $seo_google_analytics; ?>');
 	</script>
 	<!-- end google analytics -->
-	<link rel="shortcut icon" href="<?php echo $seo_favicon; ?>" type="image/x-icon">
-	<link rel="icon" href="<?php echo $seo_favicon; ?>" type="image/x-icon">
-	<script src="{{ asset('public/frontend/js/jquery-3.3.1.min.js') }}"></script>
-	<script src="{{ asset('public/frontend/bootstrap/bootstrap.min.js') }}"></script>
-	<script async src="{{ asset('public/frontend/jquery-ui/jquery-ui.min.js') }}"></script>
-	<script  src="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu.js') }}" ></script>
-	<link rel="stylesheet" href="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu.css') }}" />	
-	<link rel="stylesheet" href="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu-v2.css') }}" />	
-	<script async src="{{ asset('public/frontend/slick/slick.min.js') }}"></script>	
-	<script async src="{{ asset('public/frontend/bxslider/jquery.bxslider.min.js') }}"></script>	
-	<script async src="{{ asset('public/frontend/owl-carousel-2/owl.carousel.min.js') }}"></script>
-	<script async src="{{ asset('public/frontend/owl-carousel-2/owl.carousel2.thumbs.min.js') }}"></script>
-	<script async src="{{ asset('public/frontend/js/jquery.elevatezoom-3.0.8.min.js') }}"></script>  
-	<script async src="{{ asset('public/frontend/js/accounting.min.js') }}"></script>  
-	<script async src="{{ asset('public/frontend/datatables/jquery.dataTables.min.js') }}"></script>    
-	<script async src="{{ asset('public/frontend/js/table-library.js') }}"></script>    
-	<script async src="{{ asset('public/frontend/modal-video/jquery-modal-video.min.js') }}"></script>
-	<script async src="{{ asset('public/frontend/modal-video/modal-video.min.js') }}"></script>
-	<script async src="{{asset('public/frontend/fancybox/jquery.fancybox.min.js')}}"                 ></script>
-	<script  src="{{asset('public/frontend/js/spinner.js')}}"                 ></script>
-	<script async src="{{ asset('public/frontend/js/custom.js') }}"></script>    	
-	<!-- end custom -->
-	<script type="text/javascript" language="javascript">
-		ddsmoothmenu.init({
-			mainmenuid: "smoothmainmenu", 
-			orientation: "h", 
-			classname: "ddsmoothmenu",
-			contentsource: "markup" 
-		});    
-		$(document).ready(function(){        
-			$(window).bind("scroll", function() {                        
-				if ($(window).scrollTop() > 90) {					
-					
-				}
-				else {					
-					
-				}
-			});			
-		});  
-		var spinner = new Spinner();  		
-	</script>	
 </head>
 <body>	
 
@@ -351,9 +316,10 @@ if(!empty(@$alias)){
 	</header>
 @yield("content")
 @include("frontend.footer")
-<!--<link  rel="stylesheet" href="{{ asset('public/frontend/bootstrap/bootstrap.min.css') }}" />
+
+<link rel="stylesheet" href="{{ asset('public/frontend/bootstrap/bootstrap.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/frontend/jquery-ui/jquery-ui.css') }}" />
-<link  rel="stylesheet" href="{{ asset('public/frontend/fontawesome/css/all.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/fontawesome/css/all.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/frontend/slick/slick.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/frontend/slick/slick-theme.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/frontend/css/tab.css') }}" />
@@ -364,14 +330,30 @@ if(!empty(@$alias)){
 <link rel="stylesheet" href="{{ asset('public/frontend/css/product.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/frontend/datatables/jquery.dataTables.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/frontend/modal-video/modal-video.min.css') }}" />
-<link rel="stylesheet" href="{{ asset('public/frontend/css/alo-phone.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu.css') }}" />	
+<link rel="stylesheet" href="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu-v2.css') }}" />	
 <link href="{{asset('public/frontend/fancybox/jquery.fancybox.min.css')}}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{{ asset('public/frontend/css/menu-horizontal-right.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/frontend/css/menu-horizontal-right-dmsp.css') }}" />
-<link rel="stylesheet" href="{{ asset('public/frontend/css/template.css') }}" />-->
-<link rel="stylesheet" href="{{ asset('public/frontend/css/main.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/css/template.css') }}" />
+
+ 	
+<script src="{{ asset('public/frontend/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu.js') }}" ></script>
+<script src="{{ asset('public/frontend/slick/slick.min.js') }}"></script>	
+<script src="{{ asset('public/frontend/bxslider/jquery.bxslider.min.js') }}"></script>	
+<script src="{{ asset('public/frontend/owl-carousel-2/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('public/frontend/owl-carousel-2/owl.carousel2.thumbs.min.js') }}"></script>
+<script src="{{ asset('public/frontend/js/accounting.min.js') }}"></script>  
+<script src="{{ asset('public/frontend/datatables/jquery.dataTables.min.js') }}"></script>    
+<script src="{{ asset('public/frontend/js/table-library.js') }}"></script>    
+<script src="{{ asset('public/frontend/modal-video/jquery-modal-video.min.js') }}"></script>
+<script src="{{ asset('public/frontend/modal-video/modal-video.min.js') }}"></script>
+<script src="{{ asset('public/frontend/fancybox/jquery.fancybox.min.js')}}"                 ></script>
+<script src="{{ asset('public/frontend/js/custom.js') }}"></script>
+
 <!--Start of Tawk.to Script-->
-<script type="text/javascript" async >
+<script type="text/javascript"  >
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -384,15 +366,17 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 <!--End of Tawk.to Script-->
 <!-- begin fanpage -->
-	<div id="fb-root"></div>
-	<script type="text/javascript" >(function(d, s, id) {
+<div id="fb-root"></div>
+<script type="text/javascript"  >
+	(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) return;
 		js = d.createElement(s); js.id = id;
 		js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=206740246563578';
 		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
-	<!-- end fanpage -->	
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- end fanpage -->	
 </body>
 
 </html>

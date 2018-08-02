@@ -6,7 +6,7 @@
 					if(count($items2) > 0){
 						?>
 						<div class="slideshow">
-							<script type="text/javascript" language="javascript">        
+							<script type="text/javascript" language="javascript" async>        
 								$(document).ready(function(){
 									$(".slick-slideshow").slick({
 										dots: false,
