@@ -495,7 +495,7 @@ if(count($dataProduct) > 0){
             type: 'POST',
             data: dataItem,
             async: false,
-            success: function (data) {                
+            success: function (data) {                       
                 var thong_bao='Sản phẩm đã được thêm vào <a href="'+data.permalink+'">giỏ hàng</a>';                       
                 jQuery(".modal-add-cart .modal-body").empty();              
                 jQuery(".modal-add-cart .modal-body").append(thong_bao);

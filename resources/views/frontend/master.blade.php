@@ -3,8 +3,10 @@ $setting=getSettingSystem();
 $seo=getSeo();
 $hotline1=$setting['hotline1']['field_value'];
 $hotline2=$setting['hotline2']['field_value'];
+$hotline3=$setting['hotline3']['field_value'];
 $cskh1=$setting['cskh1']['field_value'];
 $cskh2=$setting['cskh2']['field_value'];
+$cskh3=$setting['cskh3']['field_value'];
 $email_to=$setting['email_to']['field_value'];
 $facebook_url=$setting['facebook_url']['field_value'];
 $twitter_url=$setting['twitter_url']['field_value'];
@@ -74,11 +76,16 @@ if(count($arrCart) > 0){
 	}
 }   
 $og_image=asset('upload/logo-207nqbl6drioav1yj5gm.png');
-if(!empty($item)){
-	$image=$item['image'];
+if(count(@$item) > 0){
+	$image=@$item['image'];
 	if($image != null){
-		$og_image=asset('upload/'.$image) ;
+		if(isset($item['price'])){
+			$og_image=get_product_thumbnail(@$image)  ;
+		}else{
+			$og_image=get_article_thumbnail(@$image)  ;
+		}		
 	}
+
 }
 $canonical='';
 if(!empty(@$alias)){
@@ -87,9 +94,7 @@ if(!empty(@$alias)){
 ?>
 <!DOCTYPE html>
 <html lang="vi" xmlns="http://www.w3.org/1999/xhtml" prefix="og: http://ogp.me/ns#">
-<head itemscope itemtype="http://schema.org/WebSite">
-	<meta itemprop='name' content="<?php echo @$seo["title"]; ?>"/>
-	<link rel="canonical" href="<?php echo url(@$canonical); ?>" itemprop="url">
+<head itemscope itemtype="http://schema.org/WebSite">	
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">  
 	<title><?php echo $seo_title; ?></title>
@@ -104,12 +109,15 @@ if(!empty(@$alias)){
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="google-site-verification" content="<?php echo $seo_google_site_verification; ?>">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta property="og:title" content="<?php echo $seo_title; ?>">
-	<meta property="og:type" content="website">
-	<meta property="og:description" content="<?php echo $seo_meta_description; ?>">
+	<meta itemprop="name" content="<?php echo @$seo_title; ?>"/>
+	<link rel="canonical" href="<?php echo url(@$canonical); ?>" itemprop="url">
+	<meta property="fb:app_id" content="2161101824130389" /> 
+	<meta property="og:title" content="<?php echo $seo_title; ?>" itemprop="headline">
+	<meta property="og:type"   content="article" /> 
+	<meta property="og:description" content="<?php echo $seo_meta_description; ?>" itemprop="description">
 	<meta property="og:site_name" content="<?php echo $seo_title; ?>">
-	<meta property="og:url" content="<?php echo $seo_page_url; ?>">
-	<meta property="og:image" content="<?php echo $og_image; ?>">
+	<meta property="og:url" content="<?php echo url(@$canonical); ?>" itemprop="url">
+	<meta property="og:image" content="<?php echo $og_image; ?>" itemprop="thumbnailUrl">
 	<!-- begin google analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $seo_google_analytics; ?>"></script>
 	<script async language="javascript" type="text/javascript">
@@ -123,7 +131,7 @@ if(!empty(@$alias)){
 	<link rel="shortcut icon" href="<?php echo $seo_favicon; ?>" type="image/x-icon">
 	<link rel="icon" href="<?php echo $seo_favicon; ?>" type="image/x-icon">
 	<script src="{{ asset('public/frontend/js/jquery-3.3.1.min.js') }}"></script>
-	<script async src="{{ asset('public/frontend/bootstrap/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('public/frontend/bootstrap/bootstrap.min.js') }}"></script>
 	<script async src="{{ asset('public/frontend/jquery-ui/jquery-ui.min.js') }}"></script>
 	<script  src="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu.js') }}" ></script>
 	<link rel="stylesheet" href="{{ asset('public/frontend/ddsmoothmenu/ddsmoothmenu.css') }}" />	
@@ -163,16 +171,7 @@ if(!empty(@$alias)){
 	</script>	
 </head>
 <body>	
-	<!-- begin fanpage -->
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=206740246563578';
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
-	<!-- end fanpage -->
+
 	<header class="header">	
 		<div class="bg-social">
 			<div class="container">
@@ -240,7 +239,7 @@ if(!empty(@$alias)){
 					loadCategoryProductRecursive($data_category_product ,0,"",$source_category_product_recursive)   ; 	
 					$ddlCategoryProduct      =   cmsSelectboxCategory("category_id","category-prd-ddl",$source_category_product_recursive,(int)@$category_id,"",'Chọn danh mục');				
 					?>
-					<div class="col-lg-8">
+					<div class="col-lg-7">
 						<div class="ruden">
 							<form action="<?php echo route('frontend.index.search'); ?>" method="POST" name="frm-search">
 								{{ csrf_field() }}
@@ -280,7 +279,7 @@ if(!empty(@$alias)){
 							</div>															
 						</div>						
 					</div>	
-					<div class="col-lg-2">
+					<div class="col-lg-3">
 						<div class="hotline-alen">
 							<div class="row">
 								<div class="col-xs-6"><div class="hotline-top"><?php echo $cskh1; ?></div></div>
@@ -289,6 +288,10 @@ if(!empty(@$alias)){
 							<div class="row">
 								<div class="col-xs-6"><div class="hotline-top"><?php echo $cskh2; ?></div></div>
 								<div class="col-xs-6"><div class="hotline-top-2"><a href="tel:<?php echo $hotline2 ?>"><?php echo $hotline2; ?></a></div></div>
+							</div>
+							<div class="row">
+								<div class="col-xs-6"><div class="hotline-top"><?php echo $cskh3; ?></div></div>
+								<div class="col-xs-6"><div class="hotline-top-2"><a href="tel:<?php echo $hotline2 ?>"><?php echo $hotline3; ?></a></div></div>
 							</div>	
 						</div>																
 					</div>				
@@ -348,7 +351,7 @@ if(!empty(@$alias)){
 	</header>
 @yield("content")
 @include("frontend.footer")
-<link  rel="stylesheet" href="{{ asset('public/frontend/bootstrap/bootstrap.min.css') }}" />
+<!--<link  rel="stylesheet" href="{{ asset('public/frontend/bootstrap/bootstrap.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/frontend/jquery-ui/jquery-ui.css') }}" />
 <link  rel="stylesheet" href="{{ asset('public/frontend/fontawesome/css/all.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/frontend/slick/slick.css') }}" />
@@ -365,9 +368,10 @@ if(!empty(@$alias)){
 <link href="{{asset('public/frontend/fancybox/jquery.fancybox.min.css')}}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{{ asset('public/frontend/css/menu-horizontal-right.css') }}" />
 <link rel="stylesheet" href="{{ asset('public/frontend/css/menu-horizontal-right-dmsp.css') }}" />
-<link rel="stylesheet" href="{{ asset('public/frontend/css/template.css') }}" />
+<link rel="stylesheet" href="{{ asset('public/frontend/css/template.css') }}" />-->
+<link rel="stylesheet" href="{{ asset('public/frontend/css/main.css') }}" />
 <!--Start of Tawk.to Script-->
-<script type="text/javascript">
+<script type="text/javascript" async >
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -379,6 +383,16 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+<!-- begin fanpage -->
+	<div id="fb-root"></div>
+	<script type="text/javascript" >(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=206740246563578';
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<!-- end fanpage -->	
 </body>
 
 </html>

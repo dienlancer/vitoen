@@ -1490,7 +1490,7 @@ class IndexController extends Controller {
       public function addToCart(Request $request){
         $id=$request->id;
         $quantity=$request->quantity;   
-        $data=ProductModel::find((int)$id);          
+        $data=ProductModel::find((int)@$id);          
         $product_id=(int)@$id;
         $product_code=$data["code"];
         $product_name=$data["fullname"];
