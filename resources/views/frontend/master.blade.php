@@ -120,8 +120,8 @@ if(!empty(@$alias)){
 	<meta property="og:image" content="<?php echo $og_image; ?>" itemprop="thumbnailUrl">	
 	<link rel="shortcut icon" href="<?php echo $seo_favicon; ?>" type="image/x-icon">
 	<link rel="icon" href="<?php echo $seo_favicon; ?>" type="image/x-icon">	
-	<script src="{{ asset('public/frontend/js/jquery-3.3.1.min.js') }}"></script>
-	<script src="{{ asset('public/frontend/bootstrap/bootstrap.min.js') }}"  ></script>
+	<script src="{{ asset('public/frontend/js/jquery-3.3.1.min.js') }}"></script>	
+	<script src="{{ asset('public/frontend/bootstrap/bootstrap.min.js') }}" async  ></script>
 	<script src="{{ asset('public/frontend/js/jquery.elevatezoom-3.0.8.min.js') }}" ></script> 
 	<script src="{{ asset('public/frontend/js/spinner.js')}}"        async         ></script>		    	
 	<!-- begin google analytics -->
@@ -131,7 +131,7 @@ if(!empty(@$alias)){
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
 
-		gtag('config', '<?php echo $seo_google_analytics; ?>');
+		gtag('config', '<?php echo $seo_google_analytics; ?>');		
 	</script>
 	<!-- end google analytics -->
 </head>
@@ -181,7 +181,7 @@ if(!empty(@$alias)){
 					<div class="col-lg-2">
 						<center>
 							<a href="<?php echo url('/'); ?>">                
-								<img src="<?php echo $seo_logo_frontend;?>" alt='<?php echo @$seo["alt_logo"]; ?>' />
+								<img src="<?php echo $seo_logo_frontend;?>" alt="<?php echo @$seo['alt_logo']; ?>"  title="<?php echo @$seo['alt_logo']; ?>"/>
 							</a> 
 						</center>	
 					</div>
@@ -377,6 +377,15 @@ s0.parentNode.insertBefore(s1,s0);
 	}(document, 'script', 'facebook-jssdk'));
 </script>
 <!-- end fanpage -->	
+<!-- Global site tag (gtag.js) - AdWords: 795806794 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-795806794"></script>
+<script language="javascript" type="text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-795806794');
+</script>
 </body>
 
 </html>

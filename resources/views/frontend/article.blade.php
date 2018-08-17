@@ -53,10 +53,7 @@ if(count($source_category) > 0){
 			<i class="fa fa-eye" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo $count_view_text ?>&nbsp;Lượt xem
 		</span>
 	</div>	
-	<hr class="duong-ngang" />	
-	<div class="margin-top-10 article-excerpt justify">
-		<?php echo $intro; ?>
-	</div>		
+	<hr class="duong-ngang" />		
 	<div class="margin-top-15">
 		<?php echo $content; ?>
 	</div>	

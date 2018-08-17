@@ -112,7 +112,7 @@ $company=$setting['contacted_person']['field_value'];
 											?>
 											<div class="pricetag">
 												<div class="canai">
-													<img src="<?php echo asset('upload/pricetag.png'); ?>" >
+													<img  src="<?php echo asset('upload/pricetag.png'); ?>" >
 													<div class="riman">-<?php echo @$value2['sale_off']; ?>%</div>										
 												</div>										
 											</div>
