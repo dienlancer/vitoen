@@ -335,7 +335,7 @@ $dataProduct=DB::table('product')
 ->orderBy('product.created_at', 'desc')                
 ->get()
 ->toArray();         
-$dataProduct=convertToArray($dataProduct);     
+$dataProduct=convertToArray($dataProduct);   
 if(count($dataProduct) > 0){            
    ?>
    <div class="margin-top-15 product-detail-content">
@@ -346,7 +346,7 @@ if(count($dataProduct) > 0){
          $(document).ready(function(){
             $(".productdetail").owlCarousel({
                autoplay:true,                    
-               loop:true,
+               loop:false,
                margin:0,                        
                nav:false,            
                mouseDrag: true,
