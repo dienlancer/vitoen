@@ -151,7 +151,8 @@ class IndexController extends Controller {
   }  
   
   public function search(Request $request){
-    /* begin standard */    
+    try{     
+      /* begin standard */    
     $layout="two-column";                                                           
     $totalItems=0;
     $totalItemsPerPage=0;
@@ -222,7 +223,11 @@ class IndexController extends Controller {
     ->take($totalItemsPerPage)
     ->get()->toArray();   
     $items=convertToArray($data);      
-    return view("frontend.index",compact("component","items","pagination","layout","prod_param",'q','category','category_id'));
+    return view("frontend.index",compact("component","items","pagination","layout","prod_param",'q','category','category_id'));  
+    }
+    catch(Exception $ex){
+      echo "<pre>".print_r($ex,true)."</pre>";
+    }    
   }  
   public function index(Request $request,$alias)
   {                     

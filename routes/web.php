@@ -432,5 +432,8 @@ Route::group(["prefix"=>"media"],function(){
 	Route::post("trash",["as"=>"frontend.media.trash","uses"=>"frontend\MediaController@trash"]);		
 	
 });
-
+Route::get('clear-cache', function() {
+    $command = Artisan::call('config:cache');
+	return 'Success';
+});
 ?>
